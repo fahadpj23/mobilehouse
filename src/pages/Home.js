@@ -3,6 +3,7 @@ import SimpleSlider from "../components/Home/slider";
 import Nav from "../components/Home/Nav"
 
 import axios from 'axios' 
+import  MobileHouseApi from "../helpers/axiosinstance"
 import React, { useState,useEffect } from 'react';
 import ProductSlider from "../components/Home/productSlick";
 function Home() {
@@ -13,20 +14,21 @@ function Home() {
 
  
   useEffect(() => {
-          
-          axios.get(`http://localhost:9000/productcover`)
+         
+          MobileHouseApi.get("/cover")
+        
           .then(res=>{
           const product=res.data;
           setcoverproducts(product)
           
           })
-          axios.get(`http://localhost:9000/accessories`)
+          MobileHouseApi.get("/accessories")
           .then(res=>{
           const product=res.data;
           setaccessories(product)
           
           })
-          axios.get(`http://localhost:9000/headset`)
+          MobileHouseApi.get("/headset")
           .then(res=>{
           const product=res.data;
           setheadset(product)
