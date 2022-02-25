@@ -19,6 +19,7 @@ function Home() {
         
           .then(res=>{
           const product=res.data;
+          console.log(res.data)
           setcoverproducts(product)
           
           })

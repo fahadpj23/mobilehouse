@@ -1,6 +1,7 @@
 import axios from 'axios' 
 import React, { useState} from 'react';
 import {FaRegUserCircle } from 'react-icons/fa';
+import  MobileHouseApi from "../../helpers/axiosinstance"
 import {AiOutlineShoppingCart } from 'react-icons/ai';
 import {Link} from "react-router-dom";
 import Login from './login';
@@ -18,7 +19,7 @@ const Nav=(props)=>{
         }
         else
         {
-        axios.get(`http://localhost:9000/searchProduct`,{params: { searchitem: searchitem1}})
+            MobileHouseApi.get(`searchProduct`,{params: { searchitem: searchitem1}})
         .then(res=>{
              setserachitemdis(res.data);
         })

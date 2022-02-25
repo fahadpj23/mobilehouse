@@ -224,9 +224,7 @@ export default class  ProductSlider extends Component{
             return (
      
               <div>
-                 {this.props.items!="" && this.props.items.map((item,key)=>{
-                   console.log(item)
-                 })}
+                
                 <div className="w-full flex justify-between py-4" >
                  <h2 className="font-semibold ">{this.props.Heading}</h2>
                  <Link className="bg-blue-500 rounded-xl  text-white px-3 text-sm flex items-center py-1" to={{pathname: "/viewProduct", state:{item:this.props.Heading}}}>View All</Link>

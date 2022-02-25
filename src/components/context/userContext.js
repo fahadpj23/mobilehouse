@@ -10,14 +10,11 @@ const ContextProvider=(props)=>{
     
 
     const addtocart=(item)=>{
-        setcart([...cart,{
-            id:cart.length,
-            productid:item.productid,
-            value:{item},
-            qty:1
-        }]) 
+        item.qty=1
+        setcart([...cart,item]) 
       setcartadded(true) 
     }
+
     const cartqty=(product,qty)=>{
         cart.map((item,key)=>{
             if(item.id==product.id)

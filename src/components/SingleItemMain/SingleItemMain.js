@@ -17,7 +17,7 @@ const SingleItemMain=(props)=>{
    
     const context=useContext(Usercontext)
    
-   console.log(context.cart)
+
     
     const checkpincode=()=>{
         axios.get(`http://localhost:9000/pincode`,{params: { pincodeno: pincode}})
@@ -44,7 +44,7 @@ const SingleItemMain=(props)=>{
                         <div key={key} className="w-full flex justify-center">
                             <div className="w-11/12 flex  mt-5 ">
                                 <div className="w-5/12 flex ] flex-col space-y-4 ">
-                                    <img src={item.image} alt="" className="object-contain  overflow-hidden h-96 "/>
+                                    <img src={`http://localhost:9000/images/${item.image}`} alt="" className="object-contain  overflow-hidden h-96 "/>
                                     <div className="space-x-3 flex">
                                         {/* <button className="w-6/12 font-semibold text-white bg-yellow-400 py-3">ADD TO CART</button> */}
                                       <Link to={{pathname: "/Address", state:{itemid:item.id,itemtype:item.type,itembrand:item.brand,orderqty:qty}}} onClick={()=>context.addtocart(item)} className="w-full font-semibold flex justify-center text-white bg-primary py-3">ORDER NOW</Link>

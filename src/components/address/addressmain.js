@@ -23,43 +23,43 @@ const AddressMain=(props)=>{
     const placeorder=()=>{
         
         
-        let orderitem=[];
-        orderitem.push({
+        // let orderitem=[];
+        // orderitem.push({
 
-            "customername":name,
-            "pincode":pincode,
-            "phone":phone,
-            "address":address,
-            "productid":item.id,
-            "qty":props.qty,
-            "price":item.price,
-            "productname":item.name,
-            "date":date,
-            "total":props.qty*item.price
-        }
-            )
-        // console.log(order)
-        // let formData = new FormData();
-        // // formData.append({'name':name})
-        // formData.append('pincode',pincode)
-        // formData.append('phone',phone)
-        // formData.append('address',address)
-        // formData.append('productid',productid)
-        // formData.append('qty',qty)
-        // formData.append('productname',productname)
-        // formData.append('total',total)
-        // console.log(formData)
-        // const config = {     
-        //     headers: { 'content-type': 'multipart/form-data' }
+        //     "customername":name,
+        //     "pincode":pincode,
+        //     "phone":phone,
+        //     "address":address,
+        //     "productid":item.id,
+        //     "qty":props.qty,
+        //     "price":item.price,
+        //     "productname":item.name,
+        //     "date":date,
+        //     "total":props.qty*item.price
         // }
+        //     )
+        // console.log(order)
+    //     let formData = new FormData();
+    //     formData.append({'name':name})
+    //     formData.append('pincode',pincode)
+    //     formData.append('phone',phone)
+    //     formData.append('address',address)
+    //     formData.append('productid',productid)
+    //     formData.append('qty',qty)
+    //     formData.append('productname',productname)
+    //     formData.append('total',total)
+    //     console.log(formData)
+    //     const config = {     
+    //         headers: { 'content-type': 'multipart/form-data' }
+    //     }
         
-        axios.post(`http://localhost:9000/orders`,orderitem)
+    //     axios.post(`http://localhost:9000/orders`,orderitem)
         
-        .then(res=>{
-       console.log(res.data)
+    //     .then(res=>{
+    //    console.log(res.data)
         
           
-          })  
+    //       })  
     }
     return(
         <div className="flex  h-screen overflow-y-auto">
@@ -96,26 +96,31 @@ const AddressMain=(props)=>{
                     </div>
                     <div>
                         <h1 className="text-xl font-semibold my-5 ">Delivery Summary</h1>
-                        <div className="space-y-3 flex space-x-3">
-                            <div className="">
-                                <img src={item.image} alt="" className=" overflow-hidden h-24 w-28 object-fill"/>
-
-                            </div>
-                            <div>
-                                <h1>{item.name}</h1>
-                                <h1>Standard Delivery</h1>
-                                <h1>Expected  on may 21,2016</h1>
-                                <h1>Rs:      {item.price}</h1>
-                                <h1>qty:     {props.qty}</h1>
-                            </div>
-                            
-                        </div>
+                        {props.item && props.item.map((item,key)=>{
+                            return(
+                             <div className="space-y-3 flex space-x-3">
+                                <div className="">
+                                    <img src={`http://localhost:9000/images/${item.image}`} alt="" className=" overflow-hidden h-24 w-28 object-fill"/>
+    
+                                </div>
+                                <div>
+                                    <h1>{item.name}</h1>
+                                    <h1>Standard Delivery</h1>
+                                    <h1>Expected  on may 21,2016</h1>
+                                    <h1>Rs:      {item.price}</h1>
+                                    <h1>qty:     {item.qty}</h1>
+                                </div>
+                             
+                         </div>
+                            )
+                        })}
+                           
 
                     </div>
-                    <div className="space-y-5">   
+                    {/* <div className="space-y-5">   
                         <h1 className=" flex justify-between mt-8 text-lg font-semibold"><span >Total Payable</span><span className="text-green-500 ">{item.price*props.qty}</span></h1>
                         <button onClick={()=>placeorder()} className="w-full text-white py-2 focus:outline-none bg-primary">Place Order</button>
-                    </div>
+                    </div> */}
                  
                 </div>
                 

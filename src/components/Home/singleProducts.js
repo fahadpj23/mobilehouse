@@ -7,17 +7,13 @@ const SingleProduct=(props)=>{
     const [cartadd, setcartadd] = useState(false)
    
     let item=props.item;
-    console.log(item)
-    let imagesrc= "http://127.0.0.1:8000"+item.image
-    console.log(imagesrc)
-    console.log(context.cart.find(item1 => item1.id === item.productid))
-   
+ 
    
     return(
         
             <div  className="lg:10/12  w-full border-2 border-gray-300 rounded-lg flex flex-col overflow-hidden ">
                             <Link to={{pathname: "/singleItem", state:{itemid:item.id,itemtype:item.type,itembrand:item.brand}}} className="h-full items-center justify-center flex flex-col space-y-3 p-3 ">
-                                     <img src={imagesrc} alt="dd" className="object-cover h-48 overflow-hidden transform hover:-translate-y-1 hover:scale-110 hover:duration-700 "/>
+                                     <img src={`http://127.0.0.1:9000/images/${item.image}`} alt="dd" className="object-cover h-48 overflow-hidden transform hover:-translate-y-1 hover:scale-110 hover:duration-700 "/>
                                      
                             </Link>
                         

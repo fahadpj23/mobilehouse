@@ -1,11 +1,12 @@
 import {useContext} from 'react'
+import { Link } from 'react-router-dom';
 import { Usercontext } from '../context/userContext';
 import Cartitem from './cartitem';
 const Cartmain=()=>{
     const context=useContext(Usercontext)
     let total=0;
     context.cart.map((item,key)=>{
-        total=total+(+item.value.item.price*item.qty)
+        total=total+(item.price*item.qty)
         console.log(item.qty)
     })
 
@@ -66,7 +67,10 @@ const Cartmain=()=>{
                                     <h1>Rs:{total}</h1>
                                     
                                 </div>
-                                <button className="w-full text-lg tracking-widest rounded-md font-semibold py-1 text-white bg-primary">CHECKOUT</button>
+                                <div className='w-full text-lg tracking-widest rounded-md font-semibold py-1 text-white bg-primary text-center'>
+                                <Link  to={{pathname: "/Address", state:{checkouttype:"cart"}}} className="">CHECKOUT</Link>
+
+                                </div>
                             </div>
                         </div>
                         
