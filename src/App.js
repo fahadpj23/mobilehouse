@@ -16,22 +16,27 @@ import { AuthContext } from "./helpers/authcontext";
 
 
 function App(){
-    const[ authState, setAuthState ]=useState(false)
+    const[ authState, setAuthState ]=useState("")
 
   
    
     useEffect(()=>{
         MobileHouseApi.get('authentication',{headers:{accessToken:localStorage.getItem("accessToken")}})
         .then((res)=>{
+           
            if(res.data.success)
            {
-            setAuthState(true)
+            setAuthState("authorized")
         
            }
-           
-
+           else
+           {
+               setAuthState("unauthroized")
+           }
+        
         })
     },[])
+   
     return(
        
         <Router>
@@ -40,18 +45,24 @@ function App(){
             <AuthContext.Provider value={{ authState, setAuthState }}>
                      
                         <ContextProvider > 
+                          
+                        
+                            <Route  path="/" exact  component={Home}/>  
                            
-                            <Route  path="/" exact  component={Home}/>   
                             <Route  path="/ViewProduct" component={ViewProduct}/>
+                            <Route  path="/orders" component={Order}/>
+                            <Route  path="/AddProduct" component={AddProduct}/>
+                           
                             <Route  path="/singleItem" component={SingleItem}/>
                             <Route  path="/Order" component={Order}/>
                             <Route  path="/Address" component={Address}/>
                             <Route  path="/cart" component={Cart}/>
                             <Route  path="/Admin" component={Admin}/>
-                            <Route  path="/orders" component={Order}/>
-                            <Route  path="/AddProduct" component={AddProduct}/>
+                          
+                           
                             <Route  path="/ShopProduct" component={ShopProduct}/>
-                         
+                           
+                          
                         </ContextProvider>
             </AuthContext.Provider>
                   

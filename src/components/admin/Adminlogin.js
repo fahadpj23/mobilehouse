@@ -1,10 +1,11 @@
 import axios from 'axios' 
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import {Route,BrowserRouter as Router,Switch} from  "react-router-dom";
 import { useHistory } from 'react-router-dom';
-
+import { AuthContext } from '../../helpers/authcontext';
 const AdminLogin=()=>{
 let history=useHistory();
+const Auth=useContext(AuthContext)
 const [username, setusername] = useState("");
 const [password, setpassword] = useState("");
     const Login=()=>{
@@ -15,6 +16,7 @@ const [password, setpassword] = useState("");
             {
              
                 localStorage.setItem("accessToken",res.data.accessToken)
+                Auth.setAuthState("authorized")
                 history.push("/orders")
                 
             }

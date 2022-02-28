@@ -1,25 +1,33 @@
 import axios from "axios"
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect,useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import  { mobilehouseApi } from "../../../axiosinstance";
 import SideNav from "../sideNav";
+import { AuthContext } from "../../../helpers/authcontext";
 const OrderMain=()=>{
     let history=useHistory();
+    let auth=useContext(AuthContext)
     const [orderitems, setorderitems] = useState("")
 useEffect(() => {
-    mobilehouseApi.get(`orderdetails`,{headers:{accessToken:localStorage.getItem("accessToken")}})  
-        .then(res=>{
-           console.log(res.data)
-            if(res.data.error=="User not logged in")
+        if(auth!="")
+        {
+            if(auth.authState!="authorized")
             {
                 history.push("/admin")
             }
             else
             {
-             setorderitems(res.data)
+                mobilehouseApi.get(`orderdetails`)  
+                .then(res=>{
+                   
+                     setorderitems(res.data)
+                  
+                  
+                  })  
             }
-          
-          })  
+        }
+           
+    
 }, [])
 
 
