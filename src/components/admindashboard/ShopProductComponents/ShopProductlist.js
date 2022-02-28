@@ -35,7 +35,7 @@ const ShopProductList=()=>{
  }
  
     useEffect(() => {
-        mobilehouseApi.get(`products`)    
+        mobilehouseApi.get(`products`,{withCredentials:true})    
             .then(res=>{
                 console.log(res.data)
                 setshoplist(res.data)

@@ -7,16 +7,26 @@ const OrderMain=()=>{
     let history=useHistory();
     const [orderitems, setorderitems] = useState("")
 useEffect(() => {
-    mobilehouseApi.get(`orderdetails`)    
+    mobilehouseApi.get(`orderdetails`,{headers:{accessToken:localStorage.getItem("accessToken")}})  
         .then(res=>{
-        
-            setorderitems(res.data)
+           console.log(res.data)
+            if(res.data.error=="User not logged in")
+            {
+                history.push("/admin")
+            }
+            else
+            {
+             setorderitems(res.data)
+            }
+          
           })  
 }, [])
 
 
     return(
         <div className="flex">
+        {orderitems!="" &&
+        <div className="flex w-full">
         <SideNav/>
         <div className="w-9/12 lg:w-10/12 overflow-auto">
         <div className="ml-6">
@@ -36,7 +46,7 @@ useEffect(() => {
 
                 </tr>
                 {
-                    orderitems!="" && orderitems.map((item,key)=>{
+                     orderitems.map((item,key)=>{
                         return(
                             <tr className="text-center">
                                 <td>{key+1}</td>
@@ -57,6 +67,7 @@ useEffect(() => {
             </table>
         </div>
         </div>
+        </div>}
     </div>
         
     )

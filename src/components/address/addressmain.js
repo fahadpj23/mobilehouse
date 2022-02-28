@@ -12,6 +12,7 @@ const AddressMain=(props)=>{
     // const [total, settotal] = useState(props.item.price*props.qty)
 
     let item=props.item 
+    let total=0
     console.log(item)
     var today = new Date();
     var date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear()+'  '+today.getHours() + ':'+today.getMinutes();
@@ -19,47 +20,35 @@ const AddressMain=(props)=>{
     
     console.log(date)
    
-    console.log(item.id)
+    props.item.map((item,key)=>{
+        total=total+item.price*item.qty
+    })
     const placeorder=()=>{
         
         
-        // let orderitem=[];
-        // orderitem.push({
-
-        //     "customername":name,
-        //     "pincode":pincode,
-        //     "phone":phone,
-        //     "address":address,
-        //     "productid":item.id,
-        //     "qty":props.qty,
-        //     "price":item.price,
-        //     "productname":item.name,
-        //     "date":date,
-        //     "total":props.qty*item.price
-        // }
-        //     )
-        // console.log(order)
-    //     let formData = new FormData();
-    //     formData.append({'name':name})
-    //     formData.append('pincode',pincode)
-    //     formData.append('phone',phone)
-    //     formData.append('address',address)
-    //     formData.append('productid',productid)
-    //     formData.append('qty',qty)
-    //     formData.append('productname',productname)
-    //     formData.append('total',total)
-    //     console.log(formData)
-    //     const config = {     
-    //         headers: { 'content-type': 'multipart/form-data' }
-    //     }
+       
+        let formData = new FormData();
+        formData.append('name',name)
+        formData.append('pincode',pincode)
+        formData.append('phone',phone)
+        formData.append('address',address)
         
-    //     axios.post(`http://localhost:9000/orders`,orderitem)
+        formData.append('product',JSON.stringify(item)  )
+        // formData.append('qty',qty)
+        // formData.append('productname',productname)
+        // formData.append('total',total)
+        console.log(formData)
+        const config = {     
+            headers: { 'content-type': 'multipart/form-data' }
+        }
         
-    //     .then(res=>{
-    //    console.log(res.data)
+        axios.post(`http://localhost:9000/orders`,formData)
+        
+        .then(res=>{
+       console.log(res.data)
         
           
-    //       })  
+          })  
     }
     return(
         <div className="flex  h-screen overflow-y-auto">
@@ -89,7 +78,7 @@ const AddressMain=(props)=>{
                         <h1 className="text-2xl text-green-500 font-semibold flex justify-center underline">Delivery</h1>
                         <h1 className="text-xl font-semibold my-5 ">Order Summary</h1>
                         <div className="space-y-2">
-                            <h1 className="flex justify-between"><span>order Total</span><span className="text-red-500">Rs:{item.price*props.qty}</span></h1>
+                            <h1 className="flex justify-between"><span> Total order</span><span className="text-red-500">{ props.item &&  props.item.length}</span></h1>
                             <h1 className="flex justify-between"><span>Delivery charge</span><span className="text-red-500">Free</span></h1>
                         </div>
                        
@@ -117,10 +106,10 @@ const AddressMain=(props)=>{
                            
 
                     </div>
-                    {/* <div className="space-y-5">   
-                        <h1 className=" flex justify-between mt-8 text-lg font-semibold"><span >Total Payable</span><span className="text-green-500 ">{item.price*props.qty}</span></h1>
+                    <div className="space-y-5">   
+                        <h1 className=" flex justify-between mt-8 text-lg font-semibold"><span >Total Payable</span><span className="text-green-500 ">{total}</span></h1>
                         <button onClick={()=>placeorder()} className="w-full text-white py-2 focus:outline-none bg-primary">Place Order</button>
-                    </div> */}
+                    </div>
                  
                 </div>
                 

@@ -4,14 +4,16 @@ import Nav from "../components/Home/Nav"
 
 import axios from 'axios' 
 import  MobileHouseApi from "../helpers/axiosinstance"
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect ,useContext} from 'react';
 import ProductSlider from "../components/Home/productSlick";
+import {AuthContext} from '../helpers/authcontext'
 function Home() {
   const [coverproducts, setcoverproducts] = useState("")
   const [accessories, setaccessories] = useState("")
   const [headset, setheadset] = useState("")
   const [products, setproducts] = useState("")
-
+  const AuthCon=useContext(AuthContext)
+  console.log(AuthCon)
  
   useEffect(() => {
          

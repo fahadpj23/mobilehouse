@@ -10,13 +10,15 @@ const [password, setpassword] = useState("");
     const Login=()=>{
         axios.get(`http://localhost:9000/adminlogin`,{params:{username:username,password:password}})    
         .then(res=>{
-            if(res.data.length==1)
+            console.log(res.data)
+            if(res.data.accessToken)
             {
-                
+             
+                localStorage.setItem("accessToken",res.data.accessToken)
                 history.push("/orders")
+                
             }
-        
-          
+
           })  
     }
     return(

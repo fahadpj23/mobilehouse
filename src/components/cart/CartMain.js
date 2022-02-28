@@ -9,7 +9,7 @@ const Cartmain=()=>{
         total=total+(item.price*item.qty)
         console.log(item.qty)
     })
-
+    console.log(context)
      return(
          <div className="flex justify-center">
              <div className="w-full px-3 flex h-screen ">

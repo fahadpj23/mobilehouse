@@ -7,6 +7,7 @@ export const Usercontext=createContext()
 const ContextProvider=(props)=>{
     const [cart, setcart] = useState([] )
     const [cartadded, setcartadded] = useState(false)
+    const[auth,setauth]=useState(false)
     
 
     const addtocart=(item)=>{
@@ -41,6 +42,7 @@ const ContextProvider=(props)=>{
     
     
     useEffect(() => {
+     
         if(cartadded==true  )
         {
         localStorage.setItem('cart',JSON.stringify(cart))
@@ -55,6 +57,7 @@ const ContextProvider=(props)=>{
             addtocart:addtocart,
             cartqty:cartqty,
             cartremove:cartremove,
+            auth:auth,
             }}>
             {props.children}
         </Usercontext.Provider>

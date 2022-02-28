@@ -16,7 +16,7 @@ const AddProductMain=()=>{
             <div className="w-11/12  ">
                 <div className="space-y-1">
                     <h1>select category *</h1>
-                    <select onChange={(e)=>setcatgeory(e.target.value)} className="border-2 border-gray-400 rounded-md w-5/12 text-sm focus:outline-none py-1">
+                    <select onChange={(e)=>setcatgeory(e.target.value)} value={catgeory} className="border-2 border-gray-400 rounded-md w-5/12 text-sm focus:outline-none py-1">
                         <option>--Select Catgeory---</option>
                         <option value="cover">COVER</option>
                         <option value="accessories">ACCESSORIES</option>
@@ -29,13 +29,21 @@ const AddProductMain=()=>{
             {(() => {
                 switch (catgeory) {
                 case 'cover':
-                    return <AddCover/>;
+                    return <AddCover
+                    setcatgeory={setcatgeory}
+                    />;
                 case 'accessories':
-                    return <AddAccessories/>
+                    return <AddAccessories
+                    setcatgeory={setcatgeory}
+                    />
                 case 'phone':
-                    return <AddPhone/>;
+                    return <AddPhone
+                    setcatgeory={setcatgeory}
+                    />;
                 case 'headset':
-                    return <AddHeadset/>        
+                    return <AddHeadset
+                    setcatgeory={setcatgeory}
+                    />        
                 default:
                     return null;
                 }

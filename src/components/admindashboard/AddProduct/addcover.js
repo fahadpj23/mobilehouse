@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useState } from "react"
-const AddCover=()=>{
+const AddCover=(props)=>{
     const [productid, setproductid] = useState("")
     const [name, setname] = useState("")
     const [color, setcolor] = useState("")
@@ -31,11 +31,11 @@ const AddCover=()=>{
            
             if(res.data=="successfully added")
             {
-                alert("successfully added")
+                props.setcatgeory("--Select Catgeory---")
             }
             else
             {
-                alert("something is wrong")
+                console.log("something is wrong")
             }
           }) 
           
