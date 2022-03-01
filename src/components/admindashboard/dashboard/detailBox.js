@@ -1,9 +1,9 @@
-const DetailsBox=()=>{
+const DetailsBox=(props)=>{
     return(
-        <div>
-            <div className="w-full bg-green-500 text-white rounded-xl shadow-lg p-3">
-                <h1>Total Sales</h1>
-                <h1><span>RS:50000</span> <span className="text-sm">This Month</span></h1>
+        <div className="w-10/12">
+            <div className="w-full flex flex-col items-center justify-center  ">
+                <h1>{props.head}</h1>
+                <h1><span>{props.amount}</span> <span className="text-sm">This Month</span></h1>
 
             </div>
         </div>
