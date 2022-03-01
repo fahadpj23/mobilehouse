@@ -17,7 +17,7 @@ const [password, setpassword] = useState("");
              
                 localStorage.setItem("accessToken",res.data.accessToken)
                 Auth.setAuthState("authorized")
-                history.push("/orders")
+                history.push("/Dashboard")
                 
             }
 

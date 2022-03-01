@@ -11,7 +11,7 @@ const Admin=()=>{
         <div>
             {
                 Auth && Auth.authState=="authorized" ? 
-                history.push("/order")
+                history.push("/Dashboard")
                 :
                 <AdminLogin/>
             }

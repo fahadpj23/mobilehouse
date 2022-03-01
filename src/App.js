@@ -9,6 +9,7 @@ import Order from './pages/Order'
 import Admin from './pages/admin';
 import AddProduct from './pages/AddProduct';
 import ShopProduct from './pages/ShopProduct';
+import Dashboard from './pages/Dashboard';
 import ContextProvider from './components/context/userContext';
 import {useEffect,useState} from 'react'
 import  MobileHouseApi from "./helpers/axiosinstance"
@@ -46,23 +47,28 @@ function App(){
                      
                         <ContextProvider > 
                           
-                        
-                            <Route  path="/" exact  component={Home}/>  
+                            {
+                                authState!="" &&
+                                <>
+                                    <Route  path="/" exact  component={Home}/>  
+                                    <Route path="/Dashboard" component={Dashboard}/>
+                                    <Route  path="/ViewProduct" component={ViewProduct}/>
+                                    <Route  path="/orders" component={Order}/>
+                                    <Route  path="/AddProduct" component={AddProduct}/>
+                                
+                                    <Route  path="/singleItem" component={SingleItem}/>
+                                    <Route  path="/Order" component={Order}/>
+                                    <Route  path="/Address" component={Address}/>
+                                    <Route  path="/cart" component={Cart}/>
+                                    <Route  path="/Admin" component={Admin}/>
+                                
+                                
+                                    <Route  path="/ShopProduct" component={ShopProduct}/>
+                                </>
+                            }
                            
-                            <Route  path="/ViewProduct" component={ViewProduct}/>
-                            <Route  path="/orders" component={Order}/>
-                            <Route  path="/AddProduct" component={AddProduct}/>
                            
-                            <Route  path="/singleItem" component={SingleItem}/>
-                            <Route  path="/Order" component={Order}/>
-                            <Route  path="/Address" component={Address}/>
-                            <Route  path="/cart" component={Cart}/>
-                            <Route  path="/Admin" component={Admin}/>
-                          
                            
-                            <Route  path="/ShopProduct" component={ShopProduct}/>
-                           
-                          
                         </ContextProvider>
             </AuthContext.Provider>
                   
