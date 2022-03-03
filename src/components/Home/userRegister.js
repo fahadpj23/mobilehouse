@@ -1,6 +1,6 @@
 import { AiOutlineClose } from 'react-icons/ai';
 import  MobileHouseApi from "../../helpers/axiosinstance"
-const UserRegister=()=>{
+const UserRegister=(props)=>{
 
     const handleSubmit=(e)=>{
         const data= new FormData(e.target)
@@ -9,6 +9,9 @@ const UserRegister=()=>{
             if(res.data.UserToken)
             {
                 localStorage.setItem("UserToken",res.data.UserToken)
+                localStorage.setItem("UserName",res.data.username)
+                props.setusername(res.data.username)
+                props.setregisteruser(false)
             }
         })
         e.preventDefault();

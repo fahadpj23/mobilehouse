@@ -2,21 +2,23 @@ import { useState } from "react"
 import axios from 'axios'
 import { AiOutlineClose } from 'react-icons/ai';
 const Login=(props)=>{
+    console.log(props)
     const [loginst, setloginst] = useState("")
     const [username, setusername] = useState("")
     const [password, setpassword] = useState("")
-    const loginf=(props)=>{
+
+
+    const loginf=()=>{
         axios.get(`http://localhost:9000/login`,{params: { username: username,password:password}})     
             .then(res=>{
-             console.log(res.data)   
-            if(res.data[0].count==1)
+                if(res.data.UserToken)
                 {
-                    setloginst(true)
-                    props.loginsuccess(username)
+                    
+                    localStorage.setItem("UserToken",res.data.UserToken)
+                    localStorage.setItem("UserName",res.data.username)
+                    props.loginsuccess && props.loginsuccess(res.data.username)
                 }
-                
-            else
-                setloginst("username or password is incorrect")
+           console.log(res.data)
 
         })   
     }

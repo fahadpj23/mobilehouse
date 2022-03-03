@@ -18,6 +18,8 @@ import { AuthContext } from "./helpers/authcontext";
 
 function App(){
     const[ authState, setAuthState ]=useState("")
+    const[ UserauthState, setUserAuthState ]=useState("")
+
 
   
    
@@ -36,6 +38,25 @@ function App(){
            }
         
         })
+        if(localStorage.getItem("UserToken"))
+        {
+          
+        MobileHouseApi.get('userAuthentication',{headers:{accessToken:localStorage.getItem("UserToken")}})
+        .then((res)=>{
+       
+           if(res.data.success)
+           {
+            setUserAuthState("authorized")
+        
+           }
+           else
+           {
+            setUserAuthState("unauthroized")
+           }
+       
+        
+        })
+        }
     },[])
    
     return(
@@ -43,12 +64,12 @@ function App(){
         <Router>
              
             <Switch>
-            <AuthContext.Provider value={{ authState, setAuthState }}>
+            <AuthContext.Provider value={{ authState, setAuthState ,UserauthState, setUserAuthState}}>
                      
                         <ContextProvider > 
                           
                             {
-                                authState!="" &&
+                                (authState!="" && UserauthState!="") &&
                                 <>
                                     <Route  path="/" exact  component={Home}/>  
                                     <Route path="/Dashboard" component={Dashboard}/>

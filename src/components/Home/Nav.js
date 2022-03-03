@@ -1,17 +1,24 @@
 import axios from 'axios' 
-import React, { useState} from 'react';
+import React, { useState,useContext} from 'react';
 import {FaRegUserCircle } from 'react-icons/fa';
 import  MobileHouseApi from "../../helpers/axiosinstance"
 import {AiOutlineShoppingCart } from 'react-icons/ai';
 import {Link} from "react-router-dom";
 import Login from './login';
 import UserRegister from './userRegister';
+import {AuthContext} from '../../helpers/authcontext'
 const Nav=(props)=>{
+    const context=useContext(AuthContext)
+    
     const [serachitemdis, setserachitemdis] = useState("")
     const [loginstatus, setloginstatus] = useState(false)
-    const [username, setusername] = useState("Login/Signup")
+    const [username, setusername] = useState(localStorage.getItem("UserName")  ? localStorage.getItem("UserName") :"Login/Signup")
     const [logout, setlogout] = useState(false)
     const [registeruser, setregisteruser] = useState(false)
+
+   
+
+
     const searchProduct=(searchitem1)=>{
         if(searchitem1=="")
         {
@@ -42,14 +49,16 @@ const Nav=(props)=>{
         <div >
             {loginstatus==true&&
                 <Login
-                    setloginstatus={setloginstatus}
                     loginsuccess={loginsuccess}
-                    setregisteruser={setregisteruser}
+                    
                 />
             }
             {
                 registeruser==true &&
-                <UserRegister/>
+                <UserRegister
+                    setregisteruser={setregisteruser}
+                    setusername={setusername}
+                />
 
             }
                 <div className="w-full  h-10 bg-gray-300 border-2 border-gray-100">
