@@ -7,8 +7,12 @@ import {Link} from "react-router-dom";
 import Login from './login';
 import UserRegister from './userRegister';
 import {AuthContext} from '../../helpers/authcontext'
+import { Usercontext } from '../context/userContext';
 const Nav=(props)=>{
+
     const context=useContext(AuthContext)
+    const context1=useContext(Usercontext)
+    console.log(context1)
     
     const [serachitemdis, setserachitemdis] = useState("")
     const [loginstatus, setloginstatus] = useState(false)
@@ -50,6 +54,8 @@ const Nav=(props)=>{
             {loginstatus==true&&
                 <Login
                     loginsuccess={loginsuccess}
+                    setloginstatus={setloginstatus}
+                    setregisteruser={setregisteruser}
                     
                 />
             }
@@ -58,6 +64,7 @@ const Nav=(props)=>{
                 <UserRegister
                     setregisteruser={setregisteruser}
                     setusername={setusername}
+                   
                 />
 
             }

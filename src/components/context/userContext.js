@@ -2,6 +2,8 @@ import PreviousMap from "postcss/lib/previous-map";
 import { createContext } from "react";
 import { useState,useEffect } from "react";
 import ProductSlider from "../Home/productSlick";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export const Usercontext=createContext()
 
 const ContextProvider=(props)=>{
@@ -37,6 +39,15 @@ const ContextProvider=(props)=>{
         }
       setcartadded(true) 
     }
+
+
+    const notify = (msg) => {
+        console.log("dsdsd")
+        toast(msg);
+
+    }
+    
+   
        
    
     
@@ -52,15 +63,19 @@ const ContextProvider=(props)=>{
         
     }, [cartadded])
     return(
+        <>
+        <ToastContainer />
         <Usercontext.Provider value={{
             cart:cart,
             addtocart:addtocart,
             cartqty:cartqty,
             cartremove:cartremove,
             auth:auth,
+            notify:notify,
             }}>
             {props.children}
         </Usercontext.Provider>
+        </>
     )
 }
 export default ContextProvider
