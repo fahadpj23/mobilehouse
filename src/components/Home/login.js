@@ -11,6 +11,7 @@ const Login=(props)=>{
     const loginf=()=>{
         axios.get(`http://localhost:9000/login`,{params: { username: username,password:password}})     
             .then(res=>{
+                console.log(res.data)
                 if(res.data.UserToken)
                 {
                     

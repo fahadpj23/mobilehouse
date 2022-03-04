@@ -44,11 +44,13 @@ const Nav=(props)=>{
     }
 
     const clearuser=()=>
-    {
+    {   
+        localStorage.removeItem("UserToken")
+        localStorage.removeItem("UserName")
         setusername("Login/Signup")
         setlogout(false)
     }
-    console.log("l"+logout)
+
     return(
         <div >
             {loginstatus==true&&
@@ -99,11 +101,13 @@ const Nav=(props)=>{
                     </div> */}
                     <div className="w-2/12  space-x-5 flex">
                             <div>
-                                <button onClick={()=>{username=="Login/Signup" ? setloginstatus(true) : setlogout(true)}} className="flex hover:text-red-500 items-center relative focus:outline-none "><FaRegUserCircle className="mr-1 text-2xl  text-gray-700 font-light"/><h1 className="lg:block hidden">{username}</h1></button>
+                                <button onClick={()=>{username=="Login/Signup" ? setloginstatus(true) : setlogout(!logout)}} className="flex hover:text-red-500 items-center relative focus:outline-none "><FaRegUserCircle className="mr-1 text-2xl  text-gray-700 font-light"/><h1 className="lg:block hidden">{username}</h1></button>
                                 {
                                 logout==true &&
-                                    <div className="  absolute   z-20    w-1/12">
-                                        <button onClick={()=>{clearuser()}} className="text-white focus:outline-none px-2 font-bold py-2 bg-gray-300 hover:text-red-500 ">LOG OUT</button>
+                                    <div className="  absolute   z-20 shadow-lg  rounded-lg border border-gray-200  w-1/12 bg-white ">
+                                         <button onClick={()=>{clearuser()}} className=" focus:outline-none   text-blue-600 px-2 font-bold py-2 w-full text-center hover:text-red-500 ">Profile</button>
+
+                                        <button onClick={()=>{clearuser()}} className=" focus:outline-none r text-blue-600 px-2 font-bold py-2 w-full text-center hover:text-red-500 ">Log Out</button>
                                     </div>
 
                                 }

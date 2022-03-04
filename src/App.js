@@ -24,39 +24,51 @@ function App(){
   
    
     useEffect(()=>{
-        MobileHouseApi.get('authentication',{headers:{accessToken:localStorage.getItem("accessToken")}})
-        .then((res)=>{
-           
-           if(res.data.success)
-           {
-            setAuthState("authorized")
-        
-           }
-           else
-           {
-               setAuthState("unauthroized")
-           }
-        
-        })
+        if(localStorage.getItem("accessToken"))
+        {
+            MobileHouseApi.get('authentication',{headers:{accessToken:localStorage.getItem("accessToken")}})
+            .then((res)=>{
+               
+               if(res.data.success)
+               {
+                setAuthState("authorized")
+            
+               }
+               else
+               {
+                   setAuthState("unauthroized")
+               }
+            
+            })
+        }
+        if(localStorage.getItem("accessToken")==null)
+       {
+        setAuthState("no user")
+       }
+       
         if(localStorage.getItem("UserToken"))
         {
           
-        MobileHouseApi.get('userAuthentication',{headers:{accessToken:localStorage.getItem("UserToken")}})
-        .then((res)=>{
-       
-           if(res.data.success)
-           {
-            setUserAuthState("authorized")
+            MobileHouseApi.get('userAuthentication',{headers:{accessToken:localStorage.getItem("UserToken")}})
+            .then((res)=>{
         
-           }
-           else
-           {
-            setUserAuthState("unauthroized")
-           }
-       
+            if(res.data.success)
+            {
+                setUserAuthState("authorized")
+            
+            }
+            else
+            {
+                setUserAuthState("unauthroized")
+            }
         
-        })
+            
+            })
         }
+       if(localStorage.getItem("UserToken")==null)
+       {
+        setUserAuthState("no user")
+       }
     },[])
    
     return(

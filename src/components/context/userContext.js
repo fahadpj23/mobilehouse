@@ -42,8 +42,10 @@ const ContextProvider=(props)=>{
 
 
     const notify = (msg) => {
-        console.log("dsdsd")
-        toast(msg);
+        
+        toast(msg,{
+            theme: "dark"
+        });
 
     }
     
