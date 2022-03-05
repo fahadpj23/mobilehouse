@@ -9,6 +9,8 @@ const SideNav=()=>{
                 <button onClick={()=>history.push("/orders")} className="w-full text-left focus:outline-none">PURCHASE</button>
                 <button onClick={()=>history.push("/ShopProduct")} className=" w-full text-left focus:outline-none">PRODUCT</button>
                 <button  onClick={()=>history.push("/AddProduct")}className=" w-full text-left focus:outline-none">ADD PRODUCT</button>
+                <button  onClick={()=>history.push("/category")}className=" w-full text-left focus:outline-none">CATEGORY</button>
+                <button  onClick={()=>history.push("/Attribute")}className=" w-full text-left focus:outline-none">ATTRIBUTE </button>
              </div>
        
     )

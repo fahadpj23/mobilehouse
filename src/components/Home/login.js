@@ -1,8 +1,9 @@
-import { useState } from "react"
+import { useState,useContext } from "react"
 import axios from 'axios'
 import { AiOutlineClose } from 'react-icons/ai';
+import { Usercontext } from "../context/userContext";
 const Login=(props)=>{
-    console.log(props)
+    const context=useContext(Usercontext)
     const [loginst, setloginst] = useState("")
     const [username, setusername] = useState("")
     const [password, setpassword] = useState("")
@@ -11,13 +12,17 @@ const Login=(props)=>{
     const loginf=()=>{
         axios.get(`http://localhost:9000/login`,{params: { username: username,password:password}})     
             .then(res=>{
-                console.log(res.data)
+               
                 if(res.data.UserToken)
                 {
                     
                     localStorage.setItem("UserToken",res.data.UserToken)
                     localStorage.setItem("UserName",res.data.username)
                     props.loginsuccess && props.loginsuccess(res.data.username)
+                }
+                else
+                {
+                    context.notify(res.data.error)
                 }
            console.log(res.data)
 
