@@ -1,7 +1,7 @@
 import SideNav from "../sideNav"
 import { AiFillSetting } from 'react-icons/ai';
 import { useState ,useEffect} from "react"
-import Form from '../form'
+import FormLayout from '../form'
 import MobileHouseApi from "../../../helpers/axiosinstance";
 const CategoryMain=()=>{
     const [addcategory,setaddcategory]=useState(false)
@@ -29,7 +29,7 @@ const CategoryMain=()=>{
                                 <div className="max-h-full bg-white p-4 overflow-auto">
                                     <h1 className="w-full flex justify-center text-xl font-semibold">Add Catgeory</h1>
                                     <div>
-                                        <Form
+                                        <FormLayout
                                             formdata={addformdata}
                                             handleSubmit={handleSubmit}
                                         />

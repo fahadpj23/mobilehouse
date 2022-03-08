@@ -1,7 +1,7 @@
 import { useState ,useEffect} from "react"
 
 import { AiOutlineClose } from 'react-icons/ai';
-const Form=(props)=>{
+const FormLayout=(props)=>{
     const [attvalue,setattvalue]=useState("")
     const [deleteattvalue,setdeleteattvalue]=useState("")
 
@@ -20,25 +20,23 @@ const Form=(props)=>{
   
     
     useEffect(()=>{
-        console.log(deleteattvalue)
+       
+        if(deleteattvalue==0)
+        {
+            if(props.attributevalues){
+                props.attributevalues.length=0
+                setdeleteattvalue("")
+            }  
+           
+           
+        }
         if(deleteattvalue!="")
         {
-            console.log(deleteattvalue)
            
-            if(deleteattvalue!=0)
-            {
-            props.attributevalues.splice(deleteattvalue,1)
+            props.attributevalues && props.attributevalues.splice(deleteattvalue,1)
             console.log( props.attributevalues)
             setdeleteattvalue("")
-               
-            }
-            else
-            {
-                console.log("bbbb")
-                // props.attributevalues.length=0
-                // setdeleteattvalue("")
-           
-            }
+          
         }
     },[deleteattvalue])
 
@@ -55,7 +53,7 @@ const Form=(props)=>{
                                  
                                     <div className="space-y-2">
                                         <div className="flex space-x-1">   
-                                            <input onChange={(e)=>{item.more && setattvalue(e.target.value)}} className="w-full px-2 py-1 rounded-md border border-gray-400" value={item.more && attvalue} />
+                                            <input onChange={(e)=>{item.more && setattvalue(e.target.value)}} className="w-full px-2 py-1 rounded-md border border-gray-400" value={item.more && attvalue} name={item.name} id={item.name} />
                                             <button type="button" onClick={()=>addattribute() } className={`${item.more  ? "rounded-md bg-red-500 text-white px-2":"hidden"}`}>ADD</button>
 
                                         </div>
@@ -63,7 +61,7 @@ const Form=(props)=>{
                                         <div className={`${props.attributevalues && item.more ? " rounded-md w-full border-gray-400 border h-36 space-y-1   overflow-auto  px-2 py-2": "hidden"}`}>
                                             {
 
-                                                props.attributevalues.map((item1,key1)=>{
+                                                props.attributevalues && props.attributevalues.map((item1,key1)=>{
                                                     return(
                                                         <div className="w-10/12 flex justify-between px-2 bg-gray-200 py-1 ">
                                                                <h1 className=" px-1  truncate w-10/12  ">{item1}</h1 >
@@ -83,7 +81,7 @@ const Form=(props)=>{
 
                                 {
                                     item.type=="select" &&
-                                <select  className="w-full px-2 py-1 rounded-md border border-gray-400">
+                                <select  className="w-full px-2 py-1 rounded-md border border-gray-400" name={item.name}>
                                     <option>--select--</option>
                                     {
                                         item.value.map((item1,key1)=>{
@@ -107,4 +105,4 @@ const Form=(props)=>{
         </form>
     )
 }
-export default Form
+export default FormLayout

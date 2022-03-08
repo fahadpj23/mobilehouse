@@ -1,10 +1,11 @@
 import SideNav from "../sideNav"
 import { AiFillSetting } from 'react-icons/ai';
-import { useState } from "react";
-import Form from '../form'
+import { useState,useContext } from "react";
+import FormLayout from '../form'
 import MobileHouseApi from "../../../helpers/axiosinstance";
+import { Usercontext } from "../../context/userContext";
 const AttributeMain=()=>{
-
+    const context=useContext(Usercontext    )
     const [addattribute,setaddattribute]=useState(false)
     const addformdata=[
         {name:"name",type:"text"},
@@ -14,10 +15,20 @@ const AttributeMain=()=>{
     const attributevalues=[];
 
     const handleSubmit=(e)=>{
-       
-        MobileHouseApi.post('/UserRegister')
+        console.log(e.target)
+        const data=new FormData(e.target)
+        data.append("attributevalues",JSON.stringify( attributevalues))
+        MobileHouseApi.post('/attrubuteAdd',data)
         .then((res)=>{
-          console.log(res.data)
+         if(res.data.error)
+         {
+                context.notify(res.data.error)
+         }
+         else
+         {
+            context.notify(res.data.success)
+            setaddattribute(false)
+         }
         })
         e.preventDefault();
       }
@@ -29,9 +40,9 @@ const AttributeMain=()=>{
                         <div className="w-full h-full flex items-center bg-opacity-95 justify-center bg-gray-100 fixed top-0">
                             <div className=" space-y-4  w-3/12 h-4/5 ">
                                 <div className="max-h-full bg-white p-4 overflow-auto">
-                                    <h1 className="w-full flex justify-center text-xl font-semibold">Add Catgeory</h1>
+                                    <h1 className="w-full flex justify-center text-xl font-semibold">Add Attribute</h1>
                                     <div>
-                                        <Form
+                                        <FormLayout
                                             formdata={addformdata}
                                             handleSubmit={handleSubmit}
                                             attributevalues={attributevalues}
@@ -48,8 +59,9 @@ const AttributeMain=()=>{
             <div className="w-10/12">
                 
                 <div className="w-full flex justify-end space-x-3">
-                <button className="px-3 py-1 border border-gray-600">DELETE</button>
-                <button onClick={()=>setaddattribute(true)}className="px-3 py-1 border border-gray-600 ">ADD NEW</button>
+                <button className="w-2/12 px-3 py-1 border border-gray-600">DELETE</button>
+                <button  className="w-2/12 px-3 py-1 border border-gray-600 ">EDIT</button>
+                <button onClick={()=>setaddattribute(true)}className="px-3 w-2/12 py-1 border border-gray-600 ">ADD NEW</button>
                    
 
                 </div>
