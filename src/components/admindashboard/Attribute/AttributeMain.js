@@ -1,12 +1,17 @@
 import SideNav from "../sideNav"
 import { AiFillSetting } from 'react-icons/ai';
-import { useState,useContext } from "react";
+import { useState,useContext,useEffect } from "react";
 import FormLayout from '../form'
 import MobileHouseApi from "../../../helpers/axiosinstance";
 import { Usercontext } from "../../context/userContext";
 const AttributeMain=()=>{
-    const context=useContext(Usercontext    )
+
+
+    const context=useContext(Usercontext )
     const [addattribute,setaddattribute]=useState(false)
+    const [attribute,setattribute]=useState("")
+
+
     const addformdata=[
         {name:"name",type:"text"},
         {name:"status",type:"select",value:["active","disable"]},
@@ -33,6 +38,12 @@ const AttributeMain=()=>{
         e.preventDefault();
       }
    
+    useEffect(()=>{
+        MobileHouseApi.get('getattrirbute')
+        .then((res)=>{
+            setattribute(res.data)
+        })
+    })
     return(
         <div className="flex w-full">
              {
@@ -75,19 +86,28 @@ const AttributeMain=()=>{
 
                         
                     </tr>
-                    <tr className="text-center">
-                        <td>5645</td>
-                        <td>5645</td>
-                        <th>Values</th>
-                        <td>5645</td>
-                        <td>
-                            <select>
-                                <option>view</option>
-                                <option>edit</option>
-                                <option>delete</option>
-                            </select>
-                        </td>
-                    </tr>
+                    {
+                        attribute!="" && attribute.map((item,key)=>{
+                            return(
+                                <tr className="text-center">
+                                <td>{key+1}</td>
+                                <td>{item.attributename}</td>
+                                <th>{
+                                (item.values).toString()
+                                }</th>
+                                <td>{item.status}</td>
+                                <td>
+                                    <select>
+                                        <option>view</option>
+                                        <option>edit</option>
+                                        <option>delete</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            )
+                        })
+                    }
+                    
                 </table>
             </div>
     </div>   
