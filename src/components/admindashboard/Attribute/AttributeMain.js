@@ -33,17 +33,29 @@ const AttributeMain=()=>{
          {
             context.notify(res.data.success)
             setaddattribute(false)
+            MobileHouseApi.get('getattrirbute')
+            .then((res)=>{
+                setattribute(res.data)
+            })
          }
         })
         e.preventDefault();
       }
    
-    useEffect(()=>{
+      useEffect(()=>{
+        if(attribute=="")
+        {
         MobileHouseApi.get('getattrirbute')
         .then((res)=>{
             setattribute(res.data)
         })
-    })
+        }
+        
+
+      },[addattribute])
+        
+           
+
     return(
         <div className="flex w-full">
              {

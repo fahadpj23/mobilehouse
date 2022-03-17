@@ -7,6 +7,7 @@ const FormLayout=(props)=>{
 
     //add attribute
     const addattribute=()=>{
+        console.log(attvalue)
         if(attvalue!="")
         {
             
@@ -28,7 +29,7 @@ const FormLayout=(props)=>{
                 setdeleteattvalue("")
             }  
            
-           
+           console.log("fdfdf")
         }
         if(deleteattvalue!="")
         {
@@ -36,7 +37,8 @@ const FormLayout=(props)=>{
             props.attributevalues && props.attributevalues.splice(deleteattvalue,1)
             console.log( props.attributevalues)
             setdeleteattvalue("")
-          
+            console.log("fdfdsdddddddddddddddf")
+        
         }
     },[deleteattvalue])
 
