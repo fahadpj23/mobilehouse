@@ -10,9 +10,18 @@ const FormLayout=(props)=>{
         
         if(attvalue!="")
         {
+            if(props.attributevalues.includes(attvalue)==false)
+            {
+                props.attributevalues.push(attvalue)
+                setattvalue("")
+                
+            }
+            else
+            {
+                console.log("already addedd")
             
-            props.attributevalues.push(attvalue)
-            setattvalue("")
+            }
+         
            
         }
        
