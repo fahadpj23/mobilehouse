@@ -1,24 +1,44 @@
 import SideNav from "../sideNav"
 import { AiFillSetting } from 'react-icons/ai';
-import { useState ,useEffect} from "react"
+import { useState ,useEffect,useContext} from "react"
 import FormLayout from '../form'
 import MobileHouseApi from "../../../helpers/axiosinstance";
-const CategoryMain=()=>{
+import { Usercontext } from "../../context/userContext";
+const CategoryMain=(props)=>{
+    const context=useContext(Usercontext )
     const [addcategory,setaddcategory]=useState(false)
+    const attributevalues=[];
     const addformdata=[
         {name:"name",type:"text"},
         {name:"status",type:"select",value:["active","disable"]},
+        {name:"attribute",type:"select",value:props.attributes,more:"yes"},
         
     ]
 
     const handleSubmit=(e)=>{
        
-        MobileHouseApi.post('/UserRegister')
+        const data=new FormData(e.target)
+        data.append("attributevalues",JSON.stringify( attributevalues))
+        MobileHouseApi.post('/categoryAdd',data)
         .then((res)=>{
-          console.log(res.data)
+         if(res.data.error)
+         {
+                context.notify(res.data.error)
+         }
+         else
+         {
+            context.notify(res.data.success)
+            setaddcategory(false)
+            // MobileHouseApi.get('getattrirbute')
+            // .then((res)=>{
+            //     setattribute(res.data)
+            // })
+         }
         })
         e.preventDefault();
       }
+    
+    
    
     return(
         <div className="flex w-full">
@@ -32,6 +52,7 @@ const CategoryMain=()=>{
                                         <FormLayout
                                             formdata={addformdata}
                                             handleSubmit={handleSubmit}
+                                            attributevalues={attributevalues}
                                         />
                                     
                                     </div>

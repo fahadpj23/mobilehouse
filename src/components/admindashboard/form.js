@@ -7,7 +7,7 @@ const FormLayout=(props)=>{
 
     //add attribute
     const addattribute=()=>{
-        console.log(attvalue)
+        
         if(attvalue!="")
         {
             
@@ -16,9 +16,10 @@ const FormLayout=(props)=>{
            
         }
        
+       
     }
 
-  
+  console.log(props)
     
     useEffect(()=>{
        
@@ -29,7 +30,7 @@ const FormLayout=(props)=>{
                 setdeleteattvalue("")
             }  
            
-           console.log("fdfdf")
+         
         }
         if(deleteattvalue!="")
         {
@@ -37,11 +38,11 @@ const FormLayout=(props)=>{
             props.attributevalues && props.attributevalues.splice(deleteattvalue,1)
             console.log( props.attributevalues)
             setdeleteattvalue("")
-            console.log("fdfdsdddddddddddddddf")
+           
         
         }
     },[deleteattvalue])
-
+    console.log(props)
     return(
         <form onSubmit={(e)=>props.handleSubmit(e)} method="post">
             {
@@ -83,16 +84,40 @@ const FormLayout=(props)=>{
 
                                 {
                                     item.type=="select" &&
-                                <select  className="w-full px-2 py-1 rounded-md border border-gray-400" name={item.name}>
-                                    <option>--select--</option>
-                                    {
-                                        item.value.map((item1,key1)=>{
-                                            return(
-                                                <option>{item1}</option>
-                                            )
-                                        })
-                                    }
-                                </select>
+                                    <div>
+                                        <div className="flex">
+                                            <select onChange={(e)=>{item.more && setattvalue(e.target.value)}}  className="w-full px-2 py-1 rounded-md border border-gray-400" name={item.name}>
+                                                <option>--select--</option>
+                                                {
+                                                    item.value.map((item1,key1)=>{
+                                                        return(
+                                                            <option value={item1}>{item1}</option>
+                                                        )
+                                                    })
+                                                }
+                                            </select>
+                                            <button type="button" onClick={()=>addattribute() } className={`${item.more  ? "rounded-md bg-red-500 text-white px-2":"hidden"}`}>ADD</button>
+
+                                        </div>
+                                        
+                                        <div className={`${props.attributevalues && item.more ? " rounded-md w-full border-gray-400 border h-36 space-y-1   overflow-auto  px-2 py-2": "hidden"}`}>
+                                            {
+
+                                                props.attributevalues && props.attributevalues.map((item1,key1)=>{
+                                                    return(
+                                                        <div className="w-10/12 flex justify-between px-2 bg-gray-200 py-1 ">
+                                                               <h1 className=" px-1  truncate w-10/12  ">{item1}</h1 >
+                                                               <button type="button" onClick={()=>{setdeleteattvalue(key1)}}><AiOutlineClose/></button>
+
+                                                        </div>
+                                                     
+                                                    )
+                                                })
+                                            }
+                                        </div>
+
+                                    </div>
+                                
                               }
                                
                         </div>

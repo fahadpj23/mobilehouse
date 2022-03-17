@@ -9,16 +9,21 @@ import MobileHouseApi from '../helpers/axiosinstance'
 const Category=()=>{
     const Auth=useContext(AuthContext)
     let history=useHistory();
+    const attributes=[];
     useEffect(()=>{
-        MobileHouseApi.get('/getCatgeory').then((res)=>{
-            console.log(res.data)
+        MobileHouseApi.get('/getAttribute').then((res)=>{
+            res.data.map((item,key)=>{
+                attributes.push(item.attributeName)
+            })
         })
     },[])
     return( 
          <div className="flex">
              {Auth && Auth.authState=="authorized" ?
-            
-                <CategoryMain/>
+               
+                <CategoryMain
+                    attributes={attributes}
+                />
             :
                 history.push("/admin")
             }
