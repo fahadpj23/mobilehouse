@@ -20,7 +20,8 @@ const AddProductMain=()=>{
     })
     const [category, setcategory] = useState("")
     const [catgeorytotal, setcatgeorytotal] = useState("")
-
+    const [categoryattribute,setcategoryattribute]=useState("")
+    const [productimage,setproductimage]=useState("")
     const categoryselect=(catname)=>{
         setcategory(catname)
         catgeorytotal && catgeorytotal.map((item,key)=>{
@@ -30,12 +31,39 @@ const AddProductMain=()=>{
 
                      MobileHouseApi.get("/categoryAttribute",{params:{"categoryid":item.id}})
                      .then((res)=>{
+                        setcategoryattribute(res.data)
                         console.log(res.data)
                      })
                  }
                             
          } )
     }
+
+  
+    const handleSubmit=(e)=>{
+       
+        const data=new FormData(e.target)
+        data.append("category",JSON.stringify( category))
+        data.append("productimage",productimage)
+        console.log(data)
+        MobileHouseApi.post('/productAdd',data)
+        .then((res)=>{
+        //  if(res.data.error)
+        //  {
+        //         context.notify(res.data.error)
+        //  }
+        //  else
+        //  {
+        //     context.notify(res.data.success)
+        //     setaddcategory(false)
+        //     // MobileHouseApi.get('getattrirbute')
+        //     // .then((res)=>{
+        //     //     setattribute(res.data)
+        //     // })
+        //  }
+        })
+        e.preventDefault();
+      }
 
     return(
         <div className="flex">
@@ -50,7 +78,7 @@ const AddProductMain=()=>{
                         {
                             catgeorytotal && catgeorytotal.map((item,key)=>
                                 
-                                <option className="text-black" value={item.categoryName}>{item.categoryName}</option>
+                                <option key={key} className="text-black" value={item.categoryName}>{item.categoryName}</option>
                             
                             )
                         }
@@ -62,7 +90,14 @@ const AddProductMain=()=>{
                 </div>
                 
             </div>
-            <AddCover/>
+           
+                <AddCover
+                    categoryattribute={categoryattribute}
+                    handleSubmit={handleSubmit}
+                     
+                />
+            
+            
             {/* {(() => {
                 switch (catgeory) {
                 case 'cover':
