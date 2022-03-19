@@ -48,33 +48,25 @@ const AddCover=(props)=>{
     
             <div className=" mt-5 w-6/12 p-2 space-y-6">
                 <div className="flex justify-between ">
+                    
                     <div className="w-5/12 text-sm space-y-1">
-                        <h1>Product Id</h1>
-                        <input onChange={(e)=>setproductid(e.target.value)} className="w-full border-2 border-gray-400 rounded-md py-1 px-1"/>
-                    </div>
-                    <div className="w-5/12 text-sm space-y-1">
-                        <h1>Name</h1>
-                        <input onChange={(e)=>setname(e.target.value)} className="w-full border-2 border-gray-400 rounded-md py-1 px-1"/>
-                    </div>
-                </div>
-                <div className="flex justify-between">
-                     <div className="w-5/12 text-sm space-y-1">
-                        <h1>color</h1>
-                        <input onChange={(e)=>setcolor(e.target.value)} className="w-full border-2 border-gray-400 rounded-md py-1 px-1"/>
+                        <label>Name</label>
+                        <input onChange={(e)=>setname(e.target.value)} className="w-full border-2 border-gray-400 rounded-md py-1 px-1" name="Name" id="Name"/>
                     </div>
                     <div className="w-5/12 text-sm space-y-1">
                         <h1>Price</h1>
-                        <input onChange={(e)=>setprice(e.target.value)} type="number" className="w-full border-2 border-gray-400 rounded-md py-1 px-1"/>
+                        <input onChange={(e)=>setprice(e.target.value)} type="number" className="w-full border-2 border-gray-400 rounded-md py-1 px-1"  name="Price" id="Price"/>
                     </div>
                 </div>
+               
                 <div className="flex justify-between">
                      <div className="w-5/12 text-sm space-y-1">
                         <h1>MRP</h1>
-                        <input onChange={(e)=>setmrp(e.target.value)} className="w-full border-2 border-gray-400 rounded-md py-1 px-1"/>
+                        <input onChange={(e)=>setmrp(e.target.value)} className="w-full border-2 border-gray-400 rounded-md py-1 px-1" name="MRP" id="MRP"/>
                     </div>
                     <div className="w-5/12 text-sm space-y-1">
                         <h1>Warranty</h1>
-                        <input onChange={(e)=>setwarranty(e.target.value)} type="text" className="w-full border-2 border-gray-400 rounded-md py-1 px-1"/>
+                        <input onChange={(e)=>setwarranty(e.target.value)} type="text" className="w-full border-2 border-gray-400 rounded-md py-1 px-1"  name="Warranty" id="Warranty"/>
                     </div>
                 </div>
                 <div className="flex justify-between">
@@ -83,22 +75,19 @@ const AddCover=(props)=>{
                 <div className="flex justify-between">
                     <div className="w-5/12 text-sm space-y-1">
                         <h1>Image</h1>
-                        <input onChange={(e)=>setimage(e.target.files[0])} type="file" className="w-full focus:outline-none border-2 border-gray-400 rounded-md py-1 px-1"/>
+                        <input onChange={(e)=>setimage(e.target.files[0])} type="file" className="w-full focus:outline-none border-2 border-gray-400 rounded-md py-1 px-1"  name="image"/>
                     </div>
                     <div className="w-5/12 text-sm space-y-1">
                         <h1>Brand</h1>
-                        <input onChange={(e)=>setBrand(e.target.value)} className="w-full border-2 border-gray-400 rounded-md py-1 px-1"/>
+                        <input onChange={(e)=>setBrand(e.target.value)} className="w-full border-2 border-gray-400 rounded-md py-1 px-1"  name="Brand" id="Brand"/>
                     </div>
                 </div>
                 <div className="flex justify-between">
                     <div className="w-5/12 text-sm space-y-1">
                         <h1>Max Qty</h1>
-                        <input type="number" onChange={(e)=>setmaxqty(e.target.value)} className="w-full border-2 border-gray-400 rounded-md py-1 px-1"/>
+                        <input type="number" onChange={(e)=>setmaxqty(e.target.value)} className="w-full border-2 border-gray-400 rounded-md py-1 px-1"  name="MaxQty" id="MaxQty"/>
                     </div>
-                    <div className="w-5/12 text-sm space-y-1">
-                        <h1>Material</h1>
-                        <input onChange={(e)=>setmaterial(e.target.value)}  className="w-full border-2 border-gray-400 rounded-md py-1 px-1"/>
-                    </div>
+                    
                 </div>
 
             </div>

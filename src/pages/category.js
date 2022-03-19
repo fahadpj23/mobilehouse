@@ -13,6 +13,7 @@ const Category=()=>{
     useEffect(()=>{
         MobileHouseApi.get('/getAttribute').then((res)=>{
             res.data.map((item,key)=>{
+                console.log(res.data)
                 attributes.push(item.attributeName)
             })
         })

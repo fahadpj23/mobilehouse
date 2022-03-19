@@ -7,18 +7,19 @@ import { Usercontext } from "../../context/userContext";
 const CategoryMain=(props)=>{
     const context=useContext(Usercontext )
     const [addcategory,setaddcategory]=useState(false)
-    const attributevalues=[];
+    const [category,setcategory]=useState("")
+    const categoryvalues=[];
     const addformdata=[
         {name:"name",type:"text"},
         {name:"status",type:"select",value:["active","disable"]},
         {name:"attribute",type:"select",value:props.attributes,more:"yes"},
         
     ]
-
+    console.log(props)
     const handleSubmit=(e)=>{
        
         const data=new FormData(e.target)
-        data.append("attributevalues",JSON.stringify( attributevalues))
+        data.append("categoryvalues",JSON.stringify( categoryvalues))
         MobileHouseApi.post('/categoryAdd',data)
         .then((res)=>{
          if(res.data.error)
@@ -37,7 +38,17 @@ const CategoryMain=(props)=>{
         })
         e.preventDefault();
       }
-    
+      useEffect(()=>{
+        if(category=="")
+        {
+        MobileHouseApi.get('/getCategory')
+        .then((res)=>{
+           console.log(res.data)
+        })
+        }
+        
+
+      },[category])
     
    
     return(
@@ -52,7 +63,7 @@ const CategoryMain=(props)=>{
                                         <FormLayout
                                             formdata={addformdata}
                                             handleSubmit={handleSubmit}
-                                            attributevalues={attributevalues}
+                                            attributevalues={categoryvalues}
                                         />
                                     
                                     </div>
