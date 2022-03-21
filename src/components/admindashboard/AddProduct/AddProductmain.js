@@ -43,7 +43,7 @@ const AddProductMain=()=>{
     const handleSubmit=(e)=>{
        
         const data=new FormData(e.target)
-        data.append("category",JSON.stringify( category))
+        data.append("category",category)
         data.append("productimage",productimage)
         console.log(data)
         MobileHouseApi.post('/productAdd',data)
