@@ -19,6 +19,7 @@ const AddProductMain=()=>{
            
     })
     const [category, setcategory] = useState("")
+    const [categoryid, setcategoryid] = useState("")
     const [catgeorytotal, setcatgeorytotal] = useState("")
     const [categoryattribute,setcategoryattribute]=useState("")
     const [productimage,setproductimage]=useState("")
@@ -28,7 +29,7 @@ const AddProductMain=()=>{
                                 
                  if(catname==item.categoryName)
                  {
-
+                    setcategoryid(item.id)
                      MobileHouseApi.get("/categoryAttribute",{params:{"categoryid":item.id}})
                      .then((res)=>{
                         setcategoryattribute(res.data)
@@ -44,6 +45,7 @@ const AddProductMain=()=>{
        
         const data=new FormData(e.target)
         data.append("category",category)
+        data.append("categoryid",categoryid)
         data.append("productimage",productimage)
         console.log(data)
         MobileHouseApi.post('/productAdd',data)
