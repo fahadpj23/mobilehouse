@@ -30,7 +30,7 @@ const AddProductMain=()=>{
                  if(catname==item.categoryName)
                  {
                     setcategoryid(item.id)
-                     MobileHouseApi.get("/categoryAttribute",{params:{"categoryid":item.id}})
+                     MobileHouseApi.get("/getcategoryAttribute",{params:{"categoryid":item.id}})
                      .then((res)=>{
                         setcategoryattribute(res.data)
                         console.log(res.data)
@@ -92,12 +92,14 @@ const AddProductMain=()=>{
                 </div>
                 
             </div>
-           
+                {
+                    categoryattribute!=""&&
                 <AddCover
                     categoryattribute={categoryattribute}
                     handleSubmit={handleSubmit}
                      
                 />
+                }   
             
             
             {/* {(() => {

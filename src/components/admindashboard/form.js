@@ -4,6 +4,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 const FormLayout=(props)=>{
     const [attvalue,setattvalue]=useState("")
     const [deleteattvalue,setdeleteattvalue]=useState("")
+    const [editok,seteditok]=useState(false)
 
     //add attribute
     const addattribute=()=>{
@@ -28,10 +29,18 @@ const FormLayout=(props)=>{
        
     }
 
-  console.log(props)
+  
     
     useEffect(()=>{
-       
+        if(props.operation=="edit" && editok==false)
+        {
+            console.log("dsd")
+            props.operationitem.values.map((item,key)=>{
+                props.attributevalues.push(item)
+              })
+              seteditok(true)
+             console.log( props.attributevalues)
+        }
         if(deleteattvalue==0)
         {
             if(props.attributevalues){
@@ -50,7 +59,7 @@ const FormLayout=(props)=>{
            
         
         }
-    },[deleteattvalue])
+    },[deleteattvalue,editok])
     console.log(props)
     return(
         <form onSubmit={(e)=>props.handleSubmit(e)} method="post">

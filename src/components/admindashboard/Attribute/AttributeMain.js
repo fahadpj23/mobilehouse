@@ -10,6 +10,8 @@ const AttributeMain=()=>{
     const context=useContext(Usercontext )
     const [addattribute,setaddattribute]=useState(false)
     const [attribute,setattribute]=useState("")
+    const [operation,setoperation]=useState("")
+    const[operationitem,setoperationitem]=useState("")
 
 
     const addformdata=[
@@ -42,10 +44,27 @@ const AttributeMain=()=>{
         e.preventDefault();
       }
    
+
+      const attributeOperation=(operation,attribute)=>{
+          console.log(attribute)
+          attribute.values.map((item,key)=>{
+            attributevalues.push(item)
+          })
+        // if(operation=="edit")
+        // {
+        //     MobileHouseApi.get('/editattribute',{params:{"attributeid":attributeid}})
+        //     .then((res)=>{
+        //         console.log(res.data)
+        //     })
+        // }
+        setoperationitem(attribute)
+        setoperation(operation)
+        setaddattribute(true)
+      }
       useEffect(()=>{
         if(attribute=="")
         {
-        MobileHouseApi.get('getattrirbute')
+        MobileHouseApi.get('getattribute')
         .then((res)=>{
             setattribute(res.data)
         })
@@ -69,6 +88,8 @@ const AttributeMain=()=>{
                                             formdata={addformdata}
                                             handleSubmit={handleSubmit}
                                             attributevalues={attributevalues}
+                                            operation={operation}
+                                            operationitem={operationitem}
                                         />
                                     
                                     </div>
@@ -103,16 +124,16 @@ const AttributeMain=()=>{
                             return(
                                 <tr className="text-center">
                                 <td>{key+1}</td>
-                                <td>{item.attributename}</td>
+                                <td>{item.attributeName}</td>
                                 <th>{
                                 (item.values).toString()
                                 }</th>
                                 <td>{item.status}</td>
                                 <td>
-                                    <select>
-                                        <option>view</option>
-                                        <option>edit</option>
-                                        <option>delete</option>
+                                    <select onChange={(e)=>{attributeOperation(e.target.value,item)}}>
+                                        <option value="view">view</option>
+                                        <option value="edit">edit</option>
+                                        <option value="delete">delete</option>
                                     </select>
                                 </td>
                             </tr>
