@@ -12,6 +12,7 @@ const AttributeMain=()=>{
     const [attribute,setattribute]=useState("")
     const [operation,setoperation]=useState("")
     const[operationitem,setoperationitem]=useState("")
+    const[operationid,setoperationid]=useState("")
 
 
     const addformdata=[
@@ -25,6 +26,10 @@ const AttributeMain=()=>{
         console.log(e.target)
         const data=new FormData(e.target)
         data.append("attributevalues",JSON.stringify( attributevalues))
+        data.append("operation",operation)
+        data.append("operationid",operationid )
+        
+        
         MobileHouseApi.post('/attrubuteAdd',data)
         .then((res)=>{
          if(res.data.error)
@@ -35,7 +40,7 @@ const AttributeMain=()=>{
          {
             context.notify(res.data.success)
             setaddattribute(false)
-            MobileHouseApi.get('getattrirbute')
+            MobileHouseApi.get('getattribute')
             .then((res)=>{
                 setattribute(res.data)
             })
@@ -47,9 +52,7 @@ const AttributeMain=()=>{
 
       const attributeOperation=(operation,attribute)=>{
           console.log(attribute)
-          attribute.values.map((item,key)=>{
-            attributevalues.push(item)
-          })
+          setoperationid(attribute.id)
         // if(operation=="edit")
         // {
         //     MobileHouseApi.get('/editattribute',{params:{"attributeid":attributeid}})
@@ -82,7 +85,7 @@ const AttributeMain=()=>{
                         <div className="w-full h-full flex items-center bg-opacity-95 justify-center bg-gray-100 fixed top-0">
                             <div className=" space-y-4  w-3/12 h-4/5 ">
                                 <div className="max-h-full bg-white p-4 overflow-auto">
-                                    <h1 className="w-full flex justify-center text-xl font-semibold">Add Attribute</h1>
+                                    <h1 className="w-full flex justify-center text-xl font-semibold">{ operation=="" ? "ADD" : operation} Attribute</h1>
                                     <div>
                                         <FormLayout
                                             formdata={addformdata}
@@ -90,6 +93,8 @@ const AttributeMain=()=>{
                                             attributevalues={attributevalues}
                                             operation={operation}
                                             operationitem={operationitem}
+                                            Mainname={operationitem.attributeName}
+                                            Mainstatus={operationitem.status}
                                         />
                                     
                                     </div>
@@ -130,7 +135,8 @@ const AttributeMain=()=>{
                                 }</th>
                                 <td>{item.status}</td>
                                 <td>
-                                    <select onChange={(e)=>{attributeOperation(e.target.value,item)}}>
+                                    <select onChange={(e)=>{e.target.value!= "select" && attributeOperation(e.target.value,item)}}>
+                                        <option value="select">select</option>
                                         <option value="view">view</option>
                                         <option value="edit">edit</option>
                                         <option value="delete">delete</option>

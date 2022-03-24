@@ -32,31 +32,41 @@ const FormLayout=(props)=>{
   
     
     useEffect(()=>{
-        if(props.operation=="edit" && editok==false)
+        if(props.operation!="" && editok==false)
         {
             console.log("dsd")
             props.operationitem.values.map((item,key)=>{
                 props.attributevalues.push(item)
               })
               seteditok(true)
-             console.log( props.attributevalues)
+              console.log(props.attributevalues)
+            
         }
-        if(deleteattvalue==0)
-        {
-            if(props.attributevalues){
-                props.attributevalues.length=0
-                setdeleteattvalue("")
-            }  
-           
+        // if(deleteattvalue==0)
+        // {
+        //     if(props.attributevalues){
+        //         props.attributevalues.length=0
+        //         setdeleteattvalue("")
+        //     }  
+        //    console.log("dsds")
          
-        }
+        // }
         if(deleteattvalue!="")
         {
-           
-            props.attributevalues && props.attributevalues.splice(deleteattvalue,1)
+           console.log(props.attributevalues.length)
+            if(props.attributevalues.length==1)
+            {
+                console.log("fdf")
+                props.attributevalues.pop();
+                setdeleteattvalue("")
+            }
+            else
+            {
+            props.attributevalues && props.attributevalues.splice(deleteattvalue-1,1)
             console.log( props.attributevalues)
             setdeleteattvalue("")
-           
+            }
+          
         
         }
     },[deleteattvalue,editok])
@@ -73,9 +83,9 @@ const FormLayout=(props)=>{
                                 item.type=="text" &&
                                  
                                     <div className="space-y-2">
-                                        <div className="flex space-x-1">   
-                                            <input onChange={(e)=>{item.more && setattvalue(e.target.value)}} className="w-full px-2 py-1 rounded-md border border-gray-400" value={item.more && attvalue} name={item.name} id={item.name} />
-                                            <button type="button" onClick={()=>addattribute() } className={`${item.more  ? "rounded-md bg-red-500 text-white px-2":"hidden"}`}>ADD</button>
+                                        <div className= "flex space-x-1">   
+                                            <input onChange={(e)=>{item.more && setattvalue(e.target.value)}} className="w-full px-2 py-1 rounded-md border border-gray-400" defaultValue={props.operation!="" && !item.more  && props.Mainname!="" ? props.Mainname :""} value={item.more && attvalue}  name={item.name} id={item.name} />
+                                            <button type="button" onClick={()=>addattribute() } className={`${props.operation!="view" && item.more  ? "rounded-md bg-red-500 text-white px-2":"hidden"}`}>ADD</button>
 
                                         </div>
                                        
@@ -86,7 +96,7 @@ const FormLayout=(props)=>{
                                                     return(
                                                         <div className="w-10/12 flex justify-between px-2 bg-gray-200 py-1 ">
                                                                <h1 className=" px-1  truncate w-10/12  ">{item1}</h1 >
-                                                               <button type="button" onClick={()=>{setdeleteattvalue(key1)}}><AiOutlineClose/></button>
+                                                               <button className={`${props.operation=="view" && " hidden"}`} type="button" onClick={()=>{setdeleteattvalue(key1+1)}}><AiOutlineClose/></button>
 
                                                         </div>
                                                      
@@ -104,7 +114,7 @@ const FormLayout=(props)=>{
                                     item.type=="select" &&
                                     <div>
                                         <div className="flex">
-                                            <select onChange={(e)=>{item.more && setattvalue(e.target.value)}}  className="w-full px-2 py-1 rounded-md border border-gray-400" name={item.name}>
+                                            <select onChange={(e)=>{item.more && setattvalue(e.target.value)}} defaultValue={!item.more && props.Mainstatus} className="w-full px-2 py-1 rounded-md border border-gray-400" name={item.name}>
                                                 <option>--select--</option>
                                                 {
                                                     item.value.map((item1,key1)=>{
@@ -142,7 +152,7 @@ const FormLayout=(props)=>{
                     )
                 })
             }
-            <div className="w-full flex justify-end">
+            <div className={`${props.operation=="view" ? " hidden" :"w-full flex justify-end"}`}>
                  <input type="submit" value="Submit" className="bg-green-500 w-3/12 mt-10  focus:outline-none text-white font-semibold py-2 rounded-md" />
 
             </div>

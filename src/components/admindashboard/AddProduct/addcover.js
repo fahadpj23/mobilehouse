@@ -53,7 +53,7 @@ const AddCover=(props)=>{
                             <div key={key} className=" text-sm">
                                 <h1>{item.attributeName}</h1>
                                 <select type="select"  className="w-full border-2 border-gray-400 rounded-md py-1 px-1"  name={item.attributeName} id={item.attributeName}>
-                                    <option>--select--</option>
+                                    <option>--select--</option> 
                                     {
                                         item.value.map((item1,key1)=>
                                             <option value={item1.value}>{item1.value}</option>
