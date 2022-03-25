@@ -1,13 +1,13 @@
 import React from 'react';
 import Home from './pages/Home'
-import ViewProduct from './pages/ViewProduct'
+
 import Cart from './pages/cart';
 import Address from './pages/address';
 import {Route,BrowserRouter as Router,Switch} from  "react-router-dom";
 import SingleItem from './pages/singleitem'
 import Order from './pages/Order'
 import Admin from './pages/admin';
-import AddProduct from './pages/AddProduct';
+
 import ShopProduct from './pages/ShopProduct';
 import Dashboard from './pages/Dashboard';
 import ContextProvider from './components/context/userContext';
@@ -16,7 +16,7 @@ import  MobileHouseApi from "./helpers/axiosinstance"
 import { AuthContext } from "./helpers/authcontext";
 import Category from './pages/category';
 import Attribute from './pages/Attribute'
-
+import Product from './pages/Product';
 function App(){
     const[ authState, setAuthState ]=useState("")
     const[ UserauthState, setUserAuthState ]=useState("")
@@ -86,9 +86,9 @@ function App(){
                                 <>
                                     <Route  path="/" exact  component={Home}/>  
                                     <Route path="/Dashboard" component={Dashboard}/>
-                                    <Route  path="/ViewProduct" component={ViewProduct}/>
+                                    
                                     <Route  path="/orders" component={Order}/>
-                                    <Route  path="/AddProduct" component={AddProduct}/>
+                                    <Route  path="/Product" component={Product}/>
                                 
                                     <Route  path="/singleItem" component={SingleItem}/>
                                     <Route  path="/Order" component={Order}/>
@@ -99,7 +99,7 @@ function App(){
                                     <Route  path="/category" component={Category}/>
                                     
                                     
-                                    <Route  path="/ShopProduct" component={ShopProduct}/>
+                                    
                                 </>
                             }
                            

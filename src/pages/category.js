@@ -11,9 +11,9 @@ const Category=()=>{
     let history=useHistory();
     const attributes=[];
     useEffect(()=>{
-        MobileHouseApi.get('/getAttribute').then((res)=>{
-            res.data.map((item,key)=>{
-                console.log(res.data)
+        MobileHouseApi.get('/getattribute').then((res)=>{
+            res.data.Data.map((item,key)=>{
+                
                 attributes.push(item.attributeName)
             })
         })
@@ -23,7 +23,7 @@ const Category=()=>{
              {Auth && Auth.authState=="authorized" ?
                
                 <CategoryMain
-                    attributes={attributes}
+                attributes={attributes}
                 />
             :
                 history.push("/admin")

@@ -1,16 +1,18 @@
 import SideNav from "../sideNav"
-import { AiFillSetting } from 'react-icons/ai';
+import { AiFillSetting ,AiOutlineClose} from 'react-icons/ai';
+
 import { useState,useContext,useEffect } from "react";
 import FormLayout from '../form'
 import MobileHouseApi from "../../../helpers/axiosinstance";
 import { Usercontext } from "../../context/userContext";
+import TableContent from "../table";
 const AttributeMain=()=>{
 
 
     const context=useContext(Usercontext )
     const [addattribute,setaddattribute]=useState(false)
     const [attribute,setattribute]=useState("")
-    const [operation,setoperation]=useState("")
+    const [operation,setoperation]=useState("select")
     const[operationitem,setoperationitem]=useState("")
     const[operationid,setoperationid]=useState("")
 
@@ -23,14 +25,14 @@ const AttributeMain=()=>{
     const attributevalues=[];
 
     const handleSubmit=(e)=>{
-        console.log(e.target)
+        e.preventDefault();
         const data=new FormData(e.target)
         data.append("attributevalues",JSON.stringify( attributevalues))
         data.append("operation",operation)
         data.append("operationid",operationid )
         
         
-        MobileHouseApi.post('/attrubuteAdd',data)
+        MobileHouseApi.post('/attributeAdd',data)
         .then((res)=>{
          if(res.data.error)
          {
@@ -40,30 +42,27 @@ const AttributeMain=()=>{
          {
             context.notify(res.data.success)
             setaddattribute(false)
+            setoperation("select")
             MobileHouseApi.get('getattribute')
             .then((res)=>{
                 setattribute(res.data)
             })
          }
         })
-        e.preventDefault();
+       
       }
    
 
-      const attributeOperation=(operation,attribute)=>{
-          console.log(attribute)
-          setoperationid(attribute.id)
-        // if(operation=="edit")
-        // {
-        //     MobileHouseApi.get('/editattribute',{params:{"attributeid":attributeid}})
-        //     .then((res)=>{
-        //         console.log(res.data)
-        //     })
-        // }
-        setoperationitem(attribute)
-        setoperation(operation)
-        setaddattribute(true)
+      const tableOperation=(operation,attribute)=>{
+            console.log(attribute)
+            setoperationid(attribute.id)
+        
+            setoperationitem(attribute)
+            setoperation(operation)
+            setaddattribute(true)
+            
       }
+
       useEffect(()=>{
         if(attribute=="")
         {
@@ -74,8 +73,8 @@ const AttributeMain=()=>{
         }
         
 
-      },[addattribute])
-        
+      },[addattribute,attribute])
+        console.log(attribute)
            
 
     return(
@@ -85,7 +84,12 @@ const AttributeMain=()=>{
                         <div className="w-full h-full flex items-center bg-opacity-95 justify-center bg-gray-100 fixed top-0">
                             <div className=" space-y-4  w-3/12 h-4/5 ">
                                 <div className="max-h-full bg-white p-4 overflow-auto">
-                                    <h1 className="w-full flex justify-center text-xl font-semibold">{ operation=="" ? "ADD" : operation} Attribute</h1>
+                                    <div className="w-full">
+                                        <button onClick={()=>setaddattribute(false)} className="flex focus:outline-none justify-end w-full text-right"><AiOutlineClose/></button>
+                                        <h1 className="w-full flex justify-center text-xl font-semibold">{ operation=="" ? "ADD" : operation} Attribute</h1>
+                                       
+                                    </div>
+                                    
                                     <div>
                                         <FormLayout
                                             formdata={addformdata}
@@ -114,40 +118,14 @@ const AttributeMain=()=>{
                    
 
                 </div>
-                <table className="min-w-full">
-                    <tr >
-                        <th>SL NO</th>
-                        <th>Attribute name</th>
-                        <th>Values</th>
-                        <th>Status</th>
-                        <th className="flex justify-center  mt-1"><AiFillSetting/></th>
+                {
+                    attribute &&
+                    <TableContent
+                         Data={attribute}
+                         tableOperation={tableOperation}
 
-                        
-                    </tr>
-                    {
-                        attribute!="" && attribute.map((item,key)=>{
-                            return(
-                                <tr className="text-center">
-                                <td>{key+1}</td>
-                                <td>{item.attributeName}</td>
-                                <th>{
-                                (item.values).toString()
-                                }</th>
-                                <td>{item.status}</td>
-                                <td>
-                                    <select onChange={(e)=>{e.target.value!= "select" && attributeOperation(e.target.value,item)}}>
-                                        <option value="select">select</option>
-                                        <option value="view">view</option>
-                                        <option value="edit">edit</option>
-                                        <option value="delete">delete</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            )
-                        })
-                    }
-                    
-                </table>
+                    />
+                }
             </div>
     </div>   
     )

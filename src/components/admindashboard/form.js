@@ -32,7 +32,7 @@ const FormLayout=(props)=>{
   
     
     useEffect(()=>{
-        if(props.operation!="" && editok==false)
+        if(props.operation!="select" && editok==false)
         {
             console.log("dsd")
             props.operationitem.values.map((item,key)=>{
@@ -84,7 +84,7 @@ const FormLayout=(props)=>{
                                  
                                     <div className="space-y-2">
                                         <div className= "flex space-x-1">   
-                                            <input onChange={(e)=>{item.more && setattvalue(e.target.value)}} className="w-full px-2 py-1 rounded-md border border-gray-400" defaultValue={props.operation!="" && !item.more  && props.Mainname!="" ? props.Mainname :""} value={item.more && attvalue}  name={item.name} id={item.name} />
+                                            <input onChange={(e)=>{item.more && setattvalue(e.target.value)}} className="w-full px-2 py-1 rounded-md border border-gray-400" defaultValue={props.operation!="view" && props.operation!="" && !item.more  && props.Mainname!="" ? props.Mainname :""} value={ item.more && attvalue}  name={item.name} id={item.name} />
                                             <button type="button" onClick={()=>addattribute() } className={`${props.operation!="view" && item.more  ? "rounded-md bg-red-500 text-white px-2":"hidden"}`}>ADD</button>
 
                                         </div>
@@ -117,7 +117,7 @@ const FormLayout=(props)=>{
                                             <select onChange={(e)=>{item.more && setattvalue(e.target.value)}} defaultValue={!item.more && props.Mainstatus} className="w-full px-2 py-1 rounded-md border border-gray-400" name={item.name}>
                                                 <option>--select--</option>
                                                 {
-                                                    item.value.map((item1,key1)=>{
+                                                    item.value&& item.value.map((item1,key1)=>{
                                                         return(
                                                             <option value={item1}>{item1}</option>
                                                         )

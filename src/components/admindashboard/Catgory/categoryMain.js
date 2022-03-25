@@ -1,13 +1,18 @@
 import SideNav from "../sideNav"
-import { AiFillSetting } from 'react-icons/ai';
+
 import { useState ,useEffect,useContext} from "react"
 import FormLayout from '../form'
 import MobileHouseApi from "../../../helpers/axiosinstance";
 import { Usercontext } from "../../context/userContext";
+import TableContent from "../table";
+import { AiFillSetting ,AiOutlineClose} from 'react-icons/ai';
 const CategoryMain=(props)=>{
     const context=useContext(Usercontext )
     const [addcategory,setaddcategory]=useState(false)
     const [category,setcategory]=useState("")
+    const [operation,setoperation]=useState("select")
+    const[operationitem,setoperationitem]=useState("")
+    const[operationid,setoperationid]=useState("")
     const categoryvalues=[];
     const addformdata=[
         {name:"name",type:"text"},
@@ -17,10 +22,13 @@ const CategoryMain=(props)=>{
     ]
     console.log(props)
     const handleSubmit=(e)=>{
-       
+        e.preventDefault();
         const data=new FormData(e.target)
         data.append("categoryvalues",JSON.stringify( categoryvalues))
+        data.append("operation",operation)
+        data.append("operationid",operationid )
         MobileHouseApi.post('/categoryAdd',data)
+        
         .then((res)=>{
          if(res.data.error)
          {
@@ -30,22 +38,39 @@ const CategoryMain=(props)=>{
          {
             context.notify(res.data.success)
             setaddcategory(false)
-            // MobileHouseApi.get('getattrirbute')
-            // .then((res)=>{
-            //     setattribute(res.data)
-            // })
+            MobileHouseApi.get('getCategory')
+            .then((res)=>{
+                setcategory(res.data)
+            })
          }
         })
         e.preventDefault();
       }
+
+      const tableOperation=(operation,category)=>{
+        console.log(category)
+        setoperationid(category.id)
+      // if(operation=="edit")
+      // {
+      //     MobileHouseApi.get('/editattribute',{params:{"attributeid":attributeid}})
+      //     .then((res)=>{
+      //         console.log(res.data)
+      //     })
+      // }
+      setoperationitem(category)
+      setoperation(operation)
+      setaddcategory(true)
+    }
+
       useEffect(()=>{
         if(category=="")
         {
-        MobileHouseApi.get('/getCategory')
-        .then((res)=>{
-           console.log(res.data)
-        })
+            MobileHouseApi.get('/getCategory')
+            .then((res)=>{
+            setcategory(res.data)
+            })
         }
+        
         
 
       },[category])
@@ -58,12 +83,21 @@ const CategoryMain=(props)=>{
                         <div className="w-full h-full flex items-center bg-opacity-95 justify-center bg-gray-100 fixed top-0">
                             <div className=" space-y-4  w-3/12 h-4/5 ">
                                 <div className="max-h-full bg-white p-4 overflow-auto">
-                                    <h1 className="w-full flex justify-center text-xl font-semibold">Add Catgeory</h1>
+                                    <div className="w-full">
+                                        <button onClick={()=>setaddcategory(false)} className="flex focus:outline-none justify-end w-full text-right"><AiOutlineClose/></button>
+                                        <h1 className="w-full flex justify-center text-xl font-semibold">Add Catgeory</h1>
                                     <div>
+                                       
+                                    </div>
+                                  
                                         <FormLayout
                                             formdata={addformdata}
                                             handleSubmit={handleSubmit}
                                             attributevalues={categoryvalues}
+                                            operation={operation}
+                                            operationitem={operationitem}
+                                            Mainname={operationitem.Name}
+                                            Mainstatus={operationitem.status}
                                         />
                                     
                                     </div>
@@ -82,30 +116,16 @@ const CategoryMain=(props)=>{
                    
 
                 </div>
-                <table className="min-w-full">
-                    <tr >
-                        <th>SL NO</th>
-                        <th>Catgeory name</th>
-                        <th>Approval</th>
-                        <th>Status</th>
-                        <th className="flex justify-center  mt-1"><AiFillSetting/></th>
+                {
+                    category &&
+                    <TableContent
+                         Data={category}
+                         tableOperation={tableOperation}
 
-                        
-                    </tr>
-                    <tr className="text-center">
-                        <td>5645</td>
-                        <td>5645</td>
-                        <td>5645</td>
-                        <td>5645</td>
-                        <td>
-                            <select>
-                                <option>view</option>
-                                <option>edit</option>
-                                <option>delete</option>
-                            </select>
-                        </td>
-                    </tr>
-                </table>
+                    />
+                }
+                
+                
             </div>
     </div>   
     )
