@@ -7,14 +7,14 @@ import {Route,BrowserRouter as Router,Switch} from  "react-router-dom";
 import SingleItem from './pages/singleitem'
 import Order from './pages/Order'
 import Admin from './pages/admin';
-
+import Category from './pages/category';
 import ShopProduct from './pages/ShopProduct';
 import Dashboard from './pages/Dashboard';
 import ContextProvider from './components/context/userContext';
 import {useEffect,useState} from 'react'
 import  MobileHouseApi from "./helpers/axiosinstance"
 import { AuthContext } from "./helpers/authcontext";
-import Category from './pages/category';
+
 import Attribute from './pages/Attribute'
 import Product from './pages/Product';
 function App(){

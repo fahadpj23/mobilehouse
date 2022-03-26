@@ -30,7 +30,11 @@ const AttributeMain=()=>{
         data.append("attributevalues",JSON.stringify( attributevalues))
         data.append("operation",operation)
         data.append("operationid",operationid )
-        
+        if(operationitem)
+        {
+            data.append("oldattributeName",operationitem.attributeName )
+        }
+       
         
         MobileHouseApi.post('/attributeAdd',data)
         .then((res)=>{
@@ -76,7 +80,7 @@ const AttributeMain=()=>{
       },[addattribute,attribute])
         console.log(attribute)
            
-
+ console.log(operationitem)
     return(
         <div className="flex w-full">
              {

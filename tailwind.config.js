@@ -27,6 +27,13 @@ module.exports = {
         
         
        },
+       maxHeight: {
+        
+        fixedNoNavlgmax: 'calc(100vh - 5.75rem)',
+        '128': '32rem',
+        
+
+    },
       
     },
   },

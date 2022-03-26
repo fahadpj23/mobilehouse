@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useState } from "react"
-const AddCover=(props)=>{
+const AddProductWindow=(props)=>{
    
    
    
@@ -8,7 +8,7 @@ const AddCover=(props)=>{
     return(
         <form onSubmit={(e)=>props.handleSubmit(e)} method="post">
     
-            <div className=" mt-5 w-6/12 grid grid-cols-2 gap-6">
+            <div className=" mt-5 w-full  grid grid-cols-2 gap-6">
               
                     
                     <div className=" text-sm">
@@ -67,9 +67,9 @@ const AddCover=(props)=>{
                 }
 
             </div>
-            <div className="flex justify-end  space-x-3 w-6/12 mt-8 ">
-                    <button className="bg-red-500 text-white py-1 font-semibold rounded-md  px-1 w-3/12">RESET</button>
-                    <button   type="submit"  value="submit" className="bg-blue-500 text-white py-1 font-semibold rounded-md  px-1 w-3/12">Save</button>
+            <div className="flex justify-end  space-x-3 w-full mt-8 ">
+                    <button className="bg-red-500 text-white py-1 font-semibold rounded-md  focus:outline-none px-1 w-3/12">RESET</button>
+                    <button   type="submit"  value="submit" className="bg-blue-500 text-white py-1 focus:outline-none font-semibold rounded-md  px-1 w-3/12">Save</button>
             </div>
             
         </form>
@@ -77,4 +77,4 @@ const AddCover=(props)=>{
 
     
 }
-export default AddCover
+export default AddProductWindow

@@ -1,23 +1,13 @@
-import { useState ,useEffect} from "react"
-import AddAccessories from "./addaccessories"
-import AddCover from "./addcover"
-import AddHeadset from "./addheadset"
-import AddPhone from "./addphone"
+import { useState ,useEffect,useContext} from "react"
+import { Usercontext } from "../../context/userContext";
+import AddProductWindow from "./addProductWindow"
+import { AiOutlineClose} from 'react-icons/ai';
 import { useHistory } from 'react-router-dom';
 import SideNav from "../sideNav"
 import MobileHouseApi from "../../../helpers/axiosinstance"
-const AddProductMain=()=>{
+const AddProductMain=(props)=>{
     let history=useHistory();
-    useEffect(()=>{
-        if(catgeorytotal=="")
-        {
-            MobileHouseApi.get('/getCategory')
-            .then((res)=>{
-                setcatgeorytotal(res.data)
-            })
-        }
-           
-    })
+    const context=useContext(Usercontext )
     const [category, setcategory] = useState("")
     const [categoryid, setcategoryid] = useState("")
     const [catgeorytotal, setcatgeorytotal] = useState("")
@@ -25,7 +15,7 @@ const AddProductMain=()=>{
     const [productimage,setproductimage]=useState("")
     const categoryselect=(catname)=>{
         setcategory(catname)
-        catgeorytotal && catgeorytotal.map((item,key)=>{
+        catgeorytotal && catgeorytotal.Data.map((item,key)=>{
                                 
                  if(catname==item.categoryName)
                  {
@@ -50,51 +40,62 @@ const AddProductMain=()=>{
         console.log(data)
         MobileHouseApi.post('/productAdd',data)
         .then((res)=>{
-        //  if(res.data.error)
-        //  {
-        //         context.notify(res.data.error)
-        //  }
-        //  else
-        //  {
-        //     context.notify(res.data.success)
-        //     setaddcategory(false)
-        //     // MobileHouseApi.get('getattrirbute')
-        //     // .then((res)=>{
-        //     //     setattribute(res.data)
-        //     // })
-        //  }
+         if(res.data.error)
+         {
+                context.notify(res.data.error)
+         }
+         else
+         {
+            context.notify(res.data.success)
+            // setaddcategory(false)
+            // // MobileHouseApi.get('getattrirbute')
+            // // .then((res)=>{
+            // //     setattribute(res.data)
+            // // })
+         }
         })
         e.preventDefault();
       }
+      useEffect(()=>{
+        if(catgeorytotal=="")
+        {
+            MobileHouseApi.get('/getCategory')
+            .then((res)=>{
+                console.log(res.data)
+                setcatgeorytotal(res.data)
+            })
+        }
+           
+    })
 
     return(
-        <div className="flex">
-        <SideNav/>
-        <div className="w-10/12">
-        <div className="ml-5 mt-5">
-            <div className="w-11/12  ">
+        <div className=" w-full flex justify-center max-h-fixedNoNavlgmax overflow-auto  ">
+       
+        <div className="w-6/12 bg-white z-20 h-full flex relative justify-center py-16">
+        
+        <div className="w-10/12  flex flex-col justify-center items-center ">
+        <button onClick={()=>props.closeProductadd()} className=" absolute right-4 top-3 font-semibold text-xl"><AiOutlineClose/></button>
+            <div className="w-full  ">
+                
                 <div className="space-y-1">
                     <h1>select category *</h1>
                     <select onChange={(e)=>categoryselect(e.target.value)} value={category} className="border-2 border-gray-400 rounded-md w-5/12 text-sm focus:outline-none py-1">
                         <option>--Select Catgeory---</option>
                         {
-                            catgeorytotal && catgeorytotal.map((item,key)=>
+                            catgeorytotal && catgeorytotal.Data.map((item,key)=>
                                 
                                 <option key={key} className="text-black" value={item.categoryName}>{item.categoryName}</option>
                             
                             )
                         }
-                        {/* <option value="cover">COVER</option>
-                        <option value="accessories">ACCESSORIES</option>
-                        <option value="phone">PHONE</option>
-                        <option value="headset">HEADSET</option> */}
+                       
                     </select>
                 </div>
                 
             </div>
                 {
                     categoryattribute!=""&&
-                <AddCover
+                <AddProductWindow
                     categoryattribute={categoryattribute}
                     handleSubmit={handleSubmit}
                      
@@ -102,28 +103,7 @@ const AddProductMain=()=>{
                 }   
             
             
-            {/* {(() => {
-                switch (catgeory) {
-                case 'cover':
-                    return <AddCover
-                    setcatgeory={setcatgeory}
-                    />;
-                case 'accessories':
-                    return <AddAccessories
-                    setcatgeory={setcatgeory}
-                    />
-                case 'phone':
-                    return <AddPhone
-                    setcatgeory={setcatgeory}
-                    />;
-                case 'headset':
-                    return <AddHeadset
-                    setcatgeory={setcatgeory}
-                    />        
-                default:
-                    return null;
-                }
-            })()} */}
+           
         </div>
         </div>
     </div>   
