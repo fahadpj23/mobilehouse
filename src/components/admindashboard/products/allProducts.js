@@ -25,6 +25,7 @@ const AllProduct=(props)=>{
             })
         }
     })
+    console.log(product)
     return(
         <div className="w-full flex ">
             {

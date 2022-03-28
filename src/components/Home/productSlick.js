@@ -92,7 +92,7 @@ export default class  ProductSlider extends Component{
             ]
             };
              
-        
+            console.log(this.props)
             return (
      
               <div>

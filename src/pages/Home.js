@@ -8,36 +8,22 @@ import React, { useState,useEffect ,useContext} from 'react';
 import ProductSlider from "../components/Home/productSlick";
 import {AuthContext} from '../helpers/authcontext'
 function Home() {
-  const [coverproducts, setcoverproducts] = useState("")
-  const [accessories, setaccessories] = useState("")
-  const [headset, setheadset] = useState("")
+ 
   const [products, setproducts] = useState("")
   const AuthCon=useContext(AuthContext)
   console.log(AuthCon)
  
   useEffect(() => {
          
-          MobileHouseApi.get("/cover")
+          MobileHouseApi.get("/getProducts")
         
           .then(res=>{
           const product=res.data;
           console.log(res.data)
-          setcoverproducts(product)
+          setproducts(res.data)
           
           })
-          MobileHouseApi.get("/accessories")
-          .then(res=>{
-          const product=res.data;
-          setaccessories(product)
-          
-          })
-          MobileHouseApi.get("/headset")
-          .then(res=>{
-          const product=res.data;
-          setheadset(product)
-          
-          })
-        
+         
        
          
         }, [])
@@ -57,20 +43,12 @@ function Home() {
         </div>
         <div className="w-full flex justify-center">
           <div className="w-11/12 px-6">
-                      {coverproducts!="" && <ProductSlider
+                      {products!="" && <ProductSlider
                       
-                       items={coverproducts}
+                       items={products}
                        Heading="Mobile Covers"            
                       />}
-                      {accessories!="" &&<ProductSlider
-                       items={accessories}
-                       Heading="Mobile Accessories" 
-                      />}
-                       {headset!="" &&<ProductSlider
-                       items={headset}
-                       Heading="Mobile Headset" 
-                      
-                      />}
+                     
                      
           </div>
         </div>
