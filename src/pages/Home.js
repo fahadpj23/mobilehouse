@@ -10,18 +10,28 @@ import {AuthContext} from '../helpers/authcontext'
 function Home() {
  
   const [products, setproducts] = useState("")
+  const [cover, setcover] = useState("")
+  const [accessories, setaccessories] = useState("")
+  const [headset, setheadset] = useState("")
   const AuthCon=useContext(AuthContext)
   console.log(AuthCon)
  
   useEffect(() => {
          
-          MobileHouseApi.get("/getProducts")
-        
+          MobileHouseApi.get("/getcover")
           .then(res=>{
-          const product=res.data;
-          console.log(res.data)
-          setproducts(res.data)
-          
+            setcover(res.data)
+          }) 
+
+
+          MobileHouseApi.get("/getheadset")
+          .then(res=>{
+            setaccessories(res.data)
+          })
+
+          MobileHouseApi.get("/getaccessories")
+          .then(res=>{
+            setheadset(res.data)
           })
          
        
@@ -43,12 +53,22 @@ function Home() {
         </div>
         <div className="w-full flex justify-center">
           <div className="w-11/12 px-6">
-                      {products!="" && <ProductSlider
+                      {cover!="" && <ProductSlider
                       
-                       items={products}
+                       items={cover}
                        Heading="Mobile Covers"            
                       />}
-                     
+                      
+                      {accessories!="" && <ProductSlider
+                      
+                      items={accessories}
+                      Heading="Accessories"            
+                     />}
+                      {headset!="" && <ProductSlider
+                      
+                      items={headset}
+                      Heading="Headset"            
+                     />}
                      
           </div>
         </div>

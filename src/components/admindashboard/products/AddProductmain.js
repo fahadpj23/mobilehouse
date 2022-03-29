@@ -8,17 +8,20 @@ import MobileHouseApi from "../../../helpers/axiosinstance"
 const AddProductMain=(props)=>{
     let history=useHistory();
     const context=useContext(Usercontext )
-    const [category, setcategory] = useState("")
+    const [category, setcategory] = useState(props.category ? props.category: "")
     const [categoryid, setcategoryid] = useState("")
     const [catgeorytotal, setcatgeorytotal] = useState("")
     const [categoryattribute,setcategoryattribute]=useState("")
     const [productimage,setproductimage]=useState("")
+    const [categoryset,setcategoryset]=useState(false)
     const categoryselect=(catname)=>{
+       console.log(catgeorytotal)
         setcategory(catname)
         catgeorytotal && catgeorytotal.Data.map((item,key)=>{
-                                
+                       console.log(item.categoryName)         
                  if(catname==item.categoryName)
                  {
+                    console.log("dssd")
                     setcategoryid(item.id)
                      MobileHouseApi.get("/getcategoryAttribute",{params:{"categoryid":item.id}})
                      .then((res)=>{
@@ -46,12 +49,9 @@ const AddProductMain=(props)=>{
          }
          else
          {
-            context.notify(res.data.success)
-            // setaddcategory(false)
-            // // MobileHouseApi.get('getattrirbute')
-            // // .then((res)=>{
-            // //     setattribute(res.data)
-            // // })
+            context.notify("Product added successfully","success")
+           props.productAddSuccess()
+
          }
         })
         e.preventDefault();
@@ -64,6 +64,14 @@ const AddProductMain=(props)=>{
                 console.log(res.data)
                 setcatgeorytotal(res.data)
             })
+        }
+        if( props.category && categoryset==false)
+        {
+            if(catgeorytotal!="")
+                {
+                setcategoryset(true)
+                categoryselect(props.category)
+                }
         }
            
     })
@@ -98,6 +106,10 @@ const AddProductMain=(props)=>{
                 <AddProductWindow
                     categoryattribute={categoryattribute}
                     handleSubmit={handleSubmit}
+                    operation={props.operation}
+                    operationitem={props.operationitem}
+                    operationid={props.operationid}
+                    category={props.category}
                      
                 />
                 }   

@@ -4,16 +4,35 @@ import AddProductMain from './AddProductmain'
 import { useState ,useEffect} from 'react'
 import  mobilehouseApi  from '../../../helpers/axiosinstance'
 import TableContent from "../table";
+import MobileHouseApi from '../../../helpers/axiosinstance'
 const AllProduct=(props)=>{
     const[addproduct,setaddproduct]=useState(false)
     const[product,setproduct]=useState("")
+    const [operation,setoperation]=useState("select")
+    const[operationitem,setoperationitem]=useState("")
+    const[operationid,setoperationid]=useState("")
 
     const closeProductadd=()=>{
         setaddproduct(false)
     }
 
-    const tableOperation=()=>{
-        console.log("fdfd")
+    const tableOperation=(operation,item)=>{
+        MobileHouseApi.get('/productdetails',{params:{productId:item.id}})
+        .then((res)=>{
+            console.log(res.data)
+        })
+        // setoperation(operation)
+        // setoperationitem(item)
+        // setoperationid(item.id)
+        // setaddproduct(true)
+    }
+
+    const productAddSuccess=()=>{
+        setaddproduct(false)
+        mobilehouseApi.get('/getProduct')
+        .then((res)=>{
+            setproduct(res.data)
+        })
     }
 
     useEffect(()=>{
@@ -25,7 +44,7 @@ const AllProduct=(props)=>{
             })
         }
     })
-    console.log(product)
+    
     return(
         <div className="w-full flex ">
             {
@@ -33,6 +52,11 @@ const AllProduct=(props)=>{
                 <div className='w-full fixed bg-gray-200 h-screen opacity-100 flex items-center justify-center    '>
                      <AddProductMain
                         closeProductadd={closeProductadd}
+                        productAddSuccess={productAddSuccess}
+                        operation={operation}
+                        operationitem={operationitem}
+                        operationid={operationid}
+                        category={operationitem.category}
                      />
                 </div>
 

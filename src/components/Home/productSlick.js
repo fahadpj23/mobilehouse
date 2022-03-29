@@ -7,7 +7,7 @@ import Slider from "react-slick";
 function SampleNextArrow(props) {
     const { className, style, onClick } = props;
     return (
-      <span  onClick={onClick} className="absolute -right-3 top-1/2 origin-center transform -translate-y-1/2 z-10  text-black bg-gray-100 rounded-full md:p-3 md:block hidden hover:bg-gray-200">
+      <span  onClick={onClick} className="absolute -right-3 top-1/2 origin-center transform -translate-y-1/2 z-10  text-red-500 bg-gray-400 rounded-full md:p-3 md:block hidden ">
         <i className="fas fa-angle-right"></i>
       </span>
     );
@@ -17,7 +17,7 @@ function SampleNextArrow(props) {
     const { className, style, onClick } = props;
     return (
      
-        <span onClick={onClick} className="absolute -left-3 top-1/2 origin-center transform -translate-y-1/2 z-10   text-black bg-gray-100 rounded-full md:p-3 md:block hidden hover:bg-gray-200">
+        <span onClick={onClick} className="absolute -left-3 top-1/2 origin-center transform -translate-y-1/2 z-10   text-red-500 bg-gray-400 rounded-full md:p-3 md:block hidden ">
         <i className="fas fa-angle-left"></i>
 
       </span>
