@@ -30,10 +30,10 @@ const SingleItem=(props)=>{
     return(
         <div className="mt-10">
            
-            {/* {(singleitem!="" && relateditems!="" )&&<SingleItemMain
+            {singleitem!="" &&<SingleItemMain
             singleitem={singleitem}
-            relateditems={relateditems}
-            /> } */}
+            // relateditems={relateditems}
+            /> }
         </div>
     )
 }

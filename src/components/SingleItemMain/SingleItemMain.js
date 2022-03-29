@@ -13,8 +13,8 @@ const SingleItemMain=(props)=>{
     const [pincode, setpincode] = useState("")
     const [pincodeavailability, setpincodeavailability] = useState("")
 
-    let item=props.singleitem[0]
-   
+    let item=props.singleitem
+    console.log(props.singleitem)
     const context=useContext(Usercontext)
    
 
@@ -38,10 +38,9 @@ const SingleItemMain=(props)=>{
  
     return(
         <div className="pb-10">
-            {
-                props.singleitem.map((item,key)=>{
-                    return(
-                        <div key={key} className="w-full flex justify-center">
+            
+               
+                        <div className="w-full flex justify-center">
                             <div className="w-11/12 flex  mt-5 ">
                                 <div className="w-5/12 flex ] flex-col space-y-4 ">
                                     <img src={`http://localhost:9000/images/${item.image}`} alt="" className="object-contain  overflow-hidden h-96 "/>
@@ -75,7 +74,7 @@ const SingleItemMain=(props)=>{
                                                     <h1>{item.color}</h1>
                                                     <h1>{item.warranty}</h1>
                                                     <h1>{item.material}</h1>
-                                                    <h1>{item.brand}</h1>
+                                                    <h1>{item.Brand}</h1>
                                                 </div>
                                             </div>
                                             <div>
@@ -117,10 +116,9 @@ const SingleItemMain=(props)=>{
                                 </div>
                             </div>
                         </div>
-                    )
-                })
-            }
-        {props.relateditems!="" &&
+                    
+                
+        {/* {props.relateditems!="" &&
         <div className="w-full flex justify-center">
             <div className="w-10/12">
                 <ProductSlider
@@ -131,7 +129,7 @@ const SingleItemMain=(props)=>{
              
         </div>
        
-        }
+        } */}
 
         </div>
     )

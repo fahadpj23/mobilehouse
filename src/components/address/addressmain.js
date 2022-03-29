@@ -20,9 +20,9 @@ const AddressMain=(props)=>{
     
     console.log(date)
    
-    props.item.map((item,key)=>{
-        total=total+item.price*item.qty
-    })
+    // props.item.map((item,key)=>{
+    //     total=total+item.price*item.qty
+    // })
     const placeorder=()=>{
         
         
@@ -67,7 +67,7 @@ const AddressMain=(props)=>{
                         <textarea onChange={(e)=>setaddress(e.target.value)} placeholder="address" className=" border-2 w-full h-24 focus:outline-none focus:border-green-500 px-2 border-gray-400 rounded-sm">
 
                         </textarea>
-                        <button className="w-full bg-green-500 focus:outline-none text-white font-medium py-3">Deliver here</button>
+                        <h1 className="w-full text-center bg-green-500 focus:outline-none text-white font-medium py-3">Deliver here</h1>
                     </div>
                 </div>
             </div>
@@ -85,7 +85,7 @@ const AddressMain=(props)=>{
                     </div>
                     <div>
                         <h1 className="text-xl font-semibold my-5 ">Delivery Summary</h1>
-                        {props.item && props.item.map((item,key)=>{
+                         {props.item && props.item.map((item,key)=>{
                             return(
                              <div className="space-y-3 flex space-x-3">
                                 <div className="">
@@ -102,7 +102,7 @@ const AddressMain=(props)=>{
                              
                          </div>
                             )
-                        })}
+                        })} 
                            
 
                     </div>

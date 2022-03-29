@@ -2,6 +2,7 @@ import AddressMain from '../components/address/addressmain'
 import React, { useState,useEffect,useContext } from 'react';
 import { Usercontext } from '../components/context/userContext';
 import axios from "axios";
+import MobileHouseApi from '../helpers/axiosinstance';
 const Address=(props)=>{
     const context=useContext(Usercontext)
     const [product, setproduct] = useState("")
@@ -16,12 +17,13 @@ const Address=(props)=>{
         }
         else
         {
-        axios.get(`http://localhost:9000/placeorder`,{params: { product: props.location.state.itemid,type:props.location.state.itemtype}})
+        MobileHouseApi.get(`placeorder`,{params: { productId: props.location.state.itemid}})
         
         .then(res=>{
-        const product=res.data;
+        let items=[]
+        items.push(res.data);
 
-        setproduct(product)
+        setproduct(items)
 
           })  
         }
