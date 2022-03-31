@@ -3,8 +3,8 @@ import { useState } from "react"
 const AddProductWindow=(props)=>{
    
     const product=props.operationitem
-    
-   
+    const [productimage,setproductimage]=useState("")
+   console.log(product)
     return(
         <form onSubmit={(e)=>props.handleSubmit(e)} method="post">
     
@@ -34,8 +34,14 @@ const AddProductWindow=(props)=>{
                
                     <div className=" text-sm">
                         <h1>Image</h1>
-                        <input  type="file" className="w-full focus:outline-none border-2 border-gray-400 rounded-md h-8 px-1"  name="image" id="image" defaultValue={product.image}/>
+                        <input onChange={(e)=>setproductimage(URL.createObjectURL(e.target.files[0]))}  type="file" className="w-full focus:outline-none border-2 border-gray-400 rounded-md h-8 px-1"  name="image" id="image" />
                     </div>
+                    {productimage!="" ?
+                    <img src={productimage} alt="" className="object-contain h-48 overflow-hidden" />
+                    :
+                    product.image &&
+                    <img src={`http://localhost:9000/images/${product.image}`} alt="" className="object-contain h-48 overflow-hidden "/>
+                    }
                     <div className=" text-sm">
                         <h1>Brand</h1>
                         <input  className="w-full border-2 border-gray-400 rounded-md py-1 px-1"  name="Brand" id="Brand" defaultValue={product.Brand}/>
@@ -52,7 +58,7 @@ const AddProductWindow=(props)=>{
                         return(
                             <div key={key} className=" text-sm">
                                 <h1>{item.attributeName}</h1>
-                                <select  type="select"  className="w-full border-2 border-gray-400 rounded-md py-1 px-1"  name={item.attributeName} id={item.attributeName}>
+                                <select defaultValue={product[item.attributeName]}  type="select"  className="w-full border-2 border-gray-400 rounded-md py-1 px-1"  name={item.attributeName} id={item.attributeName}>
                                     <option>--select--</option> 
                                     {
                                         item.value.map((item1,key1)=>

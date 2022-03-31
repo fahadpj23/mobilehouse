@@ -62,12 +62,14 @@ function Home() {
                       {accessories!="" && <ProductSlider
                       
                       items={accessories}
-                      Heading="Accessories"            
+                      Heading="Headset"
+                                
                      />}
                       {headset!="" && <ProductSlider
                       
                       items={headset}
-                      Heading="Headset"            
+                      Heading="Accessories" 
+                                  
                      />}
                      
           </div>

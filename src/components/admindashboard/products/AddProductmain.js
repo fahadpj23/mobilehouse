@@ -7,21 +7,25 @@ import SideNav from "../sideNav"
 import MobileHouseApi from "../../../helpers/axiosinstance"
 const AddProductMain=(props)=>{
     let history=useHistory();
+    console.log(props.operationitem.category)
     const context=useContext(Usercontext )
     const [category, setcategory] = useState(props.category ? props.category: "")
     const [categoryid, setcategoryid] = useState("")
     const [catgeorytotal, setcatgeorytotal] = useState("")
     const [categoryattribute,setcategoryattribute]=useState("")
-    const [productimage,setproductimage]=useState("")
+   
     const [categoryset,setcategoryset]=useState(false)
+
+
     const categoryselect=(catname)=>{
+        
        console.log(catgeorytotal)
         setcategory(catname)
         catgeorytotal && catgeorytotal.Data.map((item,key)=>{
                        console.log(item.categoryName)         
                  if(catname==item.categoryName)
                  {
-                    console.log("dssd")
+                   
                     setcategoryid(item.id)
                      MobileHouseApi.get("/getcategoryAttribute",{params:{"categoryid":item.id}})
                      .then((res)=>{
@@ -39,7 +43,8 @@ const AddProductMain=(props)=>{
         const data=new FormData(e.target)
         data.append("category",category)
         data.append("categoryid",categoryid)
-        data.append("productimage",productimage)
+        data.append("operation",props.operation)
+        data.append("operationid",props.operationid)
         console.log(data)
         MobileHouseApi.post('/productAdd',data)
         .then((res)=>{
@@ -65,12 +70,12 @@ const AddProductMain=(props)=>{
                 setcatgeorytotal(res.data)
             })
         }
-        if( props.category && categoryset==false)
+        if( props.operationitem.category && categoryset==false)
         {
             if(catgeorytotal!="")
                 {
                 setcategoryset(true)
-                categoryselect(props.category)
+                categoryselect(props.operationitem.category)
                 }
         }
            

@@ -19,12 +19,14 @@ const AllProduct=(props)=>{
     const tableOperation=(operation,item)=>{
         MobileHouseApi.get('/productdetails',{params:{productId:item.id}})
         .then((res)=>{
-            console.log(res.data)
+            setoperationitem(res.data)
+            setoperation(operation)
+        
+            setoperationid(item.id)
+            setaddproduct(true)
+     
         })
-        // setoperation(operation)
-        // setoperationitem(item)
-        // setoperationid(item.id)
-        // setaddproduct(true)
+       
     }
 
     const productAddSuccess=()=>{
@@ -56,7 +58,7 @@ const AllProduct=(props)=>{
                         operation={operation}
                         operationitem={operationitem}
                         operationid={operationid}
-                        category={operationitem.category}
+                      
                      />
                 </div>
 
