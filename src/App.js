@@ -14,7 +14,7 @@ import ContextProvider from './components/context/userContext';
 import {useEffect,useState} from 'react'
 import  MobileHouseApi from "./helpers/axiosinstance"
 import { AuthContext } from "./helpers/authcontext";
-
+import ProductList from './pages/productList'
 import Attribute from './pages/Attribute'
 import Product from './pages/Product';
 function App(){
@@ -97,6 +97,7 @@ function App(){
                                     <Route  path="/Admin" component={Admin}/>
                                     <Route  path="/Attribute" component={Attribute}/>
                                     <Route  path="/category" component={Category}/>
+                                    <Route  path="/ProductList" component={ProductList}/>
                                     
                                     
                                     

@@ -5,6 +5,9 @@ import { useState ,useEffect} from 'react'
 import  mobilehouseApi  from '../../../helpers/axiosinstance'
 import TableContent from "../table";
 import MobileHouseApi from '../../../helpers/axiosinstance'
+import { AiFillDelete } from 'react-icons/ai';
+import { MdModeEdit } from 'react-icons/md';
+import { FaPlus } from 'react-icons/fa';
 const AllProduct=(props)=>{
     const[addproduct,setaddproduct]=useState(false)
     const[product,setproduct]=useState("")
@@ -66,22 +69,25 @@ const AllProduct=(props)=>{
             }
              <SideNav/>
             
-            <div className="w-10/12">
+            <div className="w-10/12 py-5">
                 
                 <div className="w-full flex justify-end space-x-3">
-                <button className="w-2/12 px-3 py-1 border border-gray-600">DELETE</button>
-                <button  className="w-2/12 px-3 py-1 border border-gray-600 ">EDIT</button>
-                <button onClick={()=>setaddproduct(true)}className="px-3 w-2/12 py-1 border border-gray-600 ">ADD NEW</button>
+                <button className=" flex items-center px-3 py-1 border border-gray-400 rounded space-x-1"><h1><AiFillDelete/></h1> <h1>Delete</h1></button>
+                <button  className=" flex items-center  px-3 py-1 border border-gray-400 rounded space-x-1 "> <h1><MdModeEdit/></h1> <h1>Edit</h1></button>
+                <button onClick={()=>setaddproduct(true)}className="px-3 flex items-center py-1 border border-gray-400  space-x-1 rounded "><h1><FaPlus/></h1> <h1>Add New</h1></button>
                    
 
                 </div>
-                {
-                product &&
-                    <TableContent
-                    Data={product}
-                    tableOperation={tableOperation}
-                    />
-                    }
+                <div className='mt-7'>
+                    {
+                    product &&
+                        <TableContent
+                        Data={product}
+                        tableOperation={tableOperation}
+                        />
+                        }
+                </div>
+               
             </div>
     
         </div>

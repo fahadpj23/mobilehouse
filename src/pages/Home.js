@@ -56,20 +56,22 @@ function Home() {
                       {cover!="" && <ProductSlider
                       
                        items={cover}
-                       Heading="Mobile Covers"            
+                       Heading="Mobile Covers"
+                       type="cover"            
                       />}
                       
                       {accessories!="" && <ProductSlider
                       
                       items={accessories}
                       Heading="Headset"
+                      type="headset"
                                 
                      />}
                       {headset!="" && <ProductSlider
                       
                       items={headset}
                       Heading="Accessories" 
-                                  
+                      type="accessories"           
                      />}
                      
           </div>
