@@ -7,12 +7,12 @@ import { FaTruck } from 'react-icons/fa';
 import { GiCash } from 'react-icons/gi';
 const DashboardMain=()=>{
     return(
-        <div className="flex w-full">
+        <div className="flex w-full relative">
         
-          
+           
                 <SideNav/>
          
-            <div className="w-9/12 lg:w-10/12 overflow-auto p-3 space-y-5">
+            <div className="w-full overflow-auto p-3 space-y-5">
                 <div className="flex w-full justify-between space-x-4">
                     <div className="w-full bg-green-500 text-white rounded-xl shadow-lg p-3 flex items-center justify-center">
                         <RiRefund2Line className="text-3xl"/>

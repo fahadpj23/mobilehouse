@@ -10,29 +10,22 @@ const SingleItem=(props)=>{
         MobileHouseApi.get(`/singleview`,{params: { productId: props.location.state.itemid}})
         
         .then(res=>{
-        const product=res.data;
-        setsingleitem(product)
-        
-          
-          })   
-        //   axios.get(`http://localhost:9000/related`,{params: { brand: props.location.state.itembrand,type:props.location.state.itemtype}})
-        
-        // .then(res=>{
-      
-        //     const product=res.data;
-        //     setrelateditems(product)
-              
-          
-        //   })  
-           
+                const product=res.data;
+                setsingleitem(product)
+                MobileHouseApi.get(`/related`,{params: { name: product.name, category:product.category}})
+                .then(res=>{
+                    setrelateditems(res.data)
+                    
+                })  
+        })      
     }, [])
-    console.log(relateditems) 
+    console.log(singleitem) 
     return(
         <div className="mt-10">
            
             {singleitem!="" &&<SingleItemMain
             singleitem={singleitem}
-            // relateditems={relateditems}
+             relateditems={relateditems}
             /> }
         </div>
     )
