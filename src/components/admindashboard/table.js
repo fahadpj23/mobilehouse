@@ -34,7 +34,8 @@ const TableContent=(props)=>{
                                 {
                                     return(
                                     
-                                        <td key={key}>{ item1=="values" ? item[item1].toString() :item[item1]}</td>
+                                        <td className={`${ item1=="values" ? "w-full flex justify-center": "w-3/12"}`} key={key}>
+                                            <h1 className={`${ item1=="values" && " w-6/12 break-words"}`}>{ item1=="values" ? item[item1].toString() :item[item1]} </h1> </td>
                                     )   
                                 }
                             })

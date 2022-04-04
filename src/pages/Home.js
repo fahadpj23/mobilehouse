@@ -2,15 +2,14 @@
 import SimpleSlider from "../components/Home/slider";
 import Nav from "../components/Home/Nav"
 
-import axios from 'axios' 
 import  MobileHouseApi from "../helpers/axiosinstance"
 import React, { useState,useEffect ,useContext} from 'react';
 import ProductSlider from "../components/Home/productSlick";
 import {AuthContext} from '../helpers/authcontext'
 function Home() {
  
-  const [products, setproducts] = useState("")
   const [cover, setcover] = useState("")
+  const [phone, setphone] = useState("")
   const [accessories, setaccessories] = useState("")
   const [headset, setheadset] = useState("")
   const AuthCon=useContext(AuthContext)
@@ -33,11 +32,15 @@ function Home() {
           .then(res=>{
             setheadset(res.data)
           })
+          MobileHouseApi.get("/getphone")
+          .then(res=>{
+            setphone(res.data)
+          })
          
        
          
         }, [])
-        console.log(products)
+       
   return (
     <div>
   
@@ -72,6 +75,12 @@ function Home() {
                       items={headset}
                       Heading="Accessories" 
                       type="accessories"           
+                     />}
+                      {phone!="" && <ProductSlider
+                      
+                      items={phone}
+                      Heading="phone" 
+                      type="phone"           
                      />}
                      
           </div>

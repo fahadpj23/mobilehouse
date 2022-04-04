@@ -12,7 +12,7 @@ const AttributeMain=()=>{
     const context=useContext(Usercontext )
     const [addattribute,setaddattribute]=useState(false)
     const [attribute,setattribute]=useState("")
-    const [operation,setoperation]=useState("select")
+    const [operation,setoperation]=useState("")
     const[operationitem,setoperationitem]=useState("")
     const[operationid,setoperationid]=useState("")
 
@@ -46,7 +46,9 @@ const AttributeMain=()=>{
          {
             context.notify(res.data.success)
             setaddattribute(false)
-            setoperation("select")
+            setoperationid("")
+            setoperation("")
+            setoperationitem("")
             MobileHouseApi.get('getattribute')
             .then((res)=>{
                 setattribute(res.data)

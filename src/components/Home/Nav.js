@@ -81,11 +81,15 @@ const Nav=(props)=>{
                                 <input onChange={(e)=>searchProduct(e.target.value)} type="text" placeholder="search here" className=" px-2 w-full rounded-lg  h-10 focus:outline-none border-2 border-gray-400 "/>
                                 
                                 
-                                <div className={`${serachitemdis!="" ? " absolute  top-10 z-20 max-h-96 w-96 bg-gray-100 shadow-xl rounded-lg p-2 flex flex-col overflow-y-scroll  ": "hidden"}`}>
+                                <div className={`${serachitemdis!="" ? " absolute  top-10 z-20 max-h-96 w-96 bg-white shadow-xl rounded-lg p-2 flex flex-col overflow-y-scroll  ": "hidden"}`}>
                                 {serachitemdis!="" && serachitemdis.map((item,key)=>{
                                     return(
                                         
-                                            <button className="hover:text-blue-400 text-left py-2">{item.name}</button>
+                                            <button className="hover:text-blue-400 text-left py-2 focus:outline-none">
+                                                
+                                              <h1 className='text-black'>{item.name}</h1>
+                                              <h1  className='text-blue-500 font-semibold'>in {item.category}</h1>
+                                            </button>
                                     
                                     )
                                 })}

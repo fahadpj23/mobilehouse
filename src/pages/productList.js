@@ -1,12 +1,31 @@
 
 import ProductListMain from '../components/ProductList/ProductListMain'
-const ProductList=()=>{
-    
-    return(
+import MobileHouseApi from '../helpers/axiosinstance'
+import { useEffect,useState } from 'react'
+const ProductList=(props)=>{
+    const [products,setproducts]=useState("")
 
+    useEffect(()=>{
+        if(products=="")
+        {
+        MobileHouseApi.get("/viewCategoryProduct",{params:{category:props.location.state.category}})
+          .then(res=>{
+           setproducts(res.data)
+          }) 
+        }
+
+    })
+    return(
+      
         
         <div>
-            <ProductListMain/>
+            {
+                products &&
+                <ProductListMain
+                products={products}
+                />
+            }
+           
         </div>
     )
 }

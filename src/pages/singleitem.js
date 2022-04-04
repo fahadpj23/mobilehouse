@@ -1,6 +1,5 @@
 import React, { useState,useEffect } from 'react';
 import MobileHouseApi from '../helpers/axiosinstance';
-import axios from 'axios'
 import SingleItemMain from '../components/SingleItemMain/SingleItemMain'
 const SingleItem=(props)=>{
     
@@ -12,9 +11,14 @@ const SingleItem=(props)=>{
         .then(res=>{
                 const product=res.data;
                 setsingleitem(product)
-                MobileHouseApi.get(`/related`,{params: { name: product.name, category:product.category}})
+                MobileHouseApi.get(`/related`,{params: { name: product.name, category:product.category,productId:product.id}})
                 .then(res=>{
                     setrelateditems(res.data)
+                    
+                })  
+                MobileHouseApi.get(`/variantproduct`,{params: { name: product.name,price :product.price,mrp:product.mrp, category:product.category,productId:product.id}})
+                .then(res=>{
+                   console.log(res.data)
                     
                 })  
         })      

@@ -1,7 +1,17 @@
-const ProductListMain=()=>{
+import SingleProduct from "../Home/singleProducts"
+const ProductListMain=(props)=>{
     return(
-        <div>
-            <h1>Ddsdad</h1>
+        <div className="grid grid-cols-6 gap-4 p-5">
+            {
+                props.products.map((item,key)=>{
+                    return(
+                        <SingleProduct
+                        item={item}
+                        />
+                    )
+                    
+                })
+            }
         </div>
     )
 }

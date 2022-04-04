@@ -5,18 +5,19 @@ import { useState ,useEffect} from 'react'
 import  mobilehouseApi  from '../../../helpers/axiosinstance'
 import TableContent from "../table";
 import MobileHouseApi from '../../../helpers/axiosinstance'
-import { AiFillDelete } from 'react-icons/ai';
-import { MdModeEdit } from 'react-icons/md';
-import { FaPlus } from 'react-icons/fa';
+import NavOperation from '../operation'
 const AllProduct=(props)=>{
     const[addproduct,setaddproduct]=useState(false)
     const[product,setproduct]=useState("")
-    const [operation,setoperation]=useState("select")
+    const [operation,setoperation]=useState("")
     const[operationitem,setoperationitem]=useState("")
     const[operationid,setoperationid]=useState("")
 
     const closeProductadd=()=>{
         setaddproduct(false)
+        setoperationid("")
+        setoperation("")
+        setoperationitem("")
     }
 
     const tableOperation=(operation,item)=>{
@@ -34,10 +35,17 @@ const AllProduct=(props)=>{
 
     const productAddSuccess=()=>{
         setaddproduct(false)
+        setoperationid("")
+        setoperation("")
+        setoperationitem("")
         mobilehouseApi.get('/getProduct')
         .then((res)=>{
             setproduct(res.data)
         })
+    }
+
+    const AddNew=()=>{
+        setaddproduct(true)
     }
 
     useEffect(()=>{
@@ -71,13 +79,9 @@ const AllProduct=(props)=>{
             
             <div className="w-10/12 py-5">
                 
-                <div className="w-full flex justify-end space-x-3">
-                <button className=" flex items-center px-3 py-1 border border-gray-400 rounded space-x-1"><h1><AiFillDelete/></h1> <h1>Delete</h1></button>
-                <button  className=" flex items-center  px-3 py-1 border border-gray-400 rounded space-x-1 "> <h1><MdModeEdit/></h1> <h1>Edit</h1></button>
-                <button onClick={()=>setaddproduct(true)}className="px-3 flex items-center py-1 border border-gray-400  space-x-1 rounded "><h1><FaPlus/></h1> <h1>Add New</h1></button>
-                   
-
-                </div>
+                <NavOperation
+                 AddNew={AddNew}
+                />
                 <div className='mt-7'>
                     {
                     product &&

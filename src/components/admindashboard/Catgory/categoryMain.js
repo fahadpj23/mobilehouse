@@ -10,7 +10,7 @@ const CategoryMain=(props)=>{
     const context=useContext(Usercontext )
     const [addcategory,setaddcategory]=useState(false)
     const [category,setcategory]=useState("")
-    const [operation,setoperation]=useState("select")
+    const [operation,setoperation]=useState("")
     const[operationitem,setoperationitem]=useState("")
     const[operationid,setoperationid]=useState("")
     const categoryvalues=[];
@@ -38,6 +38,9 @@ const CategoryMain=(props)=>{
          {
             context.notify(res.data.success)
             setaddcategory(false)
+            setoperationid("")
+            setoperation("")
+            setoperationitem("")
             MobileHouseApi.get('getCategory')
             .then((res)=>{
                 setcategory(res.data)
@@ -74,7 +77,7 @@ const CategoryMain=(props)=>{
         
 
       },[category])
-    
+    console.log(operationitem)
    
     return(
         <div className="flex w-full">
@@ -96,7 +99,7 @@ const CategoryMain=(props)=>{
                                             attributevalues={categoryvalues}
                                             operation={operation}
                                             operationitem={operationitem}
-                                            Mainname={operationitem.Name}
+                                            Mainname={operationitem.categoryName}
                                             Mainstatus={operationitem.status}
                                         />
                                     
