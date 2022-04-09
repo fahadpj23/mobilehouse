@@ -12,11 +12,21 @@ const SingleItemMain=(props)=>{
     const [qtystate, setqtystate] = useState("ok")
     const [pincode, setpincode] = useState("")
     const [pincodeavailability, setpincodeavailability] = useState("")
-
+    let colorArray=[];
+    let ramArray=[];
+    let storageArray=[];
+    let imageArray=[];
     let item=props.singleitem
     console.log(props.singleitem)
     const context=useContext(Usercontext)
-   
+    console.log(props.variants)
+        props.variants && props.variants.map((item,key)=>{
+            item.color && props.singleitem.color!=item.color && colorArray.some((product)=>product.color==item.color)==false && colorArray.push(item)
+            item.image && props.singleitem.image!=item.image && imageArray.some((product)=>product.image==item.image)==false  && imageArray.push(item)
+            item.ram && props.singleitem.ram!=item.ram && ramArray.some((product)=>product.ram==item.ram)==false && ramArray.push(item)
+            item.storage && props.singleitem.storage!=item.storage && storageArray.some((product)=>product.storage==item.storage)==false  && storageArray.push(item)
+        })
+    
 
     
     const checkpincode=()=>{
@@ -35,7 +45,10 @@ const SingleItemMain=(props)=>{
           
           })  
     }
- 
+    console.log(imageArray)
+    console.log(ramArray)
+    console.log(storageArray)
+    console.log(colorArray)
     return(
         <div className="pb-10">
             
@@ -77,6 +90,80 @@ const SingleItemMain=(props)=>{
                                                     <h1>{item.Brand}</h1>
                                                 </div>
                                             </div>
+                                           
+                                           <div className='grid grid-cols-2 gap-5'>
+                                           {
+                                              colorArray && colorArray.length!=0 && 
+                                                <div className='flex space-x-3'>
+                                                    <h1 className='h-8 flex items-center'>COLOR :</h1>
+                                                    <div className='flex space-x-2'>
+                                                    {
+                                                        colorArray.map((item,key)=>{
+                                                            return(
+                                                                <button className='border border-gray-500 px-2 uppercase h-8 hover:bg-blue-500 hover:text-white rounded text-sm'>{item.color}</button>
+                                                            )
+                                                        })
+                                                    }
+                                                    </div>
+                                                    
+                                                </div>
+                                           } 
+                                           {
+                                              imageArray && imageArray.length!=0 && 
+                                                <div className='flex space-x-3'>
+                                                    <h1 className='h-8 flex items-center'>COLOR :</h1>
+                                                    <div className='flex space-x-2'>
+                                                    {
+                                                        imageArray.map((item,key)=>{
+                                                            return(
+                                                                <button className='border border-gray-500 px-2 uppercase  h-16 w-16 hover:text-white rounded text-sm'>
+
+                                                                <img src={`http://localhost:9000/images/${item.image}`} alt="" className="object-contain  overflow-hidden  "/>
+
+                                                                </button>
+                                                            )
+                                                        })
+                                                    }
+                                                    </div>
+                                                    
+                                                </div>
+                                           } 
+                                     
+                                           {
+                                              ramArray && ramArray.length!=0 && 
+                                                <div className='flex space-x-3'>
+                                                    <h1 className='h-8 flex items-center'>RAM : </h1>
+                                                    <div className='flex space-x-2'>
+                                                    {
+                                                        ramArray.map((item,key)=>{
+                                                            return(
+                                                                <button className='border border-gray-500 px-2 uppercase h-8 hover:bg-blue-500 hover:text-white hover:border-0 rounded text-sm'>{item.ram} GB</button>
+                                                            )
+                                                        })
+                                                    }
+                                                    </div>
+                                                </div>
+                                           } 
+                                           {
+                                              storageArray && storageArray.length!=0 && 
+                                                <div className='flex space-x-3' >
+                                                    <h1 className='h-8 flex items-center'>STORAGE : </h1>
+                                                    <div className='flex space-x-2'>
+                                                    {
+                                                        storageArray.map((item,key)=>{
+                                                            return(
+                                                                <button className='border border-gray-500 px-2 uppercase h-8 hover:bg-blue-500 hover:text-white hover:border-0 rounded text-sm'>{item.storage} GB</button>
+                                                            )
+                                                        })
+                                                    }
+                                                    </div>
+                                                </div>
+                                           } 
+                                           </div>
+                                           <div>
+
+                                            </div>
+                                            
                                             <div>
                                                 <div className="flex mt-10">
                                                     <h1 className="text-xl">QTY :</h1>

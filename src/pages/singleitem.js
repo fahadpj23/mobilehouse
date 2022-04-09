@@ -5,6 +5,7 @@ const SingleItem=(props)=>{
     
     const [singleitem, setsingleitem] = useState("")
     const [relateditems, setrelateditems] = useState("")
+    const [variants, setvariants] = useState("")
     useEffect(() => {
         MobileHouseApi.get(`/singleview`,{params: { productId: props.location.state.itemid}})
         
@@ -18,7 +19,7 @@ const SingleItem=(props)=>{
                 })  
                 MobileHouseApi.get(`/variantproduct`,{params: { name: product.name,price :product.price,mrp:product.mrp, category:product.category,productId:product.id}})
                 .then(res=>{
-                   console.log(res.data)
+                   setvariants(res.data)
                     
                 })  
         })      
@@ -30,6 +31,7 @@ const SingleItem=(props)=>{
             {singleitem!="" &&<SingleItemMain
             singleitem={singleitem}
              relateditems={relateditems}
+             variants={variants}
             /> }
         </div>
     )
