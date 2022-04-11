@@ -92,7 +92,7 @@ const SingleItemMain=(props)=>{
                                             </div>
                                            
                                            <div className='grid grid-cols-2 gap-5'>
-                                           {
+                                           {/* {
                                               colorArray && colorArray.length!=0 && 
                                                 <div className='flex space-x-3'>
                                                     <h1 className='h-8 flex items-center'>COLOR :</h1>
@@ -107,7 +107,7 @@ const SingleItemMain=(props)=>{
                                                     </div>
                                                     
                                                 </div>
-                                           } 
+                                           }  */}
                                            {
                                               imageArray && imageArray.length!=0 && 
                                                 <div className='flex space-x-3'>

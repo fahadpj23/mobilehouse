@@ -12,7 +12,7 @@ const SideNav=()=>{
     const[sidenav,setsidenav]=useState(true)
     return(
        
-             <div className={`${sidenav==true ?" space-y-4 flex flex-col  pl-3 relative  text-white bg-gray-600 h-screen px-5  ": " space-y-4 flex flex-col  pl-3 relative   text-white h-screen bg-gray-600 transform -translate-x-2 " }`}>
+             <div className={`${sidenav==true ?" space-y-4 flex flex-col  pl-3 relative  text-white bg-gray-600 h-screen px-5  ": " space-y-4 flex flex-col  pl-3 relative   text-white h-screen bg-gray-600 transform -translate-x-2  " }`}>
                  <button onClick={()=>setsidenav(!sidenav)} className=' bg-gray-600 text-white absolute top-0 -right-8 focus:outline-none text-xl p-2'><GiHamburgerMenu/></button>
                 {
                     sidenav==true ? 

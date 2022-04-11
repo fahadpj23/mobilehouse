@@ -62,7 +62,7 @@ const AddProductWindow=(props)=>{
                                     <option>--select--</option> 
                                     {
                                         item.value.map((item1,key1)=>
-                                            <option value={item1.value}>{item1.value}</option>
+                                            <option value={item1.id}>{item1.value}</option>
 
                                         )
                                     }
