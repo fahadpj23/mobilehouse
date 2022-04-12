@@ -7,7 +7,7 @@ import {Route,BrowserRouter as Router,Switch} from  "react-router-dom";
 import SingleItem from './pages/singleitem'
 import Order from './pages/Order'
 import Admin from './pages/admin';
-import Category from './pages/category';
+import Category from './pages/category';    
 import Dashboard from './pages/Dashboard';
 import ContextProvider from './components/context/userContext';
 import {useEffect,useState} from 'react'

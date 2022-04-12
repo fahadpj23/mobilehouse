@@ -84,9 +84,9 @@ const SingleItemMain=(props)=>{
                                                     <h1>:</h1>
                                                 </div>
                                                 <div className="w-8/12 space-y-2">
-                                                    <h1>{item.color}</h1>
+                                                    <h1>{item.color.attributeValue}</h1>
                                                     <h1>{item.warranty}</h1>
-                                                    <h1>{item.material}</h1>
+                                                    <h1>{item.material.attributeValue}</h1>
                                                     <h1>{item.Brand}</h1>
                                                 </div>
                                             </div>

@@ -85,11 +85,11 @@ const Nav=(props)=>{
                                 {serachitemdis!="" && serachitemdis.map((item,key)=>{
                                     return(
                                         
-                                            <button className="hover:text-blue-400 text-left py-2 focus:outline-none">
+                                        <button  className="hover:text-blue-400 text-left py-2 focus:outline-none">
                                                 
                                               <h1 className='text-black'>{item.name}</h1>
                                               <h1  className='text-blue-500 font-semibold'>in {item.category}</h1>
-                                            </button>
+                                        </button>
                                     
                                     )
                                 })}
