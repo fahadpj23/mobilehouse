@@ -12,19 +12,29 @@ const SingleItemMain=(props)=>{
     const [qtystate, setqtystate] = useState("ok")
     const [pincode, setpincode] = useState("")
     const [pincodeavailability, setpincodeavailability] = useState("")
+    const [imagedisplay, setimagedisplay] = useState(props.singleitem)
+    const [ramdisplay, setramdisplay] = useState(props.singleitem)
+    const [storagedisplay, setstoragedisplay] = useState(props.singleitem)
     let colorArray=[];
     let ramArray=[];
     let storageArray=[];
     let imageArray=[];
     let item=props.singleitem
-    console.log(props.singleitem)
+  
+    console.log(props.variants)
+
     const context=useContext(Usercontext)
     console.log(props.variants)
         props.variants && props.variants.map((item,key)=>{
-            item.color && props.singleitem.color!=item.color && colorArray.some((product)=>product.color==item.color)==false && colorArray.push(item)
-            item.image && props.singleitem.image!=item.image && imageArray.some((product)=>product.image==item.image)==false  && imageArray.push(item)
-            item.ram && props.singleitem.ram!=item.ram && ramArray.some((product)=>product.ram==item.ram)==false && ramArray.push(item)
-            item.storage && props.singleitem.storage!=item.storage && storageArray.some((product)=>product.storage==item.storage)==false  && storageArray.push(item)
+            console.log(item)
+            item.image   && imageArray.push(item)
+            // item.color && props.singleitem.color.attributeId!=item.color.attributeId && colorArray.some((product)=>product.color.attributeId==item.color.attributeId)==false && colorArray.push(item)
+            item.ram &&   ramArray.push(item)
+             item.storage  && storageArray.push(item)
+            // item.color && props.singleitem.image.attributeId!=item.image.attributeId &&  colorArray.some((product)=>product.attributeId==item.color.attributeId)==false && colorArray.push(item.color)
+            // item.image && props.singleitem.image!=item.image && imageArray.some((product)=>product.image==item.image)==false  && imageArray.push(item)
+            // item.ram && props.singleitem.ram.attributeId!=item.ram.attributeId && ramArray.some((product)=>product.attributeId==item.ram.attributeId)==false && ramArray.push(item.ram)
+            // item.storage && props.singleitem.storage.attributeId!=item.storage.attributeId && storageArray.some((product)=>product.attributeId==item.storage.attributeId)==false  && storageArray.push(item.storage)
         })
     
 
@@ -45,10 +55,7 @@ const SingleItemMain=(props)=>{
           
           })  
     }
-    console.log(imageArray)
-    console.log(ramArray)
-    console.log(storageArray)
-    console.log(colorArray)
+   
     return(
         <div className="pb-10">
             
@@ -56,7 +63,7 @@ const SingleItemMain=(props)=>{
                         <div className="w-full flex justify-center">
                             <div className="w-11/12 flex  mt-5 ">
                                 <div className="w-5/12 flex ] flex-col space-y-4 ">
-                                    <img src={`http://localhost:9000/images/${item.image}`} alt="" className="object-contain  overflow-hidden h-96 "/>
+                                    <img src={`http://localhost:9000/images/${imagedisplay.image}`} alt="" className="object-contain  overflow-hidden h-96 "/>
                                     <div className="space-x-3 flex">
                                         {/* <button className="w-6/12 font-semibold text-white bg-yellow-400 py-3">ADD TO CART</button> */}
                                       <Link to={{pathname: "/Address", state:{itemid:item.id,itemtype:item.type,itembrand:item.brand,orderqty:qty}}} onClick={()=>context.addtocart(item)} className="w-full font-semibold flex justify-center text-white bg-primary py-3">ORDER NOW</Link>
@@ -92,7 +99,7 @@ const SingleItemMain=(props)=>{
                                             </div>
                                            
                                            <div className='grid grid-cols-2 gap-5'>
-                                           {/* {
+                                                 {/* {
                                               colorArray && colorArray.length!=0 && 
                                                 <div className='flex space-x-3'>
                                                     <h1 className='h-8 flex items-center'>COLOR :</h1>
@@ -100,7 +107,7 @@ const SingleItemMain=(props)=>{
                                                     {
                                                         colorArray.map((item,key)=>{
                                                             return(
-                                                                <button className='border border-gray-500 px-2 uppercase h-8 hover:bg-blue-500 hover:text-white rounded text-sm'>{item.color}</button>
+                                                                <button className='border border-gray-500 px-2 uppercase h-8  rounded text-sm'>{item.color}</button>
                                                             )
                                                         })
                                                     }
@@ -114,11 +121,13 @@ const SingleItemMain=(props)=>{
                                                     <h1 className='h-8 flex items-center'>COLOR :</h1>
                                                     <div className='flex space-x-2'>
                                                     {
-                                                        imageArray.map((item,key)=>{
+                                                        
+                                                        imageArray.map((item1,key1)=>{
                                                             return(
-                                                                <button className='border border-gray-500 px-2 uppercase  h-16 w-16 hover:text-white rounded text-sm'>
-
-                                                                <img src={`http://localhost:9000/images/${item.image}`} alt="" className="object-contain  overflow-hidden  "/>
+                                                                ramdisplay.ram.attributeValue==item1.ram.attributeValue &&
+                                                                <button  onClick={()=>setimagedisplay(item1)} className={` px-2 uppercase h-16 w-16  ${imagedisplay.image==item1.image ? "  border-2 border-red-500" : " border border-gray-500"}   rounded text-sm focus:outline-none`}>
+                                                                    
+                                                                <img src={`http://localhost:9000/images/${item1.image}`} alt="" className="object-contain  overflow-hidden  "/>
 
                                                                 </button>
                                                             )
@@ -135,9 +144,11 @@ const SingleItemMain=(props)=>{
                                                     <h1 className='h-8 flex items-center'>RAM : </h1>
                                                     <div className='flex space-x-2'>
                                                     {
-                                                        ramArray.map((item,key)=>{
+                                                        
+                                                        ramArray.map((item1,key1)=>{
                                                             return(
-                                                                <button className='border border-gray-500 px-2 uppercase h-8 hover:bg-blue-500 hover:text-white hover:border-0 rounded text-sm'>{item.ram} GB</button>
+                                                                // <div className={`grid  ${props.type ? "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6" : " grid-cols-2 md:grid-cols-5 " }  gap-4 justify-between`}>
+                                                                 <button onClick={()=>setramdisplay(item1)} className={` px-2 uppercase h-8  ${ramdisplay.ram.attributeValue==item1.ram.attributeValue ? "  border-2 border-red-500" : " border border-gray-500"}   rounded text-sm focus:outline-none`}>{item1.ram.attributeValue} GB</button>
                                                             )
                                                         })
                                                     }
@@ -150,10 +161,11 @@ const SingleItemMain=(props)=>{
                                                     <h1 className='h-8 flex items-center'>STORAGE : </h1>
                                                     <div className='flex space-x-2'>
                                                     {
-                                                        storageArray.map((item,key)=>{
+                                                        storageArray.map((item1,key1)=>{
                                                             return(
-                                                                <button className='border border-gray-500 px-2 uppercase h-8 hover:bg-blue-500 hover:text-white hover:border-0 rounded text-sm'>{item.storage} GB</button>
-                                                            )
+                                                                ramdisplay.ram.attributeValue==item1.ram.attributeValue &&
+                                                                <button onClick={()=>setstoragedisplay(item1)} className={` px-2 uppercase h-8  ${storagedisplay.storage.attributeValue==item1.storage.attributeValue ? "  border-2 border-red-500" : " border border-gray-500"}   rounded text-sm focus:outline-none`}>{ramdisplay.ram.attributeValue==item1.ram.attributeValue &&  item1.storage.attributeValue }GB </button>
+                                                                )
                                                         })
                                                     }
                                                     </div>
@@ -168,9 +180,9 @@ const SingleItemMain=(props)=>{
                                                 <div className="flex mt-10">
                                                     <h1 className="text-xl">QTY :</h1>
                                                     <div className="flex space-x-1  ml-2">
-                                                        <button  onClick={()=>qty>1 ? (setqty(qty-1),setqtystate("ok")):(setqty(1),setqtystate("ok"))}className="bg-gray-300  focus:outline-none px-3 h-7 text-semibold text-2xl"><h1 className="flex items-center text-xl text-semibold">-</h1></button>
-                                                        <input type="number" value={qty}className="w-10 border-2 text-center h-7 border-gray-100"/> 
-                                                        <button onClick={()=>{qty+1<=item.qty ? setqty(qty+1): setqtystate("notok")}}className="px-3 bg-green-300  focus:outline-none h-7 "><h1 className="flex items-center text-xl text-semibold">+</h1></button>
+                                                        <button  onClick={()=>qty>1 ? (setqty(qty-1),setqtystate("ok")):(setqty(1),setqtystate("ok"))}className="bg-gray-500 text-white rounded  focus:outline-none px-3 h-7 text-semibold text-2xl"><h1 className="flex items-center text-xl text-semibold">-</h1></button>
+                                                        <input type="number" value={qty}className="w-10 border-2 text-center h-7 border-gray-100 rounded"/> 
+                                                        <button onClick={()=>{qty+1<= +item.qty ? setqty(qty+1): setqtystate("notok")}}className="px-3 bg-green-500 rounded text-white focus:outline-none h-7 "><h1 className="flex items-center text-xl text-semibold">+</h1></button>
 
                                                     </div>
                                                     
