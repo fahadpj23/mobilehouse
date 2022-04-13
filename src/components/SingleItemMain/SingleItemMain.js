@@ -6,8 +6,9 @@ import { Usercontext } from '../context/userContext';
 import {useContext} from 'react'
 import React, { useState } from 'react';
 import ProductSlider from '../Home/productSlick'
-
+import { useHistory } from 'react-router-dom';
 const SingleItemMain=(props)=>{
+    let history=useHistory();
     const [qty, setqty] = useState(1)
     const [qtystate, setqtystate] = useState("ok")
     const [pincode, setpincode] = useState("")
@@ -21,12 +22,12 @@ const SingleItemMain=(props)=>{
     let imageArray=[];
     let item=props.singleitem
   
-    console.log(props.variants)
-
+    // console.log(props.singleitem)
+    console.log(ramdisplay)
     const context=useContext(Usercontext)
-    console.log(props.variants)
+   
         props.variants && props.variants.map((item,key)=>{
-            console.log(item)
+           
             item.image   && item.ram.attributeId== props.singleitem.ram.attributeId && item.storage.attributeId== props.singleitem.storage.attributeId  &&imageArray.push(item)
             // item.color && props.singleitem.color.attributeId!=item.color.attributeId && colorArray.some((product)=>product.color.attributeId==item.color.attributeId)==false && colorArray.push(item)
             item.ram &&  ramArray.some((product)=>product.ram.attributeId==item.ram.attributeId)==false && ramArray.push(item)
@@ -37,7 +38,7 @@ const SingleItemMain=(props)=>{
             // item.storage && props.singleitem.storage.attributeId!=item.storage.attributeId && storageArray.some((product)=>product.attributeId==item.storage.attributeId)==false  && storageArray.push(item.storage)
         })
     
-
+    // setimagedisplay(props.singleitem)
     
     const checkpincode=()=>{
         axios.get(`http://localhost:9000/pincode`,{params: { pincodeno: pincode}})
@@ -124,7 +125,7 @@ const SingleItemMain=(props)=>{
                                                         
                                                         imageArray.map((item1,key1)=>{
                                                             return(
-                                                                ramdisplay.ram.attributeValue==item1.ram.attributeValue &&
+                                                                props.singleitem.ram.attributeValue==item1.ram.attributeValue &&
                                                                 <button  onClick={()=>setimagedisplay(item1)} className={` px-2 uppercase h-16 w-16  ${imagedisplay.image==item1.image ? "  border-2 border-red-500" : " border border-gray-500"}   rounded text-sm focus:outline-none`}>
                                                                     
                                                                 <img src={`http://localhost:9000/images/${item1.image}`} alt="" className="object-contain  overflow-hidden  "/>
@@ -143,14 +144,14 @@ const SingleItemMain=(props)=>{
                                                 <div className='flex space-x-3'>
                                                     <h1 className='h-8 flex items-center'>RAM : </h1>
                                                     <div className='flex space-x-2'>
-                                                   <button  className=" px-2 uppercase h-8   border-2 border-red-500   rounded text-sm focus:outline-none">{ramdisplay.ram.attributeValue} GB</button>
+                                                   <button  className=" px-2 uppercase h-8   border-2 border-red-500   rounded text-sm focus:outline-none">{props.singleitem.ram.attributeValue} GB</button>
 
                                                     {
                                                     
 
                                                         ramArray.map((item1,key1)=>{
                                                             return(
-                                                                ramdisplay.ram.attributeId!=item1.ram.attributeId &&  <button onClick={()=>setramdisplay(item1)} className={` px-2 uppercase h-8  ${ramdisplay.ram.attributeValue==item1.ram.attributeValue ? "  border-2 border-red-500" : " border border-gray-500"}   rounded text-sm focus:outline-none`}>{item1.ram.attributeValue} GB</button>
+                                                                props.singleitem.ram.attributeId!=item1.ram.attributeId &&  <button onClick={()=>props.singleitemset(item1)} className={` px-2 uppercase h-8  ${props.singleitem.ram.attributeValue==item1.ram.attributeValue ? "  border-2 border-red-500" : " border border-gray-500"}   rounded text-sm focus:outline-none`}>{item1.ram.attributeValue} GB</button>
                                                             )
                                                         })
                                                     }
@@ -161,12 +162,15 @@ const SingleItemMain=(props)=>{
                                               storageArray && storageArray.length!=0 && 
                                                 <div className='flex space-x-3' >
                                                     <h1 className='h-8 flex items-center'>STORAGE : </h1>
+                                                    <button  className=" px-2 uppercase h-8   border-2 border-red-500   rounded text-sm focus:outline-none">{props.singleitem.storage.attributeValue} GB</button>
+
                                                     <div className='flex space-x-2'>
                                                     {
                                                         storageArray.map((item1,key1)=>{
                                                             return(
-                                                                ramdisplay.ram.attributeValue==item1.ram.attributeValue &&
-                                                                <button onClick={()=>setstoragedisplay(item1)} className={` px-2 uppercase h-8  ${storagedisplay.storage.attributeValue==item1.storage.attributeValue ? "  border-2 border-red-500" : " border border-gray-500"}   rounded text-sm focus:outline-none`}>{ramdisplay.ram.attributeValue==item1.ram.attributeValue &&  item1.storage.attributeValue }GB </button>
+                                                                props.singleitem.storage.attributeId!=item1.storage.attributeId &&
+                                                                props.singleitem.ram.attributeValue==item1.ram.attributeValue &&
+                                                                <button onClick={()=>setstoragedisplay(item1)} className={` px-2 uppercase h-8  ${storagedisplay.storage.attributeValue==item1.storage.attributeValue ? "  border-2 border-red-500" : " border border-gray-500"}   rounded text-sm focus:outline-none`}>{props.singleitem.ram.attributeValue==item1.ram.attributeValue &&  item1.storage.attributeValue }GB </button>
                                                                 )
                                                         })
                                                     }
