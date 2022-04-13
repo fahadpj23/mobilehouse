@@ -27,10 +27,10 @@ const SingleItemMain=(props)=>{
     console.log(props.variants)
         props.variants && props.variants.map((item,key)=>{
             console.log(item)
-            item.image   && imageArray.push(item)
+            item.image   && item.ram.attributeId== props.singleitem.ram.attributeId && item.storage.attributeId== props.singleitem.storage.attributeId  &&imageArray.push(item)
             // item.color && props.singleitem.color.attributeId!=item.color.attributeId && colorArray.some((product)=>product.color.attributeId==item.color.attributeId)==false && colorArray.push(item)
-            item.ram &&   ramArray.push(item)
-             item.storage  && storageArray.push(item)
+            item.ram &&  ramArray.some((product)=>product.ram.attributeId==item.ram.attributeId)==false && ramArray.push(item)
+             item.storage &&  item.ram.attributeId== props.singleitem.ram.attributeId && storageArray.some((product)=>product.storage.attributeId==item.storage.attributeId)==false  && storageArray.push(item)
             // item.color && props.singleitem.image.attributeId!=item.image.attributeId &&  colorArray.some((product)=>product.attributeId==item.color.attributeId)==false && colorArray.push(item.color)
             // item.image && props.singleitem.image!=item.image && imageArray.some((product)=>product.image==item.image)==false  && imageArray.push(item)
             // item.ram && props.singleitem.ram.attributeId!=item.ram.attributeId && ramArray.some((product)=>product.attributeId==item.ram.attributeId)==false && ramArray.push(item.ram)
@@ -66,7 +66,7 @@ const SingleItemMain=(props)=>{
                                     <img src={`http://localhost:9000/images/${imagedisplay.image}`} alt="" className="object-contain  overflow-hidden h-96 "/>
                                     <div className="space-x-3 flex">
                                         {/* <button className="w-6/12 font-semibold text-white bg-yellow-400 py-3">ADD TO CART</button> */}
-                                      <Link to={{pathname: "/Address", state:{itemid:item.id,itemtype:item.type,itembrand:item.brand,orderqty:qty}}} onClick={()=>context.addtocart(item)} className="w-full font-semibold flex justify-center text-white bg-primary py-3">ORDER NOW</Link>
+                                      <Link to={{pathname: "/Address", state:{itemid:item.id,itemtype:item.type,itembrand:item.brand,orderqty:qty}}} onClick={()=>context.addtocart(item)} className="w-full font-semibold flex justify-center focus:outline-none text-white bg-primary py-3">ORDER NOW</Link>
                                     </div>
                                     
 
@@ -143,12 +143,14 @@ const SingleItemMain=(props)=>{
                                                 <div className='flex space-x-3'>
                                                     <h1 className='h-8 flex items-center'>RAM : </h1>
                                                     <div className='flex space-x-2'>
+                                                   <button  className=" px-2 uppercase h-8   border-2 border-red-500   rounded text-sm focus:outline-none">{ramdisplay.ram.attributeValue} GB</button>
+
                                                     {
-                                                        
+                                                    
+
                                                         ramArray.map((item1,key1)=>{
                                                             return(
-                                                                // <div className={`grid  ${props.type ? "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6" : " grid-cols-2 md:grid-cols-5 " }  gap-4 justify-between`}>
-                                                                 <button onClick={()=>setramdisplay(item1)} className={` px-2 uppercase h-8  ${ramdisplay.ram.attributeValue==item1.ram.attributeValue ? "  border-2 border-red-500" : " border border-gray-500"}   rounded text-sm focus:outline-none`}>{item1.ram.attributeValue} GB</button>
+                                                                ramdisplay.ram.attributeId!=item1.ram.attributeId &&  <button onClick={()=>setramdisplay(item1)} className={` px-2 uppercase h-8  ${ramdisplay.ram.attributeValue==item1.ram.attributeValue ? "  border-2 border-red-500" : " border border-gray-500"}   rounded text-sm focus:outline-none`}>{item1.ram.attributeValue} GB</button>
                                                             )
                                                         })
                                                     }
