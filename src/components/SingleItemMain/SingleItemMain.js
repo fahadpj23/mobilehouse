@@ -27,8 +27,8 @@ const SingleItemMain=(props)=>{
     const context=useContext(Usercontext)
    
         props.variants && props.variants.map((item,key)=>{
-           
-            item.image   && item.ram.attributeId== props.singleitem.ram.attributeId && item.storage.attributeId== props.singleitem.storage.attributeId  &&imageArray.push(item)
+            console.log("asssssssss")
+            item.image   && item.ram.attributeId== props.singleitem.ram.attributeId && item.storage.attributeId== storagedisplay.storage.attributeId  &&imageArray.push(item)
             // item.color && props.singleitem.color.attributeId!=item.color.attributeId && colorArray.some((product)=>product.color.attributeId==item.color.attributeId)==false && colorArray.push(item)
             item.ram &&  ramArray.some((product)=>product.ram.attributeId==item.ram.attributeId)==false && ramArray.push(item)
              item.storage &&  item.ram.attributeId== props.singleitem.ram.attributeId && storageArray.some((product)=>product.storage.attributeId==item.storage.attributeId)==false  && storageArray.push(item)
@@ -167,14 +167,14 @@ const SingleItemMain=(props)=>{
                                               storageArray && storageArray.length!=0 && 
                                                 <div className='flex space-x-3' >
                                                     <h1 className='h-8 flex items-center'>STORAGE : </h1>
-                                                    <button  className=" px-2 uppercase h-8   border-2 border-red-500   rounded text-sm focus:outline-none">{props.singleitem.storage.attributeValue} GB</button>
+                                                    <button  className=" px-2 uppercase h-8   border-2 border-red-500   rounded text-sm focus:outline-none">{storagedisplay.storage.attributeValue} GB</button>
 
                                                     <div className='flex space-x-2'>
                                                     {
                                                         storageArray.map((item1,key1)=>{
                                                             return(
-                                                                props.singleitem.storage.attributeId!=item1.storage.attributeId &&
-                                                                props.singleitem.ram.attributeValue==item1.ram.attributeValue &&
+                                                                storagedisplay.storage.attributeId!=item1.storage.attributeId &&
+                                                                storagedisplay.ram.attributeValue==item1.ram.attributeValue &&
                                                                 <button onClick={()=>setstoragedisplay(item1)} className={` px-2 uppercase h-8  ${storagedisplay.storage.attributeValue==item1.storage.attributeValue ? "  border-2 border-red-500" : " border border-gray-500"}   rounded text-sm focus:outline-none`}>{props.singleitem.ram.attributeValue==item1.ram.attributeValue &&  item1.storage.attributeValue }GB </button>
                                                                 )
                                                         })
