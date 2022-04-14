@@ -26,17 +26,18 @@ const SingleItemMain=(props)=>{
     console.log(ramdisplay)
     const context=useContext(Usercontext)
    
-        props.variants && props.variants.map((item,key)=>{
-            console.log("asssssssss")
-            item.image   && item.ram.attributeId== props.singleitem.ram.attributeId && item.storage.attributeId== storagedisplay.storage.attributeId  &&imageArray.push(item)
-            // item.color && props.singleitem.color.attributeId!=item.color.attributeId && colorArray.some((product)=>product.color.attributeId==item.color.attributeId)==false && colorArray.push(item)
-            item.ram &&  ramArray.some((product)=>product.ram.attributeId==item.ram.attributeId)==false && ramArray.push(item)
-             item.storage &&  item.ram.attributeId== props.singleitem.ram.attributeId && storageArray.some((product)=>product.storage.attributeId==item.storage.attributeId)==false  && storageArray.push(item)
-            // item.color && props.singleitem.image.attributeId!=item.image.attributeId &&  colorArray.some((product)=>product.attributeId==item.color.attributeId)==false && colorArray.push(item.color)
-            // item.image && props.singleitem.image!=item.image && imageArray.some((product)=>product.image==item.image)==false  && imageArray.push(item)
-            // item.ram && props.singleitem.ram.attributeId!=item.ram.attributeId && ramArray.some((product)=>product.attributeId==item.ram.attributeId)==false && ramArray.push(item.ram)
-            // item.storage && props.singleitem.storage.attributeId!=item.storage.attributeId && storageArray.some((product)=>product.attributeId==item.storage.attributeId)==false  && storageArray.push(item.storage)
-        })
+        props.variants && props.variants.map((item1,key1)=>{
+            console.log(item1)
+            if(item1.ram.attributeId!=null )
+            {
+             item1.image   &&  item1.ram.attributeId== props.singleitem.ram.attributeId && item1.storage.attributeId== storagedisplay.storage.attributeId  && imageArray.some((product)=>product.image==item1.image)==false &&imageArray.push(item1)
+             item1.ram &&  ramArray.some((product)=>product.ram.attributeId==item1.ram.attributeId)==false && ramArray.push(item1)
+             item.storage && item1.ram &&  item1.ram.attributeId== props.singleitem.ram.attributeId && storageArray.some((product)=>product.storage.attributeId==item1.storage.attributeId)==false  && storageArray.push(item1)
+            
+            }
+            else
+             item1.image && imageArray.push(item1)
+             })
     
     // setimagedisplay(props.singleitem)
     
@@ -64,7 +65,7 @@ const SingleItemMain=(props)=>{
                         <div className="w-full flex justify-center">
                             <div className="w-11/12 flex  mt-5 ">
                                 <div className="w-5/12 flex ] flex-col space-y-4 ">
-                                    <img src={`http://localhost:9000/images/${props.singleitem.image}`} alt="" className="object-contain  overflow-hidden h-96 "/>
+                                    <img src={`http://localhost:9000/images/${imagedisplay.image}`} alt="" className="object-contain  overflow-hidden h-96 "/>
                                     <div className="space-x-3 flex">
                                         {/* <button className="w-6/12 font-semibold text-white bg-yellow-400 py-3">ADD TO CART</button> */}
                                       <Link to={{pathname: "/Address", state:{itemid:item.id,itemtype:item.type,itembrand:item.brand,orderqty:qty}}} onClick={()=>context.addtocart(item)} className="w-full font-semibold flex justify-center focus:outline-none text-white bg-primary py-3">ORDER NOW</Link>
@@ -117,20 +118,20 @@ const SingleItemMain=(props)=>{
                                                 </div>
                                            }  */}
                                            {
-                                              imageArray && imageArray.length!=0 && 
+                                              imageArray && imageArray.length!=0 ?
                                                 <div className='flex space-x-3'>
                                                     <h1 className='h-8 flex items-center'>COLOR :</h1>
                                                     <div className='flex space-x-2'>
                                                     <button   className="px-2 uppercase h-16 w-16    border-2 border-red-500   rounded text-sm focus:outline-none">
                                                                     
-                                                                    <img src={`http://localhost:9000/images/${props.singleitem.image}`} alt="" className="object-contain  overflow-hidden  "/>
+                                                                    <img src={`http://localhost:9000/images/${imagedisplay.image}`} alt="" className="object-contain  overflow-hidden  "/>
     
                                                      </button>
                                                     {
                                                         
                                                         imageArray.map((item1,key1)=>{
                                                             return(
-                                                                props.singleitem.image!=item1.image &&
+                                                                imagedisplay.image!=item1.image &&
                                                                 <button  onClick={()=>setimagedisplay(item1)} className={` px-2 uppercase h-16 w-16  border border-gray-500   rounded text-sm focus:outline-none`}>
                                                                     
                                                                 <img src={`http://localhost:9000/images/${item1.image}`} alt="" className="object-contain  overflow-hidden  "/>
@@ -142,8 +143,22 @@ const SingleItemMain=(props)=>{
                                                     </div>
                                                     
                                                 </div>
+                                                :
+                                                <div className='flex space-x-3'>
+                                                <h1 className='h-8 flex items-center'>COLOR :</h1>
+                                                <div className='flex space-x-2'>
+                                                <button   className="px-2 uppercase h-16 w-16    border-2 border-red-500   rounded text-sm focus:outline-none">
+                                                                
+                                                                <img src={`http://localhost:9000/images/${props.singleitem.image}`} alt="" className="object-contain  overflow-hidden  "/>
+
+                                                 </button>
+                                                
+                                                </div>
+                                                
+                                            </div>
+
                                            } 
-                                     
+                                      
                                            {
                                               ramArray && ramArray.length!=0 && 
                                                 <div className='flex space-x-3'>
