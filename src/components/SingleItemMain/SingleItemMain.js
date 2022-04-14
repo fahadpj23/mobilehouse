@@ -3,7 +3,7 @@ import { IoMdCash } from 'react-icons/io';
 import {Link} from "react-router-dom";
 import axios from 'axios'
 import { Usercontext } from '../context/userContext';
-import {useContext} from 'react'
+import {useContext, useEffect} from 'react'
 import React, { useState } from 'react';
 import ProductSlider from '../Home/productSlick'
 import { useHistory } from 'react-router-dom';
@@ -16,6 +16,9 @@ const SingleItemMain=(props)=>{
     const [imagedisplay, setimagedisplay] = useState(props.singleitem)
     const [ramdisplay, setramdisplay] = useState(props.singleitem)
     const [storagedisplay, setstoragedisplay] = useState(props.singleitem)
+    const [storagechange, setstoragechange] = useState(false)
+
+  
     let colorArray=[];
     let ramArray=[];
     let storageArray=[];
@@ -31,7 +34,7 @@ const SingleItemMain=(props)=>{
             item.image   && item.ram.attributeId== props.singleitem.ram.attributeId && item.storage.attributeId== props.singleitem.storage.attributeId  &&imageArray.push(item)
             // item.color && props.singleitem.color.attributeId!=item.color.attributeId && colorArray.some((product)=>product.color.attributeId==item.color.attributeId)==false && colorArray.push(item)
             item.ram &&  ramArray.some((product)=>product.ram.attributeId==item.ram.attributeId)==false && ramArray.push(item)
-             item.storage &&  item.ram.attributeId== props.singleitem.ram.attributeId && storageArray.some((product)=>product.storage.attributeId==item.storage.attributeId)==false  && storageArray.push(item)
+             item.storage &&  item.ram.attributeId== props.singleitem.ram.attributeId && storageArray.some((product)=>product.storage.attributeId==item.storage.attributeId)==false  && imageArray.some((product)=>product.image==item.image)==false && storageArray.push(item)
             // item.color && props.singleitem.image.attributeId!=item.image.attributeId &&  colorArray.some((product)=>product.attributeId==item.color.attributeId)==false && colorArray.push(item.color)
             // item.image && props.singleitem.image!=item.image && imageArray.some((product)=>product.image==item.image)==false  && imageArray.push(item)
             // item.ram && props.singleitem.ram.attributeId!=item.ram.attributeId && ramArray.some((product)=>product.attributeId==item.ram.attributeId)==false && ramArray.push(item.ram)
@@ -56,7 +59,26 @@ const SingleItemMain=(props)=>{
           
           })  
     }
-   
+
+    const changestorage=(productstorage)=>{
+       
+        setstoragedisplay(productstorage)
+        imageArray.length=0;
+        
+        props.variants && props.variants.map((item1,key)=>{
+        item1.ram.attributeId== props.singleitem.ram.attributeId && item1.storage.attributeId== productstorage.storage.attributeId  && imageArray.some((product)=>product.image==item1.image)==false && imageArray.push(item1)
+        })
+        console.log(imageArray)
+        setstoragechange(true)
+    }
+  
+    useEffect(()=>{
+        if(storagechange==true)
+        {
+           console.log("dssssssssss")
+            setstoragechange(false)
+        }
+    },[storagechange])
     return(
         <div className="pb-10">
             
@@ -64,7 +86,7 @@ const SingleItemMain=(props)=>{
                         <div className="w-full flex justify-center">
                             <div className="w-11/12 flex  mt-5 ">
                                 <div className="w-5/12 flex ] flex-col space-y-4 ">
-                                    <img src={`http://localhost:9000/images/${imagedisplay.image}`} alt="" className="object-contain  overflow-hidden h-96 "/>
+                                    <img src={`http://localhost:9000/images/${props.singleitem.image}`} alt="" className="object-contain  overflow-hidden h-96 "/>
                                     <div className="space-x-3 flex">
                                         {/* <button className="w-6/12 font-semibold text-white bg-yellow-400 py-3">ADD TO CART</button> */}
                                       <Link to={{pathname: "/Address", state:{itemid:item.id,itemtype:item.type,itembrand:item.brand,orderqty:qty}}} onClick={()=>context.addtocart(item)} className="w-full font-semibold flex justify-center focus:outline-none text-white bg-primary py-3">ORDER NOW</Link>
@@ -116,17 +138,24 @@ const SingleItemMain=(props)=>{
                                                     
                                                 </div>
                                            }  */}
+                                             {console.log(imageArray)}
                                            {
                                               imageArray && imageArray.length!=0 && 
                                                 <div className='flex space-x-3'>
                                                     <h1 className='h-8 flex items-center'>COLOR :</h1>
                                                     <div className='flex space-x-2'>
+                                                    {/* <button   className="px-2 uppercase h-16 w-16    border-2 border-red-500   rounded text-sm focus:outline-none">
+                                                                    
+                                                                    <img src={`http://localhost:9000/images/${props.singleitem.image}`} alt="" className="object-contain  overflow-hidden  "/>
+    
+                                                     </button> */}
+                                                   
                                                     {
-                                                        
+                                                     
                                                         imageArray.map((item1,key1)=>{
                                                             return(
-                                                                props.singleitem.ram.attributeValue==item1.ram.attributeValue &&
-                                                                <button  onClick={()=>setimagedisplay(item1)} className={` px-2 uppercase h-16 w-16  ${imagedisplay.image==item1.image ? "  border-2 border-red-500" : " border border-gray-500"}   rounded text-sm focus:outline-none`}>
+                                                                
+                                                                <button  onClick={()=>setimagedisplay(item1)} className={` px-2 uppercase h-16 w-16  border border-gray-500   rounded text-sm focus:outline-none`}>
                                                                     
                                                                 <img src={`http://localhost:9000/images/${item1.image}`} alt="" className="object-contain  overflow-hidden  "/>
 
@@ -162,15 +191,15 @@ const SingleItemMain=(props)=>{
                                               storageArray && storageArray.length!=0 && 
                                                 <div className='flex space-x-3' >
                                                     <h1 className='h-8 flex items-center'>STORAGE : </h1>
-                                                    <button  className=" px-2 uppercase h-8   border-2 border-red-500   rounded text-sm focus:outline-none">{props.singleitem.storage.attributeValue} GB</button>
+                                                    {/* <button  className=" px-2 uppercase h-8   border-2 border-red-500   rounded text-sm focus:outline-none">{storagedisplay ? storagedisplay.storage.attributeValue : props.singleitem.storage.attributeValue} GB</button> */}
 
                                                     <div className='flex space-x-2'>
                                                     {
                                                         storageArray.map((item1,key1)=>{
                                                             return(
-                                                                props.singleitem.storage.attributeId!=item1.storage.attributeId &&
+                                                          
                                                                 props.singleitem.ram.attributeValue==item1.ram.attributeValue &&
-                                                                <button onClick={()=>setstoragedisplay(item1)} className={` px-2 uppercase h-8  ${storagedisplay.storage.attributeValue==item1.storage.attributeValue ? "  border-2 border-red-500" : " border border-gray-500"}   rounded text-sm focus:outline-none`}>{props.singleitem.ram.attributeValue==item1.ram.attributeValue &&  item1.storage.attributeValue }GB </button>
+                                                                <button onClick={()=>changestorage(item1)} className={` px-2 uppercase h-8  ${storagedisplay ? storagedisplay.storage.attributeValue==item1.storage.attributeValue ? "  border-2 border-red-500" : " border border-gray-500" :  props.singleitem.storage.attributeValue==item1.storage.attributeValue ? "  border-2 border-red-500" : " border border-gray-500"}   rounded text-sm focus:outline-none`}>{props.singleitem.ram.attributeValue==item1.ram.attributeValue &&  item1.storage.attributeValue }GB </button>
                                                                 )
                                                         })
                                                     }

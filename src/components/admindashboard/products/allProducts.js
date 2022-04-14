@@ -59,7 +59,7 @@ const AllProduct=(props)=>{
     })
     
     return(
-        <div className="w-full flex ">
+        <div className="w-full flex h-screen ">
             {
                 addproduct==true && 
                 <div className='w-full fixed bg-gray-200 h-screen opacity-100 flex items-center justify-center    '>
@@ -77,17 +77,18 @@ const AllProduct=(props)=>{
             }
              <SideNav/>
             
-            <div className="w-10/12 py-5">
+            <div className="w-full px-5 py-5 h-fixedNoNav3 overflow-auto">
                 
                 <NavOperation
                  AddNew={AddNew}
                 />
-                <div className='mt-7'>
+                <div className='mt-7  '>
                     {
                     product &&
                         <TableContent
                         Data={product}
                         tableOperation={tableOperation}
+                        type="product"
                         />
                         }
                 </div>

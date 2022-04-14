@@ -45,6 +45,7 @@ const AddProductMain=(props)=>{
         data.append("categoryid",categoryid)
         data.append("operation",props.operation)
         data.append("operationid",props.operationid)
+        data.append("variantimage",props.operationitem.image )
         console.log(data)
         MobileHouseApi.post('/productAdd',data)
         .then((res)=>{

@@ -46,6 +46,7 @@ const TableContent=(props)=>{
                            <TableOperation
                             item={item}
                             tableOperation={props.tableOperation}
+                            type={props.type}
                            
                            />
                               
