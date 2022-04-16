@@ -1,7 +1,9 @@
 import axios from 'axios'
-import React, { useState} from 'react';
+import React, { useContext, useState} from 'react';
+import { Usercontext } from '../context/userContext';
 const AddressMain=(props)=>{
  
+    const context=useContext(Usercontext)
     const [name, setname] = useState("")
     const [pincode, setpincode] = useState("")
     const [phone, setphone] = useState("")
@@ -18,7 +20,7 @@ const AddressMain=(props)=>{
     var date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear()+'  '+today.getHours() + ':'+today.getMinutes();
 
     
-    console.log(date)
+    console.log(props.item)
    
     // props.item.map((item,key)=>{
     //     total=total+item.price*item.qty
@@ -42,10 +44,13 @@ const AddressMain=(props)=>{
             headers: { 'content-type': 'multipart/form-data' }
         }
         
-        axios.post(`http://localhost:9000/orders`,formData)
+        axios.post(`http://localhost:9000/customerOrders`,formData)
         
         .then(res=>{
-       console.log(res.data)
+                if(res.data.success)
+                {
+                    context.notify(res.data.success)
+                }
         
           
           })  
@@ -83,21 +88,20 @@ const AddressMain=(props)=>{
                         </div>
                        
                     </div>
-                    <div>
+                    <div className='max-h-64 overflow-auto'>
                         <h1 className="text-xl font-semibold my-5 ">Delivery Summary</h1>
-                         {props.item && props.item.map((item,key)=>{
+                         {props.item && props.item.map((item1,key)=>{
                             return(
-                             <div className="space-y-3 flex space-x-3">
+                             <div key={key} className="space-y-3 flex space-x-3">
                                 <div className="">
-                                    <img src={`http://localhost:9000/images/${item.image}`} alt="" className=" overflow-hidden h-24 w-28 object-fill"/>
+                                    <img src={`http://localhost:9000/images/${item1.image}`} alt="" className=" overflow-hidden h-24 w-28 object-fill"/>
     
                                 </div>
                                 <div>
-                                    <h1>{item.name}</h1>
+                                    <h1>{item1.name}</h1>
                                     <h1>Standard Delivery</h1>
-                                    <h1>Expected  on may 21,2016</h1>
-                                    <h1>Rs:      {item.price}</h1>
-                                    <h1>qty:     {item.qty}</h1>
+                                    <h1>Rs:      {item1.price}</h1>
+                                    <h1>qty:     {item1.qty}</h1>
                                 </div>
                              
                          </div>
@@ -106,7 +110,10 @@ const AddressMain=(props)=>{
                            
 
                     </div>
-                    <div className="space-y-5">   
+                    <div className="space-y-5"> 
+                    {props.item && props.item.map((item1,key)=>{
+                           total=total +  +item1.price * +item1.qty
+                        })}   
                         <h1 className=" flex justify-between mt-8 text-lg font-semibold"><span >Total Payable</span><span className="text-green-500 ">{total}</span></h1>
                         <button onClick={()=>placeorder()} className="w-full text-white py-2 focus:outline-none bg-primary">Place Order</button>
                     </div>

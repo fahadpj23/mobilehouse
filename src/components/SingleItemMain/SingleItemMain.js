@@ -57,7 +57,8 @@ const SingleItemMain=(props)=>{
           
           })  
     }
-   console.log(imageArray)
+ 
+   console.log(qty)
     return(
         <div className="pb-10">
             
@@ -68,7 +69,7 @@ const SingleItemMain=(props)=>{
                                     <img src={`http://localhost:9000/images/${imagedisplay.image}`} alt="" className="object-contain  overflow-hidden h-96 "/>
                                     <div className="space-x-3 flex">
                                         {/* <button className="w-6/12 font-semibold text-white bg-yellow-400 py-3">ADD TO CART</button> */}
-                                      <Link to={{pathname: "/Address", state:{itemid:item.id,itemtype:item.type,itembrand:item.brand,orderqty:qty}}} onClick={()=>context.addtocart(item)} className="w-full font-semibold flex justify-center focus:outline-none text-white bg-primary py-3">ORDER NOW</Link>
+                                      <Link to={{pathname: "/Address", state:{itemid:imagedisplay.id,orderqty:qty}}} onClick={()=>context.addtocart(item)} className="w-full font-semibold flex justify-center focus:outline-none text-white bg-primary py-3">ORDER NOW</Link>
                                     </div>
                                     
 
@@ -77,7 +78,7 @@ const SingleItemMain=(props)=>{
                                     <div className="w-10/12">
                                         <div className="mt-10 space-y-1">
                                             <h1 className="text-xl ">{item.name} {item.CoverType}</h1>
-                                            <h1><span className="text-xl font-bold text-green-500">₹{item.price}</span><span className="line-through ml-3 text-lg text-gray-400">₹{item.mrp}</span></h1>
+                                            <h1><span className="text-xl font-bold text-green-500">₹{imagedisplay.price}</span><span className="line-through ml-3 text-lg text-gray-400">₹{item.mrp}</span></h1>
                                             <h1 className="flex items-center bg-green-100 w-8/12 py-2 px-1"><span ><ImTruck className="text-gray-500"/></span><span className="font-semibold ml-1 "> Free Shipping </span><span className="text-sm ml-1">  & Inclusive of all taxes</span></h1>
                                             <div className="flex ">
                                                 <div className="w-2/12 flex flex-col  space-y-2">
@@ -93,9 +94,9 @@ const SingleItemMain=(props)=>{
                                                     <h1>:</h1>
                                                 </div>
                                                 <div className="w-8/12 space-y-2">
-                                                    <h1>{item.color.attributeValue}</h1>
+                                                    <h1>{imagedisplay.color.attributeValue}</h1>
                                                     <h1>{item.warranty}</h1>
-                                                    <h1>{item.material.attributeValue}</h1>
+                                                    <h1>{imagedisplay.material.attributeValue}</h1>
                                                     <h1>{item.Brand}</h1>
                                                 </div>
                                             </div>

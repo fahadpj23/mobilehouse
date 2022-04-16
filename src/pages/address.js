@@ -17,12 +17,12 @@ const Address=(props)=>{
         }
         else
         {
-        MobileHouseApi.get(`placeorder`,{params: { productId: props.location.state.itemid}})
+        MobileHouseApi.get(`orderDetails`,{params: { productId: props.location.state.itemid}})
         
         .then(res=>{
         let items=[]
         items.push(res.data);
-
+        res.data.qty=props.location.state.orderqty
         setproduct(items)
 
           })  
@@ -35,7 +35,7 @@ const Address=(props)=>{
             {product!="" &&
                 <AddressMain
                     item={product}
-                    qty={props.location.state.orderqty}
+                   
                 />
             }
            
