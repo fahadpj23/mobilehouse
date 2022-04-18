@@ -12,7 +12,7 @@ const AddressMain=(props)=>{
     const [address, setaddress] = useState("")
     // const [productid, setproductid] = useState(props.item.id)
     // const [productname, setproductname] = useState(props.item.name)
-    // const [qty, setqty] = useState(props.qty)
+    // const [qty, setqty] = useState(props.qty) 
     // const [total, settotal] = useState(props.item.price*props.qty)
 
     let item=props.item 
@@ -106,6 +106,7 @@ const AddressMain=(props)=>{
                             return(
                              <div key={key} className="space-y-3 flex space-x-3">
                                 <div className="">
+                                    {console.log(item1)}
                                     <img src={`http://localhost:9000/images/${item1.image}`} alt="" className=" overflow-hidden h-24 w-28 object-fill"/>
     
                                 </div>
