@@ -16,6 +16,7 @@ import { AuthContext } from "./helpers/authcontext";
 import ProductList from './pages/productList'
 import Attribute from './pages/Attribute'
 import Product from './pages/Product';
+import OrderSuccess from './pages/ordersuccess';
 function App(){
     const[ authState, setAuthState ]=useState("")
     const[ UserauthState, setUserAuthState ]=useState("")
@@ -97,6 +98,7 @@ function App(){
                                     <Route  path="/Attribute" component={Attribute}/>
                                     <Route  path="/category" component={Category}/>
                                     <Route  path="/ProductList" component={ProductList}/>
+                                    <Route  path="/OrderSuccess" component={OrderSuccess}/>
                                     
                                     
                                     

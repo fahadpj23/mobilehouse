@@ -1,8 +1,10 @@
 import axios from 'axios'
 import React, { useContext, useState} from 'react';
 import { Usercontext } from '../context/userContext';
+import { useHistory } from "react-router-dom";
+import MobileHouseApi from '../../helpers/axiosinstance';
 const AddressMain=(props)=>{
- 
+    const history = useHistory();
     const context=useContext(Usercontext)
     const [name, setname] = useState("")
     const [pincode, setpincode] = useState("")
@@ -44,12 +46,22 @@ const AddressMain=(props)=>{
             headers: { 'content-type': 'multipart/form-data' }
         }
         
-        axios.post(`http://localhost:9000/customerOrders`,formData)
+        MobileHouseApi.post(`customerOrders`,formData)
         
         .then(res=>{
-                if(res.data.success)
+                if(res.data.orderId)
                 {
-                    context.notify(res.data.success)
+                    history.push({ pathname :"/OrderSuccess",state:{orderID:res.data.orderId}});
+                }
+                else
+                {
+                    res.data.error.map((item,key)=>{
+                        if(key==0)
+                        {
+                            context.notify(` ${item.param} can't be empty`  )
+                        }
+                    })
+                   
                 }
         
           
