@@ -10,12 +10,16 @@ const SingleItem=(props)=>{
     const [relateditems, setrelateditems] = useState("")
     const [variants, setvariants] = useState("")
     const [variantchoosed, setvariantchoosed] = useState(false)
+    const search = props.location.search;
+    const productId = new URLSearchParams(search).get('productid')
+  
+
 
 
      
     const singleitemset=(item1)=>{
         console.log(item1)
-            MobileHouseApi.get(`/singleview`,{params: { productId: item1.id}})
+            MobileHouseApi.get(`/singleview`,{params: { productId: productId}})
             
             .then(res=>{
                     const product=res.data;
@@ -38,7 +42,7 @@ const SingleItem=(props)=>{
     useEffect(() => {
         if(singleitem=="")
         {
-            MobileHouseApi.get(`/singleview`,{params: { productId: props.location.state.itemid}})
+            MobileHouseApi.get(`/singleview`,{params: { productId: productId}})
             
             .then(res=>{
                     const product=res.data;
