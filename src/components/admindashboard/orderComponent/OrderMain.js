@@ -33,7 +33,7 @@ useEffect(() => {
 
     return(
         <div className="flex">
-        {orderitems!="" &&
+        {orderitems!=="" &&
         <div className="flex w-full">
         <SideNav/>
         <div className="w-9/12 lg:w-10/12 overflow-auto">

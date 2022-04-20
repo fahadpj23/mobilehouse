@@ -12,7 +12,7 @@ const DashboardMain=()=>{
            
                 <SideNav/>
          
-            <div className="w-full overflow-auto p-3 space-y-5">
+            <div className="w-full  p-3 space-y-5 mt-7 h-screen overflow-auto">
                 <div className="flex w-full justify-between space-x-4">
                     <div className="w-full bg-green-500 text-white rounded-xl shadow-lg p-3 flex items-center justify-center">
                         <RiRefund2Line className="text-3xl"/>

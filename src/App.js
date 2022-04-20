@@ -17,6 +17,7 @@ import ProductList from './pages/productList'
 import Attribute from './pages/Attribute'
 import Product from './pages/Product';
 import OrderSuccess from './pages/ordersuccess';
+import Purchase from './pages/Purchase';
 function App(){
     const[ authState, setAuthState ]=useState("")
     const[ UserauthState, setUserAuthState ]=useState("")
@@ -82,7 +83,7 @@ function App(){
                         <ContextProvider > 
                           
                             {
-                                (authState!="" && UserauthState!="") &&
+                                (authState!=="" && UserauthState!=="") &&
                                 <>
                                     <Route  path="/" exact  component={Home}/>  
                                     <Route path="/Dashboard" component={Dashboard}/>
@@ -99,6 +100,8 @@ function App(){
                                     <Route  path="/category" component={Category}/>
                                     <Route  path="/ProductList" component={ProductList}/>
                                     <Route  path="/OrderSuccess" component={OrderSuccess}/>
+                                    <Route  path="/Purchase" component={Purchase}/>
+
                                     
                                     
                                     

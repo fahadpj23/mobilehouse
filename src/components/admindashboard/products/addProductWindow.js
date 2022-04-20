@@ -36,7 +36,7 @@ const AddProductWindow=(props)=>{
                         <h1>Image</h1>
                         <input onChange={(e)=>setproductimage(URL.createObjectURL(e.target.files[0]))}  type="file" className="w-full focus:outline-none border-2 border-gray-400 rounded-md h-8 px-1"  name="image" id="image" />
                     </div>
-                    {productimage!="" ?
+                    {productimage!=="" ?
                     <img src={productimage} alt="" className="object-contain h-48 overflow-hidden" />
                     :
                     product.image &&

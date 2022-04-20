@@ -9,7 +9,7 @@ const FormLayout=(props)=>{
     //add attribute
     const addattribute=()=>{
         
-        if(attvalue!="")
+        if(attvalue!=="")
         {
             if(props.attributevalues.includes(attvalue)==false)
             {
@@ -32,7 +32,7 @@ const FormLayout=(props)=>{
   
     
     useEffect(()=>{
-        if(props.operation!="" && editok==false)
+        if(props.operation!=="" && editok===false)
         {
             console.log("dsd")
             props.operationitem.values.map((item,key)=>{

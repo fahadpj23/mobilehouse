@@ -4,6 +4,9 @@ import { Usercontext } from '../components/context/userContext';
 import MobileHouseApi from '../helpers/axiosinstance';
 const Address=(props)=>{
     const context=useContext(Usercontext)
+    const search = props.location.search;
+    const productId = new URLSearchParams(search).get('productId')
+    const orderqty=new URLSearchParams(search).get('orderqty')
     const [product, setproduct] = useState("")
     useEffect(() => {
         if(props.location.state.checkouttype)
@@ -16,20 +19,20 @@ const Address=(props)=>{
         }
         else
         {
-        MobileHouseApi.get(`orderDetails`,{params: { productId: props.location.state.itemid}})
+        MobileHouseApi.get(`orderDetails`,{params: { productId: productId}})
         
         .then(res=>{
         let items=[]
         items.push(res.data);
-        res.data.qty=props.location.state.orderqty
+        res.data.qty=orderqty
         setproduct(items)
         console.log(res.data)
 
           })  
-        }
+         }
     }, [])
 
-    console.log(props.location.state)
+   
     return(
         <div>
             {product!="" &&

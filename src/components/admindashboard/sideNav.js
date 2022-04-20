@@ -19,7 +19,7 @@ const SideNav=()=>{
                         <div className='space-y-5 px-3 '>
                             <button onClick={()=>history.push("/Dashboard")}  className="mt-5 w-full text-left focus:outline-none flex ">DASHBOARD<AiFillDashboard className='mt-1 ml-2'/></button>
                             <button onClick={()=>history.push("/orders")}  className="mt-5 w-full text-left focus:outline-none flex">ORDERS<FaTruckMoving className='mt-1 ml-2'/></button>
-                            <button onClick={()=>history.push("/orders")} className="w-full text-left focus:outline-none flex">PURCHASE<FaCartArrowDown className='mt-1 ml-2'/></button>
+                            <button onClick={()=>history.push("/Purchase")} className="w-full text-left focus:outline-none flex">PURCHASE<FaCartArrowDown className='mt-1 ml-2'/></button>
                             <button onClick={()=>history.push("/Product")} className=" w-full text-left focus:outline-none flex">PRODUCT<FaProductHunt className='mt-1 ml-2'/></button>
                             <button  onClick={()=>history.push("/category")}className=" w-full text-left focus:outline-none flex">CATEGORY<CgListTree className='mt-1 ml-2'/></button>
                             <button  onClick={()=>history.push("/Attribute")}className=" w-full text-left focus:outline-none flex">ATTRIBUTE <IoIosColorFilter className='mt-1 ml-2'/></button>

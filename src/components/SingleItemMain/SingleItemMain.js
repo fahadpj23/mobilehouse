@@ -6,9 +6,9 @@ import { Usercontext } from '../context/userContext';
 import {useContext} from 'react'
 import React, { useState } from 'react';
 import ProductSlider from '../Home/productSlick'
-import { useHistory } from 'react-router-dom';
+
 const SingleItemMain=(props)=>{
-    let history=useHistory();
+ 
     const [qty, setqty] = useState(1)
     const [qtystate, setqtystate] = useState("ok")
     const [pincode, setpincode] = useState("")
@@ -16,7 +16,7 @@ const SingleItemMain=(props)=>{
     const [imagedisplay, setimagedisplay] = useState(props.singleitem)
     const [ramdisplay, setramdisplay] = useState(props.singleitem)
     const [storagedisplay, setstoragedisplay] = useState(props.singleitem)
-    let colorArray=[];
+    // let colorArray=[];
     let ramArray=[];
     let storageArray=[];
     let imageArray=[];
@@ -69,7 +69,9 @@ const SingleItemMain=(props)=>{
                                     <img src={`http://localhost:9000/images/${imagedisplay.image}`} alt="" className="object-contain  overflow-hidden h-96 "/>
                                     <div className="space-x-3 flex">
                                         {/* <button className="w-6/12 font-semibold text-white bg-yellow-400 py-3">ADD TO CART</button> */}
-                                      <Link to={{pathname: "/Address", state:{itemid:imagedisplay.id,orderqty:qty}}} onClick={()=>context.addtocart(item)} className="w-full font-semibold flex justify-center focus:outline-none text-white bg-primary py-3">ORDER NOW</Link>
+                                        <Link     to={{pathname: "/Address",   search: "?" + new URLSearchParams({productId:imagedisplay.id,orderqty:qty}).toString(),state:{checkout:"single"} }} className="w-full font-semibold flex justify-center focus:outline-none text-white bg-primary py-3 ">ORDER NOW</Link>
+
+                                      {/* <Link to={{pathname: "/Address", state:{itemid:imagedisplay.id,orderqty:qty}}} onClick={()=>context.addtocart(item)} className="w-full font-semibold flex justify-center focus:outline-none text-white bg-primary py-3">ORDER NOW</Link> */}
                                     </div>
                                     
 
@@ -119,7 +121,7 @@ const SingleItemMain=(props)=>{
                                                 </div>
                                            }  */}
                                            {
-                                              imageArray && imageArray.length!=0 ?
+                                              imageArray && imageArray.length!==0 ?
                                                 <div className='flex space-x-3'>
                                                     <h1 className='h-8 flex items-center'>COLOR :</h1>
                                                     <div className='flex space-x-2'>
@@ -132,7 +134,7 @@ const SingleItemMain=(props)=>{
                                                         
                                                         imageArray.map((item1,key1)=>{
                                                             return(
-                                                                imagedisplay.image!=item1.image &&
+                                                                imagedisplay.image!==item1.image &&
                                                                 <button  onClick={()=>setimagedisplay(item1)} className={` px-2 uppercase h-16 w-16  border border-gray-500   rounded text-sm focus:outline-none`}>
                                                                     
                                                                 <img src={`http://localhost:9000/images/${item1.image}`} alt="" className="object-contain  overflow-hidden  "/>
@@ -244,7 +246,7 @@ const SingleItemMain=(props)=>{
                         </div>
                     
                 
-        {props.relateditems!="" &&
+        {props.relateditems!=="" &&
         <div className="w-full flex justify-center">
             <div className="w-10/12">
                 <ProductSlider
