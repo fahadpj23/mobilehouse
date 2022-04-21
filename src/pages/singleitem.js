@@ -19,7 +19,7 @@ const SingleItem=(props)=>{
      
     const singleitemset=(item1)=>{
         console.log(item1)
-            MobileHouseApi.get(`/singleview`,{params: { productId: productId}})
+            MobileHouseApi.get(`/singleview`,{params: { productId: item1.id}})
             
             .then(res=>{
                     const product=res.data;
@@ -29,7 +29,7 @@ const SingleItem=(props)=>{
                         setrelateditems(res.data)
                         
                     })  
-                    MobileHouseApi.get(`/variantproduct`,{params: { name: product.name,price :product.price,mrp:product.mrp, category:product.category,productId:product.id}})
+                    MobileHouseApi.get(`/variantproduct`,{params: { variantid: product.variantid}})
                     .then(res=>{
                     setvariants(res.data)
                         
@@ -52,7 +52,7 @@ const SingleItem=(props)=>{
                         setrelateditems(res.data)
                         
                     })  
-                    MobileHouseApi.get(`/variantproduct`,{params: { name: product.name,price :product.price,mrp:product.mrp, category:product.category,productId:product.id}})
+                    MobileHouseApi.get(`/variantproduct`,{params: { variantid: product.variantid}})
                     .then(res=>{
                     setvariants(res.data)
                         

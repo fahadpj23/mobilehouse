@@ -25,9 +25,9 @@ const SingleItemMain=(props)=>{
     // console.log(props.singleitem)
     console.log(ramdisplay)
     const context=useContext(Usercontext)
-   
+    
         props.variants && props.variants.map((item1,key1)=>{
-            console.log(item1)
+           
             if(item1.ram.attributeId!=null )
             {
              item1.image   &&  item1.ram.attributeId== props.singleitem.ram.attributeId && item1.storage.attributeId== storagedisplay.storage.attributeId  && imageArray.some((product)=>product.image==item1.image)==false &&imageArray.push(item1)
@@ -36,17 +36,17 @@ const SingleItemMain=(props)=>{
             
             }
             else
-             item1.image && imageArray.push(item1)
+             item1.image && imageArray.some((product)=>product.image==item1.image)==false && imageArray.push(item1)
              })
     
     // setimagedisplay(props.singleitem)
     
     const checkpincode=()=>{
-        axios.get(`http://localhost:9000/pincode`,{params: { pincodeno: pincode}})
+        axios.get(`http://localhost:9000/pincodecheck`,{params: { pincodeno: pincode}})
         
         .then(res=>{
        
-          if(res.data.length==0)
+          if(res.data.availability!="available")
           {
             setpincodeavailability("not available in this pincode")
           }
@@ -58,7 +58,7 @@ const SingleItemMain=(props)=>{
           })  
     }
  
-   console.log(qty)
+ 
     return(
         <div className="pb-10">
             
@@ -66,10 +66,10 @@ const SingleItemMain=(props)=>{
                         <div className="w-full flex justify-center">
                             <div className="w-11/12 flex  mt-5 ">
                                 <div className="w-5/12 flex ] flex-col space-y-4 ">
-                                    <img src={`http://localhost:9000/images/${imagedisplay.image}`} alt="" className="object-contain  overflow-hidden h-96 "/>
+                                    <img src={`http://localhost:9000/images/${item.image}`} alt="" className="object-contain  overflow-hidden h-96 "/>
                                     <div className="space-x-3 flex">
                                         {/* <button className="w-6/12 font-semibold text-white bg-yellow-400 py-3">ADD TO CART</button> */}
-                                        <Link     to={{pathname: "/Address",   search: "?" + new URLSearchParams({productId:imagedisplay.id,orderqty:qty}).toString(),state:{checkout:"single"} }} className="w-full font-semibold flex justify-center focus:outline-none text-white bg-primary py-3 ">ORDER NOW</Link>
+                                        <Link     to={{pathname: "/Address",   search: "?" + new URLSearchParams({productId:item.id,orderqty:qty}).toString(),state:{checkout:"single"} }} className="w-full font-semibold flex justify-center focus:outline-none text-white bg-primary py-3 ">ORDER NOW</Link>
 
                                       {/* <Link to={{pathname: "/Address", state:{itemid:imagedisplay.id,orderqty:qty}}} onClick={()=>context.addtocart(item)} className="w-full font-semibold flex justify-center focus:outline-none text-white bg-primary py-3">ORDER NOW</Link> */}
                                     </div>
@@ -79,9 +79,9 @@ const SingleItemMain=(props)=>{
                                 <div className="ml-5 w-7/12 flex flex-col  ">
                                     <div className="w-10/12">
                                         <div className="mt-10 space-y-1">
-                                            <h1 className="text-xl ">{item.name} {item.CoverType}</h1>
-                                            <h1><span className="text-xl font-bold text-green-500">₹{imagedisplay.price}</span><span className="line-through ml-3 text-lg text-gray-400">₹{item.mrp}</span></h1>
-                                            <h1 className="flex items-center bg-green-100 w-8/12 py-2 px-1"><span ><ImTruck className="text-gray-500"/></span><span className="font-semibold ml-1 "> Free Shipping </span><span className="text-sm ml-1">  & Inclusive of all taxes</span></h1>
+                                            <h1 className="text-xl font-semibold tracking-wider ">{item.name} {item.CoverType}</h1>
+                                            <h1><span className="text-xl font-bold text-green-600">₹{item.price}</span><span className="line-through ml-3 text-lg font-semibold text-gray-600">₹{item.mrp}</span></h1>
+                                            <h1 className="flex items-center bg-green-500 w-8/12 py-2 px-1 text-white rounded px-2"><span ><ImTruck className=""/></span><span className="font-semibold ml-1 "> Free Shipping </span><span className="text-sm ml-1">  & Inclusive of all taxes</span></h1>
                                             <div className="flex ">
                                                 <div className="w-2/12 flex flex-col  space-y-2">
                                                     <h1>Color</h1>
@@ -96,9 +96,9 @@ const SingleItemMain=(props)=>{
                                                     <h1>:</h1>
                                                 </div>
                                                 <div className="w-8/12 space-y-2">
-                                                    <h1>{imagedisplay.color.attributeValue}</h1>
+                                                    <h1>{item.color.attributeValue}</h1>
                                                     <h1>{item.warranty}</h1>
-                                                    <h1>{imagedisplay.material.attributeValue}</h1>
+                                                    <h1>{item.material.attributeValue}</h1>
                                                     <h1>{item.Brand}</h1>
                                                 </div>
                                             </div>
@@ -127,15 +127,15 @@ const SingleItemMain=(props)=>{
                                                     <div className='flex space-x-2'>
                                                     <button   className="px-2 uppercase h-16 w-16    border-2 border-red-500   rounded text-sm focus:outline-none">
                                                                     
-                                                                    <img src={`http://localhost:9000/images/${imagedisplay.image}`} alt="" className="object-contain  overflow-hidden  "/>
+                                                                    <img src={`http://localhost:9000/images/${item.image}`} alt="" className="object-contain  overflow-hidden  "/>
     
                                                      </button>
                                                     {
                                                         
                                                         imageArray.map((item1,key1)=>{
                                                             return(
-                                                                imagedisplay.image!==item1.image &&
-                                                                <button  onClick={()=>setimagedisplay(item1)} className={` px-2 uppercase h-16 w-16  border border-gray-500   rounded text-sm focus:outline-none`}>
+                                                                item.image!==item1.image &&
+                                                                <button  onClick={()=>props.singleitemset(item1)} className={` px-2 uppercase h-16 w-16  border border-gray-500   rounded text-sm focus:outline-none`}>
                                                                     
                                                                 <img src={`http://localhost:9000/images/${item1.image}`} alt="" className="object-contain  overflow-hidden  "/>
 
@@ -185,15 +185,15 @@ const SingleItemMain=(props)=>{
                                               storageArray && storageArray.length!=0 && 
                                                 <div className='flex space-x-3' >
                                                     <h1 className='h-8 flex items-center'>STORAGE : </h1>
-                                                    <button  className=" px-2 uppercase h-8   border-2 border-red-500   rounded text-sm focus:outline-none">{storagedisplay.storage.attributeValue} GB</button>
+                                                    <button  className=" px-2 uppercase h-8   border-2 border-red-500   rounded text-sm focus:outline-none">{item.storage.attributeValue} GB</button>
 
                                                     <div className='flex space-x-2'>
                                                     {
                                                         storageArray.map((item1,key1)=>{
                                                             return(
-                                                                storagedisplay.storage.attributeId!=item1.storage.attributeId &&
-                                                                storagedisplay.ram.attributeValue==item1.ram.attributeValue &&
-                                                                <button onClick={()=>setstoragedisplay(item1)} className={` px-2 uppercase h-8  ${storagedisplay.storage.attributeValue==item1.storage.attributeValue ? "  border-2 border-red-500" : " border border-gray-500"}   rounded text-sm focus:outline-none`}>{props.singleitem.ram.attributeValue==item1.ram.attributeValue &&  item1.storage.attributeValue }GB </button>
+                                                                item.storage.attributeId!=item1.storage.attributeId &&
+                                                                item.ram.attributeValue==item1.ram.attributeValue &&
+                                                                <button onClick={()=>props.singleitemset(item1)} className={` px-2 uppercase h-8  ${item.storage.attributeValue==item1.storage.attributeValue ? "  border-2 border-red-500" : " border border-gray-500"}   rounded text-sm focus:outline-none`}>{props.singleitem.ram.attributeValue==item1.ram.attributeValue &&  item1.storage.attributeValue }GB </button>
                                                                 )
                                                         })
                                                     }
@@ -216,7 +216,7 @@ const SingleItemMain=(props)=>{
                                                     </div>
                                                     
                                                 </div> 
-                                                <h1 className={`${qtystate=="notok" ? "block mt-3" :"hidden"}`}>only {item.qty} item available </h1>  
+                                                <h1 className={`${qtystate=="notok" ? "block mt-3 text-red-500 font-semibold" :"hidden"}`}>only {item.qty} item available </h1>  
                                             </div>
                                             <div >
                                                 <h1 className="mt-8 font-semibold">DELIVERY OPTION</h1>
