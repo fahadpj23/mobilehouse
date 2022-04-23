@@ -30,6 +30,10 @@ const AddProductWindow=(props)=>{
                         <h1>Warranty</h1>
                         <input  type="text" className="w-full border-2 border-gray-400 rounded-md py-1 px-1"  name="Warranty" id="Warranty" defaultValue={product.warranty}/>
                     </div>
+                    <div className=" text-sm">
+                        <h1>GST</h1>
+                        <input  type="number" className="w-full border-2 border-gray-400 rounded-md py-1 px-1"  name="GST" id="GST" defaultValue={product.GST}/>
+                    </div>
              
                
                     <div className=" text-sm">
