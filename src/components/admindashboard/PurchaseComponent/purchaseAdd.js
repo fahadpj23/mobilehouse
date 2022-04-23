@@ -46,7 +46,7 @@ const PurchaseAdd=()=>{
                              
                     </div>
                 </div>
-                <div className="w-full">
+                <div className="w-full flex justify-between">
                     <div className="w-5/12">
                         <div>
                             <h1>other expense</h1>
@@ -54,7 +54,35 @@ const PurchaseAdd=()=>{
                         </div>
                      
                     </div>
-                    <div className="w-7/12">
+                    <div className="w-7/12 flex   justify-end">
+                        <div className="w-6/12 flex flex-col justify-between h-44 border border-gray-400 p-2 rounded">
+                                <div className="text-sm" >
+                                    <div className="flex w-full justify-between">
+                                            <h1>subtotoal</h1>
+                                            <h1>RS:545</h1>
+                                    </div>
+                                    <div className="flex w-full justify-between">
+                                            <h1>tax amount</h1>
+                                            <h1>RS:545</h1>
+                                    </div>
+                                    <div className="flex w-full justify-between">
+                                            <h1>otherexpense</h1>
+                                            <h1>RS:545</h1>
+                                    </div>
+                                    
+                                </div>
+                                <div >
+                                    <div className="flex w-full justify-between font-semibold">
+                                            <h1>Net Amount</h1>
+                                            <h1>RS:545</h1>
+                                    </div>
+                                    <div>
+                                        <button className="px-2 bg-red-500 text-white">Clear</button>
+                                        <button className="px-2 bg-green-500 text-white">Checkout</button>
+                                    </div>
+                                </div>
+                        </div>
+                       
                         
                     </div>
 
