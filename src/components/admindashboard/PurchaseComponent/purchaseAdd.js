@@ -1,6 +1,16 @@
 import PurchaseTable from "./purchaseTable"
-
+import MobileHouseApi from "../../../helpers/axiosinstance"
+import { useState } from "react"
 const PurchaseAdd=()=>{
+ 
+    const[searchProduct,setsearchProduct]=useState("")
+    const ProductSearch=(searchelement)=>{
+        MobileHouseApi.get('/purchaseProductSearch',{params:{searchelement}})
+        .then((res)=>{
+            setsearchProduct(res.data.products)
+        })
+    }
+
     return(
         <div>
             <div className="w-full p-3 space-y-4">
@@ -34,8 +44,22 @@ const PurchaseAdd=()=>{
                              <PurchaseTable/>  
                         </div>
                         <div className="w-5/12 space-y-2">
-                                <div className="flex space-x-2 ">
-                                    <input type="text" className=" border rounded px-2 border-gray-400 w-full" placeholder="search item"/>
+                                <div className="flex space-x-2 relative ">
+                                    <input onChange={(e)=>ProductSearch(e.target.value)} type="text" className=" border rounded px-2  border-gray-400 w-full" placeholder="search item"/>
+                                    <div className="absolute top-7 w-full space-y-2 bg-white p-2 -left-1 h-96 overflow-auto">
+                                        {
+                                          searchProduct && searchProduct.map((item,key)=>{
+                                              return(
+                                                  <div className="flex justify-between w-full hover:bg-gray-300 py-1 px-1 ">
+                                                      <h1>{item.name}</h1>
+                                                      <h1>{item.price}</h1>
+                                                      <button className="bg-green-500 text-white px-2 text-sm py-1 tracking-wider font-semibold">ADD+</button>
+
+                                                  </div>
+                                              )
+                                          })  
+                                        }
+                                    </div>
                                     <button className="bg-gray-400 text-white rounded px-2 py-1">catalaog</button>
                                 </div>
                                 <div className="border border-gray-400 h-96 rounded">
@@ -54,9 +78,9 @@ const PurchaseAdd=()=>{
                         </div>
                      
                     </div>
-                    <div className="w-7/12 flex   justify-end">
-                        <div className="w-6/12 flex flex-col justify-between h-44 border border-gray-400 p-2 rounded">
-                                <div className="text-sm" >
+                    <div className="w-7/12 flex   justify-end ">
+                        <div className="w-6/12 flex flex-col justify-between h-56 border border-gray-400 p-2 rounded">
+                                <div className="text-sm  space-y-2" >
                                     <div className="flex w-full justify-between">
                                             <h1>subtotoal</h1>
                                             <h1>RS:545</h1>
@@ -71,14 +95,14 @@ const PurchaseAdd=()=>{
                                     </div>
                                     
                                 </div>
-                                <div >
+                                <div className="space-y-2  " >
                                     <div className="flex w-full justify-between font-semibold">
                                             <h1>Net Amount</h1>
                                             <h1>RS:545</h1>
                                     </div>
-                                    <div>
-                                        <button className="px-2 bg-red-500 text-white">Clear</button>
-                                        <button className="px-2 bg-green-500 text-white">Checkout</button>
+                                    <div className="space-x-2 flex justify-end">
+                                        <button className="px-2 w-5/12 bg-red-500 text-white py-1 rounded font-semibold">Clear</button>
+                                        <button className="px-2 w-5/12 bg-green-500 text-white py-1 rounded font-semibold">Checkout</button>
                                     </div>
                                 </div>
                         </div>
