@@ -1,10 +1,11 @@
 import PurchaseTable from "./purchaseTable"
 import MobileHouseApi from "../../../helpers/axiosinstance"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 const PurchaseAdd=(props)=>{
  
     const[searchProduct,setsearchProduct]=useState("")
     const[searchValue,setsearchValue]=useState("")
+    const[productadded,setproductadded]=useState(false)
     let GrandTotal=0;
     let subTotal=0;
     let TaxAmount=0;
@@ -37,8 +38,18 @@ const PurchaseAdd=(props)=>{
                 }
             })
         }
-        console.log(props.purchasetable)
+        setproductadded(true)
+        
     }
+
+    useEffect(()=>{
+
+        if(productadded==true)
+        {
+            setproductadded(false)
+        }
+        
+    },[productadded])
 
     return(
         <div>
@@ -70,7 +81,9 @@ const PurchaseAdd=(props)=>{
                 <div>
                     <div className="flex space-x-2 h-full">
                         <div className="w-7/12">
-                             <PurchaseTable/>  
+                             <PurchaseTable
+                             purchasetable={props.purchasetable}
+                             />  
                         </div>
                         <div className="w-5/12 space-y-2">
                                 <div className="flex space-x-2 relative ">
