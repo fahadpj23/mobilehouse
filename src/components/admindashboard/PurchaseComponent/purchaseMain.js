@@ -6,6 +6,7 @@ import { AiFillSetting ,AiOutlineClose} from 'react-icons/ai';
 import PurchaseAdd from "./purchaseAdd";
 const PurchaseMain=()=>{
 
+    let purchasetable=[];
     const [operation,setoperation]=useState("")
     const[operationitem,setoperationitem]=useState("")
     const[operationid,setoperationid]=useState("")
@@ -48,7 +49,9 @@ const PurchaseMain=()=>{
                                     </div>
                                     
                                     <div  className="w-full ">
-                                        <PurchaseAdd/>
+                                        <PurchaseAdd
+                                        purchasetable={purchasetable}
+                                        />
                                         {/* <FormLayout
                                             formdata={addformdata}
                                             // handleSubmit={handleSubmit}

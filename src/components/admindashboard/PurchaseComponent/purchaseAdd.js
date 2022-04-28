@@ -1,14 +1,43 @@
 import PurchaseTable from "./purchaseTable"
 import MobileHouseApi from "../../../helpers/axiosinstance"
 import { useState } from "react"
-const PurchaseAdd=()=>{
+const PurchaseAdd=(props)=>{
  
     const[searchProduct,setsearchProduct]=useState("")
+    const[searchValue,setsearchValue]=useState("")
+    let GrandTotal=0;
+    let subTotal=0;
+    let TaxAmount=0;
+
+    //product search
     const ProductSearch=(searchelement)=>{
+        setsearchValue(searchelement)
         MobileHouseApi.get('/purchaseProductSearch',{params:{searchelement}})
         .then((res)=>{
-            setsearchProduct(res.data.products)
+          
+            setsearchProduct(res.data)
+           
         })
+    }
+
+    const productAdd=(product)=>{
+        product.productqty=1
+     
+        if(props.purchasetable.some((pro)=>pro.id==product.id)==false)
+        {
+            props.purchasetable.push(product)
+        }
+        else
+        {
+            props.purchasetable.map((item1,key1)=>{
+                if(product.id==item1.id)
+                {
+
+                    item1.productqty+1 > item1.qty ?console.log("maxqty reached") : item1.productqty=item1.productqty + 1 
+                }
+            })
+        }
+        console.log(props.purchasetable)
     }
 
     return(
@@ -46,20 +75,27 @@ const PurchaseAdd=()=>{
                         <div className="w-5/12 space-y-2">
                                 <div className="flex space-x-2 relative ">
                                     <input onChange={(e)=>ProductSearch(e.target.value)} type="text" className=" border rounded px-2  border-gray-400 w-full" placeholder="search item"/>
-                                    <div className="absolute top-7 w-full space-y-2 bg-white p-2 -left-1 h-96 overflow-auto">
+                                    {searchValue && <div className="absolute top-8 w-full space-y-2  p-2 -left-2 h-96 shadow-xl bg-gray-200 overflow-auto">
                                         {
-                                          searchProduct && searchProduct.map((item,key)=>{
+                                          searchProduct && 
+                                          searchProduct.products ?
+                                          searchProduct.products.map((item,key)=>{
                                               return(
-                                                  <div className="flex justify-between w-full hover:bg-gray-300 py-1 px-1 ">
+                                                 
+                                                  <button onClick={()=>productAdd(item)} className="flex justify-between w-full hover:bg-gray-300 py-1 px-1 ">
                                                       <h1>{item.name}</h1>
                                                       <h1>{item.price}</h1>
                                                       <button className="bg-green-500 text-white px-2 text-sm py-1 tracking-wider font-semibold">ADD+</button>
 
-                                                  </div>
+                                                  </button>
                                               )
                                           })  
+                                          :
+                                          <div>
+                                              <h1 className="mt-2">no Product found</h1>
+                                          </div>
                                         }
-                                    </div>
+                                    </div>}
                                     <button className="bg-gray-400 text-white rounded px-2 py-1">catalaog</button>
                                 </div>
                                 <div className="border border-gray-400 h-96 rounded">
@@ -80,14 +116,21 @@ const PurchaseAdd=()=>{
                     </div>
                     <div className="w-7/12 flex   justify-end ">
                         <div className="w-6/12 flex flex-col justify-between h-56 border border-gray-400 p-2 rounded">
+                            {
+                                props.purchasetable.map((item,key)=>{
+                                    subTotal= +subTotal +(+item.price* +item.qty)
+                                    TaxAmount= +TaxAmount + ((+item.price* +item.qty)*item.GST/100)
+                                    GrandTotal= +GrandTotal+ ((item.price*item.qty)+ ((+item.price* +item.qty)*item.GST/100))
+                                })
+                            }
                                 <div className="text-sm  space-y-2" >
                                     <div className="flex w-full justify-between">
                                             <h1>subtotoal</h1>
-                                            <h1>RS:545</h1>
+                                            <h1>RS:{subTotal}</h1>
                                     </div>
                                     <div className="flex w-full justify-between">
                                             <h1>tax amount</h1>
-                                            <h1>RS:545</h1>
+                                            <h1>RS:{TaxAmount}</h1>
                                     </div>
                                     <div className="flex w-full justify-between">
                                             <h1>otherexpense</h1>
@@ -98,7 +141,7 @@ const PurchaseAdd=()=>{
                                 <div className="space-y-2  " >
                                     <div className="flex w-full justify-between font-semibold">
                                             <h1>Net Amount</h1>
-                                            <h1>RS:545</h1>
+                                            <h1>RS:{GrandTotal}</h1>
                                     </div>
                                     <div className="space-x-2 flex justify-end">
                                         <button className="px-2 w-5/12 bg-red-500 text-white py-1 rounded font-semibold">Clear</button>
