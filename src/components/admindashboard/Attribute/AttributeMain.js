@@ -1,10 +1,10 @@
-import SideNav from "../sideNav"
+import SideNav from "components/admindashboard/sideNav"
 import { AiFillSetting ,AiOutlineClose} from 'react-icons/ai';
 
 import { useState,useContext,useEffect } from "react";
 import FormLayout from '../form'
-import MobileHouseApi from "../../../helpers/axiosinstance";
-import { Usercontext } from "../../context/userContext";
+import MobileHouseApi from "helpers/axiosinstance";
+import { Usercontext } from "components/context/userContext";
 import TableContent from "../table";
 const AttributeMain=()=>{
 

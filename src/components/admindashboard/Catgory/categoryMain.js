@@ -68,7 +68,7 @@ const CategoryMain=(props)=>{
       useEffect(()=>{
         if(category=="")
         {
-            MobileHouseApi.get('/getCategory')
+            MobileHouseApi.get('/getCategory',{headers:{accessToken:localStorage.getItem("accessToken")}})
             .then((res)=>{
             setcategory(res.data)
             })

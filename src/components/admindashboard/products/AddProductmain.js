@@ -27,7 +27,7 @@ const AddProductMain=(props)=>{
                  {
                    
                     setcategoryid(item.id)
-                     MobileHouseApi.get("/getcategoryAttribute",{params:{"categoryid":item.id}})
+                     MobileHouseApi.get("/getcategoryAttribute",{params:{"categoryid":item.id}},{headers:{accessToken:localStorage.getItem("UserToken")}})
                      .then((res)=>{
                         setcategoryattribute(res.data)
                         console.log(res.data)
@@ -47,7 +47,7 @@ const AddProductMain=(props)=>{
         data.append("operationid",props.operationid)
         data.append("variantimage",props.operationitem.image )
         console.log(data)
-        MobileHouseApi.post('/productAdd',data)
+        MobileHouseApi.post('/productAdd',data,{headers:{accessToken:localStorage.getItem("accessToken")}})
         .then((res)=>{
          if(res.data.error)
          {
@@ -65,7 +65,7 @@ const AddProductMain=(props)=>{
       useEffect(()=>{
         if(catgeorytotal=="")
         {
-            MobileHouseApi.get('/getCategory')
+            MobileHouseApi.get('/getCategory',{headers:{accessToken:localStorage.getItem("accessToken")}})
             .then((res)=>{
                 console.log(res.data)
                 setcatgeorytotal(res.data)
@@ -81,7 +81,7 @@ const AddProductMain=(props)=>{
         }
            
     })
-
+    console.log(catgeorytotal)
     return(
         <div className=" w-full flex justify-center max-h-fixedNoNavlgmax overflow-auto  ">
        
