@@ -5,13 +5,13 @@ const PurchaseTable=(props)=>{
     return(
         <div  className="w-full border border-gray-400 h-full rounded">
             <table className="min-w-full">
-                <tr className="bg-gray-500 text-white  text-sm ">
-                    <th className="py-1">SL No</th>
-                    <th>product</th>
-                    <th>Price</th>
-                    <th>QTY</th>
-                    <th>Total</th>
-                    <th></th>
+                <tr className="bg-gray-500 text-white  text-sm tracking-wide ">
+                    <th className="py-1 font-semibold">SL No</th>
+                    <th className=" font-semibold">product</th>
+                    <th className=" font-semibold">Price</th>
+                    <th className=" font-semibold">QTY</th>
+                    <th className=" font-semibold">Total</th>
+                    <th className=" font-semibold"></th>
                 </tr>
                 {
                     props.purchasetable && props.purchasetable.map((item,key)=>{

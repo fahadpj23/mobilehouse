@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 const PurchaseAdd=(props)=>{
  
     const[searchProduct,setsearchProduct]=useState("")
+    const[suppliers,setsuppliers]=useState("")
     const[searchValue,setsearchValue]=useState("")
     const[productadded,setproductadded]=useState(false)
     const[changeqty,setchangeqty]=useState(false)
@@ -65,6 +66,13 @@ const PurchaseAdd=(props)=>{
 
     useEffect(()=>{
 
+        if(suppliers=="")
+        {
+            MobileHouseApi.get('/getSupplier')
+            .then((res)=>{
+                setsuppliers(res.data.Data)
+            })
+        }
         if(productadded==true)
         {
             setproductadded(false)
@@ -76,12 +84,12 @@ const PurchaseAdd=(props)=>{
         <div>
             <div className="w-full p-3 space-y-4">
                 <div className=" space-x-2 grid grid-cols-5 gap-3">
-                    <div>
+                    <div className="text-sm space-y-1">
                         <h1>invoice no</h1>
-                        <input className=" border focus:outline-none border-gray-400 rounded px-2 w-full text-sm py-1" placeholder="invoice no"></input>
+                        <input className=" border focus:outline-none border-gray-400 rounded px-2 w-full text-sm py-1" ></input>
                     </div>
                     
-                    <div>
+                    <div className="text-sm space-y-1">
                         <h1>Payment Type</h1>
                         <select  className=" border focus:outline-none border-gray-400 rounded px-2 w-full  text-sm py-1" name="payment type">
                                 <option>cash</option>
@@ -89,12 +97,19 @@ const PurchaseAdd=(props)=>{
                         </select>
                     </div>
                    
-                    <div>
-                    <h1>vendor</h1>
+                    <div className="text-sm space-y-1">
+                    <h1>Supplier</h1>
                         <select  className=" border focus:outline-none border-gray-400 rounded px-2 w-full text-sm py-1" name="vendor">
-                                <option>--select--</option>
-                                <option>nanma</option>
-                                <option>tharakan</option>
+                                <option>-- select --</option>
+                                {
+                                    suppliers && suppliers.map((item,key)=>{
+                                        return(
+                                            <option>{item.supplierName}</option>
+                                        )
+                                    })
+                                }
+                               
+                               
                         </select>
                     </div>
                     
@@ -132,7 +147,7 @@ const PurchaseAdd=(props)=>{
                                           </div>
                                         }
                                     </div>}
-                                    <button className="bg-gray-400 text-white rounded px-2 py-1">catalaog</button>
+                                    <button className="bg-gray-600 text-white rounded px-2 py-1">catalaog</button>
                                 </div>
                                 <div className="border border-gray-400 h-96 rounded">
 
@@ -144,7 +159,7 @@ const PurchaseAdd=(props)=>{
                 </div>
                 <div className="w-full flex justify-between">
                     <div className="w-5/12">
-                        <div className="space-y-1">
+                        <div className="text-sm space-y-1">
                             <h1>other expense</h1>
                             <input value={otherexpense} onChange={(e)=>setotherexpense(e.target.value)} className="w-8/12 focus:outline-none text-sm py-1 px-2 rounded border border-gray-400" type="number" />
                         </div>

@@ -18,6 +18,7 @@ import Attribute from './pages/Attribute'
 import Product from './pages/Product';
 import OrderSuccess from './pages/ordersuccess';
 import Purchase from './pages/Purchase';
+import Supplier from 'pages/Supplier';
 function App(){
     const[ authState, setAuthState ]=useState("")
     const[ UserauthState, setUserAuthState ]=useState("")
@@ -101,6 +102,7 @@ function App(){
                                     <Route  path="/ProductList" component={ProductList}/>
                                     <Route  path="/OrderSuccess" component={OrderSuccess}/>
                                     <Route  path="/Purchase" component={Purchase}/>
+                                    <Route  path="/Supplier" component={Supplier}/>
 
                                     
                                     
