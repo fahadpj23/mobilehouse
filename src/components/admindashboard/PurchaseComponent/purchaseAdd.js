@@ -1,11 +1,14 @@
 import PurchaseTable from "./purchaseTable"
-import MobileHouseApi from "../../../helpers/axiosinstance"
+import MobileHouseApi from "helpers/axiosinstance"
 import { useEffect, useState } from "react"
 const PurchaseAdd=(props)=>{
  
     const[searchProduct,setsearchProduct]=useState("")
     const[searchValue,setsearchValue]=useState("")
     const[productadded,setproductadded]=useState(false)
+    const[changeqty,setchangeqty]=useState(false)
+    const[remproduct,setremproduct]=useState(false)
+    const[otherexpense,setotherexpense]=useState(0)
     let GrandTotal=0;
     let subTotal=0;
     let TaxAmount=0;
@@ -21,6 +24,17 @@ const PurchaseAdd=(props)=>{
         })
     }
 
+    const qtychange=(product,qty)=>{
+        props.purchasetable.map((item,key)=>{
+            if(product.id==item.id)
+            {
+               
+                    item.productqty=qty
+                    setchangeqty(!changeqty)
+            }
+        })
+   
+    }
     const productAdd=(product)=>{
         product.productqty=1
      
@@ -42,6 +56,13 @@ const PurchaseAdd=(props)=>{
         
     }
 
+    const removeproduct=(index)=>{
+        
+        props.purchasetable.splice(index, 1)
+        setremproduct(!remproduct)
+        console.log(props.purchasetable)
+    }
+
     useEffect(()=>{
 
         if(productadded==true)
@@ -49,7 +70,7 @@ const PurchaseAdd=(props)=>{
             setproductadded(false)
         }
         
-    },[productadded])
+    },[productadded,changeqty,remproduct])
 
     return(
         <div>
@@ -83,6 +104,8 @@ const PurchaseAdd=(props)=>{
                         <div className="w-7/12">
                              <PurchaseTable
                              purchasetable={props.purchasetable}
+                             qtychange={qtychange}
+                             removeproduct={removeproduct}
                              />  
                         </div>
                         <div className="w-5/12 space-y-2">
@@ -121,9 +144,9 @@ const PurchaseAdd=(props)=>{
                 </div>
                 <div className="w-full flex justify-between">
                     <div className="w-5/12">
-                        <div>
+                        <div className="space-y-1">
                             <h1>other expense</h1>
-                            <input className="w-8/12 rounded border border-gray-400" type="number" />
+                            <input value={otherexpense} onChange={(e)=>setotherexpense(e.target.value)} className="w-8/12 focus:outline-none text-sm py-1 px-2 rounded border border-gray-400" type="number" />
                         </div>
                      
                     </div>
@@ -131,9 +154,9 @@ const PurchaseAdd=(props)=>{
                         <div className="w-6/12 flex flex-col justify-between h-56 border border-gray-400 p-2 rounded">
                             {
                                 props.purchasetable.map((item,key)=>{
-                                    subTotal= +subTotal +(+item.price* +item.qty)
-                                    TaxAmount= +TaxAmount + ((+item.price* +item.qty)*item.GST/100)
-                                    GrandTotal= +GrandTotal+ ((item.price*item.qty)+ ((+item.price* +item.qty)*item.GST/100))
+                                    subTotal= +subTotal +(+item.price * +item.productqty)
+                                    TaxAmount= +TaxAmount + ((+item.price* +item.productqty)*item.GST/100)
+                                    GrandTotal= +GrandTotal+ ((item.price*item.productqty)+ ((+item.price* +item.productqty)*item.GST/100))
                                 })
                             }
                                 <div className="text-sm  space-y-2" >
@@ -147,7 +170,7 @@ const PurchaseAdd=(props)=>{
                                     </div>
                                     <div className="flex w-full justify-between">
                                             <h1>otherexpense</h1>
-                                            <h1>RS:545</h1>
+                                            <h1>RS:{otherexpense}</h1>
                                     </div>
                                     
                                 </div>
