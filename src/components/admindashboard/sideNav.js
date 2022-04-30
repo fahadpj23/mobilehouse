@@ -7,7 +7,7 @@ import { FaProductHunt } from 'react-icons/fa';
 import { CgListTree } from 'react-icons/cg';
 import { IoIosColorFilter } from 'react-icons/io';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { GrUserWorker } from 'react-icons/gr';
+import { IoIosPerson } from 'react-icons/io';
 const SideNav=()=>{
     let history=useHistory();
     const[sidenav,setsidenav]=useState(true)
@@ -24,7 +24,7 @@ const SideNav=()=>{
                             <button onClick={()=>history.push("/Product")} className=" w-full text-left focus:outline-none flex">PRODUCT<FaProductHunt className='mt-1 ml-2'/></button>
                             <button  onClick={()=>history.push("/category")}className=" w-full text-left focus:outline-none flex">CATEGORY<CgListTree className='mt-1 ml-2'/></button>
                             <button  onClick={()=>history.push("/Attribute")}className=" w-full text-left focus:outline-none flex">ATTRIBUTE <IoIosColorFilter className='mt-1 ml-2'/></button>
-                            <button  onClick={()=>history.push("/Supplier")}className=" w-full text-left focus:outline-none flex">SUPPLIER <GrUserWorker className='mt-1 ml-2 '/></button>
+                            <button  onClick={()=>history.push("/Supplier")}className=" w-full text-left focus:outline-none flex">SUPPLIER <IoIosPerson className='mt-1 ml-2 '/></button>
 
                         </div>
                        
@@ -36,7 +36,7 @@ const SideNav=()=>{
                             <button onClick={()=>history.push("/Product")} className=" w-full text-left focus:outline-none flex justify-center"><FaProductHunt/></button>
                             <button  onClick={()=>history.push("/category")}className=" w-full text-left focus:outline-none flex justify-center"><CgListTree/></button>
                             <button  onClick={()=>history.push("/Attribute")}className=" w-full text-left focus:outline-none text-white flex justify-center"><IoIosColorFilter/> </button>
-                            <button  onClick={()=>history.push("/Supplier")}className=" w-full text-left focus:outline-none flex">SUPPLIER <GrUserWorker className='mt-1 ml-2'/></button>
+                            <button  onClick={()=>history.push("/Supplier")}className=" w-full text-left focus:outline-none flex"> <IoIosPerson className='mt-1 ml-2 text-white bg-red-200'/></button>
 
                         </div>
 

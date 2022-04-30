@@ -11,7 +11,7 @@ const TableContent=(props)=>{
     return(
         <table className="min-w-full">
         <tbody>
-            <tr className="py-5" >
+            <tr className="py-5 " >
                 {
                 
                 props.Data.TableHead && props.Data.TableHead.map((item,key)=>
@@ -34,8 +34,8 @@ const TableContent=(props)=>{
                                 {
                                     return(
                                     
-                                        <td className={`${ item1=="values" ? "w-full flex justify-center": "w-3/12"}`} key={key}>
-                                            <h1 className={`${ item1=="values" && " w-6/12 break-words"}`}>{ item1=="values" ? item[item1].toString() : item1=="status"? item.status==1 ? "active" : "disable" : item[item1]} </h1> </td>
+                                        <td className ="text-center" key={key}>
+                                            <h1 className={`${ item1=="values" && "  break-words"}`}>{ item1=="values" ? item[item1].toString() : item1=="status"? item.status==1 ? "active" : "disable" : item[item1]} </h1> </td>
                                     )   
                                 }
                             })

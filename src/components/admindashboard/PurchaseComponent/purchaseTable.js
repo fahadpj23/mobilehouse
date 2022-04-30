@@ -3,7 +3,7 @@ import { MdDelete } from 'react-icons/md';
 const PurchaseTable=(props)=>{
     console.log(props.purchasetable)
     return(
-        <div  className="w-full border border-gray-400 h-full rounded">
+        <div  className="w-full border border-gray-400 h-full rounded overflow-auto">
             <table className="min-w-full">
                 <tr className="bg-gray-500 text-white  text-sm tracking-wide ">
                     <th className="py-1 font-semibold">SL No</th>

@@ -48,7 +48,7 @@ const PurchaseAdd=(props)=>{
                if(res.data.success)
                {
                 context.notify(res.data.success)
-                props.setaddpurchase(false)
+                props.purchaseaddclose()
                }
             })
         }

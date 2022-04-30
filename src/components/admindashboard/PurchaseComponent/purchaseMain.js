@@ -1,9 +1,11 @@
 import SideNav from "../sideNav"
 import NavOperation from "../operation"
-import { useState } from "react"
+import { useState,useEffect } from "react"
 import FormLayout from "../form"
 import { AiFillSetting ,AiOutlineClose} from 'react-icons/ai';
 import PurchaseAdd from "./purchaseAdd";
+import { mobilehouseApi } from "axiosinstance";
+import TableContent from "../table";
 const PurchaseMain=()=>{
 
     let purchasetable=[];
@@ -11,6 +13,7 @@ const PurchaseMain=()=>{
     const[operationitem,setoperationitem]=useState("")
     const[operationid,setoperationid]=useState("")
     const[addpurchase,setaddpurchase]=useState(false)
+    const[purchase,setpurchase]=useState("")
 
     const addformdata=[
         {name:"name",type:"text"},
@@ -33,10 +36,25 @@ const PurchaseMain=()=>{
 
   const purchaseaddclose=()=>{
       setaddpurchase(false)
+      mobilehouseApi.get('/getPurchase')
+      .then((res)=>{
+          setpurchase(res.data)
+      })
   }
+
   const AddNew=()=>{
     setaddpurchase(true)
-}
+    }
+
+    useEffect(()=>{
+        if(purchase=="")
+        {
+            mobilehouseApi.get('/getPurchase')
+            .then((res)=>{
+                setpurchase(res.data)
+            })
+        }
+    },[])
 
     return(
         <div className="flex w-full">
@@ -56,15 +74,7 @@ const PurchaseMain=()=>{
                                         purchasetable={purchasetable}
                                         purchaseaddclose={purchaseaddclose}
                                         />
-                                        {/* <FormLayout
-                                            formdata={addformdata}
-                                            // handleSubmit={handleSubmit}
-                                            
-                                            operation={operation}
-                                            operationitem={operationitem}
-                                            // Mainname={operationitem.attributeName}
-                                            // Mainstatus={operationitem.status}
-                                        /> */}
+                                      
                                     
                                     </div>
                                 </div>
@@ -79,14 +89,14 @@ const PurchaseMain=()=>{
                <NavOperation
                AddNew={AddNew }
                />
-                {/* {
-                    attribute &&
+                {
+                    purchase &&
                     <TableContent
-                         Data={attribute}
+                         Data={purchase}
                          tableOperation={tableOperation}
     
                     />
-                } */}
+                }
             </div>
     </div>   
     )
