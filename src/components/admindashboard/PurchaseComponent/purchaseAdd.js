@@ -1,9 +1,15 @@
 import PurchaseTable from "./purchaseTable"
 import MobileHouseApi from "helpers/axiosinstance"
-import { useEffect, useState } from "react"
+import { useState,useContext,useEffect } from "react";
+import { Usercontext } from "components/context/userContext";
+
+
+
 const PurchaseAdd=(props)=>{
  
+    const context=useContext(Usercontext )
     const[searchProduct,setsearchProduct]=useState("")
+    const [purchasedetails, setpurchasedetails] = useState({paymentmethod:"cash",invoiceno:"",supplier:""})
     const[suppliers,setsuppliers]=useState("")
     const[searchValue,setsearchValue]=useState("")
     const[productadded,setproductadded]=useState(false)
@@ -25,11 +31,35 @@ const PurchaseAdd=(props)=>{
         })
     }
 
+    const upload=()=>{
+        let formData = new FormData()
+        formData.append('invoiceno',purchasedetails.invoiceno)
+        formData.append('supplier',purchasedetails.supplier)
+        formData.append('paymentMethod',purchasedetails.paymentmethod)
+        formData.append('products',JSON.stringify( props.purchasetable))
+        formData.append('otherexpense',otherexpense)
+        formData.append('TaxAmount',TaxAmount)
+        formData.append('GrandTotal',GrandTotal)
+       
+        if(props.purchasetable.length!=0)
+        {
+            MobileHouseApi.post('purchaseupload',formData)
+            .then((res)=>{
+               if(res.data.success)
+               {
+                context.notify(res.data.success)
+                props.setaddpurchase(false)
+               }
+            })
+        }
+    }
+
     const qtychange=(product,qty)=>{
         props.purchasetable.map((item,key)=>{
             if(product.id==item.id)
             {
-               
+                    product.taxAmount= (product.price * qty  ) * product.GST /100
+                    product.netAmount= (product.price * qty  ) +(product.price * qty ) * product.GST /100
                     item.productqty=qty
                     setchangeqty(!changeqty)
             }
@@ -41,6 +71,8 @@ const PurchaseAdd=(props)=>{
      
         if(props.purchasetable.some((pro)=>pro.id==product.id)==false)
         {
+            product.taxAmount= (product.price * 1 ) * product.GST /100
+            product.netAmount= (product.price * 1 ) +(product.price * 1 ) * product.GST /100
             props.purchasetable.push(product)
         }
         else
@@ -48,8 +80,17 @@ const PurchaseAdd=(props)=>{
             props.purchasetable.map((item1,key1)=>{
                 if(product.id==item1.id)
                 {
-
-                    item1.productqty+1 > item1.qty ?console.log("maxqty reached") : item1.productqty=item1.productqty + 1 
+                    if( item1.productqty+1 > item1.qty)
+                    {
+                        product.taxAmount= (product.price * item1.productqty + 1  ) * product.GST /100
+                        product.netAmount= (product.price * item1.productqty + 1  ) +(product.price * item1.productqty + 1 ) * product.GST /100
+                        item1.productqty=item1.productqty + 1 
+                    }
+                    else
+                    {
+                        console.log("maxqty reached")
+                    }
+                  
                 }
             })
         }
@@ -79,32 +120,33 @@ const PurchaseAdd=(props)=>{
         }
         
     },[productadded,changeqty,remproduct])
-
+    console.log(purchasedetails)
     return(
         <div>
             <div className="w-full p-3 space-y-4">
                 <div className=" space-x-2 grid grid-cols-5 gap-3">
                     <div className="text-sm space-y-1">
                         <h1>invoice no</h1>
-                        <input className=" border focus:outline-none border-gray-400 rounded px-2 w-full text-sm py-1" ></input>
+                        <input onChange={(e)=>setpurchasedetails({...purchasedetails, ['invoiceno'] : e.target.value})} className=" border focus:outline-none border-gray-400 rounded px-2 w-full text-sm py-1" ></input>
                     </div>
                     
                     <div className="text-sm space-y-1">
                         <h1>Payment Type</h1>
-                        <select  className=" border focus:outline-none border-gray-400 rounded px-2 w-full  text-sm py-1" name="payment type">
-                                <option>cash</option>
-                                <option>credit</option>
+                        <select onChange={(e)=>setpurchasedetails({...purchasedetails, ['paymentmethod'] : e.target.value})}  className=" border focus:outline-none border-gray-400 rounded px-2 w-full  text-sm py-1" name="payment type">
+                                <option value="cash">cash</option>
+                                <option value="credit">credit</option>
+                                <option value="UPI">UPI</option>
                         </select>
                     </div>
                    
                     <div className="text-sm space-y-1">
                     <h1>Supplier</h1>
-                        <select  className=" border focus:outline-none border-gray-400 rounded px-2 w-full text-sm py-1" name="vendor">
+                        <select  onChange={(e)=>setpurchasedetails({...purchasedetails, ['supplier'] : e.target.value})}  className=" border focus:outline-none border-gray-400 rounded px-2 w-full text-sm py-1" name="vendor">
                                 <option>-- select --</option>
                                 {
                                     suppliers && suppliers.map((item,key)=>{
                                         return(
-                                            <option>{item.supplierName}</option>
+                                            <option value= {item.id}>{item.supplierName}</option>
                                         )
                                     })
                                 }
@@ -196,7 +238,7 @@ const PurchaseAdd=(props)=>{
                                     </div>
                                     <div className="space-x-2 flex justify-end">
                                         <button className="px-2 w-5/12 bg-red-500 text-white py-1 rounded font-semibold">Clear</button>
-                                        <button className="px-2 w-5/12 bg-green-500 text-white py-1 rounded font-semibold">Checkout</button>
+                                        <button  onClick={()=>upload()} className="px-2 w-5/12 bg-green-500 text-white py-1 rounded font-semibold">Checkout</button>
                                     </div>
                                 </div>
                         </div>

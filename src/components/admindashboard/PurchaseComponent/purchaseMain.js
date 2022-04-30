@@ -31,6 +31,9 @@ const PurchaseMain=()=>{
         
   }
 
+  const purchaseaddclose=()=>{
+      setaddpurchase(false)
+  }
   const AddNew=()=>{
     setaddpurchase(true)
 }
@@ -51,6 +54,7 @@ const PurchaseMain=()=>{
                                     <div  className="w-full ">
                                         <PurchaseAdd
                                         purchasetable={purchasetable}
+                                        purchaseaddclose={purchaseaddclose}
                                         />
                                         {/* <FormLayout
                                             formdata={addformdata}

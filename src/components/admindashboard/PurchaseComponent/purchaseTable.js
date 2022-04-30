@@ -10,7 +10,9 @@ const PurchaseTable=(props)=>{
                     <th className=" font-semibold">product</th>
                     <th className=" font-semibold">Price</th>
                     <th className=" font-semibold">QTY</th>
-                    <th className=" font-semibold">Total</th>
+                    <th className=" font-semibold">subTotal</th>
+                    <th className=" font-semibold">TaxAmount</th>
+                    <th className=" font-semibold">NetAmount</th>
                     <th className=" font-semibold"></th>
                 </tr>
                 {
@@ -27,6 +29,8 @@ const PurchaseTable=(props)=>{
                                 <button onClick={()=>{item.productqty+1 <= item.qty && props.qtychange(item,item.productqty+1)}} className="bg-green-500 focus:outline-none text-white text-xl px-2 h-6 w-8 flex justify-center items-center  font-semibold rounded">+</button>
                             </td>
                             <td>{item.productqty * item.price}</td>
+                            <td>{item.taxAmount}</td>
+                            <td>{item.netAmount}</td>
                             <td onClick={()=>props.removeproduct(key)}><MdDelete/></td>
                         </tr>
                         )
