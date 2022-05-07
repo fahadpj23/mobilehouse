@@ -30,7 +30,7 @@ const AllProduct=(props)=>{
             setaddproduct(true)
      
         })
-       
+      
     }
 
     const productAddSuccess=()=>{

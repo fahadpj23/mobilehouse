@@ -16,8 +16,16 @@ const AddProductWindow=(props)=>{
                         <input className="w-full border-2 border-gray-400 rounded-md py-1 px-1" name="Name" id="Name" defaultValue={product.name}/>
                     </div>
                     <div className=" text-sm">
-                        <h1>Price</h1>
-                        <input  type="number" className="w-full border-2 border-gray-400 rounded-md py-1 px-1"  name="Price" id="Price" defaultValue={product.price}/>
+                        <h1>Purchase Price</h1>
+                        <input  type="number" className="w-full border-2 border-gray-400 rounded-md py-1 px-1"  name="purchasePrice" id="purchasePrice" defaultValue={product.purchasePrice}/>
+                    </div>
+                    <div className=" text-sm">
+                        <h1>Selling Price</h1>
+                        <input  type="number" className="w-full border-2 border-gray-400 rounded-md py-1 px-1"  name="sellingPrice" id="sellingPrice" defaultValue={product.sellingPrice}/>
+                    </div>
+                    <div className=" text-sm">
+                        <h1>Sales Price</h1>
+                        <input  type="number" className="w-full border-2 border-gray-400 rounded-md py-1 px-1"  name="salesPrice" id="salesPrice" defaultValue={product.salesPrice}/>
                     </div>
               
                

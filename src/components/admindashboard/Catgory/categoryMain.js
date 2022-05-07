@@ -5,6 +5,7 @@ import FormLayout from '../form'
 import MobileHouseApi from "../../../helpers/axiosinstance";
 import { Usercontext } from "../../context/userContext";
 import TableContent from "../table";
+import NavOperation from '../operation'
 import { AiFillSetting ,AiOutlineClose} from 'react-icons/ai';
 const CategoryMain=(props)=>{
     const context=useContext(Usercontext )
@@ -49,6 +50,10 @@ const CategoryMain=(props)=>{
         })
         e.preventDefault();
       }
+
+      const AddNew=()=>{
+        setaddcategory(true)
+    }
 
       const tableOperation=(operation,category)=>{
         console.log(category)
@@ -113,12 +118,9 @@ const CategoryMain=(props)=>{
             <SideNav/>
             <div className="w-10/12">
                 
-                <div className="w-full flex justify-end space-x-3">
-                <button className="px-3 py-1 border border-gray-600">DELETE</button>
-                <button onClick={()=>setaddcategory(true)}className="px-3 py-1 border border-gray-600 ">ADD NEW</button>
-                   
-
-                </div>
+            <NavOperation
+            AddNew={AddNew}
+            />
                 {
                     category &&
                     <TableContent

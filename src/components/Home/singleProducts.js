@@ -27,7 +27,7 @@ const SingleProduct=(props)=>{
                                         <h1 className="font-semibold text-lg truncate">{item.name}</h1>
                                         <div className="flex justify-between w-full">
                                             <div className="w-5/12">
-                                                <h1 className="font-semibold truncate " >₹{item.price}.00Rs</h1>
+                                                <h1 className="font-semibold truncate " >₹{item.salesPrice ?? item.sellingPrice}.00Rs</h1>
                                                 <h1 className="text-xs line-through truncate">₹{item.mrp}.00Rs</h1>
                                             </div>
                                             <div className="flex items-center justify-end w-7/12">
