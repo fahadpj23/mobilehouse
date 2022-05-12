@@ -52,7 +52,7 @@ const Nav=(props)=>{
     }
 
     return(
-        <div >
+        <div className="shadow-sm">
             {loginstatus==true&&
                 <Login
                     loginsuccess={loginsuccess}
@@ -123,6 +123,7 @@ const Nav=(props)=>{
                     </div>
                     
                 </div>
+                {/* <hr className="w-full h-1 bg-gray-200"></hr> */}
         </div>
         )
 }

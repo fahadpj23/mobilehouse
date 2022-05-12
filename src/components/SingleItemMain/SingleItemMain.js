@@ -81,7 +81,7 @@ const SingleItemMain=(props)=>{
                                     <div className="w-10/12">
                                         <div className="mt-10 space-y-1">
                                             <h1 className="text-xl font-semibold tracking-wider ">{item.name} {item.CoverType}</h1>
-                                            <h1><span className="text-xl font-bold text-green-600">₹{item.price}</span><span className="line-through ml-3 text-lg font-semibold text-gray-600">₹{item.mrp}</span></h1>
+                                            <h1><span className="text-xl font-bold text-green-600">₹{item.salesPrice ?? item.sellingPrice}</span><span className="line-through ml-3 text-lg font-semibold text-gray-600">₹{item.mrp}</span></h1>
                                             <h1 className="flex items-center bg-green-500 w-8/12 py-2  text-white rounded px-2"><span ><ImTruck className=""/></span><span className="font-semibold ml-1 "> Free Shipping </span><span className="text-sm ml-1">  & Inclusive of all taxes</span></h1>
                                             <div className="flex ">
                                                 <div className="w-2/12 flex flex-col  space-y-2">

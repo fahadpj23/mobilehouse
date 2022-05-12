@@ -40,7 +40,7 @@ function Home() {
        
          
         }, [])
-       
+       console.log(cover[0])
   return (
     <div>
   

@@ -99,7 +99,7 @@ export default class  ProductSlider extends Component{
                 
                 <div className="w-full flex justify-between py-4" >
                  <h2 className="font-semibold ">{this.props.Heading}</h2>
-                 <Link className="bg-blue-500 rounded-xl  text-white px-3 text-sm flex items-center py-1" to={{pathname: "/ProductList", state:{category:this.props.type}}}>View All</Link>
+                 <Link className="bg-blue-500 rounded-xl  text-white px-3 text-sm flex items-center py-1" to={{pathname: "/ProductList",search: "?" + new URLSearchParams({category: this.props.type}).toString()}}>View All</Link>
                 </div>
                 <Slider {...settings}>
                 {this.props.items.map((item,key)=>{

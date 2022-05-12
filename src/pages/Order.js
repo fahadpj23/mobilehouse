@@ -7,7 +7,7 @@ import { AuthContext } from '../helpers/authcontext';
 function Order(){
     let history=useHistory();
     const Auth=useContext(AuthContext)
-    console.log("dsdsds")
+
     return(
         <div>
             

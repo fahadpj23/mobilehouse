@@ -42,7 +42,7 @@ const CategoryMain=(props)=>{
             setoperationid("")
             setoperation("")
             setoperationitem("")
-            MobileHouseApi.get('getCategory')
+            MobileHouseApi.get('/getCategory',{headers:{accessToken:localStorage.getItem("accessToken")}})
             .then((res)=>{
                 setcategory(res.data)
             })
@@ -53,7 +53,7 @@ const CategoryMain=(props)=>{
 
       const AddNew=()=>{
         setaddcategory(true)
-    }
+     }
 
       const tableOperation=(operation,category)=>{
         console.log(category)

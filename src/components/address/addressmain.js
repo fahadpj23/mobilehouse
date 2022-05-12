@@ -113,7 +113,7 @@ const AddressMain=(props)=>{
                                 <div>
                                     <h1>{item1.name}</h1>
                                     <h1>Standard Delivery</h1>
-                                    <h1>Rs:      {item1.price}</h1>
+                                    <h1>Rs:      {item1.salesPrice ?? item1.seliingPrice}</h1>
                                     <h1>qty:     {item1.qty}</h1>
                                 </div>
                              
@@ -125,7 +125,7 @@ const AddressMain=(props)=>{
                     </div>
                     <div className="space-y-5"> 
                     {props.item && props.item.map((item1,key)=>{
-                           total=total +  +item1.price * +item1.qty
+                           total=total +  (item1.salesPrice ?? item1.seliingPrice) * +item1.qty
                         })}   
                         <h1 className=" flex justify-between mt-8 text-lg font-semibold"><span >Total Payable</span><span className="text-green-500 ">{total}</span></h1>
                         <button onClick={()=>placeorder()} className="w-full text-white py-2 focus:outline-none bg-primary">Place Order</button>

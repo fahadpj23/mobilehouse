@@ -9,32 +9,23 @@ const AddProductMain=(props)=>{
     let history=useHistory();
     console.log(props.operationitem.category)
     const context=useContext(Usercontext )
-    const [category, setcategory] = useState(props.category ? props.category: "")
-    const [categoryid, setcategoryid] = useState("")
+    const [category, setcategory] = useState(props.operationitem.category ?? "")
+    const [categoryid, setcategoryid] = useState(props.operationitem.category ?? "")
     const [catgeorytotal, setcatgeorytotal] = useState("")
     const [categoryattribute,setcategoryattribute]=useState("")
    
     const [categoryset,setcategoryset]=useState(false)
 
-
-    const categoryselect=(catname)=>{
+    console.log(props)
+    const categoryselect=(catid)=>{
         
-       console.log(catgeorytotal)
-        setcategory(catname)
-        catgeorytotal && catgeorytotal.Data.map((item,key)=>{
-                       console.log(item.categoryName)         
-                 if(catname==item.categoryName)
-                 {
-                   
-                    setcategoryid(item.id)
-                     MobileHouseApi.get("/getcategoryAttribute",{params:{"categoryid":item.id}},{headers:{accessToken:localStorage.getItem("UserToken")}})
+      
+                     MobileHouseApi.get("/getcategoryAttribute",{params:{"categoryid":catid}},{headers:{accessToken:localStorage.getItem("UserToken")}})
                      .then((res)=>{
                         setcategoryattribute(res.data)
                         console.log(res.data)
                      })
-                 }
-                            
-         } )
+                
     }
 
   
@@ -93,12 +84,12 @@ const AddProductMain=(props)=>{
                 
                 <div className="space-y-1">
                     <h1>select category *</h1>
-                    <select onChange={(e)=>categoryselect(e.target.value)} value={category} className="border-2 border-gray-400 rounded-md w-5/12 text-sm focus:outline-none py-1">
+                    <select onChange={(e)=>categoryselect(e.target.value)} value={categoryid} className="border-2 border-gray-400 rounded-md w-5/12 text-sm focus:outline-none py-1">
                         <option>--Select Catgeory---</option>
                         {
                             catgeorytotal && catgeorytotal.Data.map((item,key)=>
                                 
-                                <option key={key} className="text-black" value={item.categoryName}>{item.categoryName}</option>
+                                <option key={key} className="text-black" value={item.id}>{item.categoryName}</option>
                             
                             )
                         }

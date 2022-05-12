@@ -58,8 +58,8 @@ const PurchaseAdd=(props)=>{
         props.purchasetable.map((item,key)=>{
             if(product.id==item.id)
             {
-                    product.taxAmount= (product.price * qty  ) * product.GST /100
-                    product.netAmount= (product.price * qty  ) +(product.price * qty ) * product.GST /100
+                    product.taxAmount= (product.purchasePrice * qty  ) * product.GST /100
+                    product.netAmount= (product.purchasePrice * qty  ) +(product.purchasePrice * qty ) * product.GST /100
                     item.productqty=qty
                     setchangeqty(!changeqty)
             }
@@ -71,8 +71,8 @@ const PurchaseAdd=(props)=>{
      
         if(props.purchasetable.some((pro)=>pro.id==product.id)==false)
         {
-            product.taxAmount= (product.price * 1 ) * product.GST /100
-            product.netAmount= (product.price * 1 ) +(product.price * 1 ) * product.GST /100
+            product.taxAmount= (product.purchasePrice * 1 ) * product.GST /100
+            product.netAmount= (product.purchasePrice * 1 ) +(product.purchasePrice * 1 ) * product.GST /100
             props.purchasetable.push(product)
         }
         else
@@ -82,8 +82,8 @@ const PurchaseAdd=(props)=>{
                 {
                     if( item1.productqty+1 > item1.qty)
                     {
-                        product.taxAmount= (product.price * item1.productqty + 1  ) * product.GST /100
-                        product.netAmount= (product.price * item1.productqty + 1  ) +(product.price * item1.productqty + 1 ) * product.GST /100
+                        product.taxAmount= (product.purchasePrice * item1.productqty + 1  ) * product.GST /100
+                        product.netAmount= (product.purchasePrice * item1.productqty + 1  ) +(product.purchasePrice * item1.productqty + 1 ) * product.GST /100
                         item1.productqty=item1.productqty + 1 
                     }
                     else
@@ -177,7 +177,7 @@ const PurchaseAdd=(props)=>{
                                                  
                                                   <button onClick={()=>productAdd(item)} className="flex justify-between w-full hover:bg-gray-300 py-1 px-1 ">
                                                       <h1>{item.name}</h1>
-                                                      <h1>{item.price}</h1>
+                                                      <h1>{item.purchasePrice}</h1>
                                                       <button className="bg-green-500 text-white px-2 text-sm py-1 tracking-wider font-semibold">ADD+</button>
 
                                                   </button>
@@ -211,9 +211,9 @@ const PurchaseAdd=(props)=>{
                         <div className="w-6/12 flex flex-col justify-between h-56 border border-gray-400 p-2 rounded">
                             {
                                 props.purchasetable.map((item,key)=>{
-                                    subTotal= +subTotal +(+item.price * +item.productqty)
-                                    TaxAmount= +TaxAmount + ((+item.price* +item.productqty)*item.GST/100)
-                                    GrandTotal= +GrandTotal+ ((item.price*item.productqty)+ ((+item.price* +item.productqty)*item.GST/100))
+                                    subTotal= +subTotal +(+item.purchasePrice * +item.productqty)
+                                    TaxAmount= +TaxAmount + ((+item.purchasePrice* +item.productqty)*item.GST/100)
+                                    GrandTotal= +GrandTotal+ ((item.purchasePrice*item.productqty)+ ((+item.purchasePrice* +item.productqty)*item.GST/100))
                                 })
                             }
                                 <div className="text-sm  space-y-2" >

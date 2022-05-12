@@ -3,7 +3,7 @@ import { BiDotsVerticalRounded } from 'react-icons/bi';
 const TableOperation=(props)=>{
     const[operationsview,setoperationsview]=useState(false)
     const item=props.item
-    console.log(props)
+
     return(
 
         <button className={`focus:outline-none ${operationsview && "relative" }`} onClick={()=>setoperationsview(!operationsview)}><BiDotsVerticalRounded/>
