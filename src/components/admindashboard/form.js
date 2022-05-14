@@ -84,7 +84,7 @@ const FormLayout=(props)=>{
                                  
                                     <div className="space-y-2">
                                         <div className= "flex space-x-1">   
-                                            <input type={item.type} onChange={(e)=>{item.more && setattvalue(e.target.value)}} className={`  w-full ${item.name=="Address" && "h-20"} px-2 py-1 rounded-md border border-gray-400`} defaultValue={props.operation!="" && props.operation!="" && !item.more  && props.Mainname!="" ? props.Mainname :""} value={ item.more && attvalue}  name={item.name} id={item.name} />
+                                            <input type={item.type} onChange={(e)=>{item.more && setattvalue(e.target.value)}} required={item.required && true} className={`  w-full ${item.name=="Address" && "h-20"} px-2 py-1 rounded-md border border-gray-400`} defaultValue={props.operation!="" && props.operation!="" && !item.more  && props.Mainname!="" ? props.Mainname :""} value={ item.more && attvalue}  name={item.name} id={item.name} />
                                             <button type="button" onClick={()=>addattribute() } className={`${props.operation!="view" && item.more  ? "rounded-md bg-red-500 text-white px-2":"hidden"}`}>ADD</button>
 
                                         </div>

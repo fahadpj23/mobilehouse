@@ -92,7 +92,7 @@ export default class  ProductSlider extends Component{
             ]
             };
              
-            console.log(this.props)
+            console.log(this.props.type)
             return (
      
               <div>
@@ -100,6 +100,8 @@ export default class  ProductSlider extends Component{
                 <div className="w-full flex justify-between py-4" >
                  <h2 className="font-semibold ">{this.props.Heading}</h2>
                  <Link className="bg-blue-500 rounded-xl  text-white px-3 text-sm flex items-center py-1" to={{pathname: "/ProductList",search: "?" + new URLSearchParams({category: this.props.type}).toString()}}>View All</Link>
+                 {/* <Link to={{pathname: "/singleItem",   search: "?" + new URLSearchParams({productid: item.id}).toString() }} className="h-full items-center justify-center flex flex-col space-y-3 p-3 "> */}
+
                 </div>
                 <Slider {...settings}>
                 {this.props.items.map((item,key)=>{

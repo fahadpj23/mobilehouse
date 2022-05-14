@@ -15,7 +15,7 @@ const ProductListMain=(props)=>{
                 </div>
 
             
-                    <div className="grid grid-cols-6 gap-4 p-5">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 p-5">
                         {
                             props.products.map((item,key)=>{
                                 return(

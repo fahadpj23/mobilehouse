@@ -19,6 +19,7 @@ import Product from './pages/Product';
 import OrderSuccess from './pages/ordersuccess';
 import Purchase from './pages/Purchase';
 import Supplier from 'pages/Supplier';
+import Hsncode from 'pages/HsnCode';
 function App(){
     const[ authState, setAuthState ]=useState("")
     const[ UserauthState, setUserAuthState ]=useState("")
@@ -103,6 +104,7 @@ function App(){
                                     <Route  path="/OrderSuccess" component={OrderSuccess}/>
                                     <Route  path="/Purchase" component={Purchase}/>
                                     <Route  path="/Supplier" component={Supplier}/>
+                                    <Route  path="/Hsncode" component={Hsncode}/>
 
                                     
                                     
