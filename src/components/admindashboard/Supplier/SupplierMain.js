@@ -26,7 +26,8 @@ const SupplierMain=()=>{
         {name:"phone",type:"number"},
         {name:"Address",type:"text"},
         {name:"Pincode",type:"number"},
-        {name:"status",type:"select",value:["active","disable"]},
+        {name:"status",type:"select",value:[{value:1,name:"active"},{value:0,name:"disable"}],required:"true"},
+
         
     ]
 

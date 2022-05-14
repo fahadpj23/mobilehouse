@@ -20,7 +20,8 @@ const AttributeMain=()=>{
 
     const addformdata=[
         {name:"name",type:"text"},
-        {name:"status",type:"select",value:["active","disable"]},
+        {name:"status",type:"select",value:[{value:1,name:"active"},{value:0,name:"disable"}],required:"true"},
+
         {name:"values",type:"text",more:"yes"}
     ]
     const attributevalues=[];

@@ -34,8 +34,8 @@ const FormLayout=(props)=>{
     useEffect(()=>{
         if(props.operation!=="" && editok===false)
         {
-            console.log("dsd")
-            props.operationitem.values.map((item,key)=>{
+            console.log( props.operationitem)
+            props.operationitem && props.operationitem.values.map((item,key)=>{
                 props.attributevalues.push(item)
               })
               seteditok(true)
@@ -77,6 +77,9 @@ const FormLayout=(props)=>{
                 props.formdata.map((item,key)=>{
                     return(
                         <div className="flex flex-col space-y-2 mt-7">
+                            {console.log(props.operationitem)}
+                            {console.log(item.name)}
+                            {console.log(props.operationitem[item.name])}
                               <label className="font-semibold" for="fname">{item.name}:</label>
                               {
                                  
@@ -84,7 +87,7 @@ const FormLayout=(props)=>{
                                  
                                     <div className="space-y-2">
                                         <div className= "flex space-x-1">   
-                                            <input type={item.type} onChange={(e)=>{item.more && setattvalue(e.target.value)}} required={item.required && true} className={`  w-full ${item.name=="Address" && "h-20"} px-2 py-1 rounded-md border border-gray-400`} defaultValue={props.operation!="" && props.operation!="" && !item.more  && props.Mainname!="" ? props.Mainname :""} value={ item.more && attvalue}  name={item.name} id={item.name} />
+                                            <input type={item.type} onChange={(e)=>{item.more && setattvalue(e.target.value)}} required={item.required && true} className={`  w-full ${item.name=="Address" && "h-20"} px-2 py-1 rounded-md border border-gray-400`} defaultValue={  props.operationitem && props.operationitem[item.name]} value={ item.more && attvalue}  name={item.name} id={item.name} />
                                             <button type="button" onClick={()=>addattribute() } className={`${props.operation!="view" && item.more  ? "rounded-md bg-red-500 text-white px-2":"hidden"}`}>ADD</button>
 
                                         </div>
@@ -114,16 +117,31 @@ const FormLayout=(props)=>{
                                     item.type=="select" &&
                                     <div>
                                         <div className="flex">
-                                            <select onChange={(e)=>{item.more && setattvalue(e.target.value)}} defaultValue={!item.more && props.Mainstatus} className="w-full px-2 py-1 rounded-md border border-gray-400" name={item.name}>
+                                            { item.more ?
+
+                                             <select onChange={(e)=>{item.more && setattvalue(e.target.value)}} defaultValue={!item.more && props.Mainstatus} className="w-full px-2 py-1 rounded-md border border-gray-400" name={item.name}>
+                                             <option>--select--</option>
+                                             {
+                                                 item.value&& item.value.map((item1,key1)=>{
+                                                     return(
+                                                         <option value={item1}>{item1}</option>
+                                                     )
+                                                 })
+                                             }
+                                            </select>
+                                            :
+
+                                             <select onChange={(e)=>{item.more && setattvalue(e.target.value)}} defaultValue={!item.more && props.Mainstatus} className="w-full px-2 py-1 rounded-md border border-gray-400" name={item.name}>
                                                 <option>--select--</option>
                                                 {
                                                     item.value&& item.value.map((item1,key1)=>{
                                                         return(
-                                                            <option value={item1}>{item1}</option>
+                                                            <option value={item1.value}>{item1.name}</option>
                                                         )
                                                     })
                                                 }
                                             </select>
+                                            }
                                             <button type="button" onClick={()=>addattribute() } className={`${item.more  ? "rounded-md bg-red-500 text-white px-2":"hidden"}`}>ADD</button>
 
                                         </div>

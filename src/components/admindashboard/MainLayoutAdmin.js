@@ -3,7 +3,7 @@ import SideNav from './sideNav';
 const MainLayoutAdmin=({children})=>{
     return(
         <div className="w-screen flex">
-        <div className="w-1/12">
+        <div className="w-2/12 lg:w-1/12">
             
             <SideNav/>
         </div>

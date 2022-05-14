@@ -28,7 +28,7 @@ const HsnMain=()=>{
         {name:"CGST",type:"number",required:"true"},
         {name:"SGST",type:"number",required:"true"},
         {name:"IGST",type:"number",required:"true"},
-        {name:"status",type:"select",value:["active","disable"],required:"true"},
+        {name:"status",type:"select",value:[{value:1,name:"active"},{value:0,name:"disable"}],required:"true"},
     
     ]
     const attributevalues=[];
@@ -71,11 +71,11 @@ const HsnMain=()=>{
         setaddHsn(true)
      }
 
-      const tableOperation=(operation,attribute)=>{
-            console.log(attribute)
-            setoperationid(attribute.id)
+      const tableOperation=(operation,HSN)=>{
+           
+            setoperationid(HSN.id)
         
-            setoperationitem(attribute)
+            setoperationitem(HSN)
             setoperation(operation)
             setaddHsn(true)
             
@@ -115,7 +115,7 @@ const HsnMain=()=>{
                                             attributevalues={attributevalues}
                                             operation={operation}
                                             operationitem={operationitem}
-                                            Mainname={operationitem.attributeName}
+                                            // Mainname={operationitem.attributeName}
                                             Mainstatus={operationitem.status}
                                         />
                                     
