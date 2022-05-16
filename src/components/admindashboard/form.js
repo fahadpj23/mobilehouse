@@ -35,28 +35,20 @@ const FormLayout=(props)=>{
         if(props.operation!=="" && editok===false)
         {
             console.log( props.operationitem)
-            props.operationitem && props.operationitem.values.map((item,key)=>{
+            props.operationitem.values && props.operationitem.values.map((item,key)=>{
                 props.attributevalues.push(item)
               })
               seteditok(true)
               console.log(props.attributevalues)
             
         }
-        // if(deleteattvalue==0)
-        // {
-        //     if(props.attributevalues){
-        //         props.attributevalues.length=0
-        //         setdeleteattvalue("")
-        //     }  
-        //    console.log("dsds")
-         
-        // }
+       
         if(deleteattvalue!="")
         {
            console.log(props.attributevalues.length)
             if(props.attributevalues.length==1)
             {
-                console.log("fdf")
+               
                 props.attributevalues.pop();
                 setdeleteattvalue("")
             }

@@ -100,7 +100,7 @@ const HsnMain=()=>{
              {
                     addHsn==true && 
                         <div className="w-full h-full flex items-center bg-opacity-95 justify-center bg-gray-100 fixed top-0">
-                            <div className=" space-y-4  w-3/12 h-4/5 ">
+                            <div className=" space-y-4  w-4/12 h-4/5 ">
                                 <div className="max-h-full bg-white p-4 overflow-auto">
                                     <div className="w-full">
                                         <button onClick={()=>setaddHsn(false)} className="flex focus:outline-none justify-end w-full text-right"><AiOutlineClose/></button>
