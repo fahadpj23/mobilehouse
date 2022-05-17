@@ -9,6 +9,7 @@ import FormLayout from '../form'
 import MobileHouseApi from "helpers/axiosinstance";
 import { Usercontext } from "components/context/userContext";
 import TableContent from "../table";
+import MainLayoutAdmin from "../MainLayoutAdmin";
 const SupplierMain=()=>{
 
 
@@ -22,10 +23,10 @@ const SupplierMain=()=>{
 
  
     const addformdata=[
-        {name:"name",type:"text"},
-        {name:"phone",type:"number"},
-        {name:"Address",type:"text"},
-        {name:"Pincode",type:"number"},
+        {name:"supplierName",type:"text",required:"true"},
+        {name:"phone",type:"number",required:"true"},
+        {name:"address",type:"text",required:"true"},
+        {name:"pincode",type:"number",required:"true"},
         {name:"status",type:"select",value:[{value:1,name:"active"},{value:0,name:"disable"}],required:"true"},
 
         
@@ -41,7 +42,8 @@ const SupplierMain=()=>{
         {
             data.append("oldattributeName",operationitem.attributeName )
         }
-       
+        data.append("operation",operation)
+        data.append("operationid",operationid)
         
         MobileHouseApi.post('/SupplierAdd',data)
         .then((res)=>{
@@ -66,11 +68,11 @@ const SupplierMain=()=>{
       }
    
 
-      const tableOperation=(operation,attribute)=>{
-            console.log(attribute)
-            setoperationid(attribute.id)
+      const tableOperation=(operation,supplier)=>{
+            console.log(supplier)
+            setoperationid(supplier.id)
         
-            setoperationitem(attribute)
+            setoperationitem(supplier)
             setoperation(operation)
             setaddsupplier(true)
             
@@ -93,7 +95,7 @@ const SupplierMain=()=>{
       },[addsupplier,supplier])
         console.log(supplier)
            
- console.log(operationitem)
+ console.log(operation)
     return(
         <div className="flex w-full">
              {
@@ -125,24 +127,23 @@ const SupplierMain=()=>{
                            
                         </div>
                 }
-            <SideNav/>
-                <div className="w-10/12">
-
-                <div className="w-full flex justify-end space-x-3">
-                        <NavOperation
+                 <MainLayoutAdmin>
+                    <NavOperation
                             AddNew={AddNew }
                         />
 
-                </div>
-                {
-                    supplier &&
-                    <TableContent
-                         Data={supplier}
-                         tableOperation={tableOperation}
+               
+                    {
+                        supplier &&
+                        <TableContent
+                            Data={supplier}
+                            tableOperation={tableOperation}
 
-                    />
-                }
-            </div>
+                        />
+                    }
+           
+                </MainLayoutAdmin>
+          
     </div>   
     )
 }

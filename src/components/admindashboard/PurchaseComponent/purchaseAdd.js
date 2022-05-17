@@ -56,7 +56,7 @@ const PurchaseAdd=(props)=>{
 
     const qtychange=(product,qty)=>{
         props.purchasetable.map((item,key)=>{
-            if(product.id==item.id)
+            if(product.id===item.id)
             {
                     product.taxAmount= (product.purchasePrice * qty  ) * product.GST /100
                     product.netAmount= (product.purchasePrice * qty  ) +(product.purchasePrice * qty ) * product.GST /100
@@ -69,7 +69,7 @@ const PurchaseAdd=(props)=>{
     const productAdd=(product)=>{
         product.productqty=1
      
-        if(props.purchasetable.some((pro)=>pro.id==product.id)==false)
+        if(props.purchasetable.some((pro)=>pro.id===product.id)===false)
         {
             product.taxAmount= (product.purchasePrice * 1 ) * product.GST /100
             product.netAmount= (product.purchasePrice * 1 ) +(product.purchasePrice * 1 ) * product.GST /100
@@ -78,7 +78,7 @@ const PurchaseAdd=(props)=>{
         else
         {
             props.purchasetable.map((item1,key1)=>{
-                if(product.id==item1.id)
+                if(product.id===item1.id)
                 {
                     if( item1.productqty+1 > item1.qty)
                     {
@@ -107,14 +107,14 @@ const PurchaseAdd=(props)=>{
 
     useEffect(()=>{
 
-        if(suppliers=="")
+        if(suppliers==="")
         {
             MobileHouseApi.get('/getSupplier')
             .then((res)=>{
                 setsuppliers(res.data.Data)
             })
         }
-        if(productadded==true)
+        if(productadded===true)
         {
             setproductadded(false)
         }

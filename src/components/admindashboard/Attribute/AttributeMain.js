@@ -14,6 +14,7 @@ const AttributeMain=()=>{
     const [addattribute,setaddattribute]=useState(false)
     const [attribute,setattribute]=useState("")
     const [operation,setoperation]=useState("")
+    // when edit or view call then selected item data store in operation item
     const[operationitem,setoperationitem]=useState("")
     const[operationid,setoperationid]=useState("")
 
@@ -104,7 +105,7 @@ const AttributeMain=()=>{
                                         <FormLayout
                                             formdata={addformdata}
                                             handleSubmit={handleSubmit}
-                                            attributevalues={attributevalues}
+                                            values={attributevalues}
                                             operation={operation}
                                             operationitem={operationitem}
                                             Mainname={operationitem.attributeName}

@@ -47,7 +47,7 @@ const PurchaseMain=()=>{
     }
 
     useEffect(()=>{
-        if(purchase=="")
+        if(purchase==="")
         {
             mobilehouseApi.get('/getPurchase')
             .then((res)=>{
@@ -59,13 +59,13 @@ const PurchaseMain=()=>{
     return(
         <div className="flex w-full">
              {
-                    addpurchase==true && 
+                    addpurchase===true && 
                         <div className="w-full h-full flex items-center bg-opacity-95 justify-center bg-gray-100 fixed top-0">
                             <div className=" space-y-4  w-full flex justify-center  h-4/5 ">
                                 <div className="max-h-full w-9/12 bg-white p-4 overflow-auto">
                                     <div className="w-full">
                                         <button onClick={()=>setaddpurchase(false)} className="flex focus:outline-none justify-end w-full text-right"><AiOutlineClose/></button>
-                                        {/* <h1 className="w-full flex justify-center text-xl font-semibold">{ operation=="" ? "ADD" : operation} Purchase</h1> */}
+                                        {/* <h1 className="w-full flex justify-center text-xl font-semibold">{ operation==="" ? "ADD" : operation} Purchase</h1> */}
                                        
                                     </div>
                                     

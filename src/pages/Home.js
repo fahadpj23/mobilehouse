@@ -56,27 +56,27 @@ function Home() {
         </div>
         <div className="w-full flex justify-center">
           <div className="w-11/12 px-6">
-                      {cover!="" && <ProductSlider
+                      {cover!=="" && <ProductSlider
                       
                        items={cover}
                        Heading="Mobile Covers"
                        type="46"            
                       />}
                       
-                      {accessories!="" && <ProductSlider
+                      {accessories!=="" && <ProductSlider
                       
                       items={accessories}
                       Heading="Headset"
                       type="47"
                                 
                      />}
-                      {headset!="" && <ProductSlider
+                      {headset!=="" && <ProductSlider
                       
                       items={headset}
                       Heading="Accessories" 
                       type="48"           
                      />}
-                      {phone!="" && <ProductSlider
+                      {phone!=="" && <ProductSlider
                       
                       items={phone}
                       Heading="phone" 

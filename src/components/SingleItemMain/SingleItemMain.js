@@ -13,7 +13,7 @@ const SingleItemMain=(props)=>{
     const [qtystate, setqtystate] = useState("ok")
     const [pincode, setpincode] = useState("")
     const [pincodeavailability, setpincodeavailability] = useState("")
-    const [imagedisplay, setimagedisplay] = useState(props.singleitem)
+
     const [ramdisplay, setramdisplay] = useState(props.singleitem)
     const [storagedisplay, setstoragedisplay] = useState(props.singleitem)
     // let colorArray=[];
@@ -30,13 +30,13 @@ const SingleItemMain=(props)=>{
            
             if(item1.ram.attributeId!=null )
             {
-             item1.image   &&  item1.ram.attributeId== props.singleitem.ram.attributeId && item1.storage.attributeId== storagedisplay.storage.attributeId  && imageArray.some((product)=>product.image==item1.image)==false &&imageArray.push(item1)
-             item1.ram &&  ramArray.some((product)=>product.ram.attributeId==item1.ram.attributeId)==false && ramArray.push(item1)
-             item.storage && item1.ram &&  item1.ram.attributeId== props.singleitem.ram.attributeId && storageArray.some((product)=>product.storage.attributeId==item1.storage.attributeId)==false  && storageArray.push(item1)
+             item1.image   &&  item1.ram.attributeId=== props.singleitem.ram.attributeId && item1.storage.attributeId=== storagedisplay.storage.attributeId  && imageArray.some((product)=>product.image===item1.image)===false &&imageArray.push(item1)
+             item1.ram &&  ramArray.some((product)=>product.ram.attributeId===item1.ram.attributeId)===false && ramArray.push(item1)
+             item.storage && item1.ram &&  item1.ram.attributeId=== props.singleitem.ram.attributeId && storageArray.some((product)=>product.storage.attributeId===item1.storage.attributeId)===false  && storageArray.push(item1)
             
             }
             else
-             item1.image && imageArray.some((product)=>product.image==item1.image)==false && imageArray.push(item1)
+             item1.image && imageArray.some((product)=>product.image===item1.image)===false && imageArray.push(item1)
              })
     
     // setimagedisplay(props.singleitem)
@@ -136,7 +136,7 @@ const SingleItemMain=(props)=>{
                                                         imageArray.map((item1,key1)=>{
                                                             return(
                                                                
-                                                                <button  onClick={()=>props.singleitemset(item1)} className={` px-2 uppercase h-16 w-16   ${item.image==item1.image ? "border-red-500 border-2": "border border-gray-500"}   rounded text-sm focus:outline-none`}>
+                                                                <button  onClick={()=>props.singleitemset(item1)} className={` px-2 uppercase h-16 w-16   ${item.image===item1.image ? "border-red-500 border-2": "border border-gray-500"}   rounded text-sm focus:outline-none`}>
                                                                     
                                                                 <img src={`http://localhost:9000/images/${item1.image}`} alt="" className="object-contain  overflow-hidden  "/>
 
@@ -176,7 +176,7 @@ const SingleItemMain=(props)=>{
                                                         ramArray.map((item1,key1)=>{
                                                            
                                                             return(
-                                                                 <button onClick={()=>props.singleitemset(item1)} className={` px-2 uppercase h-8  ${item.ram.attributeId==item1.ram.attributeId ? "border-red-500 border-2": "border border-gray-500"}   rounded text-sm focus:outline-none`}>{item1.ram.attributeValue} GB</button>
+                                                                 <button onClick={()=>props.singleitemset(item1)} className={` px-2 uppercase h-8  ${item.ram.attributeId===item1.ram.attributeId ? "border-red-500 border-2": "border border-gray-500"}   rounded text-sm focus:outline-none`}>{item1.ram.attributeValue} GB</button>
                                                             )
                                                         })
                                                     }
@@ -194,8 +194,8 @@ const SingleItemMain=(props)=>{
                                                         storageArray.map((item1,key1)=>{
                                                             return(
                                                                 
-                                                                item.ram.attributeValue==item1.ram.attributeValue &&
-                                                                <button onClick={()=>props.singleitemset(item1)} className={` px-2 uppercase h-8  ${item.storage.attributeValue==item1.storage.attributeValue ? "  border-2 border-red-500" : " border border-gray-500"}   rounded text-sm focus:outline-none`}>{props.singleitem.ram.attributeValue==item1.ram.attributeValue &&  item1.storage.attributeValue }GB </button>
+                                                                item.ram.attributeValue===item1.ram.attributeValue &&
+                                                                <button onClick={()=>props.singleitemset(item1)} className={` px-2 uppercase h-8  ${item.storage.attributeValue===item1.storage.attributeValue ? "  border-2 border-red-500" : " border border-gray-500"}   rounded text-sm focus:outline-none`}>{props.singleitem.ram.attributeValue===item1.ram.attributeValue &&  item1.storage.attributeValue }GB </button>
                                                                 )
                                                         })
                                                     }
@@ -218,7 +218,7 @@ const SingleItemMain=(props)=>{
                                                     </div>
                                                     
                                                 </div> 
-                                                <h1 className={`${qtystate=="notok" ? "block mt-3 text-red-500 font-semibold" :"hidden"}`}>only {item.qty} item available </h1>  
+                                                <h1 className={`${qtystate==="notok" ? "block mt-3 text-red-500 font-semibold" :"hidden"}`}>only {item.qty} item available </h1>  
                                             </div>
                                             <div >
                                                 <h1 className="mt-8 font-semibold">DELIVERY OPTION</h1>

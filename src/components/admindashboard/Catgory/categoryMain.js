@@ -58,7 +58,7 @@ const CategoryMain=(props)=>{
       const tableOperation=(operation,category)=>{
         console.log(category)
         setoperationid(category.id)
-      // if(operation=="edit")
+      // if(operation==="edit")
       // {
       //     MobileHouseApi.get('/editattribute',{params:{"attributeid":attributeid}})
       //     .then((res)=>{
@@ -71,7 +71,7 @@ const CategoryMain=(props)=>{
     }
 
       useEffect(()=>{
-        if(category=="")
+        if(category==="")
         {
             MobileHouseApi.get('/getCategory',{headers:{accessToken:localStorage.getItem("accessToken")}})
             .then((res)=>{
@@ -87,7 +87,7 @@ const CategoryMain=(props)=>{
     return(
         <div className="flex w-full">
             {
-                    addcategory==true && 
+                    addcategory===true && 
                         <div className="w-full h-full flex items-center bg-opacity-95 justify-center bg-gray-100 fixed top-0">
                             <div className=" space-y-4  w-4/12 h-4/5 ">
                                 <div className="max-h-full bg-white p-4 overflow-auto">
@@ -101,7 +101,7 @@ const CategoryMain=(props)=>{
                                         <FormLayout
                                             formdata={addformdata}
                                             handleSubmit={handleSubmit}
-                                            attributevalues={categoryvalues}
+                                            values={categoryvalues}
                                             operation={operation}
                                             operationitem={operationitem}
                                             Mainname={operationitem.categoryName}

@@ -1,4 +1,4 @@
-import axios from 'axios' 
+
 import React, { useState,useContext} from 'react';
 import {FaRegUserCircle } from 'react-icons/fa';
 import  MobileHouseApi from "../../helpers/axiosinstance"
@@ -24,7 +24,7 @@ const Nav=(props)=>{
 
 
     const searchProduct=(searchitem1)=>{
-        if(searchitem1=="")
+        if(searchitem1==="")
         {
             setserachitemdis("")
         }
@@ -53,7 +53,7 @@ const Nav=(props)=>{
 
     return(
         <div className="shadow-sm">
-            {loginstatus==true&&
+            {loginstatus===true&&
                 <Login
                     loginsuccess={loginsuccess}
                     setloginstatus={setloginstatus}
@@ -62,7 +62,7 @@ const Nav=(props)=>{
                 />
             }
             {
-                registeruser==true &&
+                registeruser===true &&
                 <UserRegister
                     setregisteruser={setregisteruser}
                     setusername={setusername}
@@ -81,8 +81,8 @@ const Nav=(props)=>{
                                 <input onChange={(e)=>searchProduct(e.target.value)} type="text" placeholder="search here" className=" px-2 w-full rounded-lg  h-10 focus:outline-none border-2 border-gray-400 "/>
                                 
                                 
-                                <div className={`${serachitemdis!="" ? " absolute  top-10 z-20 max-h-96 w-96 bg-white shadow-xl rounded-lg p-2 flex flex-col overflow-y-scroll  ": "hidden"}`}>
-                                {serachitemdis!="" && serachitemdis.map((item,key)=>{
+                                <div className={`${serachitemdis!=="" ? " absolute  top-10 z-20 max-h-96 w-96 bg-white shadow-xl rounded-lg p-2 flex flex-col overflow-y-scroll  ": "hidden"}`}>
+                                {serachitemdis!=="" && serachitemdis.map((item,key)=>{
                                     return(
                                         
                                         <button  className="hover:text-blue-400 text-left py-2 focus:outline-none">
@@ -105,9 +105,9 @@ const Nav=(props)=>{
                     </div> */}
                     <div className="w-2/12  space-x-5 flex">
                             <div>
-                                <button onClick={()=>{username=="Login/Signup" ? setloginstatus(true) : setlogout(!logout)}} className="flex hover:text-red-500 items-center relative focus:outline-none "><FaRegUserCircle className="mr-1 text-2xl  text-gray-700 font-light"/><h1 className="lg:block hidden">{username}</h1></button>
+                                <button onClick={()=>{username==="Login/Signup" ? setloginstatus(true) : setlogout(!logout)}} className="flex hover:text-red-500 items-center relative focus:outline-none "><FaRegUserCircle className="mr-1 text-2xl  text-gray-700 font-light"/><h1 className="lg:block hidden">{username}</h1></button>
                                 {
-                                logout==true &&
+                                logout===true &&
                                     <div className="  absolute   z-20 shadow-lg  rounded-lg border border-gray-200  w-1/12 bg-white ">
                                          <button onClick={()=>{clearuser()}} className=" focus:outline-none   text-blue-600 px-2 font-bold py-2 w-full text-center hover:text-red-500 ">Profile</button>
 

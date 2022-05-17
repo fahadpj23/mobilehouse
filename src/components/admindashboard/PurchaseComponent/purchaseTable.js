@@ -25,7 +25,7 @@ const PurchaseTable=(props)=>{
                             
                             <td className="flex justify-center space-x-1 items-center h-10">
                                 <button onClick={()=>{item.productqty > 0 && props.qtychange(item,item.productqty-1)}} className="bg-gray-500 focus:outline-none text-white text-xl px-2 h-6 w-8 flex justify-center items-center font-semibold rounded">-</button>
-                                <input onChange={(e)=>e.target.value=="" ? props.qtychange(item,e.target.value) :  (+e.target.value > 0  && +e.target.value <= +item.qty )&& props.qtychange(item,+e.target.value)  } value={item.productqty} className="w-10 text-center focus:outline-none border border-gray-300 h-6 rounded"/>
+                                <input onChange={(e)=>e.target.value==="" ? props.qtychange(item,e.target.value) :  (+e.target.value > 0  && +e.target.value <= +item.qty )&& props.qtychange(item,+e.target.value)  } value={item.productqty} className="w-10 text-center focus:outline-none border border-gray-300 h-6 rounded"/>
                                 <button onClick={()=>{item.productqty+1 <= item.qty && props.qtychange(item,item.productqty+1)}} className="bg-green-500 focus:outline-none text-white text-xl px-2 h-6 w-8 flex justify-center items-center  font-semibold rounded">+</button>
                             </td>
                             <td>{item.productqty * item.purchasePrice}</td>

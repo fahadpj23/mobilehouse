@@ -54,7 +54,7 @@ const AddProductMain=(props)=>{
         e.preventDefault();
       }
       useEffect(()=>{
-        if(catgeorytotal=="")
+        if(catgeorytotal==="")
         {
             MobileHouseApi.get('/getCategory',{headers:{accessToken:localStorage.getItem("accessToken")}})
             .then((res)=>{
@@ -62,7 +62,7 @@ const AddProductMain=(props)=>{
                 setcatgeorytotal(res.data)
             })
         }
-        if( props.operationitem.category && categoryset==false)
+        if( props.operationitem.category && categoryset===false)
         {
             if(catgeorytotal!="")
                 {

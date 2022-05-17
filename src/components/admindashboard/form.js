@@ -11,9 +11,9 @@ const FormLayout=(props)=>{
         
         if(attvalue!=="")
         {
-            if(props.attributevalues.includes(attvalue)==false)
+            if(props.values.includes(attvalue)==false)
             {
-                props.attributevalues.push(attvalue)
+                props.values.push(attvalue)
                 setattvalue("")
                 
             }
@@ -34,44 +34,42 @@ const FormLayout=(props)=>{
     useEffect(()=>{
         if(props.operation!=="" && editok===false)
         {
-            console.log( props.operationitem)
+            //if there is a array value like catgeory attribute and attribute values than store it  in a array for display
             props.operationitem.values && props.operationitem.values.map((item,key)=>{
-                props.attributevalues.push(item)
+                props.values.push(item)
               })
               seteditok(true)
-              console.log(props.attributevalues)
+              console.log(props.values)
             
         }
        
         if(deleteattvalue!="")
         {
-           console.log(props.attributevalues.length)
-            if(props.attributevalues.length==1)
+           console.log(props.values.length)
+            if(props.values.length==1)
             {
                
-                props.attributevalues.pop();
+                props.values.pop();
                 setdeleteattvalue("")
             }
             else
             {
-            props.attributevalues && props.attributevalues.splice(deleteattvalue-1,1)
-            console.log( props.attributevalues)
+            props.values && props.values.splice(deleteattvalue-1,1)
+            console.log( props.values)
             setdeleteattvalue("")
             }
           
         
         }
     },[deleteattvalue,editok])
-    console.log(props)
+    console.log(props.operationitem)
     return(
         <form onSubmit={(e)=>props.handleSubmit(e)} method="post">
             {
                 props.formdata.map((item,key)=>{
                     return(
                         <div className="flex flex-col space-y-2 mt-7">
-                            {console.log(props.operationitem)}
-                            {console.log(item.name)}
-                            {console.log(props.operationitem[item.name])}
+                            
                               <label className="font-semibold" for="fname">{item.name}:</label>
                               {
                                  
@@ -84,10 +82,10 @@ const FormLayout=(props)=>{
 
                                         </div>
                                        
-                                        <div className={`${props.attributevalues && item.more ? " rounded-md w-full border-gray-400 border h-36 space-y-1   overflow-auto  px-2 py-2": "hidden"}`}>
+                                        <div className={`${props.values && item.more ? " rounded-md w-full border-gray-400 border h-36 space-y-1   overflow-auto  px-2 py-2": "hidden"}`}>
                                             {
 
-                                                props.attributevalues && props.attributevalues.map((item1,key1)=>{
+                                                props.values && props.values.map((item1,key1)=>{
                                                     return(
                                                         <div className="w-10/12 flex justify-between px-2 bg-gray-200 py-1 ">
                                                                <h1 className=" px-1  truncate w-10/12  ">{item1}</h1 >
@@ -138,10 +136,10 @@ const FormLayout=(props)=>{
 
                                         </div>
                                         
-                                        <div className={`${props.attributevalues && item.more ? " rounded-md w-full border-gray-400 border h-36 space-y-1   overflow-auto  px-2 py-2": "hidden"}`}>
+                                        <div className={`${props.values && item.more ? " rounded-md w-full border-gray-400 border h-36 space-y-1   overflow-auto  px-2 py-2": "hidden"}`}>
                                             {
 
-                                                props.attributevalues && props.attributevalues.map((item1,key1)=>{
+                                                props.values && props.values.map((item1,key1)=>{
                                                     return(
                                                         <div className="w-10/12 flex justify-between px-2 bg-gray-200 py-1 ">
                                                                <h1 className=" px-1  truncate w-10/12  ">{item1}</h1 >
@@ -163,7 +161,7 @@ const FormLayout=(props)=>{
                 })
             }
             <div className={`${props.operation=="view" ? " hidden" :"w-full flex justify-end"}`}>
-                 <input type="submit" value="Submit" className="bg-green-500 w-3/12 mt-10  focus:outline-none text-white font-semibold py-2 rounded-md" />
+                 <input type="submit" value="Submit" className="bg-green-500 w-3/12 mt-10 cursor-pointer  focus:outline-none text-white font-semibold py-2 rounded-md" />
 
             </div>
 
