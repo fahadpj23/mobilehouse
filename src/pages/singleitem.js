@@ -22,7 +22,7 @@ const SingleItem=(props)=>{
             MobileHouseApi.get(`/singleview`,{params: { productId: item1.id}})
             
             .then(res=>{
-                    const product=res.data;
+                    const product=res.data.product;
                     setsingleitem(product)
                     MobileHouseApi.get(`/related`,{params: { name: product.name, category:product.category,productId:product.id}})
                     .then(res=>{

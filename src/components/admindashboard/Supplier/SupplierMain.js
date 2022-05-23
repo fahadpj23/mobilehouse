@@ -67,6 +67,11 @@ const SupplierMain=()=>{
        
       }
    
+      const closeWindow=()=>{
+        setaddsupplier(false)
+        setoperation("")
+        setoperationitem("")
+     }
 
       const tableOperation=(operation,supplier)=>{
             console.log(supplier)
@@ -100,16 +105,7 @@ const SupplierMain=()=>{
         <div className="flex w-full">
              {
                     addsupplier==true && 
-                        <div className="w-full h-full flex items-center bg-opacity-95 justify-center bg-gray-100 fixed top-0">
-                            <div className=" space-y-4  w-3/12 h-4/5 ">
-                                <div className="max-h-full bg-white p-4 overflow-auto">
-                                    <div className="w-full">
-                                        <button onClick={()=>setaddsupplier(false)} className="flex focus:outline-none justify-end w-full text-right"><AiOutlineClose/></button>
-                                        <h1 className="w-full flex justify-center text-xl font-semibold">{ operation=="" ? "ADD" : operation} Supplier</h1>
-                                       
-                                    </div>
-                                    
-                                    <div>
+                       
                                         <FormLayout
                                             formdata={addformdata}
                                             handleSubmit={handleSubmit}
@@ -118,14 +114,11 @@ const SupplierMain=()=>{
                                             operationitem={operationitem}
                                             Mainname={operationitem.attributeName}
                                             Mainstatus={operationitem.status}
+                                            close={closeWindow}
+                                            head="Supplier"
                                         />
                                     
-                                    </div>
-                                </div>
-                              
-                            </div>
-                           
-                        </div>
+                                   
                 }
                  <MainLayoutAdmin>
                     <NavOperation

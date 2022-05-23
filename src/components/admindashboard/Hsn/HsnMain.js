@@ -28,7 +28,7 @@ const HsnMain=()=>{
         {name:"CGST",type:"number",required:"true"},
         {name:"SGST",type:"number",required:"true"},
         {name:"IGST",type:"number",required:"true"},
-         {name:"status",type:"select",value:[{value:1,name:"active"},{value:0,name:"disable"}],required:"true"},
+         {name:"status",type:"select",value:[{value:"",name:"--select--"},{value:1,name:"active"},{value:0,name:"disable"}],required:"true"},
     
     ]
     const attributevalues=[];
@@ -58,7 +58,7 @@ const HsnMain=()=>{
             setoperationid("")
             setoperation("")
             setoperationitem("")
-            MobileHouseApi.get('getHSN')
+            MobileHouseApi.get('HSN/getHSN')
             .then((res)=>{
                 setattribute(res.data)
             })
@@ -71,20 +71,28 @@ const HsnMain=()=>{
         setaddHsn(true)
      }
 
+     const closeWindow=()=>{
+        setaddHsn(false)
+        setoperation("")
+        setoperationitem("")
+     }
+
       const tableOperation=(operation,HSN)=>{
-           
+           if(operation=="edit")
+           {
             setoperationid(HSN.id)
         
             setoperationitem(HSN)
             setoperation(operation)
             setaddHsn(true)
+           }
             
       }
 
       useEffect(()=>{
         if(attribute==="")
         {
-        MobileHouseApi.get('/getHSN')
+        MobileHouseApi.get('getHSN')
         .then((res)=>{
             setattribute(res.data)
         })
@@ -99,16 +107,7 @@ const HsnMain=()=>{
         <div className="flex w-full">
              {
                     addHsn===true && 
-                        <div className="w-full h-full flex items-center bg-opacity-95 justify-center bg-gray-100 fixed top-0">
-                            <div className=" space-y-4  w-4/12 h-4/5 ">
-                                <div className="max-h-full bg-white p-4 overflow-auto">
-                                    <div className="w-full">
-                                        <button onClick={()=>setaddHsn(false)} className="flex focus:outline-none justify-end w-full text-right"><AiOutlineClose/></button>
-                                        <h1 className="w-full flex justify-center text-xl font-semibold">{ operation==="" ? "ADD" : operation} Attribute</h1>
-                                       
-                                    </div>
-                                    
-                                    <div>
+                      
                                         <FormLayout
                                             formdata={addformdata}
                                             handleSubmit={handleSubmit}
@@ -117,20 +116,18 @@ const HsnMain=()=>{
                                             operationitem={operationitem}
                                             // Mainname={operationitem.attributeName}
                                             Mainstatus={operationitem.status}
+                                            close={closeWindow}
+                                            head="HSN"
+                                           
                                         />
                                     
-                                    </div>
-                                </div>
-                              
-                            </div>
-                           
-                        </div>
+                                  
                 }
 
             <div>
                 <MainLayoutAdmin>
                 <NavOperation
-                AddNew={AddNew}
+                    AddNew={AddNew}
                 />
                     {
                         attribute &&

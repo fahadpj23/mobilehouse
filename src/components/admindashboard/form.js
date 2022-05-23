@@ -73,6 +73,16 @@ const FormLayout=(props)=>{
     },[deletevalue,editok,addval])
     console.log(props.operationitem)
     return(
+        <div className="w-full h-full flex items-center bg-opacity-95 justify-center bg-gray-100 fixed top-0">
+        <div className=" space-y-4  w-4/12 h-4/5 ">
+            <div className="max-h-full bg-white p-4 overflow-auto">
+                <div className="w-full">
+                    <button onClick={()=>props.close(false)} className="flex focus:outline-none justify-end w-full text-right"><AiOutlineClose/></button>
+                    <h1 className="w-full flex justify-center text-xl font-semibold space-x-2"><span>{ props.operation==="" ? "ADD" :props.operation }</span><span>{props.head}</span> </h1>
+                   
+                </div>
+                
+                <div>
         <form onSubmit={(e)=>props.handleSubmit(e)} method="post">
             {
                 props.formdata.map((item,key)=>{
@@ -231,6 +241,12 @@ const FormLayout=(props)=>{
             </div>
 
         </form>
+        </div>
+       </div>
+                              
+     </div>
+                           
+     </div>
     )
 }
 export default FormLayout
