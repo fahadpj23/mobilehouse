@@ -7,6 +7,9 @@ import SideNav from "../sideNav"
 import MobileHouseApi from "../../../helpers/axiosinstance"
 const AddProductMain=(props)=>{
     let history=useHistory();
+    let productImageblob=["","","","",""]
+    let productImage=["","","","",""]
+
     console.log(props.operationitem.category)
     const context=useContext(Usercontext )
     const [category, setcategory] = useState(props.operationitem.category ?? "")
@@ -32,13 +35,20 @@ const AddProductMain=(props)=>{
 
   
     const handleSubmit=(e)=>{
-       
+       console.log(productImage)
+       console.log(productImage[1])
         const data=new FormData(e.target)
         data.append("category",category)
         data.append("categoryid",categoryid)
         data.append("operation",props.operation)
         data.append("operationid",props.operationid)
         data.append("variantimage",props.operationitem.image )
+        data.append("image1",productImage[0] )
+        data.append("image2",productImage[1] )
+        data.append("image3",productImage[2] )
+        data.append("image4",productImage[3] )
+        data.append("image5",productImage[4] )
+        data.append("productImage",JSON.stringify(productImage))
         console.log(data)
         MobileHouseApi.post('/productAdd',data,{headers:{accessToken:localStorage.getItem("accessToken")}})
         .then((res)=>{
@@ -49,7 +59,7 @@ const AddProductMain=(props)=>{
          else
          {
             context.notify("Product added successfully","success")
-           props.productAddSuccess()
+        //    props.productAddSuccess()
 
          }
         })
@@ -109,6 +119,8 @@ const AddProductMain=(props)=>{
                     operationitem={props.operationitem}
                     operationid={props.operationid}
                     category={props.category}
+                    productImageblob={productImageblob}
+                    productImage={productImage}
                      
                 />
                 }   

@@ -21,6 +21,7 @@ const AllProduct=(props)=>{
     }
 
     const tableOperation=(operation,item)=>{
+        console.log(item)
         MobileHouseApi.get('/productdetails',{params:{productId:item.id}})
         .then((res)=>{
             setoperationitem(res.data)
