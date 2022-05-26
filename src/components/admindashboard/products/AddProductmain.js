@@ -17,9 +17,11 @@ const AddProductMain=(props)=>{
     const [categoryset,setcategoryset]=useState(false)
 
     console.log(props)
+
+
     const categoryselect=(catid)=>{
         
-      
+                    setcategoryid(catid)
                      MobileHouseApi.get("/getcategoryAttribute",{params:{"categoryid":catid}},{headers:{accessToken:localStorage.getItem("UserToken")}})
                      .then((res)=>{
                         setcategoryattribute(res.data)

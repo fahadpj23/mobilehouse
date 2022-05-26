@@ -141,8 +141,8 @@ const FormLayout=(props)=>{
                                                     :
                                                     <div>
                                                         <div className="flex space-x-1">
-                                                        <select required={item.required && true}   className="w-10/12 px-2 py-1 rounded-md border border-gray-400" name={item.name} id={item.name}>
-                                                        
+                                                        <select required={item.required && true}    className="w-10/12 px-2 py-1 rounded-md border border-gray-400" name={item.name} id={item.name}>
+                                                        <option value="">--select--</option>
                                                         {
                                                             item.value&& item.value.map((item1,key1)=>{
                                                                 return(

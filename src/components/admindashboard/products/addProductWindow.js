@@ -1,10 +1,20 @@
 import axios from "axios"
-import { useState } from "react"
+import { useState ,useEffect} from "react"
+import MobileHouseApi from "helpers/axiosinstance"
+import { mobilehouseApi } from "axiosinstance"
 const AddProductWindow=(props)=>{
    
     const product=props.operationitem
     const [productimage,setproductimage]=useState("")
+    const [HSN,setHSN]=useState("")
    console.log(product)
+
+   useEffect(()=>{
+    MobileHouseApi.get('getHSN')
+    .then((res)=>{
+        setHSN(res.data)
+    })
+   },[])
     return(
         <form onSubmit={(e)=>props.handleSubmit(e)} method="post">
     
@@ -13,35 +23,57 @@ const AddProductWindow=(props)=>{
                     
                     <div className=" text-sm">
                         <label>Name</label>
-                        <input className="w-full border-2 border-gray-400 rounded-md py-1 px-1" name="Name" id="Name" defaultValue={product.name}/>
+                        <input className="w-full border-2 border-gray-400 focus:outline-none rounded-md py-1 px-1" name="Name" id="Name" defaultValue={product.name}/>
                     </div>
                     <div className=" text-sm">
                         <h1>Purchase Price</h1>
-                        <input  type="number" className="w-full border-2 border-gray-400 rounded-md py-1 px-1"  name="purchasePrice" id="purchasePrice" defaultValue={product.purchasePrice}/>
+                        <input  type="number" className="w-full border-2 border-gray-400 focus:outline-none rounded-md py-1 px-1"  name="purchasePrice" id="purchasePrice" defaultValue={product.purchasePrice}/>
                     </div>
                     <div className=" text-sm">
                         <h1>Selling Price</h1>
-                        <input  type="number" className="w-full border-2 border-gray-400 rounded-md py-1 px-1"  name="sellingPrice" id="sellingPrice" defaultValue={product.sellingPrice}/>
+                        <input  type="number" className="w-full border-2 border-gray-400 focus:outline-none rounded-md py-1 px-1"  name="sellingPrice" id="sellingPrice" defaultValue={product.sellingPrice}/>
                     </div>
                     <div className=" text-sm">
                         <h1>Sales Price</h1>
-                        <input  type="number" className="w-full border-2 border-gray-400 rounded-md py-1 px-1"  name="salesPrice" id="salesPrice" defaultValue={product.salesPrice}/>
+                        <input  type="number" className="w-full border-2 border-gray-400 focus:outline-none rounded-md py-1 px-1"  name="salesPrice" id="salesPrice" defaultValue={product.salesPrice}/>
                     </div>
               
                
                
                      <div className=" text-sm">
                         <h1>MRP</h1>
-                        <input  className="w-full border-2 border-gray-400 rounded-md py-1 px-1" name="MRP" id="MRP" defaultValue={product.mrp}/>
+                        <input  className="w-full border-2 border-gray-400 focus:outline-none rounded-md py-1 px-1" name="MRP" id="MRP" defaultValue={product.mrp}/>
                     </div>
                     <div className=" text-sm">
                         <h1>Warranty</h1>
-                        <input  type="text" className="w-full border-2 border-gray-400 rounded-md py-1 px-1"  name="Warranty" id="Warranty" defaultValue={product.warranty}/>
+                        <input  type="text" className="w-full border-2 border-gray-400 focus:outline-none rounded-md py-1 px-1"  name="Warranty" id="Warranty" defaultValue={product.warranty}/>
+                    </div>
+
+                    <div className=" text-sm">
+                        <h1>HSN</h1>
+                        {/* <input  type="number" className="w-full border-2 border-gray-400 focus:outline-none rounded-md py-1 px-1"  name="GST" id="GST" defaultValue={product.GST}/> */}
+                        <input type="text" list="data" id="HSN" name="HSN" className="w-full border-2 border-gray-400 focus:outline-none rounded-md py-1 px-1" />
+
+                        <datalist id="data">
+                            {HSN && HSN.Data.map((item, key) =>
+                            <option key={key} value={item.HSN_code} />
+                            )}
+                        </datalist>
+                      
                     </div>
                     <div className=" text-sm">
-                        <h1>GST</h1>
-                        <input  type="number" className="w-full border-2 border-gray-400 rounded-md py-1 px-1"  name="GST" id="GST" defaultValue={product.GST}/>
+                        <h1>Tax</h1>
+                        <select className="w-full border-2 border-gray-400 focus:outline-none rounded-md py-1 px-1" id="Tax" name="Tax">
+                            <option value="">--select--</option>
+                            <option value="0">GST_0</option>
+                            <option value="3">GST_3</option>
+                            <option value="5">GST_5</option>
+                            <option value="12">GST_12</option>
+                            <option value="18">GST_18</option>
+                            <option value="28">GST_28</option>
+                        </select>
                     </div>
+                    
              
                
                     <div className=" text-sm">
@@ -56,12 +88,12 @@ const AddProductWindow=(props)=>{
                     }
                     <div className=" text-sm">
                         <h1>Brand</h1>
-                        <input  className="w-full border-2 border-gray-400 rounded-md py-1 px-1"  name="Brand" id="Brand" defaultValue={product.Brand}/>
+                        <input  className="w-full border-2 border-gray-400 focus:outline-none rounded-md py-1 px-1"  name="Brand" id="Brand" defaultValue={product.Brand}/>
                     </div>
              
                     <div className=" text-sm">  
                         <h1>Max Qty</h1>
-                        <input  className="w-full border-2 border-gray-400 rounded-md py-1 px-1"  name="qty" id="qty" defaultValue={product.qty}/>
+                        <input  className="w-full border-2 border-gray-400 focus:outline-none rounded-md py-1 px-1"  name="qty" id="qty" defaultValue={product.qty}/>
                     </div>
                     
             
@@ -70,7 +102,7 @@ const AddProductWindow=(props)=>{
                         return(
                             <div key={key} className=" text-sm">
                                 <h1>{item.attributeName}</h1>
-                                <select defaultValue={product[item.attributeName]}  type="select"  className="w-full border-2 border-gray-400 rounded-md py-1 px-1"  name={item.attributeName} id={item.attributeName}>
+                                <select defaultValue={product[item.attributeName]}  type="select"  className="w-full border-2 border-gray-400 focus:outline-none rounded-md py-1 px-1"  name={item.attributeName} id={item.attributeName}>
                                     <option>--select--</option> 
                                     {
                                         item.value.map((item1,key1)=>
