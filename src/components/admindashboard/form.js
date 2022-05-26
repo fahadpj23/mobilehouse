@@ -6,10 +6,13 @@ const FormLayout=(props)=>{
     const [deletevalue,setdeletevalue]=useState("")
     const [addval,setaddval]=useState(false)
     const [editok,seteditok]=useState(false)
-
+    console.log(props.formdata)
     // input id get as parameter in addvalue function and set value to tagIdvalue
     const addvalue=(tagId)=>{
+
+        // input type id set as formstructure item name.so every inpt tag id get by that name
         let tagIdvalue=document.getElementById(tagId).value
+        console.log(tagIdvalue)
         if(tagIdvalue)
         {
             if(props.values.includes(tagIdvalue)==false)
@@ -125,7 +128,7 @@ const FormLayout=(props)=>{
                                     return  <input type="number" required={item.required && true} className={`  w-full ${item.name=="Address" && "h-20"} px-2 py-1 rounded-md border border-gray-400`} defaultValue={  props.operationitem && props.operationitem[item.name]}  name={item.name} id={item.name} />                                    
 
                                 case 'select':
-                                            return  <select required={item.required && true} className="w-full px-2 py-1 rounded-md border border-gray-400" name={item.name}>
+                                            return  !item.more ?  <select required={item.required && true} defaultValue={  props.operationitem && props.operationitem[item.name]} className="w-full px-2 py-1 rounded-md border border-gray-400" name={item.name}>
                                                     
                                                     {
                                                         item.value&& item.value.map((item1,key1)=>{
@@ -135,6 +138,41 @@ const FormLayout=(props)=>{
                                                         })
                                                     }
                                                     </select>
+                                                    :
+                                                    <div>
+                                                        <div className="flex space-x-1">
+                                                        <select required={item.required && true}   className="w-10/12 px-2 py-1 rounded-md border border-gray-400" name={item.name} id={item.name}>
+                                                        
+                                                        {
+                                                            item.value&& item.value.map((item1,key1)=>{
+                                                                return(
+                                                                    <option value={item1}>{item1}</option>
+                                                                )
+                                                            })
+                                                        }
+                                                        </select>
+                                                        {
+                                                                    item.more && <button type="button"  onClick={()=>addvalue(item.name)} className="px-2 py-1 bg-red-500 focus:outline-none text-white rounded w-3/12 ">ADD +</button>
+                                                        }
+                                                        </div>
+                                                        {
+                                                            item.more && props.values.length!=0 &&
+                                                                <div className="space-y-1 mt-1 border border-gray-400 rounded p-2 max-h-48 overflow-auto">
+                                                                    {
+                                                                        props.values.map((item,key)=>{
+                                                                            return(
+                                                                                <div className="w-full flex justify-between px-2 bg-gray-200 py-1 ">
+                                                                                    <h1 className=" px-1  truncate w-10/12  ">{item}</h1 >
+                                                                                    <button type="button" onClick={()=>{setdeletevalue(key+1)}} className={`${props.operation=="view" && " hidden"}`}  ><AiOutlineClose/></button>
+                
+                                                                                </div>
+                                                                            )
+                                                                        })
+                                                                    }
+                                                                </div>
+                                                        }
+                                                    </div>
+
                                 
                                 case 'email' :
                                     return  <input type="email"   required={item.required && true} className={`  w-full ${item.name=="Address" && "h-20"} px-2 py-1 rounded-md border border-gray-400`} defaultValue={  props.operationitem && props.operationitem[item.name]}  name={item.name} id={item.name} />                                    ;

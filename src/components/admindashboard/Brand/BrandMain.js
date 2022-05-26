@@ -11,7 +11,7 @@ import MobileHouseApi from "helpers/axiosinstance";
 import { Usercontext } from "components/context/userContext";
 import TableContent from "../table";
 import NavOperation from "../operation";
-const HsnMain=()=>{
+const BrandMain=()=>{
 
 
     const context=useContext(Usercontext )
@@ -148,4 +148,4 @@ const HsnMain=()=>{
     </div>   
     )
 }
-export default HsnMain
+export default BrandMain
