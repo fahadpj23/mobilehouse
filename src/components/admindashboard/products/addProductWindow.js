@@ -10,7 +10,7 @@ const AddProductWindow=(props)=>{
     const [imageset,setimageset]=useState(false)
     const [imageIndex,setimageIndex]=useState("")
     const [HSN,setHSN]=useState("")
-   console.log(product)
+   console.log(props.productImage)
 
    const uploadimageButtonclick=(btindex)=>{
        setimageset(true)
@@ -132,23 +132,23 @@ const AddProductWindow=(props)=>{
                             <input onChange={(e)=>{uploadimage(e) }} ref={imageref}  type="file" className="w-full hidden  border-2 border-gray-400 rounded-md h-8 px-1"  name="image" id="image" />
 
                             <button type="button" onClick={()=>uploadimageButtonclick(1)} className="  p-2 rounded border border-gray-400">
-                                <img src={props.productImageblob[0] ? props.productImageblob[0] :  "/uploadimage.png"} alt="" className="object-contain h-16 w-16 overflow-hidden" />
+                                <img src={  props.productImageblob[0] ? props.productImageblob[0] : props.productImage[0] ? `http://localhost:9000/images/${props.productImage[0]}` : "/uploadimage.png"} alt="" className="object-contain h-16 w-16 overflow-hidden" />
                                 <h1>image </h1>
                             </button>
                             <button type="button" onClick={()=>uploadimageButtonclick(2)} className="  p-2 rounded border border-gray-400">
-                                <img src={props.productImageblob[1] ? props.productImageblob[1] :  "/uploadimage.png"} alt="" className="object-contain h-16 w-16 overflow-hidden" />
+                            <img src={  props.productImageblob[1] ? props.productImageblob[1] : props.productImage[1] ? `http://localhost:9000/images/${props.productImage[1]}` : "/uploadimage.png"} alt="" className="object-contain h-16 w-16 overflow-hidden" />
                                 <h1>image </h1>
                             </button>
                             <button  type="button" onClick={()=>uploadimageButtonclick(3)} className="  p-2 rounded border border-gray-400">
-                                <img src={props.productImageblob[2] ? props.productImageblob[2] :  "/uploadimage.png"} alt="" className="object-contain h-16 w-16 overflow-hidden" />
+                            <img src={  props.productImageblob[2] ? props.productImageblob[2] : props.productImage[2] ? `http://localhost:9000/images/${props.productImage[2]}` : "/uploadimage.png"} alt="" className="object-contain h-16 w-16 overflow-hidden" />
                                 <h1>image </h1>
                             </button>
                             <button type="button" onClick={()=>uploadimageButtonclick(4)} className="  p-2 rounded border border-gray-400">
-                                <img src={props.productImageblob[3] ? props.productImageblob[3] :  "/uploadimage.png"} alt="" className="object-contain h-16 w-16 overflow-hidden" />
+                            <img src={  props.productImageblob[3] ? props.productImageblob[3] : props.productImage[3] ? `http://localhost:9000/images/${props.productImage[3]}` : "/uploadimage.png"} alt="" className="object-contain h-16 w-16 overflow-hidden" />
                                 <h1>image </h1>
                             </button>
                             <button type="button" onClick={()=>uploadimageButtonclick(5)} className="  p-2 rounded border border-gray-400">
-                                <img src={props.productImageblob[4] ? props.productImageblob[4] :  "/uploadimage.png"} alt="" className="object-contain h-16 w-16 overflow-hidden" />
+                            <img src={  props.productImageblob[4] ? props.productImageblob[4] : props.productImage[4] ? `http://localhost:9000/images/${props.productImage[4]}` : "/uploadimage.png"} alt="" className="object-contain h-16 w-16 overflow-hidden" />
                                 <h1>image </h1>
                             </button>
                             

@@ -12,7 +12,8 @@ const AllProduct=(props)=>{
     const [operation,setoperation]=useState("")
     const[operationitem,setoperationitem]=useState("")
     const[operationid,setoperationid]=useState("")
-
+    let productImageblob=["","","","",""]
+    let productImage=["","","","",""]
     const closeProductadd=()=>{
         setaddproduct(false)
         setoperationid("")
@@ -70,6 +71,8 @@ const AllProduct=(props)=>{
                         operation={operation}
                         operationitem={operationitem}
                         operationid={operationid}
+                         productImageblob={productImageblob}
+                         productImage={productImage}
                       
                      />
                 </div>

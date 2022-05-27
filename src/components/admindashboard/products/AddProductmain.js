@@ -7,8 +7,7 @@ import SideNav from "../sideNav"
 import MobileHouseApi from "../../../helpers/axiosinstance"
 const AddProductMain=(props)=>{
     let history=useHistory();
-    let productImageblob=["","","","",""]
-    let productImage=["","","","",""]
+    
 
     console.log(props.operationitem.category)
     const context=useContext(Usercontext )
@@ -23,7 +22,7 @@ const AddProductMain=(props)=>{
 
 
     const categoryselect=(catid)=>{
-        
+                    
                     setcategoryid(catid)
                      MobileHouseApi.get("/getcategoryAttribute",{params:{"categoryid":catid}},{headers:{accessToken:localStorage.getItem("UserToken")}})
                      .then((res)=>{
@@ -35,20 +34,20 @@ const AddProductMain=(props)=>{
 
   
     const handleSubmit=(e)=>{
-       console.log(productImage)
-       console.log(productImage[1])
+      
         const data=new FormData(e.target)
         data.append("category",category)
         data.append("categoryid",categoryid)
         data.append("operation",props.operation)
         data.append("operationid",props.operationid)
         data.append("variantimage",props.operationitem.image )
-        data.append("image1",productImage[0] )
-        data.append("image2",productImage[1] )
-        data.append("image3",productImage[2] )
-        data.append("image4",productImage[3] )
-        data.append("image5",productImage[4] )
-        data.append("productImage",JSON.stringify(productImage))
+        data.append("image1",props.productImage[0] )
+        data.append("image2",props.productImage[1] )
+        data.append("image3",props.productImage[2] )
+        data.append("image4",props.productImage[3] )
+        data.append("image5",props.productImage[4] )
+        data.append("productImage",JSON.stringify(props.productImage))
+        data.append("productImageblob",JSON.stringify(props.productImageblob))
         console.log(data)
         MobileHouseApi.post('/productAdd',data,{headers:{accessToken:localStorage.getItem("accessToken")}})
         .then((res)=>{
@@ -59,7 +58,7 @@ const AddProductMain=(props)=>{
          else
          {
             context.notify("Product added successfully","success")
-        //    props.productAddSuccess()
+            //    props.productAddSuccess()
 
          }
         })
@@ -74,8 +73,16 @@ const AddProductMain=(props)=>{
                 setcatgeorytotal(res.data)
             })
         }
-        if( props.operationitem.category && categoryset===false)
+        if( props.operationitem && categoryset===false)
         {
+            let imageArray
+            if(props.operationitem.image)
+             {
+                imageArray=props.operationitem.image.split(';')
+             }
+            imageArray && imageArray.map((item,key)=>{
+                props.productImage[key]= item.replace(/^\s+|\s+$/gm,'')
+            })
             if(catgeorytotal!="")
                 {
                 setcategoryset(true)
@@ -119,8 +126,8 @@ const AddProductMain=(props)=>{
                     operationitem={props.operationitem}
                     operationid={props.operationid}
                     category={props.category}
-                    productImageblob={productImageblob}
-                    productImage={productImage}
+                    productImageblob={props.productImageblob}
+                    productImage={props.productImage}
                      
                 />
                 }   
