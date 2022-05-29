@@ -111,7 +111,7 @@ const AddProductWindow=(props)=>{
                         return(
                             <div key={key} className=" text-sm">
                                 <h1>{item.attributeName}</h1>
-                                <select defaultValue={product[item.attributeName]}  type="select"  className="w-full border-2 border-gray-400  rounded-md py-1 px-1"  name={item.attributeName} id={item.attributeName}>
+                                <select defaultValue={product[item.attributeid]}  type="select"  className="w-full border-2 border-gray-400  rounded-md py-1 px-1"  name={item.attributeid} id={item.attributeid}>
                                     <option>--select--</option> 
                                     {
                                         item.value.map((item1,key1)=>
