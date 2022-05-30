@@ -1,17 +1,19 @@
 
 import SimpleSlider from "../components/Home/slider";
 import Nav from "../components/Home/Nav"
-
+import CatSlider from "components/Home/reactSlick";
 import  MobileHouseApi from "../helpers/axiosinstance"
 import React, { useState,useEffect ,useContext} from 'react';
 import ProductSlider from "../components/Home/productSlick";
 import {AuthContext} from '../helpers/authcontext'
+import Category from "./category";
 function Home() {
  
   const [cover, setcover] = useState("")
   const [phone, setphone] = useState("")
   const [accessories, setaccessories] = useState("")
   const [headset, setheadset] = useState("")
+  const [category, setcategory] = useState("")
   const AuthCon=useContext(AuthContext)
   console.log(AuthCon)
  
@@ -20,6 +22,10 @@ function Home() {
           MobileHouseApi.get("/getcover")
           .then(res=>{
             setcover(res.data)
+          }) 
+          MobileHouseApi.get("/HomePageCategory")
+          .then(res=>{
+            setcategory(res.data.category)
           }) 
 
 
@@ -49,13 +55,20 @@ function Home() {
       <div className= "w-full overflow-hidden ">
         <Nav/>
         <SimpleSlider/>
-        <div className="w-full flex flex-col items-center  space-y-2">
+        {
+                        <CatSlider
+                        category={category}
+                        />
+                      }
+        {/* <div className="w-full flex flex-col items-center  space-y-2">
+          
             <h1 className="text-2xl font-semibold font-serif">OUR PRODUCTS</h1>
             <p className="font-serif text-xs md:text-base">We package the products with best services to make you a happy customer</p>
             <hr className="w-4/12 md:w-1/12 bg-blue-600 border-2 border-blue-400"></hr>
-        </div>
+        </div> */}
         <div className="w-full flex justify-center">
           <div className="w-11/12 px-6">
+                     
                       {cover!=="" && <ProductSlider
                       
                        items={cover}

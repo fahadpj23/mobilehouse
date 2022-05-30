@@ -22,7 +22,7 @@ const CategoryMain=(props)=>{
         {name:"image",type:"file"}
         
     ]
-    console.log(category)
+   
     const handleSubmit=(e)=>{
         e.preventDefault();
         const data=new FormData(e.target)
@@ -62,19 +62,24 @@ const CategoryMain=(props)=>{
         setoperationitem("")
      }
 
-      const tableOperation=(operation,category)=>{
-        console.log(category)
-        setoperationid(category.id)
-      // if(operation==="edit")
-      // {
-      //     MobileHouseApi.get('/editattribute',{params:{"attributeid":attributeid}})
-      //     .then((res)=>{
-      //         console.log(res.data)
-      //     })
-      // }
-      setoperationitem(category)
-      setoperation(operation)
-      setaddcategory(true)
+      const tableOperation=(operation,operationCategory)=>{
+        console.group(operation)
+        if(operation=="delete")
+        {
+          // window.confirm(`delete ${operationCategory.categoryName} `)
+            MobileHouseApi.delete('/CategoryDelete',{params:{categoryId:operationCategory.id}})
+            .then((res)=>{
+              console.log(res.data)
+            })
+        }
+        else
+        {
+          
+          setoperationid(operationCategory.id)
+          setoperationitem(operationCategory)
+          setoperation(operation)
+          setaddcategory(true)
+        }
     }
 
       useEffect(()=>{
