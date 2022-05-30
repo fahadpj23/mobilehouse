@@ -19,9 +19,10 @@ const CategoryMain=(props)=>{
         {name:"categoryName",type:"text"},
          {name:"status",type:"select",value:[{value:1,name:"active"},{value:0,name:"disable"}],required:"true"},
         {name:"attribute",type:"select",value:props.attributes,more:"yes"},
+        {name:"image",type:"file"}
         
     ]
-    console.log(props)
+    console.log(category)
     const handleSubmit=(e)=>{
         e.preventDefault();
         const data=new FormData(e.target)

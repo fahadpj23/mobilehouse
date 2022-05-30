@@ -1,4 +1,4 @@
-import { useState ,useEffect} from "react"
+import { useState ,useEffect,useRef} from "react"
 
 import { AiOutlineClose } from 'react-icons/ai';
 const FormLayout=(props)=>{
@@ -6,6 +6,8 @@ const FormLayout=(props)=>{
     const [deletevalue,setdeletevalue]=useState("")
     const [addval,setaddval]=useState(false)
     const [editok,seteditok]=useState(false)
+    const [image,setimage]=useState("")
+    const imageref=useRef()
     console.log(props.formdata)
     // input id get as parameter in addvalue function and set value to tagIdvalue
     const addvalue=(tagId)=>{
@@ -34,6 +36,11 @@ const FormLayout=(props)=>{
        console.log(props.values)
        
        
+    }
+
+
+    const imageadd=()=>{
+        imageref.current.click()
     }
 
   
@@ -176,8 +183,20 @@ const FormLayout=(props)=>{
                                 
                                 case 'email' :
                                     return  <input type="email"   required={item.required && true} className={`  w-full ${item.name=="Address" && "h-20"} px-2 py-1 rounded-md border border-gray-400`} defaultValue={  props.operationitem && props.operationitem[item.name]}  name={item.name} id={item.name} />                                    ;
-     
-                                                    
+                                                        
+                                case 'file':
+                                    return  <div>
+                                                <input type="file" ref={imageref} onChange={(e)=>{setimage(URL.createObjectURL(e.target.files[0]))}}   required={item.required && true} className=" hidden"  name={item.name} id={item.name} /> 
+                                                <button type="button" onClick={()=>imageadd()}  className="  p-2 rounded border border-gray-400">
+                                                    <img src={image ? image :  props.operationitem.image ? `http://localhost:9000/images/${props.operationitem.image}` : "/uploadimage.png"}  alt="" className="object-contain h-16 w-16 overflow-hidden" />
+                                                 
+                                                </button>
+
+                                             
+
+                                            </div>
+                                    
+
                                 default:
                                     return null;
                                     break;
