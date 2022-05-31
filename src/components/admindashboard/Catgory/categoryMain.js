@@ -16,10 +16,10 @@ const CategoryMain=(props)=>{
     const[operationid,setoperationid]=useState("")
     const categoryvalues=[];
     const addformdata=[
-        {name:"categoryName",type:"text"},
+        {name:"categoryName",type:"text",required:"true"},
          {name:"status",type:"select",value:[{value:1,name:"active"},{value:0,name:"disable"}],required:"true"},
-        {name:"attribute",type:"select",value:props.attributes,more:"yes"},
-        {name:"image",type:"file"}
+        {name:"attribute",type:"select",value:props.attributes,more:"yes",},
+        {name:"image",type:"file",required:"true"}
         
     ]
    

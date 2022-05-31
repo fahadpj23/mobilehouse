@@ -58,7 +58,7 @@ const AddProductMain=(props)=>{
          else
          {
             context.notify("Product added successfully","success")
-            //    props.productAddSuccess()
+               props.productAddSuccess()
 
          }
         })

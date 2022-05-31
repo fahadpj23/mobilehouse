@@ -186,7 +186,7 @@ const FormLayout=(props)=>{
                                                         
                                 case 'file':
                                     return  <div>
-                                                <input type="file" ref={imageref} onChange={(e)=>{setimage(URL.createObjectURL(e.target.files[0]))}}   required={item.required && true} className=" hidden"  name={item.name} id={item.name} /> 
+                                                <input type="file" ref={imageref} onChange={(e)=>{setimage(URL.createObjectURL(e.target.files[0]))}}  accept=".png,.jpg,.jpeg" required={item.required && true} className=" hidden"  name={item.name} id={item.name} /> 
                                                 <button type="button" onClick={()=>imageadd()}  className="  p-2 rounded border border-gray-400">
                                                     <img src={image ? image :  props.operationitem.image ? `http://localhost:9000/images/${props.operationitem.image}` : "/uploadimage.png"}  alt="" className="object-contain h-16 w-16 overflow-hidden" />
                                                  
