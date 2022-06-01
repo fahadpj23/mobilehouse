@@ -81,7 +81,7 @@ const FormLayout=(props)=>{
             setaddval(false)
         }
     },[deletevalue,editok,addval])
-    console.log(props.operationitem)
+    console.log(image)
     return(
         <div className="w-full h-full flex items-center bg-opacity-95 justify-center bg-gray-100 fixed top-0">
         <div className=" space-y-4  w-4/12 h-4/5 ">
@@ -186,7 +186,10 @@ const FormLayout=(props)=>{
                                                         
                                 case 'file':
                                     return  <div>
-                                                <input type="file" ref={imageref} onChange={(e)=>{setimage(URL.createObjectURL(e.target.files[0]))}}  accept=".png,.jpg,.jpeg" required={item.required && true} className=" hidden"  name={item.name} id={item.name} /> 
+                                        {
+                                            console.log(item.required)
+                                        }
+                                                <input type="file" ref={imageref} onChange={(e)=>{setimage(URL.createObjectURL(e.target.files[0]))}}  accept=".png,.jpg,.jpeg" className=" hidden"  name={item.name} id={item.name} /> 
                                                 <button type="button" onClick={()=>imageadd()}  className="  p-2 rounded border border-gray-400">
                                                     <img src={image ? image :  props.operationitem.image ? `http://localhost:9000/images/${props.operationitem.image}` : "/uploadimage.png"}  alt="" className="object-contain h-16 w-16 overflow-hidden" />
                                                  

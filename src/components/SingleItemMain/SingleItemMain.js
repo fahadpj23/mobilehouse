@@ -13,6 +13,7 @@ const SingleItemMain=(props)=>{
     const [qtystate, setqtystate] = useState("ok")
     const [pincode, setpincode] = useState("")
     const [pincodeavailability, setpincodeavailability] = useState("")
+    const [displayimage, setdisplayimage] = useState("")
 
     const [ramdisplay, setramdisplay] = useState(props.singleitem)
     const [storagedisplay, setstoragedisplay] = useState(props.singleitem)
@@ -21,9 +22,19 @@ const SingleItemMain=(props)=>{
     let storageArray=[];
     let imageArray=[];
     let item=props.singleitem
-  
+    // product image store in images .image string split using ;
+    let images=[];
+    // images array value white space remove
+    let productImage=[];
+    if(item.image)
+     {
+        images=item.image.split(';')
+     }
+     images && images.map((item,key)=>{
+        item && productImage.push(item.replace(/^\s+|\s+$/gm,''))
+    })
     // console.log(props.singleitem)
-    console.log(ramdisplay)
+   console.log(item)
     const context=useContext(Usercontext)
     
         props.variants && props.variants.map((item1,key1)=>{
@@ -57,9 +68,7 @@ const SingleItemMain=(props)=>{
           
           })  
     }
- 
-    console.log(ramArray)
-    console.log(item)
+    
     return(
         <div className="pb-10">
             
@@ -67,7 +76,16 @@ const SingleItemMain=(props)=>{
                         <div className="w-full flex justify-center">
                             <div className="w-11/12 flex  mt-5 ">
                                 <div className="w-5/12 flex ] flex-col space-y-4 ">
-                                    <img src={`http://localhost:9000/images/${item.image}`} alt="" className="object-contain  overflow-hidden h-96 "/>
+                                    <img src={displayimage ? `http://localhost:9000/images/${displayimage}` :`http://localhost:9000/images/${productImage[0]}`} alt="" className="object-contain  overflow-hidden h-96 "/>
+                                    <div className='flex space-x-2 w-full justify-center'>
+                                    {
+                                        productImage && productImage.map((item,key)=>
+                                        <button onClick={()=>setdisplayimage(productImage[key])}>
+                                            <img src={`http://localhost:9000/images/${productImage[key]}`} alt="" className="object-contain border p-2 border-gray-300 rounded overflow-hidden h-24 w-24 "/>
+                                        </button>
+                                        )
+                                    }
+                                    </div>
                                     <div className="space-x-3 flex">
                                         {/* <button className="w-6/12 font-semibold text-white bg-yellow-400 py-3">ADD TO CART</button> */}
                                         <Link     to={{pathname: "/Address",   search: "?" + new URLSearchParams({productId:item.id,orderqty:qty}).toString(),state:{checkout:"single"} }} className="w-full font-semibold flex justify-center focus:outline-none text-white bg-primary py-3 ">ORDER NOW</Link>
@@ -75,15 +93,16 @@ const SingleItemMain=(props)=>{
                                       {/* <Link to={{pathname: "/Address", state:{itemid:imagedisplay.id,orderqty:qty}}} onClick={()=>context.addtocart(item)} className="w-full font-semibold flex justify-center focus:outline-none text-white bg-primary py-3">ORDER NOW</Link> */}
                                     </div>
                                     
+                                    
 
                                 </div>
                                 <div className="ml-5 w-7/12 flex flex-col  ">
                                     <div className="w-10/12">
                                         <div className="mt-10 space-y-1">
-                                            <h1 className="text-xl font-semibold tracking-wider ">{item.name} {item.CoverType}</h1>
+                                            <h1 className="text-xl font-semibold tracking-wider ">{item.name} </h1>
                                             <h1><span className="text-xl font-bold text-green-600">₹{item.salesPrice ?? item.sellingPrice}</span><span className="line-through ml-3 text-lg font-semibold text-gray-600">₹{item.mrp}</span></h1>
                                             <h1 className="flex items-center bg-green-500 w-8/12 py-2  text-white rounded px-2"><span ><ImTruck className=""/></span><span className="font-semibold ml-1 "> Free Shipping </span><span className="text-sm ml-1">  & Inclusive of all taxes</span></h1>
-                                            <div className="flex ">
+                                            {/* <div className="flex ">
                                                 <div className="w-2/12 flex flex-col  space-y-2">
                                                     <h1>Color</h1>
                                                     <h1>Warranty</h1>
@@ -102,7 +121,7 @@ const SingleItemMain=(props)=>{
                                                     <h1>{item.material.attributeValue}</h1>
                                                     <h1>{item.Brand}</h1>
                                                 </div>
-                                            </div>
+                                            </div> */}
                                            
                                            <div className='grid grid-cols-2 gap-5'>
                                                  {/* {
@@ -248,7 +267,7 @@ const SingleItemMain=(props)=>{
                         </div>
                     
                 
-        {props.relateditems!=="" &&
+        {/* {props.relateditems!=="" &&
         <div className="w-full flex justify-center">
             <div className="w-10/12">
                 <ProductSlider
@@ -259,7 +278,7 @@ const SingleItemMain=(props)=>{
              
         </div>
        
-        }
+        } */}
 
         </div>
     )

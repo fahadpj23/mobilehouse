@@ -23,6 +23,7 @@ const SingleItem=(props)=>{
             
             .then(res=>{
                     const product=res.data.product;
+                    console.log(res.data.product)
                     setsingleitem(product)
                     MobileHouseApi.get(`/related`,{params: { name: product.name, category:product.category,productId:product.id}})
                     .then(res=>{
@@ -45,18 +46,19 @@ const SingleItem=(props)=>{
             MobileHouseApi.get(`/singleview`,{params: { productId: productId}})
             
             .then(res=>{
-                    const product=res.data;
+                    const product=res.data.product;
+                    console.log(res.data.product)
                     setsingleitem(product)
-                    MobileHouseApi.get(`/related`,{params: { name: product.name, category:product.category,productId:product.id}})
-                    .then(res=>{
-                        setrelateditems(res.data)
+                    // MobileHouseApi.get(`/related`,{params: { name: product.name, category:product.category,productId:product.id}})
+                    // .then(res=>{
+                    //     setrelateditems(res.data)
                         
-                    })  
-                    MobileHouseApi.get(`/variantproduct`,{params: { variantid: product.variantid}})
-                    .then(res=>{
-                    setvariants(res.data)
+                    // })  
+                    // MobileHouseApi.get(`/variantproduct`,{params: { variantid: product.variantid}})
+                    // .then(res=>{
+                    // setvariants(res.data)
                         
-                    })  
+                    // })  
             })
         }  
         if(variantchoosed==true)
@@ -70,9 +72,9 @@ const SingleItem=(props)=>{
            
             {singleitem!="" &&<SingleItemMain
             singleitem={singleitem}
-             relateditems={relateditems}
-             variants={variants}
-             singleitemset={singleitemset}
+            //  relateditems={relateditems}
+            //  variants={variants}
+            //  singleitemset={singleitemset}
             /> }
         </div>
     )

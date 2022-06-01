@@ -9,19 +9,18 @@ import {AuthContext} from '../helpers/authcontext'
 import Category from "./category";
 function Home() {
  
-  const [cover, setcover] = useState("")
-  const [phone, setphone] = useState("")
-  const [accessories, setaccessories] = useState("")
-  const [headset, setheadset] = useState("")
+  
+  const [recommended, setrecommended] = useState("")
   const [category, setcategory] = useState("")
+
   const AuthCon=useContext(AuthContext)
   console.log(AuthCon)
  
   useEffect(() => {
          
-          MobileHouseApi.get("/getcover")
+          MobileHouseApi.get("/MobileHouseRecommend")
           .then(res=>{
-            setcover(res.data)
+            setrecommended(res.data)
           }) 
           MobileHouseApi.get("/HomePageCategory")
           .then(res=>{
@@ -29,24 +28,24 @@ function Home() {
           }) 
 
 
-          MobileHouseApi.get("/getheadset")
-          .then(res=>{
-            setaccessories(res.data)
-          })
+          // MobileHouseApi.get("/getheadset")
+          // .then(res=>{
+          //   setaccessories(res.data)
+          // })
 
-          MobileHouseApi.get("/getaccessories")
-          .then(res=>{
-            setheadset(res.data)
-          })
-          MobileHouseApi.get("/getphone")
-          .then(res=>{
-            setphone(res.data)
-          })
+          // MobileHouseApi.get("/getaccessories")
+          // .then(res=>{
+          //   setheadset(res.data)
+          // })
+          // MobileHouseApi.get("/getphone")
+          // .then(res=>{
+          //   setphone(res.data)
+          // })
          
        
          
         }, [])
-       console.log(cover[0])
+      
   return (
     <div>
   
@@ -69,14 +68,20 @@ function Home() {
         <div className="w-full flex justify-center">
           <div className="w-11/12 px-6">
                      
-                      {cover!=="" && <ProductSlider
+                      {recommended!=="" && <ProductSlider
                       
-                       items={cover}
-                       Heading="Mobile Covers"
-                       type="46"            
+                       items={recommended}
+                       Heading="Recommends"
+                                  
                       />}
+                       {recommended!=="" && <ProductSlider
                       
-                      {accessories!=="" && <ProductSlider
+                      items={recommended}
+                      Heading="Trending Items"
+                                 
+                     />}
+                      
+                      {/* {accessories!=="" && <ProductSlider
                       
                       items={accessories}
                       Heading="Headset"
@@ -94,7 +99,7 @@ function Home() {
                       items={phone}
                       Heading="phone" 
                       type="49"           
-                     />}
+                     />} */}
                      
           </div>
         </div>
