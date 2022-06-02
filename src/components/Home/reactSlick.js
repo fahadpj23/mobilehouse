@@ -97,7 +97,8 @@ function SamplePrevArrow(props) {
     };
 
     return (
-      <div className="px-3 my-3 bg-gray-50">
+      <div className="w-full flex justify-center">
+      <div className="px-3 my-3 bg-gray-50 w-10/12 ">
         <div className="flex justify-between mx-6 ">
           <h1 className="relative sm:text-md text-sm"><b>Top Category</b></h1>
         </div>
@@ -120,6 +121,7 @@ function SamplePrevArrow(props) {
           )}
        
         </Slider>
+      </div>
       </div>
 
     );
