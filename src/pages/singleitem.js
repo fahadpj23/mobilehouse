@@ -23,7 +23,7 @@ const SingleItem=(props)=>{
             
             .then(res=>{
                     const product=res.data.product;
-                    console.log(res.data.product)
+                    
                     setsingleitem(product)
                     MobileHouseApi.get(`/related`,{params: { name: product.name, category:product.category,productId:product.id}})
                     .then(res=>{
@@ -49,16 +49,16 @@ const SingleItem=(props)=>{
                     const product=res.data.product;
                     console.log(res.data.product)
                     setsingleitem(product)
-                    // MobileHouseApi.get(`/related`,{params: { name: product.name, category:product.category,productId:product.id}})
-                    // .then(res=>{
-                    //     setrelateditems(res.data)
+                    MobileHouseApi.get(`/related`,{params: { name: product.name, category:product.category,productId:product.id}})
+                    .then(res=>{
+                        setrelateditems(res.data)
                         
-                    // })  
-                    // MobileHouseApi.get(`/variantproduct`,{params: { variantid: product.variantid}})
-                    // .then(res=>{
-                    // setvariants(res.data)
+                    })  
+                    MobileHouseApi.get(`/variantproduct`,{params: { variantid: product.variantid}})
+                    .then(res=>{
+                    setvariants(res.data.variants)
                         
-                    // })  
+                    })  
             })
         }  
         if(variantchoosed==true)
@@ -72,8 +72,8 @@ const SingleItem=(props)=>{
            
             {singleitem!="" &&<SingleItemMain
             singleitem={singleitem}
-            //  relateditems={relateditems}
-            //  variants={variants}
+             relateditems={relateditems}
+              variants={variants}
             //  singleitemset={singleitemset}
             /> }
         </div>

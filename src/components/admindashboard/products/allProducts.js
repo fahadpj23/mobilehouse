@@ -81,12 +81,12 @@ const AllProduct=(props)=>{
             }
              <SideNav/>
             
-            <div className="w-full px-5 py-5 h-fixedNoNav3 overflow-auto">
+            <div className="w-full  h-fixedNoNav3 overflow-auto">
                 
                 <NavOperation
                  AddNew={AddNew}
                 />
-                <div className='mt-7  '>
+                <div className=' '>
                     {
                     product &&
                         <TableContent

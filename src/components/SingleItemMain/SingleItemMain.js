@@ -33,22 +33,23 @@ const SingleItemMain=(props)=>{
      images && images.map((item,key)=>{
         item && productImage.push(item.replace(/^\s+|\s+$/gm,''))
     })
+    console.log(props.variants)
     // console.log(props.singleitem)
    console.log(item)
     const context=useContext(Usercontext)
     
-        props.variants && props.variants.map((item1,key1)=>{
+        // props.variants && props.variants.map((item1,key1)=>{
            
-            if(item1.ram.attributeId!=null )
-            {
-             item1.image   &&  item1.ram.attributeId=== props.singleitem.ram.attributeId && item1.storage.attributeId=== storagedisplay.storage.attributeId  && imageArray.some((product)=>product.image===item1.image)===false &&imageArray.push(item1)
-             item1.ram &&  ramArray.some((product)=>product.ram.attributeId===item1.ram.attributeId)===false && ramArray.push(item1)
-             item.storage && item1.ram &&  item1.ram.attributeId=== props.singleitem.ram.attributeId && storageArray.some((product)=>product.storage.attributeId===item1.storage.attributeId)===false  && storageArray.push(item1)
+        //     if(item1.ram.attributeId!=null )
+        //     {
+        //      item1.image   &&  item1.ram.attributeId=== props.singleitem.ram.attributeId && item1.storage.attributeId=== storagedisplay.storage.attributeId  && imageArray.some((product)=>product.image===item1.image)===false &&imageArray.push(item1)
+        //      item1.ram &&  ramArray.some((product)=>product.ram.attributeId===item1.ram.attributeId)===false && ramArray.push(item1)
+        //      item.storage && item1.ram &&  item1.ram.attributeId=== props.singleitem.ram.attributeId && storageArray.some((product)=>product.storage.attributeId===item1.storage.attributeId)===false  && storageArray.push(item1)
             
-            }
-            else
-             item1.image && imageArray.some((product)=>product.image===item1.image)===false && imageArray.push(item1)
-             })
+        //     }
+        //     else
+        //      item1.image && imageArray.some((product)=>product.image===item1.image)===false && imageArray.push(item1)
+        //      })
     
     // setimagedisplay(props.singleitem)
     

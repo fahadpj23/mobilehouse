@@ -95,7 +95,7 @@ const AttributeMain=()=>{
            
  console.log(operationitem)
     return(
-        <div className="flex w-full">
+        <div className="flex w-full h-screen overflow-auto">
              {
                     addattribute===true && 
                     
@@ -114,19 +114,21 @@ const AttributeMain=()=>{
                                    
                 }
             <SideNav/>
-            <div className="w-10/12">
-                
-            <NavOperation
-            AddNew={AddNew}
-            />
-                {
-                    attribute &&
-                    <TableContent
-                         Data={attribute}
-                         tableOperation={tableOperation}
+            <div className="w-full h-fixedNoNav3 overflow-auto  ">
+               
+                <NavOperation
+                AddNew={AddNew}
+                />
+            
+                    {
+                        attribute &&
+                        <TableContent
+                            Data={attribute}
+                            tableOperation={tableOperation}
 
-                    />
-                }
+                        />
+                    }
+                
             </div>
     </div>   
     )

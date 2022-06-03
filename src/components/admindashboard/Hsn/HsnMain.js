@@ -126,6 +126,7 @@ const HsnMain=()=>{
 
             <div>
                 <MainLayoutAdmin>
+                <div className="w-full">
                 <NavOperation
                     AddNew={AddNew}
                 />
@@ -137,7 +138,7 @@ const HsnMain=()=>{
 
                         />
                     }
-           
+                </div>
                 </MainLayoutAdmin>
             
             </div>

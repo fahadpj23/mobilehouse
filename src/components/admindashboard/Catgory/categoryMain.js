@@ -117,7 +117,7 @@ const CategoryMain=(props)=>{
                                  
                 }
             <SideNav/>
-            <div className="w-10/12">
+            <div className="w-full">
                 
             <NavOperation
             AddNew={AddNew}
