@@ -39,16 +39,19 @@ const SingleItemMain=(props)=>{
     const context=useContext(Usercontext)
     
         // props.variants && props.variants.map((item1,key1)=>{
+        //     item.map((item2,key2)=>{
+        //         if(item2.attributeId!=null )
+        //         {
+        //         item2.image   &&  item2.attributeId=== props.singleitem.ram.attributeId && item2.storage.attributeId=== storagedisplay.storage.attributeId  && imageArray.some((product)=>product.image===item2.image)===false &&imageArray.push(item2)
+        //         item2.ram &&  ramArray.some((product)=>product.ram.attributeId===item2.ram.attributeId)===false && ramArray.push(item2)
+        //         item.storage && item2.ram &&  item2.ram.attributeId=== props.singleitem.ram.attributeId && storageArray.some((product)=>product.storage.attributeId===item2.storage.attributeId)===false  && storageArray.push(item2)
+
+        //         }
+        //         else
+        //         item2.image && imageArray.some((product)=>product.image===item2.image)===false && imageArray.push(item2)  
+        //     })
            
-        //     if(item1.ram.attributeId!=null )
-        //     {
-        //      item1.image   &&  item1.ram.attributeId=== props.singleitem.ram.attributeId && item1.storage.attributeId=== storagedisplay.storage.attributeId  && imageArray.some((product)=>product.image===item1.image)===false &&imageArray.push(item1)
-        //      item1.ram &&  ramArray.some((product)=>product.ram.attributeId===item1.ram.attributeId)===false && ramArray.push(item1)
-        //      item.storage && item1.ram &&  item1.ram.attributeId=== props.singleitem.ram.attributeId && storageArray.some((product)=>product.storage.attributeId===item1.storage.attributeId)===false  && storageArray.push(item1)
-            
-        //     }
-        //     else
-        //      item1.image && imageArray.some((product)=>product.image===item1.image)===false && imageArray.push(item1)
+          
         //      })
     
     // setimagedisplay(props.singleitem)
@@ -107,7 +110,7 @@ const SingleItemMain=(props)=>{
                                                 <div className="w-2/12 flex flex-col  space-y-2">
                                                     <h1>Color</h1>
                                                     <h1>Warranty</h1>
-                                                    <h1>Material</h1>
+                                            
                                                     <h1>Brand</h1>
                                                 </div>
                                                 <div className="w-2/12 space-y-2">
@@ -125,103 +128,54 @@ const SingleItemMain=(props)=>{
                                             </div> */}
                                            
                                            <div className='grid grid-cols-2 gap-5'>
-                                                 {/* {
-                                              colorArray && colorArray.length!=0 && 
-                                                <div className='flex space-x-3'>
-                                                    <h1 className='h-8 flex items-center'>COLOR :</h1>
-                                                    <div className='flex space-x-2'>
-                                                    {
-                                                        colorArray.map((item,key)=>{
-                                                            return(
-                                                                <button className='border border-gray-500 px-2 uppercase h-8  rounded text-sm'>{item.color}</button>
-                                                            )
-                                                        })
-                                                    }
-                                                    </div>
-                                                    
-                                                </div>
-                                           }  */}
-                                           {
-                                              imageArray && imageArray.length!==0 ?
-                                                <div className='flex space-x-3'>
-                                                    <h1 className='h-8 flex items-center'>COLOR :</h1>
-                                                    <div className='flex space-x-2'>
-                                                    {/* <button   className="px-2 uppercase h-16 w-16    border-2 border-red-500   rounded text-sm focus:outline-none">
+                                               <div>
+                                               {/* {
+                                                 props.variants && props.variants.map((item1,key1)=>{
+                                                     return(
+                                                       item1.image != productImage[0] && <button  className='' >
                                                                     
-                                                                    <img src={`http://localhost:9000/images/${item.image}`} alt="" className="object-contain  overflow-hidden  "/>
+                                                                  <img src={`http://localhost:9000/images/${item1.image}`} alt="" className="object-contain  overflow-hidden  h-16 w-16 "/>
     
-                                                     </button> */}
-                                                    {
-                                                        
-                                                        imageArray.map((item1,key1)=>{
-                                                            return(
-                                                               
-                                                                <button  onClick={()=>props.singleitemset(item1)} className={` px-2 uppercase h-16 w-16   ${item.image===item1.image ? "border-red-500 border-2": "border border-gray-500"}   rounded text-sm focus:outline-none`}>
+                                                             </button>
+                                                     )
+                                               
+                                                 
+                                                 }
+       
+                                              ) } */}
+                                              </div>
+                                              <div>
+                                               {
+                                                 props.variants && props.variants.map((item1,key1)=>
+                                                item1.attributes.map((item2,key2)=>{
+                                                    return(
+                                                        item2.attributeName=="ram" &&
+                                                         <button  className='' >
+                                                             <h1>{item2.attributeValue}</h1>
+                                                        {/* <img src={`http://localhost:9000/images/${item1.image}`} alt="" className="object-contain  overflow-hidden  h-16 w-16 "/> */}
+
+                                                        </button>
+                                                    )
+                                                })
+                                                
+                                                  
+       
+                                              ) }
+                                              </div>
+                                              <div>
+                                               {
+                                                 props.variants && props.variants.map((item1,key1)=>
+                                                 <button  className='' >
                                                                     
-                                                                <img src={`http://localhost:9000/images/${item1.image}`} alt="" className="object-contain  overflow-hidden  "/>
-
-                                                                </button>
-                                                            )
-                                                        })
-                                                    }
-                                                    </div>
-                                                    
-                                                </div>
-                                                :
-                                                <div className='flex space-x-3'>
-                                                <h1 className='h-8 flex items-center'>COLOR :</h1>
-                                                <div className='flex space-x-2'>
-                                                <button   className="px-2 uppercase h-16 w-16    border-2 border-red-500   rounded text-sm focus:outline-none">
-                                                                
-                                                                <img src={`http://localhost:9000/images/${props.singleitem.image}`} alt="" className="object-contain  overflow-hidden  "/>
-
-                                                 </button>
+                                                                  <img src={`http://localhost:9000/images/${item1.image}`} alt="" className="object-contain  overflow-hidden  h-16 w-16 "/>
+    
+                                                             </button>
+                                                  
+       
+                                              ) }
+                                              </div>
                                                 
-                                                </div>
-                                                
-                                            </div>
-
-                                           } 
-                                      
-                                           {
-                                              ramArray && ramArray.length!=0 && 
-                                                <div className='flex space-x-3'>
-                                                    <h1 className='h-8 flex items-center'>RAM : </h1>
-                                                    <div className='flex space-x-2'>
-                                                   {/* <button  className=" px-2 uppercase h-8   border-2 border-red-500   rounded text-sm focus:outline-none">{props.singleitem.ram.attributeValue} GB</button> */}
-
-                                                    {
-                                                    
-
-                                                        ramArray.map((item1,key1)=>{
-                                                           
-                                                            return(
-                                                                 <button onClick={()=>props.singleitemset(item1)} className={` px-2 uppercase h-8  ${item.ram.attributeId===item1.ram.attributeId ? "border-red-500 border-2": "border border-gray-500"}   rounded text-sm focus:outline-none`}>{item1.ram.attributeValue} GB</button>
-                                                            )
-                                                        })
-                                                    }
-                                                    </div>
-                                                </div>
-                                           } 
-                                           {
-                                              storageArray && storageArray.length!=0 && 
-                                                <div className='flex space-x-3' >
-                                                    <h1 className='h-8 flex items-center'>STORAGE : </h1>
-                                                    {/* <button  className=" px-2 uppercase h-8   border-2 border-red-500   rounded text-sm focus:outline-none">{item.storage.attributeValue} GB</button> */}
-
-                                                    <div className='flex space-x-2'>
-                                                    {
-                                                        storageArray.map((item1,key1)=>{
-                                                            return(
-                                                                
-                                                                item.ram.attributeValue===item1.ram.attributeValue &&
-                                                                <button onClick={()=>props.singleitemset(item1)} className={` px-2 uppercase h-8  ${item.storage.attributeValue===item1.storage.attributeValue ? "  border-2 border-red-500" : " border border-gray-500"}   rounded text-sm focus:outline-none`}>{props.singleitem.ram.attributeValue===item1.ram.attributeValue &&  item1.storage.attributeValue }GB </button>
-                                                                )
-                                                        })
-                                                    }
-                                                    </div>
-                                                </div>
-                                           } 
+                                              
                                            </div>
                                            <div>
 
