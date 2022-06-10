@@ -33,9 +33,8 @@ const SingleItemMain=(props)=>{
      images && images.map((item,key)=>{
         item && productImage.push(item.replace(/^\s+|\s+$/gm,''))
     })
+ 
     console.log(props.variants)
-    // console.log(props.singleitem)
-   console.log(item)
     const context=useContext(Usercontext)
     
         // props.variants && props.variants.map((item1,key1)=>{
@@ -129,6 +128,17 @@ const SingleItemMain=(props)=>{
                                            
                                            <div className='grid grid-cols-2 gap-5'>
                                                <div>
+                                               <div className='space-x-3'>
+                                               {
+                                                 props.variants && props.variants.map((item1,key1)=>
+                                                 <button  onClick={()=>props.singleitemset(item1)} >
+                                                                    
+                                                                  <img src={`http://localhost:9000/images/${item1.image}`} alt="" className={`object-contain ${item1.image==productImage[0] ? "border border-red-500" : "border border-gray-500"}  overflow-hidden  h-16 w-16  `} />
+    
+                                                             </button>
+                                                  
+       
+                                              ) }
                                                {/* {
                                                  props.variants && props.variants.map((item1,key1)=>{
                                                      return(
@@ -162,17 +172,7 @@ const SingleItemMain=(props)=>{
        
                                               ) }
                                               </div>
-                                              <div>
-                                               {
-                                                 props.variants && props.variants.map((item1,key1)=>
-                                                 <button  className='' >
-                                                                    
-                                                                  <img src={`http://localhost:9000/images/${item1.image}`} alt="" className="object-contain  overflow-hidden  h-16 w-16 "/>
-    
-                                                             </button>
-                                                  
-       
-                                              ) }
+                                            
                                               </div>
                                                 
                                               

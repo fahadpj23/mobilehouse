@@ -18,7 +18,7 @@ const SingleItem=(props)=>{
 
      
     const singleitemset=(item1)=>{
-        console.log(item1)
+       
             MobileHouseApi.get(`/singleview`,{params: { productId: item1.id}})
             
             .then(res=>{
@@ -32,7 +32,7 @@ const SingleItem=(props)=>{
                     })  
                     MobileHouseApi.get(`/variantproduct`,{params: { variantid: product.variantid}})
                     .then(res=>{
-                    setvariants(res.data)
+                    setvariants(res.data.variants)
                         
                     })  
             })   
@@ -70,11 +70,11 @@ const SingleItem=(props)=>{
     return(
         <div className="mt-10">
            
-            {singleitem!="" &&<SingleItemMain
-            singleitem={singleitem}
+            {singleitem &&<SingleItemMain
+             singleitem={singleitem}
              relateditems={relateditems}
-              variants={variants}
-            //  singleitemset={singleitemset}
+             variants={variants}
+             singleitemset={singleitemset}
             /> }
         </div>
     )
