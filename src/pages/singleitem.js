@@ -18,7 +18,7 @@ const SingleItem=(props)=>{
 
      
     const singleitemset=(item1)=>{
-       
+            history.push({pathname:'singleItem',search: "?" + new URLSearchParams({productid: item1.id}).toString() })
             MobileHouseApi.get(`/singleview`,{params: { productId: item1.id}})
             
             .then(res=>{

@@ -177,9 +177,22 @@ const SingleItemMain=(props)=>{
                                                 
                                               
                                            </div>
-                                           <div>
-
-                                            </div>
+                                           <div className='flex space-x-4'>
+                                                <h1 className='font-semibold text-gray-500 text-lg'>Specification </h1>
+                                                <div>
+                                                {
+                                                    item && item.attributes.map((item1,key1)=>{
+                                                        return(
+                                                            <li className='flex space-x-2'>
+                                                                <li>{item1.attributeName}</li>
+                                                                <h1>:</h1>
+                                                                <h1>{item1.attributeValue}</h1>
+                                                            </li>
+                                                        )
+                                                    })
+                                                }
+                                                </div>
+                                          </div>
                                             
                                             <div>
                                                 <div className="flex mt-10">
