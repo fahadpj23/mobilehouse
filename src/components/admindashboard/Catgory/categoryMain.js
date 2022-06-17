@@ -14,7 +14,10 @@ const CategoryMain=(props)=>{
     const [operation,setoperation]=useState("")
     const[operationitem,setoperationitem]=useState("")
     const[operationid,setoperationid]=useState("")
+    const[variants,setvariants]=useState("")
+   
     const categoryvalues=[];
+    const variantvalues=[];
     const addformdata=[
         {name:"categoryName",type:"text",required:"true"},
          {name:"status",type:"select",value:[{value:1,name:"active"},{value:0,name:"disable"}],required:"true"},
@@ -27,6 +30,7 @@ const CategoryMain=(props)=>{
         e.preventDefault();
         const data=new FormData(e.target)
         data.append("categoryvalues",JSON.stringify( categoryvalues))
+        data.append("variantvalues",JSON.stringify( variantvalues))
         data.append("operation",operation)
         data.append("operationid",operationid )
         MobileHouseApi.post('/categoryAdd',data)
@@ -74,11 +78,21 @@ const CategoryMain=(props)=>{
         }
         else
         {
+          MobileHouseApi.get('/getCategoryVariant',{params:{categoryId:operationCategory.id}})
+          .then((res)=>{
+            console.log(res.data)
+                setvariants(res.data.categoryvariant)
+                setoperationid(operationCategory.id)
+                setoperationitem(operationCategory)
+                setoperation(operation)
+                setaddcategory(true)
+              
+           
+          })       
+        
           
-          setoperationid(operationCategory.id)
-          setoperationitem(operationCategory)
-          setoperation(operation)
-          setaddcategory(true)
+        
+
         }
     }
 
@@ -91,10 +105,12 @@ const CategoryMain=(props)=>{
             })
         }
         
+          
+        
         
 
       },[category])
-    console.log(operationitem)
+    console.log(variantvalues)
    
     return(
         <div className="flex w-full">
@@ -111,6 +127,8 @@ const CategoryMain=(props)=>{
                                             Mainname={operationitem.categoryName}
                                             Mainstatus={operationitem.status}
                                             close={closeWindow}
+                                            variantvalues={variantvalues}
+                                            variants={variants}
                                             head="Category"
                                         />
                                     

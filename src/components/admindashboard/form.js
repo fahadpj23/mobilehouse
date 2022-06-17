@@ -7,14 +7,18 @@ const FormLayout=(props)=>{
     const [addval,setaddval]=useState(false)
     const [editok,seteditok]=useState(false)
     const [image,setimage]=useState("")
+    const [variantoperation,setvariantoperation]=useState(false)
+    const [deleteVariants,setdeleteVariants]=useState(false)
+    const [variantset,setvariantset]=useState(false)
     const imageref=useRef()
-    console.log(props.formdata)
+
+
     // input id get as parameter in addvalue function and set value to tagIdvalue
     const addvalue=(tagId)=>{
 
         // input type id set as formstructure item name.so every inpt tag id get by that name
         let tagIdvalue=document.getElementById(tagId).value
-        console.log(tagIdvalue)
+        
         if(tagIdvalue)
         {
             if(props.values.includes(tagIdvalue)==false)
@@ -22,6 +26,7 @@ const FormLayout=(props)=>{
                 props.values.push(tagIdvalue)
                 document.getElementById(tagId).value=""
                 setaddval(true)
+                // props.attributeValues.push()
                 
             }
             else
@@ -37,11 +42,48 @@ const FormLayout=(props)=>{
        
        
     }
+   
+    const setvariant=(tagId,index)=>{
+
+        
+        let tagIdvalue=document.getElementById(tagId).value
+        console.log(tagIdvalue)
+        if(tagIdvalue)
+        {
+            
+            if(props.variantvalues.includes(tagIdvalue)==false)
+            {
+                props.variantvalues.push(tagIdvalue)
+                setvariantoperation(!variantoperation)
+            }
+            else
+            {
+               
+                setdeleteVariants(index)
+            //    props.variantvalues.splice(index,1)
+            //    console.log("removed")
+            //    setvariantoperation(!variantoperation)
+            //    console.log(props.variantvalues)
+             
+               
+            
+            }
+        }
+
+    }
+    
 
 
     const imageadd=()=>{
         imageref.current.click()
     }
+    // if(props.variants)
+    //     {
+    //         props.variants.map((item,key)=>{
+    //             props.variantvalues.includes(item.attributeName)==false && props.variantvalues.push(item.attributeName)
+    //         })
+           
+    //     }
 
   
     
@@ -55,6 +97,13 @@ const FormLayout=(props)=>{
               seteditok(true)
               console.log(props.values)
             
+        }
+        if(variantset==false && props.variants)
+        {
+            props.variants.map((item,key)=>{
+                props.variantvalues.includes(item.attributeName)==false && props.variantvalues.push(item.attributeName)
+            })
+            setvariantset(true) 
         }
        
         if(deletevalue!="")
@@ -75,12 +124,30 @@ const FormLayout=(props)=>{
           
         
         }
+        if(deleteVariants!="")
+        {
+            console.log("fdf")
+            if(props.variantvalues.length==1)
+            {
+               
+                props.variantvalues.pop();
+                setdeleteVariants("")
+            }
+            else
+            {
+                props.variantvalues && props.variantvalues.splice(deleteVariants-1,1)
+                
+                setdeleteVariants("")
+            }
+        }
+        
 
         if(addval==true)
         {
             setaddval(false)
         }
-    },[deletevalue,editok,addval])
+     console.log(props.variantvalues)
+    },[deletevalue,editok,addval,variantoperation,deleteVariants])
     console.log(image)
     return(
         <div className="w-full h-full flex items-center bg-opacity-95 justify-center bg-gray-100 fixed top-0">
@@ -95,7 +162,7 @@ const FormLayout=(props)=>{
                 <div>
         <form onSubmit={(e)=>props.handleSubmit(e)} method="post">
             {
-                props.formdata.map((item,key)=>{
+                props.formdata && props.formdata.map((item,key)=>{
                     return(
                         <div className="flex flex-col space-y-2 mt-7">
                             
@@ -115,7 +182,7 @@ const FormLayout=(props)=>{
                                                             item.more && props.values.length!=0 &&
                                                                 <div className="space-y-1 mt-1 border border-gray-400 rounded p-2 max-h-48 overflow-auto">
                                                                     {
-                                                                        props.values.map((item,key)=>{
+                                                                        props.values && props.values.map((item,key)=>{
                                                                             return(
                                                                                 <div className="w-full flex justify-between px-2 bg-gray-200 py-1 ">
                                                                                     <h1 className=" px-1  truncate w-10/12  ">{item}</h1 >
@@ -166,13 +233,13 @@ const FormLayout=(props)=>{
                                                             item.more && props.values.length!=0 &&
                                                                 <div className="space-y-1 mt-1 border border-gray-400 rounded p-2 max-h-48 overflow-auto">
                                                                     {
-                                                                        props.values.map((item,key)=>{
+                                                                        props.values && props.values.map((item,key)=>{
                                                                             return(
                                                                                 <div className="w-full flex justify-between px-2 items-center bg-gray-200 py-1 ">
                                                                                     <h1 className=" px-1  truncate w-7/12  ">{item}</h1 >
                                                                                     {
                                                                                         props.head=="Category" && 
-                                                                                        <input type="checkbox" id={item} name={item} value={item}/>
+                                                                                        <input onChange={()=>setvariant(item,key+1)} checked={props.variantvalues.includes(item)} type="checkbox" id={item} name={item} value={item}/>
                                                                                     }
                                                                                     <button type="button" onClick={()=>{setdeletevalue(key+1)}} className={`${props.operation=="view" && " hidden"}`}  ><AiOutlineClose/></button>
                 
@@ -210,91 +277,7 @@ const FormLayout=(props)=>{
                                 }
                             })()}
         
-                              {/* {
-                                 
-                                (item.type=="text" || item.type=="number")&&
-                                 
-                                    <div className="space-y-2">
-                                        <div className= "flex space-x-1">   
-                                            <input type={item.type} onChange={(e)=>{item.more && setvalue(e.target.value)}} required={item.required && true} className={`  w-full ${item.name=="Address" && "h-20"} px-2 py-1 rounded-md border border-gray-400`} defaultValue={  props.operationitem && props.operationitem[item.name]} value={ item.more && value}  name={item.name} id={item.name} />
-                                            <button type="button" onClick={()=>addattribute() } className={`${props.operation!="view" && item.more  ? "rounded-md bg-red-500 text-white px-2":"hidden"}`}>ADD</button>
-
-                                        </div>
-                                       
-                                        <div className={`${props.values && item.more ? " rounded-md w-full border-gray-400 border h-36 space-y-1   overflow-auto  px-2 py-2": "hidden"}`}>
-                                            {
-
-                                                props.values && props.values.map((item1,key1)=>{
-                                                    return(
-                                                        <div className="w-10/12 flex justify-between px-2 bg-gray-200 py-1 ">
-                                                               <h1 className=" px-1  truncate w-10/12  ">{item1}</h1 >
-                                                               <button className={`${props.operation=="view" && " hidden"}`} type="button" onClick={()=>{setdeletevalue(key1+1)}}><AiOutlineClose/></button>
-
-                                                        </div>
-                                                     
-                                                    )
-                                                })
-                                            }
-                                        </div>
-
-                                    </div>
-                                    
-
-                                } */}
-
-                                {/* {
-                                    item.type=="select" &&
-                                    <div>
-                                        <div className="flex">
-                                            { item.more ?
-
-                                             <select onChange={(e)=>{item.more && setvalue(e.target.value)}} defaultValue={!item.more && props.Mainstatus} className="w-full px-2 py-1 rounded-md border border-gray-400" name={item.name}>
-                                             <option>--select--</option>
-                                             {
-                                                 item.value&& item.value.map((item1,key1)=>{
-                                                     return(
-                                                         <option value={item1}>{item1}</option>
-                                                     )
-                                                 })
-                                             }
-                                            </select>
-                                            :
-
-                                             <select onChange={(e)=>{item.more && setvalue(e.target.value)}} defaultValue={!item.more && props.Mainstatus} className="w-full px-2 py-1 rounded-md border border-gray-400" name={item.name}>
-                                                <option>--select--</option>
-                                                {
-                                                    item.value&& item.value.map((item1,key1)=>{
-                                                        return(
-                                                            <option value={item1.value}>{item1.name}</option>
-                                                        )
-                                                    })
-                                                }
-                                            </select>
-                                            }
-                                            <button type="button" onClick={()=>addattribute() } className={`${item.more  ? "rounded-md bg-red-500 text-white px-2":"hidden"}`}>ADD</button>
-
-                                        </div>
-                                        
-                                        <div className={`${props.values && item.more ? " rounded-md w-full border-gray-400 border h-36 space-y-1   overflow-auto  px-2 py-2": "hidden"}`}>
-                                            {
-
-                                                props.values && props.values.map((item1,key1)=>{
-                                                    return(
-                                                        <div className="w-10/12 flex justify-between px-2 bg-gray-200 py-1 ">
-                                                               <h1 className=" px-1  truncate w-10/12  ">{item1}</h1 >
-                                                               <button type="button" onClick={()=>{setdeletevalue(key1)}}><AiOutlineClose/></button>
-
-                                                        </div>
-                                                     
-                                                    )
-                                                })
-                                            }
-                                        </div>
-
-                                    </div>
-                                
-                              } */}
-                               
+                              
                         </div>
                     )
                 })
