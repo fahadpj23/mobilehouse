@@ -53,13 +53,14 @@ const FormLayout=(props)=>{
             
             if(props.variantvalues.includes(tagIdvalue)==false)
             {
+                console.log("dfd")
                 props.variantvalues.push(tagIdvalue)
                 setvariantoperation(!variantoperation)
             }
             else
             {
-               
-                setdeleteVariants(index)
+             
+                setdeleteVariants(+props.variantvalues.indexOf(tagIdvalue)+1)
             //    props.variantvalues.splice(index,1)
             //    console.log("removed")
             //    setvariantoperation(!variantoperation)
@@ -126,18 +127,21 @@ const FormLayout=(props)=>{
         }
         if(deleteVariants!="")
         {
-            console.log("fdf")
+           console.log(props.variantvalues.length)
             if(props.variantvalues.length==1)
             {
-               
+                console.log("fdf")
                 props.variantvalues.pop();
                 setdeleteVariants("")
+                setvariantoperation(!variantoperation)
             }
             else
             {
-                props.variantvalues && props.variantvalues.splice(deleteVariants-1,1)
+                console.log()
+                props.variantvalues && props.variantvalues.splice(+deleteVariants-1,1)
                 
                 setdeleteVariants("")
+                setvariantoperation(!variantoperation)
             }
         }
         
