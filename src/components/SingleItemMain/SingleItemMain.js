@@ -17,10 +17,14 @@ const SingleItemMain=(props)=>{
 
     const [ramdisplay, setramdisplay] = useState(props.singleitem)
     const [storagedisplay, setstoragedisplay] = useState(props.singleitem)
+    let variantArray=[];
     // let colorArray=[];
-    let ramArray=[];
-    let storageArray=[];
-    let imageArray=[];
+    // let ramArray=[];
+    // let storageArray=[];
+    // let imageArray=[];
+    // props.categoryVariant && props.categoryVariant.map((item5,key1)=>{
+    //     let item5;
+    // })
     let item=props.singleitem
     // product image store in images .image string split using ;
     let images=[];
@@ -33,28 +37,41 @@ const SingleItemMain=(props)=>{
      images && images.map((item,key)=>{
         item && productImage.push(item.replace(/^\s+|\s+$/gm,''))
     })
- 
-    console.log(props.variants)
+    props.variants && props.variants.map((item1,key1)=>{
+         if(item1.attributes.some((productattribute)=>productattribute.attributeName=="ram")==true)
+         {
+             
+            // item1.attributes.map((item2,key2)=>{
+            //    ramArray.push(item1)
+            // })
+         }
+    }  
+    )
+
+
     const context=useContext(Usercontext)
     
-        // props.variants && props.variants.map((item1,key1)=>{
-        //     item.map((item2,key2)=>{
-        //         if(item2.attributeId!=null )
-        //         {
-        //         item2.image   &&  item2.attributeId=== props.singleitem.ram.attributeId && item2.storage.attributeId=== storagedisplay.storage.attributeId  && imageArray.some((product)=>product.image===item2.image)===false &&imageArray.push(item2)
-        //         item2.ram &&  ramArray.some((product)=>product.ram.attributeId===item2.ram.attributeId)===false && ramArray.push(item2)
-        //         item.storage && item2.ram &&  item2.ram.attributeId=== props.singleitem.ram.attributeId && storageArray.some((product)=>product.storage.attributeId===item2.storage.attributeId)===false  && storageArray.push(item2)
+        //  
+            // if(item1.attributes.some((product)=>product.attributeName=="ram")==true)
+            // {
+            // item1.attributes.map((item2,key2)=>{
+               
+            //     // item2.image   &&  item2.attributeId=== props.singleitem.ram.attributeId && item2.storage.attributeId=== storagedisplay.storage.attributeId  && imageArray.some((product)=>product.image===item2.image)===false &&imageArray.push(item2)
+            //     item2.attributeName=="ram" &&  ramArray.some((product)=>product.attributeValueId===item2.attributeValueId)==false && ramArray.push(item2)
 
-        //         }
-        //         else
-        //         item2.image && imageArray.some((product)=>product.image===item2.image)===false && imageArray.push(item2)  
-        //     })
+                
+                
+               
+            // })
+            // }
+            // else
+            //     item1.image && imageArray.some((product)=>product.image===item1.image)===false && imageArray.push(item1)  
            
           
-        //      })
+            //  })
     
     // setimagedisplay(props.singleitem)
-    
+
     const checkpincode=()=>{
         axios.get(`http://localhost:9000/pincodecheck`,{params: { pincodeno: pincode}})
         
@@ -82,8 +99,8 @@ const SingleItemMain=(props)=>{
                                     <img src={displayimage ? `http://localhost:9000/images/${displayimage}` :`http://localhost:9000/images/${productImage[0]}`} alt="" className="object-contain  overflow-hidden h-96 "/>
                                     <div className='flex space-x-2 w-full justify-center'>
                                     {
-                                        productImage && productImage.map((item,key)=>
-                                        <button onClick={()=>setdisplayimage(productImage[key])}>
+                                        productImage && productImage.map((item1,key)=>
+                                        <button key={key} onClick={()=>setdisplayimage(productImage[key])}>
                                             <img src={`http://localhost:9000/images/${productImage[key]}`} alt="" className="object-contain border p-2 border-gray-300 rounded overflow-hidden h-24 w-24 "/>
                                         </button>
                                         )
@@ -103,87 +120,72 @@ const SingleItemMain=(props)=>{
                                     <div className="w-10/12">
                                         <div className="mt-10 space-y-1">
                                             <h1 className="text-xl font-semibold tracking-wider ">{item.name} </h1>
-                                            <h1><span className="text-xl font-bold text-green-600">₹{  item.salesPrice!=0 ? item.salesPrices :  item.sellingPrice}</span><span className="line-through ml-3 text-lg font-semibold text-gray-600">₹{item.mrp}</span></h1>
+                                            <h1><span className="text-xl font-bold text-green-600">₹{  item.salesPrice!=0 ? item.salesPrice :  item.sellingPrice}</span><span className="line-through ml-3 text-lg font-semibold text-gray-600">₹{item.mrp}</span></h1>
                                             <h1 className="flex items-center bg-green-500 w-8/12 py-2  text-white rounded px-2"><span ><ImTruck className=""/></span><span className="font-semibold ml-1 "> Free Shipping </span><span className="text-sm ml-1">  & Inclusive of all taxes</span></h1>
-                                            {/* <div className="flex ">
-                                                <div className="w-2/12 flex flex-col  space-y-2">
-                                                    <h1>Color</h1>
-                                                    <h1>Warranty</h1>
-                                            
-                                                    <h1>Brand</h1>
-                                                </div>
-                                                <div className="w-2/12 space-y-2">
-                                                    <h1>:</h1>
-                                                    <h1>:</h1>
-                                                    <h1>:</h1>
-                                                    <h1>:</h1>
-                                                </div>
-                                                <div className="w-8/12 space-y-2">
-                                                    <h1>{item.color.attributeValue}</h1>
-                                                    <h1>{item.warranty}</h1>
-                                                    <h1>{item.material.attributeValue}</h1>
-                                                    <h1>{item.Brand}</h1>
-                                                </div>
-                                            </div> */}
                                            
-                                           <div className='grid grid-cols-2 gap-5'>
-                                               <div>
-                                               <div className='space-x-3'>
-                                               {
-                                                 props.variants && props.variants.map((item1,key1)=>
-                                                 <button  onClick={()=>props.singleitemset(item1)} >
-                                                                    
-                                                                  <img src={`http://localhost:9000/images/${item1.image}`} alt="" className={`object-contain ${item1.image==productImage[0] ? "border border-red-500" : "border border-gray-500"}  overflow-hidden  h-16 w-16  `} />
-    
-                                                             </button>
-                                                  
-       
-                                              ) }
-                                               {/* {
-                                                 props.variants && props.variants.map((item1,key1)=>{
-                                                     return(
-                                                       item1.image != productImage[0] && <button  className='' >
-                                                                    
-                                                                  <img src={`http://localhost:9000/images/${item1.image}`} alt="" className="object-contain  overflow-hidden  h-16 w-16 "/>
-    
-                                                             </button>
-                                                     )
-                                               
-                                                 
-                                                 }
-       
-                                              ) } */}
-                                              </div>
-                                              <div>
-                                               {
-                                                 props.variants && props.variants.map((item1,key1)=>
-                                                item1.attributes.map((item2,key2)=>{
+                                           
+                                           <div className='grid grid-cols-3 gap-5'>
+                                              
+                                              
+                                              {/* {
+                                                props.categoryVariant && props.categoryVariant.map((item1,key1)=>{
                                                     return(
-                                                        item2.attributeName=="ram" &&
-                                                         <button  className='' >
-                                                             <h1>{item2.attributeValue}</h1>
-                                                        {/* <img src={`http://localhost:9000/images/${item1.image}`} alt="" className="object-contain  overflow-hidden  h-16 w-16 "/> */}
-
-                                                        </button>
+                                                        <div>
+                                                            <h1>{item1.attributeName}</h1>
+                                                            <div className='flex '>
+                                                            {props.variants && props.variants.map((item2,key2)=>{
+                                                                return(
+                                                                    item2.attributes.map((item3,key3)=>{
+                                                                        
+                                                                        return(
+                                                                           
+                                                                            <div className=''> 
+                                                                           {item3.attributeId==item1.attributeId  && <button onClick={()=>props.singleitemset(item2)} className={` border ${props.singleitem.attributes.some((product)=>product.attributeValueId==item3.attributeValueId)==false ? "border-gray-500" : "border-red-500"}  p-2 rounded `}>{item3.attributeValue}</button>}
+                                                                           <h1 className='hidden'>{ item3.attributeId==item1.attributeId && variantArray.includes(item3.attributeValueId)==false && variantArray.push(item3.attributeValueId)}</h1>
+                                                                           </div>  
+                                                                           
+                                                                        )
+                                                                        
+                                                                    })
+                                                                )
+                                                            })
+                                                            }
+                                                            </div>
+                                                        </div>
+                                                        
                                                     )
                                                 })
-                                                
-                                                  
-       
-                                              ) }
-                                              </div>
+                                              }
+                                             
+                                               */}
                                             
-                                              </div>
-                                                
+                                            
+                                                {
+                                                   props.variants && props.variants.map((item1,key1)=>{
+                                                            return(
+                                                                <button onClick={()=>props.singleitemset(item1)} className={`border p-2  ${item1.id==props.singleitem.id ? "border-red-300" : "border-gray-300"} focus:outline-none  flex flex-col items-center justify-center rounded`}>
+                                                                    <img src={`http://localhost:9000/images/${item1.image}`} alt="" className="object-contain  rounded overflow-hidden h-16 w-16 "/>
+                                                                    <div className='flex'>
+                                                                    {item1.attributes.map((item2,key2)=>{
+                                                                        return(
+                                                                            item2.attributeName!="color" && <h1 className='flex' ><span>{item2.attributeValue} {item2.attributeName}</span><span className={`${key2+1== item1.attributes.length ? "hidden" : "block"}`}>,</span></h1>
+                                                                        )
+                                                                    })}
+                                                                    </div>
+                                                                </button>
+                                                            )
+                                                    })
+                                                }
                                               
                                            </div>
+                                           <div className='flex w-full space-x-7'>
                                            <div className='flex space-x-4'>
                                                 <h1 className='font-semibold text-gray-500 text-lg'>Specification </h1>
-                                                <div>
+                                                <div className='mt-1'>
                                                 {
                                                     item && item.attributes.map((item1,key1)=>{
                                                         return(
-                                                            <li className='flex space-x-2'>
+                                                            <li key={key1} className='flex space-x-2'>
                                                                 <li>{item1.attributeName}</li>
                                                                 <h1>:</h1>
                                                                 <h1>{item1.attributeValue}</h1>
@@ -192,6 +194,15 @@ const SingleItemMain=(props)=>{
                                                     })
                                                 }
                                                 </div>
+                                          </div>
+                                          <div className='flex space-x-4'>
+                                                <h1 className='font-semibold text-gray-500 text-lg'>Services </h1>
+                                                
+                                                                <li className='mt-1'>{item.warranty} Warranty</li>
+                                                                
+                                                           
+                                               
+                                          </div>
                                           </div>
                                             
                                             <div>

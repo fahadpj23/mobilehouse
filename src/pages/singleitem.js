@@ -10,6 +10,7 @@ const SingleItem=(props)=>{
     const [relateditems, setrelateditems] = useState("")
     const [variants, setvariants] = useState("")
     const [variantchoosed, setvariantchoosed] = useState(false)
+    const [categoryVariant, setcategoryVariant] = useState("")
     const search = props.location.search;
     const productId = new URLSearchParams(search).get('productid')
   
@@ -35,6 +36,12 @@ const SingleItem=(props)=>{
                     setvariants(res.data.variants)
                         
                     })  
+                    MobileHouseApi.get(`/categoryVariant`,{params: { category:product.category}})
+                    .then(res=>{
+                        console.log(res.data.categoryVariant)
+                    setcategoryVariant(res.data.categoryVariant)
+                        
+                    })  
             })   
             setvariantchoosed(true)   
 
@@ -58,7 +65,13 @@ const SingleItem=(props)=>{
                     .then(res=>{
                     setvariants(res.data.variants)
                         
-                    })  
+                    }) 
+                    MobileHouseApi.get(`/categoryVariant`,{params: { category:product.category}})
+                    .then(res=>{
+                        console.log(res.data.categoryVariant)
+                        setcategoryVariant(res.data.categoryVariant)
+                        
+                    })   
             })
         }  
         if(variantchoosed==true)
@@ -75,6 +88,7 @@ const SingleItem=(props)=>{
              relateditems={relateditems}
              variants={variants}
              singleitemset={singleitemset}
+             categoryVariant={categoryVariant}
             /> }
         </div>
     )

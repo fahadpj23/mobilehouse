@@ -168,8 +168,12 @@ const FormLayout=(props)=>{
                                                                     {
                                                                         props.values.map((item,key)=>{
                                                                             return(
-                                                                                <div className="w-full flex justify-between px-2 bg-gray-200 py-1 ">
-                                                                                    <h1 className=" px-1  truncate w-10/12  ">{item}</h1 >
+                                                                                <div className="w-full flex justify-between px-2 items-center bg-gray-200 py-1 ">
+                                                                                    <h1 className=" px-1  truncate w-7/12  ">{item}</h1 >
+                                                                                    {
+                                                                                        props.head=="Category" && 
+                                                                                        <input type="checkbox" id={item} name={item} value={item}/>
+                                                                                    }
                                                                                     <button type="button" onClick={()=>{setdeletevalue(key+1)}} className={`${props.operation=="view" && " hidden"}`}  ><AiOutlineClose/></button>
                 
                                                                                 </div>
