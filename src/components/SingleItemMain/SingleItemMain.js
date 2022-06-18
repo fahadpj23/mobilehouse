@@ -51,26 +51,7 @@ const SingleItemMain=(props)=>{
 
     const context=useContext(Usercontext)
     
-        //  
-            // if(item1.attributes.some((product)=>product.attributeName=="ram")==true)
-            // {
-            // item1.attributes.map((item2,key2)=>{
-               
-            //     // item2.image   &&  item2.attributeId=== props.singleitem.ram.attributeId && item2.storage.attributeId=== storagedisplay.storage.attributeId  && imageArray.some((product)=>product.image===item2.image)===false &&imageArray.push(item2)
-            //     item2.attributeName=="ram" &&  ramArray.some((product)=>product.attributeValueId===item2.attributeValueId)==false && ramArray.push(item2)
-
-                
-                
-               
-            // })
-            // }
-            // else
-            //     item1.image && imageArray.some((product)=>product.image===item1.image)===false && imageArray.push(item1)  
-           
-          
-            //  })
-    
-    // setimagedisplay(props.singleitem)
+        
 
     const checkpincode=()=>{
         axios.get(`http://localhost:9000/pincodecheck`,{params: { pincodeno: pincode}})
@@ -109,7 +90,7 @@ const SingleItemMain=(props)=>{
                                     <div className="space-x-3 flex">
                                         {/* <button className="w-6/12 font-semibold text-white bg-yellow-400 py-3">ADD TO CART</button> */}
                                         <Link     to={{pathname: "/Address",   search: "?" + new URLSearchParams({productId:item.id,orderqty:qty}).toString(),state:{checkout:"single"} }} className="w-full font-semibold flex justify-center focus:outline-none text-white bg-primary py-3 ">ORDER NOW</Link>
-
+                                        <a href="https://wa.me/+919072430483?text=urlencodedtext" target="_blank">nbh</a>
                                       {/* <Link to={{pathname: "/Address", state:{itemid:imagedisplay.id,orderqty:qty}}} onClick={()=>context.addtocart(item)} className="w-full font-semibold flex justify-center focus:outline-none text-white bg-primary py-3">ORDER NOW</Link> */}
                                     </div>
                                     
@@ -127,37 +108,7 @@ const SingleItemMain=(props)=>{
                                            <div className='grid grid-cols-3 gap-5'>
                                               
                                               
-                                              {/* {
-                                                props.categoryVariant && props.categoryVariant.map((item1,key1)=>{
-                                                    return(
-                                                        <div>
-                                                            <h1>{item1.attributeName}</h1>
-                                                            <div className='flex '>
-                                                            {props.variants && props.variants.map((item2,key2)=>{
-                                                                return(
-                                                                    item2.attributes.map((item3,key3)=>{
-                                                                        
-                                                                        return(
-                                                                           
-                                                                            <div className=''> 
-                                                                           {item3.attributeId==item1.attributeId  && <button onClick={()=>props.singleitemset(item2)} className={` border ${props.singleitem.attributes.some((product)=>product.attributeValueId==item3.attributeValueId)==false ? "border-gray-500" : "border-red-500"}  p-2 rounded `}>{item3.attributeValue}</button>}
-                                                                           <h1 className='hidden'>{ item3.attributeId==item1.attributeId && variantArray.includes(item3.attributeValueId)==false && variantArray.push(item3.attributeValueId)}</h1>
-                                                                           </div>  
-                                                                           
-                                                                        )
-                                                                        
-                                                                    })
-                                                                )
-                                                            })
-                                                            }
-                                                            </div>
-                                                        </div>
-                                                        
-                                                    )
-                                                })
-                                              }
                                              
-                                               */}
                                             
                                             
                                                 {
