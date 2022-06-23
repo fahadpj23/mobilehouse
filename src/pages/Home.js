@@ -12,6 +12,7 @@ function Home() {
   
   const [recommended, setrecommended] = useState("")
   const [category, setcategory] = useState("")
+  const [sliders, setsliders] = useState("")
 
   const AuthCon=useContext(AuthContext)
   console.log(AuthCon)
@@ -26,6 +27,11 @@ function Home() {
           .then(res=>{
             setcategory(res.data.category)
           }) 
+          MobileHouseApi.get("/getProductSliders")
+          .then(res=>{
+            setsliders(res.data.sliders)
+          }) 
+
 
 
           // MobileHouseApi.get("/getheadset")
@@ -67,8 +73,20 @@ function Home() {
         </div> */}
         <div className="w-full flex justify-center">
           <div className="w-11/12 px-6">
+                     {sliders &&
+                     sliders.map((item,key)=>{
+                      return(
+                      <ProductSlider
+                      
+                        items={item.products}
+                        Heading={item.Heading}
+                                 
+                     />
+                      )
+                     })
                      
-                      {recommended!=="" && <ProductSlider
+                     }
+                      {/* {recommended!=="" && <ProductSlider
                       
                        items={recommended}
                        Heading="Recommends"
@@ -79,7 +97,7 @@ function Home() {
                       items={recommended}
                       Heading="Trending Items"
                                  
-                     />}
+                     />} */}
                       
                       {/* {accessories!=="" && <ProductSlider
                       

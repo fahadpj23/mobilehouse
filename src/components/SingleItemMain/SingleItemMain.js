@@ -1,11 +1,14 @@
 import { ImTruck } from 'react-icons/im';
 import { IoMdCash } from 'react-icons/io';
+import {AiOutlineWhatsApp } from 'react-icons/ai';
+
 import {Link} from "react-router-dom";
 import axios from 'axios'
 import { Usercontext } from '../context/userContext';
 import {useContext} from 'react'
 import React, { useState } from 'react';
 import ProductSlider from '../Home/productSlick'
+import Nav from 'components/Home/Nav';
 
 const SingleItemMain=(props)=>{
  
@@ -71,9 +74,9 @@ const SingleItemMain=(props)=>{
     }
     
     return(
-        <div className="pb-10">
+        <div className="">
             
-               
+            <Nav/>
                         <div className="w-full flex justify-center">
                             <div className="w-11/12 flex  mt-5 ">
                                 <div className="w-5/12 flex ] flex-col space-y-4 ">
@@ -89,8 +92,8 @@ const SingleItemMain=(props)=>{
                                     </div>
                                     <div className="space-x-3 flex">
                                         {/* <button className="w-6/12 font-semibold text-white bg-yellow-400 py-3">ADD TO CART</button> */}
-                                        <Link     to={{pathname: "/Address",   search: "?" + new URLSearchParams({productId:item.id,orderqty:qty}).toString(),state:{checkout:"single"} }} className="w-full font-semibold flex justify-center focus:outline-none text-white bg-primary py-3 ">ORDER NOW</Link>
-                                        <a href="https://wa.me/+919072430483?text=urlencodedtext" target="_blank">nbh</a>
+                                        {/* <Link     to={{pathname: "/Address",   search: "?" + new URLSearchParams({productId:item.id,orderqty:qty}).toString(),state:{checkout:"single"} }} className="w-full rounded font-semibold flex justify-center focus:outline-none text-white bg-primary py-3 ">ORDER NOW</Link> */}
+                                        <a className='bg-green-600 w-full flex items-center justify-center space-x-1 rounded py-3' href={`https://wa.me/+919072430483?text=${document.location.href}`} target="_blank"><h1><AiOutlineWhatsApp className='text-white text-2xl'/></h1><h1 className="text-white ">Whatsapp Now</h1></a>
                                       {/* <Link to={{pathname: "/Address", state:{itemid:imagedisplay.id,orderqty:qty}}} onClick={()=>context.addtocart(item)} className="w-full font-semibold flex justify-center focus:outline-none text-white bg-primary py-3">ORDER NOW</Link> */}
                                     </div>
                                     

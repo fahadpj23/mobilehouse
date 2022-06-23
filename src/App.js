@@ -21,6 +21,7 @@ import Purchase from './pages/Purchase';
 import Supplier from 'pages/Supplier';
 import Hsncode from 'pages/HsnCode';
 import Brand from 'pages/Brand';
+import Heading from 'pages/Heading';
 function App(){
     const[ authState, setAuthState ]=useState("")
     const[ UserauthState, setUserAuthState ]=useState("")
@@ -107,6 +108,7 @@ function App(){
                                     <Route  path="/Supplier" component={Supplier}/>
                                     <Route  path="/Hsncode" component={Hsncode}/>
                                     <Route  path="/Brand" component={Brand}/>
+                                    <Route  path="/Heading" component={Heading}/>
 
                                     
                                     

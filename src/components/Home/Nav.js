@@ -103,7 +103,7 @@ const Nav=(props)=>{
                         <button className="focus:outline-none  text-sm lg:text-md hover:text-red-500">SERVICE</button>
                         <button className="focus:outline-none  text-sm lg:text-md hover:text-red-500">CONTACT</button>
                     </div> */}
-                    <div className="w-2/12  space-x-5 flex">
+                    {/* <div className="w-2/12  space-x-5 flex">
                             <div>
                                 <button onClick={()=>{username==="Login/Signup" ? setloginstatus(true) : setlogout(!logout)}} className="flex hover:text-red-500 items-center relative focus:outline-none "><FaRegUserCircle className="mr-1 text-2xl  text-gray-700 font-light"/><h1 className="lg:block hidden">{username}</h1></button>
                                 {
@@ -117,10 +117,10 @@ const Nav=(props)=>{
                                 }
                             </div>
                            
-                            {/* <button onClick={()=>} className="flex items-center focus:outline-none "><AiOutlineShoppingCart className="mr-1 text-2xl text-gray-700  font-light"/><h1 className="lg:block hidden">Cart</h1></button> */}
+                            <button onClick={()=>} className="flex items-center focus:outline-none "><AiOutlineShoppingCart className="mr-1 text-2xl text-gray-700  font-light"/><h1 className="lg:block hidden">Cart</h1></button>
                             <Link to="/cart" className="flex items-center focus:outline-none"><AiOutlineShoppingCart className="mr-1 text-2xl text-gray-700  font-light"/><h1 className="lg:block hidden">Cart</h1></Link>
            
-                    </div>
+                    </div> */}
                     
                 </div>
                 {/* <hr className="w-full h-1 bg-gray-200"></hr> */}

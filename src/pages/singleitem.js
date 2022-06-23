@@ -81,7 +81,7 @@ const SingleItem=(props)=>{
     }, [variantchoosed])
    
     return(
-        <div className="mt-10">
+        <div className="">
            
             {singleitem &&<SingleItemMain
              singleitem={singleitem}

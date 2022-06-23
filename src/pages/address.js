@@ -19,7 +19,7 @@ const Address=(props)=>{
         }
         else
         {
-        MobileHouseApi.get(`orderDetails`,{params: { productId: productId}})
+        MobileHouseApi.get(`customerorderdetails`,{params: { productId: productId}})
         
         .then(res=>{
         let items=[]

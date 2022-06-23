@@ -1,3 +1,4 @@
+import MobileHouseApi from "helpers/axiosinstance";
 import { useState ,useEffect,useRef} from "react"
 
 import { AiOutlineClose } from 'react-icons/ai';
@@ -10,15 +11,17 @@ const FormLayout=(props)=>{
     const [variantoperation,setvariantoperation]=useState(false)
     const [deleteVariants,setdeleteVariants]=useState(false)
     const [variantset,setvariantset]=useState(false)
+    // const [searchValue,setsearchValue]=useState("")
+    // const [products,setproducts]=useState("")
     const imageref=useRef()
-
+    console.log(props.formdata )
 
     // input id get as parameter in addvalue function and set value to tagIdvalue
     const addvalue=(tagId)=>{
-
+        console.log(tagId)
         // input type id set as formstructure item name.so every inpt tag id get by that name
         let tagIdvalue=document.getElementById(tagId).value
-        
+        console.log(tagIdvalue)
         if(tagIdvalue)
         {
             if(props.values.includes(tagIdvalue)==false)
@@ -73,7 +76,9 @@ const FormLayout=(props)=>{
 
     }
     
-
+    const addProduct=(product)=>{
+        console.log(product)
+    }
 
     const imageadd=()=>{
         imageref.current.click()
@@ -86,7 +91,14 @@ const FormLayout=(props)=>{
            
     //     }
 
-  
+//    const searchProduct=(searchItem)=>{
+//         setsearchValue(searchItem)
+//        MobileHouseApi.get('headProduct',{params:{searchitem:searchItem}})
+//        .then((res)=>{
+//            setproducts(res.data.products)
+//        })
+    
+//    }
     
     useEffect(()=>{
         if(props.operation!=="" && editok===false)
@@ -144,7 +156,7 @@ const FormLayout=(props)=>{
                 setvariantoperation(!variantoperation)
             }
         }
-        
+      
 
         if(addval==true)
         {
@@ -274,7 +286,22 @@ const FormLayout=(props)=>{
 
                                             </div>
                                     
+                                // case 'search':
+                                //     return <div className="relative" >
+                                //     <input type="text" onChange={(e)=>searchProduct(e.target.value)} name={item.name} id={item.name}  autoComplete="off" className="w-full   px-2 py-1 rounded-md border border-gray-400" />
+                                //     <div className="h-96 absolute top-10 overflow-auto space-y-2 z-50 bg-white w-11/12 left-10 ">
+                                //         {searchValue && products && products.map((item1,key1)=>{
+                                //             return(
+                                //                 <div className="flex justify-between items-center">
+                                //                     <h1 className="truncate w-6/12">{item1.name}</h1>
+                                //                     <img src={   `http://localhost:9000/images/${item1.image}`} alt="" className="object-contain h-14 w-14 overflow-hidden" />
+                                //                     <button type="button"  onClick={()=>addProduct(item1)} className="px-2 h-8 w-20 bg-red-500 focus:outline-none text-white rounded  ">ADD +</button>
 
+                                //                 </div>
+                                //             )
+                                //         })}
+                                //     </div>
+                                // </div>
                                 default:
                                     return null;
                                     break;

@@ -46,7 +46,7 @@ export default class  ProductSlider extends Component{
               {
                 breakpoint: 1248,
                 settings: {
-                  slidesToShow:5.2 ,
+                  slidesToShow:4.5 ,
                   arrows:true,
                   nextArrow: <SampleNextArrow />,
                   prevArrow: <SamplePrevArrow />,
@@ -57,7 +57,7 @@ export default class  ProductSlider extends Component{
               {
                 breakpoint: 1100,
                 settings: {
-                  slidesToShow:4.2,
+                  slidesToShow:3.2,
                   arrows:true,
                   nextArrow: <SampleNextArrow />,
                   prevArrow: <SamplePrevArrow />,
@@ -67,7 +67,7 @@ export default class  ProductSlider extends Component{
               {
                 breakpoint: 800,
                 settings: {
-                  slidesToShow:3.2 ,
+                  slidesToShow:2.5 ,
                   className:'relative',
                   arrows:false,
                 }
@@ -75,7 +75,7 @@ export default class  ProductSlider extends Component{
               {
                 breakpoint: 580,
                 settings: {
-                  slidesToShow:3.2 ,
+                  slidesToShow:1.9 ,
                   className:'relative',
                   arrows:false,
                 }
@@ -92,7 +92,7 @@ export default class  ProductSlider extends Component{
             ]
             };
              
-            console.log(this.props.type)
+            console.log(this.props)
             return (
      
               <div>
