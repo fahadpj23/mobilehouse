@@ -1,6 +1,7 @@
 import { useState ,useEffect } from "react"
 import MobileHouseApi from "helpers/axiosinstance"
 import { MdDelete } from 'react-icons/md';
+import { AiOutlineClose } from 'react-icons/ai';
 const HeadProductAdding=(props)=>{
  
     const [searchValue,setsearchValue]=useState("")
@@ -46,8 +47,10 @@ const HeadProductAdding=(props)=>{
    useEffect(()=>{
         if(props.editData && editDataset==false)
         {
+            props.headproduct.length=0;
             console.log(props.editData)
             props.setHeading(props.editData.Heading)
+            props.setstatus(props.editData.status)
             props.editData.products && props.editData.products.map((item,key)=>{
                 
                 props.headproduct.push(item)
@@ -58,12 +61,23 @@ const HeadProductAdding=(props)=>{
         }
    },[editDataset])
    console.log(props.headproduct)
-
+   console.log(props.status)
     return(
         <div className="w-full h-full flex items-center bg-opacity-95 justify-center bg-gray-100 fixed top-0">
                 <div className="flex flex-col w-7/12 h-4/5 bg-white justify-between p-5">
-                    <div className="space-y-3">
-                        <input onChange={(e)=>props.setHeading(e.target.value)} value={props.Heading} type="text" className="w-4/12 py-1  px-1 focus:outline-none border border-gray-400 rounded" placeholder="Heading"/>
+                    <div className="space-y-3 relative">
+                         <button onClick={()=>props.setaddHeading(false)} className="absolute right-1 top-1 focus:outline-none"><AiOutlineClose/></button>
+                        <div className="flex space-x-3">
+                            <input onChange={(e)=>props.setHeading(e.target.value)} value={props.Heading} type="text" className="w-4/12 py-1  px-1 focus:outline-none border border-gray-400 rounded" placeholder="Heading"/>
+                            <div className="flex space-x-2 items-center">
+                                <h1>Status</h1>
+                                <select onChange={(e)=>props.setstatus(e.target.value)} defaultValue={props.status} className="border border-gray-400 w-full py-1  px-1 focus:outline-none rounded">
+                                    <option value="1">active</option>
+                                    <option value="0">disable</option>
+                                </select>
+                            </div>
+                           
+                        </div>
                         <hr className="w-full border bg-gray-500"></hr>
                         <div className="relative">
                         <input type="text" onChange={(e)=>searchProduct(e.target.value)} value={searchValue}  autoComplete="off" placeholder="search product" className="w-6/12 py-1 border border-gray-400 rounded px-1 focus:outline-none " />

@@ -17,10 +17,17 @@ export default class SimpleSlider extends Component {
       
     <div className="w-full focus:outline-none "> 
         <Slider {...settings}>
-          <div  className="focus:outline-none">
-            <img src="slider1.png" alt="images" className=" object-fit   h-96 lg:h-fixedNoNavlg4 w-full" />
-          </div >
-          <div className="focus:outline-none">
+          {
+            this.props.Banner && this.props.Banner.map((item,key)=>{
+              return(
+                  <div  className="focus:outline-none">
+                   <img src={`http://localhost:9000/images/${item.image}`} alt="images" className=" object-fit   h-96  w-full" />
+                   </div >
+              )
+            })    
+          }
+         
+          {/* <div className="focus:outline-none">
             <img src="slider2.jpg" alt="images"  className=" object-fill  h-96 lg:h-fixedNoNavlg4 w-full"/>
           </div>
           <div className="focus:outline-none">
@@ -29,7 +36,7 @@ export default class SimpleSlider extends Component {
           <div className="focus:outline-none">
             <img src="slider4.jpg" alt="images"  className=" object-fill fill  h-96 lg:h-fixedNoNavlg4 w-full"/>
           </div>
-          
+           */}
         </Slider>
     </div>
     

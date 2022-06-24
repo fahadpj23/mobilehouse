@@ -18,6 +18,7 @@ const HeadingMain=(props)=>{
     const[operationid,setoperationid]=useState("")
     const[HeadData,setHeadData]=useState("")
     const[editData,seteditData]=useState("")
+    const[status,setstatus]=useState(1)
     
    
     const Headingvalues=[];
@@ -65,10 +66,20 @@ const HeadingMain=(props)=>{
         formData.append("head",Heading)
         formData.append("operation",operation)
         formData.append("operationid",operationid)
+        formData.append("status",status)
         formData.append("products",JSON.stringify(props.headproduct))
         mobilehouseApi.post('/headingAdd',formData)
         .then((res)=>{
-          console.log(res)
+          if(res.data.success)
+          {
+            setaddHeading(false )
+            context.notify(res.data.success)
+            MobileHouseApi.get('/getHead',)
+            .then((res)=>{
+            setHeadData(res.data)
+            })
+
+          }
         })
     //  }
     }
@@ -96,6 +107,9 @@ const HeadingMain=(props)=>{
                                     HeadingAdd={HeadingAdd}
                                     editData={editData[0]}
                                     Heading={Heading}
+                                    setaddHeading={setaddHeading}
+                                    setstatus={setstatus}
+                                    status={status}
                                   />
                                         
                 }

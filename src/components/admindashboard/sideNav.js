@@ -10,6 +10,7 @@ import { GiHamburgerMenu,GiPayMoney } from 'react-icons/gi';
 import { IoIosPerson } from 'react-icons/io';
 import { SiBrandfolder } from 'react-icons/si';
 import { BsCardHeading } from 'react-icons/bs';
+import { MdSlideshow } from 'react-icons/md';
 
 const SideNav=()=>{
     let history=useHistory();
@@ -33,6 +34,7 @@ const SideNav=()=>{
                             <button  onClick={()=>history.push("/Supplier")}className=" w-full text-left focus:outline-none flex">Supplier <IoIosPerson className='mt-1 ml-2 '/></button>
                             <button  onClick={()=>history.push("/HsnCode")}className=" w-full text-left focus:outline-none flex">HsnCode <GiPayMoney className='mt-1 ml-2 '/></button>
                             <button  onClick={()=>history.push("/Heading")}className=" w-full text-left focus:outline-none flex">Heading <BsCardHeading className='mt-1 ml-2 '/></button>
+                            <button  onClick={()=>history.push("/Banner")}className=" w-full text-left focus:outline-none flex">Banner <MdSlideshow className='mt-1 ml-2 '/></button>
                             {/* <button  onClick={()=>history.push("/HsnCode")}className=" w-full text-left focus:outline-none flex">HsnCode <SiBrandfolder className='mt-1 ml-2 '/></button> */}
 
                         </div>
@@ -48,6 +50,7 @@ const SideNav=()=>{
                             <button  onClick={()=>history.push("/Supplier")}className=" w-full text-left focus:outline-none flex justify-center"> <IoIosPerson className='mt-1 ml-2 text-white bg-red-200'/></button>
                             <button  onClick={()=>history.push("/Brand")}className=" w-full text-left focus:outline-none flex justify-center"> <SiBrandfolder className='mt-1 ml-2 '/></button>
                             <button  onClick={()=>history.push("/Brand")}className=" w-full text-left focus:outline-none flex justify-center"> <BsCardHeading className='mt-1 ml-2 '/></button>
+                            <button  onClick={()=>history.push("/Banner")}className=" w-full text-left focus:outline-none flex justify-center"> <MdSlideshow className='mt-1 ml-2 '/></button>
 
                         </div>
 

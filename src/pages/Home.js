@@ -13,6 +13,7 @@ function Home() {
   const [recommended, setrecommended] = useState("")
   const [category, setcategory] = useState("")
   const [sliders, setsliders] = useState("")
+  const [Banner, setBanner] = useState("")
 
   const AuthCon=useContext(AuthContext)
   console.log(AuthCon)
@@ -31,6 +32,12 @@ function Home() {
           .then(res=>{
             setsliders(res.data.sliders)
           }) 
+          MobileHouseApi.get("/getBanner")
+          MobileHouseApi.get("/getBanner")
+          .then(res=>{
+            setBanner(res.data.banner)
+          }) 
+          
 
 
 
@@ -59,7 +66,13 @@ function Home() {
         
       <div className= "w-full overflow-hidden ">
         <Nav/>
-        <SimpleSlider/>
+        {
+          Banner &&
+          <SimpleSlider
+          Banner={Banner}
+          />
+        }
+      
         {
                         <CatSlider
                         category={category}

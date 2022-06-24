@@ -22,6 +22,7 @@ import Supplier from 'pages/Supplier';
 import Hsncode from 'pages/HsnCode';
 import Brand from 'pages/Brand';
 import Heading from 'pages/Heading';
+import Banner from 'pages/Banner';
 function App(){
     const[ authState, setAuthState ]=useState("")
     const[ UserauthState, setUserAuthState ]=useState("")
@@ -109,6 +110,7 @@ function App(){
                                     <Route  path="/Hsncode" component={Hsncode}/>
                                     <Route  path="/Brand" component={Brand}/>
                                     <Route  path="/Heading" component={Heading}/>
+                                    <Route  path="/Banner" component={Banner}/>
 
                                     
                                     
