@@ -3,12 +3,15 @@ import SingleProduct from "./singleProducts";
 import {Link} from "react-router-dom";
 import React, { Component } from "react";
 import Slider from "react-slick";
+import { HiArrowLeft, HiArrowRight } from 'react-icons/hi'
+
 
 function SampleNextArrow(props) {
     const { className, style, onClick } = props;
     return (
-      <span  onClick={onClick} className="absolute -right-3 top-1/2 origin-center transform -translate-y-1/2 z-10  text-red-500 bg-gray-400 rounded-full md:p-3 md:block hidden ">
-        <i className="fas fa-angle-right"></i>
+      <span  onClick={onClick} className="absolute -right-3 top-1/2 origin-center transform -translate-y-1/2 z-20 text-xl bg-gray-100 rounded-full p-2 md:block hidden ">
+             <HiArrowRight/> 
+
       </span>
     );
   }
@@ -17,8 +20,9 @@ function SampleNextArrow(props) {
     const { className, style, onClick } = props;
     return (
      
-        <span onClick={onClick} className="absolute -left-3 top-1/2 origin-center transform -translate-y-1/2 z-10   text-red-500 bg-gray-400 rounded-full md:p-3 md:block hidden ">
-        <i className="fas fa-angle-left"></i>
+        <span onClick={onClick} className="absolute -left-3 top-1/2 origin-center transform -translate-y-1/2 z-10   text-xl bg-gray-100 rounded-full p-2  md:p-3 md:block hidden ">
+   
+        <HiArrowLeft/>
 
       </span>
      
@@ -99,7 +103,7 @@ export default class  ProductSlider extends Component{
                 
                 <div className="w-full flex justify-between py-4" >
                  <h2 className="font-semibold ">{this.props.Heading}</h2>
-                 <Link className="bg-blue-500 rounded-xl  text-white px-3 text-sm flex items-center py-1" to={{pathname: "/ProductList",search: "?" + new URLSearchParams({category: this.props.type}).toString()}}>View All</Link>
+                 <Link className="bg-blue-500 rounded-xl  text-white px-3 text-sm flex items-center py-1" to={{pathname: "/ProductList",search: "?" + new URLSearchParams({productCategory:this.props.id}).toString()}}>View All</Link>
                  {/* <Link to={{pathname: "/singleItem",   search: "?" + new URLSearchParams({productid: item.id}).toString() }} className="h-full items-center justify-center flex flex-col space-y-3 p-3 "> */}
 
                 </div>

@@ -109,7 +109,7 @@ function SamplePrevArrow(props) {
                 <Link className=" px-2 h-40 " to={{pathname: "/ProductList",search: "?" + new URLSearchParams({category: item.id}).toString()}}>
 
                     <div className="py-4 px-2 h-40   " key={key}>
-                        <div className="border border-gray-300 flex flex-col bg-white w-full   rounded-lg  p-2">
+                        <div className=" flex flex-col bg-white w-full   rounded-lg  p-2">
                             <img src={   `http://localhost:9000/images/${item.image}`} alt="" className="object-contain h-24 w-full overflow-hidden" />
                             <h1 className="text-center font-semibold">{item.categoryName}</h1>
                         </div>

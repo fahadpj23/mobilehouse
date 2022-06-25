@@ -36,7 +36,7 @@ const BannerAdd=(props)=>{
                                     return(
                                         <button type="button" onClick={()=>uploadimageButtonclick(4)} className=" flex flex-col justify-center items-center  p-2 rounded border border-gray-400">
                                             {/* <img src={  "/uploadimage.png"} alt="" className="object-contain h-16 w-16 overflow-hidden" /> */}
-                                            <img src={  props.BannerImageArray[key].imageBlob ? props.BannerImageArray[key].imageBlob : props.BannerImageArray[key].image ? `http://localhost:9000/images/${props.BannerImageArray[key].image}` : "/uploadimage.png"} alt="" className="object-contain h-16 w-16 overflow-hidden" />
+                                            <img src={  props.BannerImageArray[key].imageBlob ? props.BannerImageArray[key].imageBlob : props.BannerImageArray[key].image ? `http://localhost:9000/images/${props.BannerImageArray[key].image}` : "/uploadimage.png"} alt="" className="object-contain h-24 w-24 overflow-hidden" />
                                            
                                         </button>
                                     )

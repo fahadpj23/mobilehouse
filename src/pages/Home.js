@@ -32,7 +32,7 @@ function Home() {
           .then(res=>{
             setsliders(res.data.sliders)
           }) 
-          MobileHouseApi.get("/getBanner")
+         
           MobileHouseApi.get("/getBanner")
           .then(res=>{
             setBanner(res.data.banner)
@@ -58,13 +58,13 @@ function Home() {
        
          
         }, [])
-      
+      console.log(sliders)
   return (
     <div>
   
         
         
-      <div className= "w-full overflow-hidden ">
+      <div className= "w-full overflow-hidden space-y-3 ">
         <Nav/>
         {
           Banner &&
@@ -90,7 +90,7 @@ function Home() {
                      sliders.map((item,key)=>{
                       return(
                       <ProductSlider
-                      
+                        id={item.id}
                         items={item.products}
                         Heading={item.Heading}
                                  

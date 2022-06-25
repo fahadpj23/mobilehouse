@@ -8,11 +8,12 @@ import Login from './login';
 import UserRegister from './userRegister';
 import {AuthContext} from '../../helpers/authcontext'
 import { Usercontext } from '../context/userContext';
+import { useHistory } from 'react-router-dom';
 const Nav=(props)=>{
 
     const context=useContext(AuthContext)
     const context1=useContext(Usercontext)
-    console.log(context1)
+    let history=useHistory();
     
     const [serachitemdis, setserachitemdis] = useState("")
     const [loginstatus, setloginstatus] = useState(false)
@@ -35,6 +36,11 @@ const Nav=(props)=>{
              setserachitemdis(res.data);
         })
         }
+    }
+
+    const selectNavProduct=(product)=>{
+        history.push({pathname:'singleItem',search: "?" + new URLSearchParams({productid: product.id}).toString() })
+        window.location.reload(false);
     }
 
     const loginsuccess=(userna)=>{
@@ -84,11 +90,23 @@ const Nav=(props)=>{
                                 <div className={`${serachitemdis!=="" ? " absolute  top-10 z-20 max-h-96 w-96 bg-white shadow-xl rounded-lg p-2 flex flex-col overflow-y-scroll  ": "hidden"}`}>
                                 {serachitemdis!=="" && serachitemdis.map((item,key)=>{
                                     return(
+                                        // <Link to={{pathname: "/singleItem",   search: "?" + new URLSearchParams({productid: item.id}).toString() }} className="h-full items-center justify-center flex flex-col space-y-3 p-4 ">
+                                        // <img src={`http://127.0.0.1:9000/images/${item.image}`} alt="dd" className="object-cover h-40 overflow-hidden transform hover:-translate-y-1 hover:scale-90 hover:duration-700 "/>
                                         
-                                        <button  className="hover:text-blue-400 text-left py-2 focus:outline-none">
-                                                
-                                              <h1 className='text-black'>{item.name}</h1>
-                                              <h1  className='text-blue-500 font-semibold'>in {item.category}</h1>
+                                        // </Link>
+                                        <button onClick={()=>selectNavProduct(item)}  className="hover:text-blue-400 text-left py-2 focus:outline-none">
+                                            <div className='flex'>
+                                                <div className='w-9/12 flex flex-col justify-center'>
+                                                    <h1 className='text-black text-sm truncate'>{item.name}</h1>
+                                                    <h1  className='text-blue-600 text-xs font-semibold'>in {item.categoryName}</h1>
+                                                </div>
+                                                <div className='w-3/12'>
+
+                                                    <img src={   `http://localhost:9000/images/${item.image}`} alt="" className="object-contain h-14 w-14 overflow-hidden" />
+                                                </div>
+
+                                            </div>
+                                             
                                         </button>
                                     
                                     )
