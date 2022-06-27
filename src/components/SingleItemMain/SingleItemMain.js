@@ -104,8 +104,8 @@ const SingleItemMain=(props)=>{
                                     <div className="w-10/12">
                                         <div className="mt-10 space-y-1">
                                             <h1 className="text-xl font-semibold tracking-wider ">{item.name} </h1>
-                                            <h1><span className="text-xl font-bold text-green-600">₹{  item.salesPrice!=0 ? item.salesPrice :  item.sellingPrice}</span><span className="line-through ml-3 text-lg font-semibold text-gray-600">₹{item.mrp}</span></h1>
-                                            <h1 className="flex items-center bg-green-500 w-8/12 py-2  text-white rounded px-2"><span ><ImTruck className=""/></span><span className="font-semibold ml-1 "> Free Shipping </span><span className="text-sm ml-1">  & Inclusive of all taxes</span></h1>
+                                            <h1><span className="text-xl font-bold text-green-600">₹{  item.salesPrice!=0 ? item.salesPrice :  item.sellingPrice}.00</span><span className="line-through ml-3 text-lg font-semibold text-gray-600">₹{item.mrp}.00</span></h1>
+                                            {/* <h1 className="flex items-center bg-green-500 w-8/12 py-2  text-white rounded px-2"><span ><ImTruck className=""/></span><span className="font-semibold ml-1 "> Free Shipping </span><span className="text-sm ml-1">  & Inclusive of all taxes</span></h1> */}
                                            
                                            
                                            <div className='grid grid-cols-3 gap-5'>
@@ -159,7 +159,7 @@ const SingleItemMain=(props)=>{
                                           </div>
                                           </div>
                                             
-                                            <div>
+                                            {/* <div>
                                                 <div className="flex mt-10">
                                                     <h1 className="text-xl">QTY :</h1>
                                                     <div className="flex space-x-1  ml-2">
@@ -171,8 +171,8 @@ const SingleItemMain=(props)=>{
                                                     
                                                 </div> 
                                                 <h1 className={`${qtystate==="notok" ? "block mt-3 text-red-500 font-semibold" :"hidden"}`}>only {item.qty} item available </h1>  
-                                            </div>
-                                            <div >
+                                            </div> */}
+                                            {/* <div >
                                                 <h1 className="mt-8 font-semibold">DELIVERY OPTION</h1>
                                                 <div className="border-2 w-10/12 mt-2 border-gray-200 p-2 h-36 space-y-3">
                                                     <h1 className="text-xs  ">Enter your Pincode to check the delivery time and free pick up options</h1>
@@ -189,7 +189,7 @@ const SingleItemMain=(props)=>{
 
 
                                                 </div>
-                                            </div>
+                                            </div> */}
                                             
                                            
                                         </div> 
