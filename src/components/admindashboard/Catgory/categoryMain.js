@@ -71,14 +71,14 @@ const CategoryMain=(props)=>{
         if(operation=="delete")
         {
           // window.confirm(`delete ${operationCategory.categoryName} `)
-            MobileHouseApi.delete('/CategoryDelete',{params:{categoryId:operationCategory.id}})
+            MobileHouseApi.delete('/CategoryDelete',{params:{categoryId:operationCategory.id},headers:{accessToken:localStorage.getItem("accessToken")}})
             .then((res)=>{
               console.log(res.data)
             })
         }
         else
         {
-          MobileHouseApi.get('/getCategoryVariant',{params:{categoryId:operationCategory.id}})
+          MobileHouseApi.get('/getCategoryVariant',{params:{categoryId:operationCategory.id},headers:{accessToken:localStorage.getItem("accessToken")}})
           .then((res)=>{
             console.log(res.data)
                 setvariants(res.data.categoryvariant)

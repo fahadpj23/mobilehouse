@@ -39,7 +39,7 @@ const HeadingMain=(props)=>{
         console.log(operation)
         console.log(operationHeading)
        
-          MobileHouseApi.get('/editGetHead',{params:{HeadingId:operationHeading.id}})
+          MobileHouseApi.get('/editGetHead',{params:{HeadingId:operationHeading.id}},{headers:{accessToken:localStorage.getItem("accessToken")}})
           .then((res)=>{
             if(res.data.headEdit)
             {
@@ -68,13 +68,13 @@ const HeadingMain=(props)=>{
         formData.append("operationid",operationid)
         formData.append("status",status)
         formData.append("products",JSON.stringify(props.headproduct))
-        mobilehouseApi.post('/headingAdd',formData)
+        mobilehouseApi.post('/headingAdd',formData,{headers:{accessToken:localStorage.getItem("accessToken")}})
         .then((res)=>{
           if(res.data.success)
           {
             setaddHeading(false )
             context.notify(res.data.success)
-            MobileHouseApi.get('/getHead',)
+            MobileHouseApi.get('/getHead',{headers:{accessToken:localStorage.getItem("accessToken")}})
             .then((res)=>{
             setHeadData(res.data)
             })
@@ -87,7 +87,7 @@ const HeadingMain=(props)=>{
       useEffect(()=>{
         if(HeadData==="")
         {
-            MobileHouseApi.get('/getHead',)
+            MobileHouseApi.get('/getHead',{headers:{accessToken:localStorage.getItem("accessToken")}})
             .then((res)=>{
             setHeadData(res.data)
             })

@@ -12,7 +12,7 @@ const Category=()=>{
     const attributes=[];
    
     useEffect(()=>{
-        MobileHouseApi.get('/getattribute').then((res)=>{
+        MobileHouseApi.get('/getattribute',{headers:{accessToken:localStorage.getItem("accessToken")}}).then((res)=>{
             res.data.Data.map((item,key)=>{
                 
                 attributes.push(item.attributeName)

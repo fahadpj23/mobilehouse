@@ -23,7 +23,7 @@ const AllProduct=(props)=>{
 
     const tableOperation=(operation,item)=>{
         console.log(item)
-        MobileHouseApi.get('/productdetails',{params:{productId:item.id}})
+        MobileHouseApi.get('/productdetails',{params:{productId:item.id},headers:{accessToken:localStorage.getItem("accessToken")}})
         .then((res)=>{
             setoperationitem(res.data)
             setoperation(operation)
@@ -40,7 +40,7 @@ const AllProduct=(props)=>{
         setoperationid("")
         setoperation("")
         setoperationitem("")
-        mobilehouseApi.get('/getProduct')
+        mobilehouseApi.get('/getProduct',{headers:{accessToken:localStorage.getItem("accessToken")}})
         .then((res)=>{
             setproduct(res.data)
         })
@@ -53,7 +53,7 @@ const AllProduct=(props)=>{
     useEffect(()=>{
         if(product=="")
         {
-            mobilehouseApi.get('/getProduct')
+            mobilehouseApi.get('/getProduct',{headers:{accessToken:localStorage.getItem("accessToken")}})
             .then((res)=>{
                 setproduct(res.data)
             })

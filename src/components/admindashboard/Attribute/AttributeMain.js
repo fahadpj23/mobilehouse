@@ -38,7 +38,7 @@ const AttributeMain=()=>{
         }
        
         
-        MobileHouseApi.post('/attributeAdd',data)
+        MobileHouseApi.post('/attributeAdd',data,{headers:{accessToken:localStorage.getItem("accessToken")}})
         .then((res)=>{
          if(res.data.error)
          {
@@ -51,7 +51,7 @@ const AttributeMain=()=>{
             setoperationid("")
             setoperation("")
             setoperationitem("")
-            MobileHouseApi.get('getattribute')
+            MobileHouseApi.get('getattribute',{headers:{accessToken:localStorage.getItem("accessToken")}})
             .then((res)=>{
                 setattribute(res.data)
             })
@@ -83,7 +83,7 @@ const AttributeMain=()=>{
       useEffect(()=>{
         if(attribute==="")
         {
-        MobileHouseApi.get('getattribute')
+        MobileHouseApi.get('getattribute',{headers:{accessToken:localStorage.getItem("accessToken")}})
         .then((res)=>{
             setattribute(res.data)
         })

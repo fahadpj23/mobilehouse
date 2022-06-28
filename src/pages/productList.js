@@ -7,7 +7,8 @@ const ProductList=(props)=>{
    
     const categoryId = new URLSearchParams(window.location.search).get('category')
     const productCategory = new URLSearchParams(window.location.search).get('productCategory') && new URLSearchParams(window.location.search).get('productCategory')
-   
+    const Brand = new URLSearchParams(window.location.search).get('Brand') && new URLSearchParams(window.location.search).get('Brand')
+    
     useEffect(()=>{
         
         if(products=="")
@@ -20,6 +21,13 @@ const ProductList=(props)=>{
                 }) 
               
             } 
+        else if(new URLSearchParams(window.location.search).get('Brand'))
+        {
+            MobileHouseApi.get("/viewBrandProduct",{params:{Brand:Brand}})
+                .then(res=>{
+                    setproducts(res.data.brandProduct)
+                }) 
+        }
         else
             {
                 MobileHouseApi.get("/viewCategoryProduct",{params:{category:categoryId}})

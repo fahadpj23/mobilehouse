@@ -6,6 +6,7 @@ import  MobileHouseApi from "../helpers/axiosinstance"
 import React, { useState,useEffect ,useContext} from 'react';
 import ProductSlider from "../components/Home/productSlick";
 import {AuthContext} from '../helpers/authcontext'
+import Ads from "components/Home/Ads";
 import Category from "./category";
 function Home() {
  
@@ -64,7 +65,7 @@ function Home() {
   
         
         
-      <div className= "w-full overflow-hidden space-y-3 ">
+      <div className= "w-full overflow-hidden space-y-6 ">
         <Nav/>
         {
           Banner &&
@@ -85,16 +86,19 @@ function Home() {
             <hr className="w-4/12 md:w-1/12 bg-blue-600 border-2 border-blue-400"></hr>
         </div> */}
         <div className="w-full flex justify-center">
-          <div className="w-11/12 px-6">
+          <div className="w-11/12 px-6 space-y-10">
                      {sliders &&
                      sliders.map((item,key)=>{
                       return(
-                      <ProductSlider
-                        id={item.id}
-                        items={item.products}
-                        Heading={item.Heading}
-                                 
-                     />
+                      <div className="space-y-10">
+                          <ProductSlider
+                            id={item.id}
+                            items={item.products}
+                            Heading={item.Heading}
+                                    
+                          />
+                          <Ads/>
+                     </div>
                       )
                      })
                      

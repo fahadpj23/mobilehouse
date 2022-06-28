@@ -45,7 +45,7 @@ const SupplierMain=()=>{
         data.append("operation",operation)
         data.append("operationid",operationid)
         
-        MobileHouseApi.post('/SupplierAdd',data)
+        MobileHouseApi.post('/SupplierAdd',data,{headers:{accessToken:localStorage.getItem("accessToken")}})
         .then((res)=>{
          if(res.data.error)
          {
@@ -58,7 +58,7 @@ const SupplierMain=()=>{
             setoperationid("")
             setoperation("")
             setoperationitem("")
-            MobileHouseApi.get('getSupplier')
+            MobileHouseApi.get('getSupplier',{headers:{accessToken:localStorage.getItem("accessToken")}})
             .then((res)=>{
                 setsupplier(res.data)
             })
@@ -90,7 +90,7 @@ const SupplierMain=()=>{
       useEffect(()=>{
         if(supplier=="")
         {
-        MobileHouseApi.get('getSupplier')
+        MobileHouseApi.get('getSupplier',{headers:{accessToken:localStorage.getItem("accessToken")}})
         .then((res)=>{
             setsupplier(res.data)
         })

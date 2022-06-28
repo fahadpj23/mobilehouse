@@ -24,7 +24,7 @@ const AddProductMain=(props)=>{
     const categoryselect=(catid)=>{
                     
                     setcategoryid(catid)
-                     MobileHouseApi.get("/getcategoryAttribute",{params:{"categoryid":catid}},{headers:{accessToken:localStorage.getItem("UserToken")}})
+                     MobileHouseApi.get("/getcategoryAttribute",{params:{"categoryid":catid},headers:{accessToken:localStorage.getItem("accessToken")}})
                      .then((res)=>{
                         setcategoryattribute(res.data)
                         console.log(res.data)

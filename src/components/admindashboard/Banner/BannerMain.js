@@ -52,7 +52,7 @@ const BannerMain=(props)=>{
             setaddBanner(false)
             
             context.notify(res.data.success)
-            MobileHouseApi.get('/getBannerData',)
+            MobileHouseApi.get('/getBannerData',{headers:{accessToken:localStorage.getItem("accessToken")}})
             .then((res)=>{
             setBanner(res.data)
             })
@@ -74,7 +74,7 @@ const BannerMain=(props)=>{
       useEffect(()=>{
         if(Banner==="")
         {
-            MobileHouseApi.get('/getBannerData',)
+            MobileHouseApi.get('/getBannerData',{headers:{accessToken:localStorage.getItem("accessToken")}})
             .then((res)=>{
             setBanner(res.data)
             })

@@ -16,7 +16,7 @@ const Heading=()=>{
     useEffect(()=>{
         if(products=="")
         {
-            MobileHouseApi.get('/headProduct').then((res)=>{
+            MobileHouseApi.get('/headProduct',{headers:{accessToken:localStorage.getItem("accessToken")}}).then((res)=>{
                setproducts(res.data.products)
             })
         }

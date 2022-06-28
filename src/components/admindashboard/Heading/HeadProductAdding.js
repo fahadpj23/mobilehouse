@@ -10,7 +10,8 @@ const HeadProductAdding=(props)=>{
     const [editDataset,seteditDataset]=useState(false)
     const searchProduct=(searchItem)=>{
         setsearchValue(searchItem)
-       MobileHouseApi.get('headProduct',{params:{searchitem:searchItem}})
+      
+       MobileHouseApi.get('headProduct',{params:{searchitem:searchItem},headers:{accessToken:localStorage.getItem("accessToken")}})
        .then((res)=>{
            setproducts(res.data.products)
        })
