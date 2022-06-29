@@ -6,7 +6,7 @@ import  MobileHouseApi from "../helpers/axiosinstance"
 import React, { useState,useEffect ,useContext} from 'react';
 import ProductSlider from "../components/Home/productSlick";
 import {AuthContext} from '../helpers/authcontext'
-import Ads from "components/Home/Ads";
+import HomeAds from "components/Home/HomeAds";
 import Category from "./category";
 function Home() {
  
@@ -97,7 +97,16 @@ function Home() {
                             Heading={item.Heading}
                                     
                           />
-                          <Ads/>
+                          <div className="hidden md:block">
+                            <HomeAds/>
+                          </div>
+                          <div className="block md:hidden">
+                            <SimpleSlider
+                            Banner={Banner}
+                            ads="ads"
+                            />
+                          </div>
+                          
                      </div>
                       )
                      })

@@ -12,6 +12,8 @@ export default class SimpleSlider extends Component {
       slidesToShow: 1,
       slidesToScroll: 1,
       autoplay:true,
+      arrows:false
+      
     };
     return (
       
@@ -21,22 +23,13 @@ export default class SimpleSlider extends Component {
             this.props.Banner && this.props.Banner.map((item,key)=>{
               return(
                   <div  className="focus:outline-none">
-                   <img src={`http://localhost:9000/images/${item.image}`} alt="images" className=" object-fit   h-96  w-full" />
+                   <img src={`http://localhost:9000/images/${item.image}`} alt="images" className=" object-fit h-52  md:h-96  w-full" />
                    </div >
               )
             })    
           }
          
-          {/* <div className="focus:outline-none">
-            <img src="slider2.jpg" alt="images"  className=" object-fill  h-96 lg:h-fixedNoNavlg4 w-full"/>
-          </div>
-          <div className="focus:outline-none">
-            <img src="slider3.jpg" alt="images"  className="  object-fill  h-96 lg:h-fixedNoNavlg4 w-full"/>
-          </div>
-          <div className="focus:outline-none">
-            <img src="slider4.jpg" alt="images"  className=" object-fill fill  h-96 lg:h-fixedNoNavlg4 w-full"/>
-          </div>
-           */}
+        
         </Slider>
     </div>
     

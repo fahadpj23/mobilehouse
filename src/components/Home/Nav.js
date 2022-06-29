@@ -86,7 +86,7 @@ const Nav=(props)=>{
                                         
                             </Link>
                             <div className="relative sm:w-5/12 w-10/12 ">
-                                <input onChange={(e)=>searchProduct(e.target.value)} type="text" placeholder="search here" className=" px-2 w-full rounded-lg  h-10 focus:outline-none border-2 border-gray-400 "/>
+                                <input onChange={(e)=>searchProduct(e.target.value)} type="text" placeholder="search here" className=" px-2 w-full rounded-lg  h-10 focus:outline-none border border-gray-400 "/>
                                 
                                 
                                 <div className={`${serachitemdis!=="" ? " absolute  top-10 z-20 max-h-96 w-96 bg-white shadow-xl rounded-lg p-2 flex flex-col overflow-y-scroll  ": "hidden"}`}>

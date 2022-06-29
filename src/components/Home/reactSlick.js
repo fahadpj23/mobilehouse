@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (
-    <span onClick={onClick} className="absolute -right-3 top-1/2 origin-center transform -translate-y-1/2 z-10  text-black bg-gray-100 rounded-full md:p-3 md:block hidden hover:bg-gray-200">
+    <span onClick={onClick} className="absolute -right-3 top-1/2 origin-center transform -translate-y-1/2 z-10  text-black bg-gray-100 rounded-full sm:p-3 sm:block hidden hover:bg-gray-200">
       <HiArrowRight />
     </span>
   );
@@ -16,7 +16,7 @@ function SamplePrevArrow(props) {
   const { className, style, onClick } = props;
   return (
 
-    <span onClick={onClick} className="absolute -left-3 top-1/2 origin-center transform -translate-y-1/2 z-10   text-black bg-gray-100 rounded-full md:p-3 md:block hidden hover:bg-gray-200">
+    <span onClick={onClick} className="absolute -left-3 top-1/2 origin-center transform -translate-y-1/2 z-10   text-black bg-gray-100 rounded-full md:p-3 sm:block hidden hover:bg-gray-200">
       <HiArrowLeft />
 
     </span>
@@ -29,7 +29,7 @@ function SamplePrevArrow(props) {
  const CatSlider=(props)=>{
      
     const settings = {
-      infinite: false,
+      infinite: true,
       speed: 500,
       slidesToShow: 7.3,
       slidesToScroll: 1,
@@ -38,26 +38,13 @@ function SamplePrevArrow(props) {
       prevArrow: <SamplePrevArrow />,
       className: 'px-20 relative',
       swipeToSlide: true,
+      
       responsive: [
+        
         {
-          breakpoint: 1024,
+          breakpoint: 1300,
           settings: {
-            infinite: false,
-            speed: 500,
-            slidesToShow: 6.3,
-            slidesToScroll: 1,
-            arrows: true,
-            nextArrow: <SampleNextArrow />,
-            prevArrow: <SamplePrevArrow />,
-            className: 'px-7 relative',
-            swipeToSlide: true,
-
-          }
-        },
-        {
-          breakpoint: 600,
-          settings: {
-            infinite: false,
+            infinite: true,
             speed: 500,
             slidesToShow: 5.3,
             slidesToScroll: 1,
@@ -67,11 +54,23 @@ function SamplePrevArrow(props) {
           }
         },
         {
-          breakpoint: 480,
+          breakpoint: 900,
           settings: {
-            infinite: false,
+            infinite: true,
             speed: 500,
-            slidesToShow: 4.3,
+            slidesToShow: 3.7,
+            slidesToScroll: 1,
+            className: 'px-7 relative',
+            swipeToSlide: true,
+
+          }
+        },
+        {
+          breakpoint: 800,
+          settings: {
+            infinite: true,
+            speed: 500,
+            slidesToShow: 2.7,
             slidesToScroll: 1,
             className: 'relative ',
             swipeToSlide: true,
@@ -80,11 +79,24 @@ function SamplePrevArrow(props) {
           }
         },
         {
-          breakpoint: 330,
+          breakpoint: 600,
           settings: {
-            infinite: false,
+            infinite: true,
             speed: 500,
-            slidesToShow: 3.3,
+            slidesToShow: 2.1,
+            slidesToScroll: 1,
+            className: 'relative ',
+            swipeToSlide: true,
+
+
+          }
+        },
+        {
+          breakpoint: 430,
+          settings: {
+            infinite: true,
+            speed: 500,
+            slidesToShow: 1.7,
             slidesToScroll: 1,
             className: 'relative',
             swipeToSlide: true,

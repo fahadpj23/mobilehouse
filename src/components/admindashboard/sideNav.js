@@ -11,6 +11,7 @@ import { IoIosPerson } from 'react-icons/io';
 import { SiBrandfolder } from 'react-icons/si';
 import { BsCardHeading } from 'react-icons/bs';
 import { MdSlideshow } from 'react-icons/md';
+import { RiAdvertisementLine } from 'react-icons/ri';
 
 const SideNav=()=>{
     let history=useHistory();
@@ -36,6 +37,7 @@ const SideNav=()=>{
                             <button  onClick={()=>history.push("/HsnCode")}className={` w-full text-left ${LinkAddress=="HsnCode" && " text-blue-500 "  } focus:outline-none flex `}>HsnCode <GiPayMoney className='mt-1 ml-2 '/></button>
                             <button  onClick={()=>history.push("/Heading")}className={` w-full text-left ${LinkAddress=="Heading" && " text-blue-500 "  } focus:outline-none flex `}>Heading <BsCardHeading className='mt-1 ml-2 '/></button>
                             <button  onClick={()=>history.push("/Banner")}className={` w-full text-left ${LinkAddress=="Banner" && " text-blue-500 "  } focus:outline-none flex `}>Banner <MdSlideshow className='mt-1 ml-2 '/></button>
+                            <button  onClick={()=>history.push("/Ads")}className={` w-full text-left ${LinkAddress=="Ads" && " text-blue-500 "  } focus:outline-none flex `}>Ads <RiAdvertisementLine className='mt-1 ml-2 '/></button>
                             {/* <button  onClick={()=>history.push("/HsnCode")}className={` w-full text-left ${LinkAddress=="Dashboard" && " text-blue-500 "  }focus:outline-none flex `}>HsnCode <SiBrandfolder className='mt-1 ml-2 '/></button> */}
 
                         </div>
@@ -52,6 +54,7 @@ const SideNav=()=>{
                             <button  onClick={()=>history.push("/Brand")}className={` w-full ${LinkAddress=="HsnCode" && " text-blue-500 "  } focus:outline-none flex justify-center`}> <SiBrandfolder className='mt-1 ml-2 '/></button>
                             <button  onClick={()=>history.push("/Brand")}className={` w-full ${LinkAddress=="Heading" && " text-blue-500 "  } focus:outline-none flex justify-center`}> <BsCardHeading className='mt-1 ml-2 '/></button>
                             <button  onClick={()=>history.push("/Banner")}className={` w-full ${LinkAddress=="Banner" && " text-blue-500 "  } focus:outline-none flex justify-center`}> <MdSlideshow className='mt-1 ml-2 '/></button>
+                            <button  onClick={()=>history.push("/Ads")}className={` w-full ${LinkAddress=="ads" && " text-blue-500 "  } focus:outline-none flex justify-center`}> <RiAdvertisementLine className='mt-1 ml-2 '/></button>
 
                         </div>
 

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-const Ads=()=>{
+const HomeAds=()=>{
     return(
         <div className="w-full">
             <div className="grid grid-cols-3 w-full gap-x-3 ">
@@ -11,4 +11,4 @@ const Ads=()=>{
         </div>
     )
 }
-export default Ads
+export default HomeAds

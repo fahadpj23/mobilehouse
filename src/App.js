@@ -23,6 +23,8 @@ import Hsncode from 'pages/HsnCode';
 import Brand from 'pages/Brand';
 import Heading from 'pages/Heading';
 import Banner from 'pages/Banner';
+import Ads from 'pages/Ads';
+
 function App(){
     const[ authState, setAuthState ]=useState("")
     const[ UserauthState, setUserAuthState ]=useState("")
@@ -51,9 +53,9 @@ function App(){
             })
         }
         if(localStorage.getItem("accessToken")==null)
-       {
-        setAuthState("no user")
-       }
+        {
+            setAuthState("no user")
+        }
        
         if(localStorage.getItem("UserToken"))
         {
@@ -113,6 +115,7 @@ function App(){
                                     <Route  path="/Brand" component={Brand}/>
                                     <Route  path="/Heading" component={Heading}/>
                                     <Route  path="/Banner" component={Banner}/>
+                                    <Route  path="/Ads" component={Ads}/>
 
                                     
                                     
