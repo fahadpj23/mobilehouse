@@ -1,6 +1,6 @@
 import React from 'react';
 import Home from './pages/Home'
-
+import PageNotFound from 'pages/404Page';
 import Cart from './pages/cart';
 import Address from './pages/address';
 import {Route,BrowserRouter as Router,Switch} from  "react-router-dom";
@@ -83,17 +83,17 @@ function App(){
     },[])
    
     return(
-       
-        <Router>
-             
-            <Switch>
+       <>
+        
             <AuthContext.Provider value={{ authState, setAuthState ,UserauthState, setUserAuthState}}>
                      
                         <ContextProvider > 
                           
                             {
                                 (authState!=="" && UserauthState!=="") &&
-                                <>
+                                <Router>
+             
+                                    <Switch>
                                     <Route  path="/" exact  component={Home}/>  
                                     <Route path="/Dashboard" component={Dashboard}/>
                                     
@@ -116,11 +116,14 @@ function App(){
                                     <Route  path="/Heading" component={Heading}/>
                                     <Route  path="/Banner" component={Banner}/>
                                     <Route  path="/Ads" component={Ads}/>
+                                    <Route    component={PageNotFound}/>
 
                                     
                                     
                                     
-                                </>
+                                    </Switch>
+           
+           </Router>
                             }
                            
                            
@@ -128,11 +131,9 @@ function App(){
                         </ContextProvider>
             </AuthContext.Provider>
                   
-            </Switch>
            
-        </Router>
         
-       
+        </>
     )
 }
 export default App;

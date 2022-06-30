@@ -154,10 +154,11 @@ function Home() {
                      
           </div>
         </div>
-       
-        <div className="pb-24">
       
        
+        <div className="py-5 bg-gray-200 w-full flex flex-col items-center justify-center space-y-3">
+                     <h1>We’d love to hear what you think!</h1>
+                     <button className="border border-gray-500 rounded-full px-2 py-1">Give Feedback</button>
         </div>
       </div>
       </div>
