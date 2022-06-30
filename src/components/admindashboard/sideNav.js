@@ -12,17 +12,24 @@ import { SiBrandfolder } from 'react-icons/si';
 import { BsCardHeading } from 'react-icons/bs';
 import { MdSlideshow } from 'react-icons/md';
 import { RiAdvertisementLine } from 'react-icons/ri';
+import { FiLogOut } from 'react-icons/fi';
 
 const SideNav=()=>{
     let history=useHistory();
     const[sidenav,setsidenav]=useState(true)
+  
     const[currentitem,setcurrentitem]=useState(window.location.href.replace("http://localhost:3000/", ""))
-    console.log(currentitem)
+  
+
     const LinkAddress=window.location.href.replace("http://localhost:3000/", "")
-    console.log(LinkAddress)
+   
+    const logoutadminpanel=()=>{
+        localStorage.removeItem('accessToken')
+        window.location.reload(false);
+    }
     return(
        
-             <div className={`${sidenav==true ?" space-y-4 flex flex-col  pl-3 relative  text-white bg-gray-600 h-screen px-5 transform duration-1000  ": " space-y-4 flex flex-col  pl-3 relative   text-white h-screen bg-gray-600 transform duration-1000 -translate-x-2  " }`}>
+             <div className={`${sidenav==true ?" space-y-4 flex flex-col justify-between  pl-3 relative  text-white bg-gray-600 h-screen px-5 transform duration-1000 pb-4  ": " space-y-4 flex flex-col  pl-3 relative  pb-4 justify-between  text-white h-screen bg-gray-600 transform duration-1000 -translate-x-2  " }`}>
                  <button onClick={()=>setsidenav(!sidenav)} className=' bg-gray-600 text-white absolute top-0 -right-8 focus:outline-none text-xl p-2'><GiHamburgerMenu/></button>
                 {
                     sidenav==true ? 
@@ -59,7 +66,8 @@ const SideNav=()=>{
                         </div>
 
                 }
-               
+   
+               <button onClick={()=>logoutadminpanel()} className='w-full focus:outline-none flex items-center  space-x-2 text-left pl-3 text-sm tracking-wider font-semibold'><h1 className={`${sidenav==true ? "block" : "hidden"}`} >LOGOUT</h1><h1 className=' text-lg '><FiLogOut/></h1></button>
              </div>
        
     )
