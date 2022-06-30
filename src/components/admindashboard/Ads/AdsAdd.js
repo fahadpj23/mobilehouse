@@ -19,7 +19,7 @@ const AdsAdd=(props)=>{
 
     const uploadimage=(imagedetails)=>{
          setimageset(false)
-         imageDetails={position:props.AdsImageArray.length+1,imageBlob:URL.createObjectURL(imagedetails.target.files[0]),image:imagedetails.target.files[0],Brand:""}
+         imageDetails={position:position+1,imageBlob:URL.createObjectURL(imagedetails.target.files[0]),image:imagedetails.target.files[0],Brand: props.AdsImageArray[position] && props.AdsImageArray[position].Brand ? props.AdsImageArray[position].Brand : ""}
 
          props.AdsImageArray[position]=imageDetails
          
@@ -47,7 +47,7 @@ const AdsAdd=(props)=>{
 
         if(Brand=="")
         {
-            props.AdsImageArray.length=0;
+           
             MobileHouseApi.get('/getAdsBrand',{headers:{accessToken:localStorage.getItem("accessToken")}})
             .then((res)=>{
                 setBrand(res.data.Brand)

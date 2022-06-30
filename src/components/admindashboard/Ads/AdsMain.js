@@ -67,7 +67,7 @@ const AdsMain=(props)=>{
                         if(res.data.success)
                         {
                             setaddAds(false)
-                            
+                            props.AdsImageArray.length=0;
                             context.notify(res.data.success) 
                             MobileHouseApi.get('/getAdsData',{headers:{accessToken:localStorage.getItem("accessToken")}})
                             .then((res)=>{

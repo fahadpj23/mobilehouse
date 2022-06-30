@@ -15,6 +15,7 @@ function Home() {
   const [category, setcategory] = useState("")
   const [sliders, setsliders] = useState("")
   const [Banner, setBanner] = useState("")
+  const [Ads, setAds] = useState("")
 
   const AuthCon=useContext(AuthContext)
   console.log(AuthCon)
@@ -38,7 +39,11 @@ function Home() {
           .then(res=>{
             setBanner(res.data.banner)
           }) 
-          
+          MobileHouseApi.get("/getAds")
+          .then(res=>{
+            setAds(res.data.Ads)
+          }) 
+          // 
 
 
 
@@ -87,7 +92,7 @@ function Home() {
         </div> */}
         <div className="w-full flex justify-center">
           <div className="w-11/12 px-6 space-y-10">
-                     {sliders &&
+                     {sliders && Ads &&
                      sliders.map((item,key)=>{
                       return(
                       <div className="space-y-10">
@@ -98,12 +103,14 @@ function Home() {
                                     
                           />
                           <div className="hidden md:block">
-                            <HomeAds/>
+                            <HomeAds
+                            Ads={Ads[key]}
+                            />
                           </div>
                           <div className="block md:hidden">
                             <SimpleSlider
-                            Banner={Banner}
-                            ads="ads"
+                            Ads={Ads}
+                            advertisment="advertisment"
                             />
                           </div>
                           
