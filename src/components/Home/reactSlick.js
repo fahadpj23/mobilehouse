@@ -118,7 +118,7 @@ function SamplePrevArrow(props) {
           {props.category && props.category.map((item, key) => {
              
               return(
-                <Link className=" px-2 h-40 " to={{pathname: "/ProductList",search: "?" + new URLSearchParams({category: item.id}).toString()}}>
+                <Link className=" px-2 h-40 " to={{pathname: "/ProductList",search: "?" + new URLSearchParams({category: item.id,sort:"newestfirst"}).toString()}}>
 
                     <div className="py-4 px-2 h-40   " key={key}>
                         <div className=" flex flex-col bg-white w-full   rounded-lg  p-2">

@@ -7,7 +7,7 @@ const HomeAds=(props)=>{
             {
                 props.Ads && props.Ads.detail.map((item,key)=>{
                     return(
-                    <Link  to={{pathname: "/ProductList",search: "?" + new URLSearchParams({Brand:item.Brand}).toString()}}   className=""><img src={`http://127.0.0.1:9000/images/${item.image}`} alt="ads image" className="object-fill h-64 overflow-hidden rounded-lg" /></Link> 
+                    <Link  to={{pathname: "/ProductList",search: "?" + new URLSearchParams({Brand:item.Brand,sort:"newestfirst"}).toString()}}   className=""><img src={`http://127.0.0.1:9000/images/${item.image}`} alt="ads image" className="object-fill h-64 overflow-hidden rounded-lg" /></Link> 
                     )
 
                 })

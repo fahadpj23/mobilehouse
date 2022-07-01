@@ -103,7 +103,7 @@ export default class  ProductSlider extends Component{
                 
                 <div className="w-full flex justify-between py-4" >
                  <h2 className="font-semibold ">{this.props.Heading}</h2>
-                 <Link className="bg-blue-500 rounded-xl  text-white px-3 text-sm flex items-center py-1" to={{pathname: "/ProductList",search: "?" + new URLSearchParams({productCategory:this.props.id}).toString()}}>View All</Link>
+                 <Link className="bg-blue-500 rounded-xl  text-white px-3 text-sm flex items-center py-1" to={{pathname: "/ProductList",search: "?" + new URLSearchParams({productCategory:this.props.id,sort:"newestfirst"})}}>View All</Link>
                  {/* <Link to={{pathname: "/singleItem",   search: "?" + new URLSearchParams({productid: item.id}).toString() }} className="h-full items-center justify-center flex flex-col space-y-3 p-3 "> */}
 
                 </div>
