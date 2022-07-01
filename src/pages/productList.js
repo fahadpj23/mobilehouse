@@ -61,6 +61,7 @@ const ProductList=(props)=>{
                 <ProductListMain
                 products={products}
                 SortSelect={SortSelect}
+                sort={sort}
                 />
             }
            
