@@ -13,7 +13,6 @@ const AdsAdd=(props)=>{
     const imageref=useRef("")
     const uploadimageButtonclick=(btindex)=>{
          setimageset(true)
-    //    setimageIndex(btindex)
       imageref.current.click();
     }
 
@@ -22,11 +21,7 @@ const AdsAdd=(props)=>{
          imageDetails={position:position+1,imageBlob:URL.createObjectURL(imagedetails.target.files[0]),image:imagedetails.target.files[0],Brand: props.AdsImageArray[position] && props.AdsImageArray[position].Brand ? props.AdsImageArray[position].Brand : ""}
 
          props.AdsImageArray[position]=imageDetails
-         
-        // props.AdsImageArray[imageIndex-1]=URL.createObjectURL(imagedetails.target.files[0])
-        // props.productImage[imageIndex-1]=imagedetails.target.files[0]
-       
-        console.log(props.AdsImageArray)
+
        }
 
     const addBrand=(position,value)=>{
@@ -66,14 +61,12 @@ const AdsAdd=(props)=>{
                     props.AdsImageArray[key]=imageDetails
                 })
                 seteditok(true)
-                // res.data.AdsDetails[0]
-                // setBrand(res.data.Brand)
                  console.log(props.AdsImageArray)
             })
            
         }
     },[])
-    console.log(props.AdsImageArray)
+   
     return(
         <div className="w-full h-full flex items-center bg-opacity-95 justify-center bg-gray-100 fixed top-0">
                 <div className="flex flex-col w-7/12 h-4/5 bg-white justify-between p-5">

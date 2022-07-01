@@ -18,7 +18,7 @@ const AttributeMain=()=>{
     const[operationitem,setoperationitem]=useState("")
     const[operationid,setoperationid]=useState("")
 
-
+    // create form data
     const addformdata=[
         {name:"attributeName",type:"text",required:true},
         {name:"status",type:"select",value:[{value:"",name:"--select--"},{value:1,name:"active"},{value:0,name:"disable"}],required:"true"},
@@ -64,12 +64,14 @@ const AttributeMain=()=>{
         setaddattribute(true)
      }
      
+     // close add window
      const closeWindow=()=>{
         setaddattribute(false)
         setoperation("")
         setoperationitem("")
      }
 
+     // when click edit view delete then it will work
       const tableOperation=(operation,attribute)=>{
             console.log(attribute)
             setoperationid(attribute.id)

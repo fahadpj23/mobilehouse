@@ -42,6 +42,7 @@ const BannerAdd=(props)=>{
                                     )
                                 })
                             }
+                            
                             <button type="button" onClick={()=>uploadimageButtonclick()} className="  p-2 rounded border border-gray-400 flex flex-col justify-center items-center">
                                 <img src={  "/uploadimage.png"} alt="" className="object-contain h-16 w-16 overflow-hidden" />
                                 {/* <img src={  props.productImageblob[3] ? props.productImageblob[3] : props.productImage[3] ? `http://localhost:9000/images/${props.productImage[3]}` : "/uploadimage.png"} alt="" className="object-contain h-16 w-16 overflow-hidden" /> */}

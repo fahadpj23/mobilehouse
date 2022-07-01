@@ -104,7 +104,7 @@ const SingleItemMain=(props)=>{
                                     <div className="w-10/12">
                                         <div className="mt-10 space-y-1">
                                             <h1 className="text-xl font-semibold tracking-wider ">{item.name} </h1>
-                                            <h1><span className="text-xl font-bold text-green-600">₹{  item.salesPrice!=0 ? item.salesPrice :  item.sellingPrice}.00</span><span className="line-through ml-3 text-lg font-semibold text-gray-600">₹{item.mrp}.00</span></h1>
+                                            <h1 className='space-x-2'><span className="text-2xl font-bold text-green-600  ">₹{  item.salesPrice!=0 ? item.salesPrice :  item.sellingPrice}.00</span><span className="line-through ml-3 text-lg font-semibold text-gray-500">₹{item.mrp}.00</span><span className=' font-bold text-red-500'> { ((((+item.mrp)-(item.salesPrice!=0 ? +item.salesPrice :  +item.sellingPrice))/ +item.mrp)*100).toFixed(2)}% Off</span></h1>
                                             {/* <h1 className="flex items-center bg-green-500 w-8/12 py-2  text-white rounded px-2"><span ><ImTruck className=""/></span><span className="font-semibold ml-1 "> Free Shipping </span><span className="text-sm ml-1">  & Inclusive of all taxes</span></h1> */}
                                            
                                            
