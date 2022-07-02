@@ -12,7 +12,7 @@ const ProductList=(props)=>{
     const Brand = new URLSearchParams(window.location.search).get('Brand') && new URLSearchParams(window.location.search).get('Brand')
     const sort = new URLSearchParams(window.location.search).get('sort') && new URLSearchParams(window.location.search).get('sort')
     
-
+    // sort change then  change url and relaod 3 type pf product list so check params value and set related to it when change url
     const SortSelect=(sortvalue)=>{
         history.push({
             pathname: '/ProductList',
@@ -24,6 +24,7 @@ const ProductList=(props)=>{
         
         if(products=="")
         {
+        //when productlist related to catgeory 
         if(new URLSearchParams(window.location.search).get('productCategory'))
             {
                 MobileHouseApi.get("/viewSliderProduct",{params:{productCategory:productCategory,sort:sort}})
@@ -32,6 +33,8 @@ const ProductList=(props)=>{
                 }) 
               
             } 
+
+        // when click ads on home page then this will work
         else if(new URLSearchParams(window.location.search).get('Brand'))
         {
             MobileHouseApi.get("/viewBrandProduct",{params:{Brand:Brand,sort:sort}})
@@ -39,6 +42,7 @@ const ProductList=(props)=>{
                     setproducts(res.data.brandProduct)
                 }) 
         }
+        //when click view all in product slide this will work
         else
             {
                 MobileHouseApi.get("/viewCategoryProduct",{params:{category:category,sort:sort}})

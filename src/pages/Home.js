@@ -7,7 +7,8 @@ import React, { useState,useEffect ,useContext} from 'react';
 import ProductSlider from "../components/Home/productSlick";
 import {AuthContext} from '../helpers/authcontext'
 import HomeAds from "components/Home/HomeAds";
-import Category from "./category";
+
+import Footer from "components/Home/Footer";
 function Home() {
  
   
@@ -155,11 +156,9 @@ function Home() {
           </div>
         </div>
       
+        <Footer/>
        
-        <div className="py-5 bg-gray-200 w-full flex flex-col items-center justify-center space-y-3">
-                     <h1>We’d love to hear what you think!</h1>
-                     <button className="border border-gray-500 rounded-full px-2 py-1">Give Feedback</button>
-        </div>
+        
       </div>
       </div>
   );

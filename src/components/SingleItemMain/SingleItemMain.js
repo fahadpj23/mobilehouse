@@ -78,9 +78,11 @@ const SingleItemMain=(props)=>{
             
             <Nav/>
                         <div className="w-full flex justify-center">
-                            <div className="w-11/12 flex  mt-5 ">
-                                <div className="w-5/12 flex ] flex-col space-y-4 ">
-                                    <img src={displayimage ? `http://localhost:9000/images/${displayimage}` :`http://localhost:9000/images/${productImage[0]}`} alt="" className="object-contain  overflow-hidden h-96 "/>
+                            <div className="w-11/12 md:flex  mt-5 ">
+                                <div className="w-full md:w-5/12  flex-col space-y-4 ">
+                                    <div className='flex justify-center items-center'>
+                                        <img src={displayimage ? `http://localhost:9000/images/${displayimage}` :`http://localhost:9000/images/${productImage[0]}`} alt="" className="object-contain  overflow-hidden h-96 "/>
+                                    </div>
                                     <div className='flex space-x-2 w-full justify-center'>
                                     {
                                         productImage && productImage.map((item1,key)=>
@@ -100,7 +102,7 @@ const SingleItemMain=(props)=>{
                                     
 
                                 </div>
-                                <div className="ml-5 w-7/12 flex flex-col  ">
+                                <div className="ml-5 w-full md:w-7/12 flex flex-col  ">
                                     <div className="w-10/12">
                                         <div className="mt-10 space-y-1">
                                             <h1 className="text-xl font-semibold tracking-wider ">{item.name} </h1>
@@ -108,7 +110,7 @@ const SingleItemMain=(props)=>{
                                             {/* <h1 className="flex items-center bg-green-500 w-8/12 py-2  text-white rounded px-2"><span ><ImTruck className=""/></span><span className="font-semibold ml-1 "> Free Shipping </span><span className="text-sm ml-1">  & Inclusive of all taxes</span></h1> */}
                                            
                                            
-                                           <div className='grid grid-cols-3 gap-5'>
+                                           <div className='grid grid-cols-2 sm:grid-cols-3 gap-5'>
                                               
                                               
                                              
