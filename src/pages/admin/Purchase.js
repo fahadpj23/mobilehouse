@@ -1,4 +1,4 @@
-import PurchaseMain from '../components/admindashboard/PurchaseComponent/purchaseMain'
+import PurchaseMain from 'components/admindashboard/PurchaseComponent/purchaseMain'
 const Purchase=()=>{
     return(
         <div>

@@ -1,9 +1,9 @@
 
 import React, { useState,useEffect } from 'react';
-import AllProduct from '../components/admindashboard/products/allProducts'
+import AllProduct from 'components/admindashboard/products/allProducts'
 import {useContext} from 'react'
 
-import { AuthContext } from '../helpers/authcontext';
+import { AuthContext } from '../../helpers/authcontext';
 import { useHistory } from 'react-router-dom';
 const Product=()=>{
     const [products, setproducts] = useState("")
@@ -19,7 +19,7 @@ const Product=()=>{
                 product={products}
                 />
                 :
-                    history.push("/admin")
+                    history.push("/AdminLogin")
                 }
             
                 </div>

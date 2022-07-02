@@ -6,7 +6,7 @@ const NavOperation=(props)=>{
         <div className=' bg-gray-100'>
             <div className="w-full flex justify-between  pt-8 pb-5 px-3">
                 <div>
-                    <h1 className='ml-5 uppercase font-semibold text-lg'>{window.location.href.replace("http://localhost:3000/", "")}</h1>
+                    <h1 className='ml-5 uppercase font-semibold text-lg'>{window.location.href.replace("http://localhost:3000/admin/", "")}</h1>
                 </div>
                 <div className='flex space-x-3'>
                     <button className=" flex items-center px-3 py-1 border border-gray-400 rounded space-x-1"><h1><AiFillDelete/></h1> <h1>Delete</h1></button>

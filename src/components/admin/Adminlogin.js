@@ -5,7 +5,7 @@ import {Route,BrowserRouter as Router} from  "react-router-dom";
 import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../../helpers/authcontext';
 import MobileHouseApi from 'helpers/axiosinstance';
-const AdminLogin=()=>{
+const AdminLoginMain=()=>{
 let history=useHistory();
 const Auth=useContext(AuthContext)
 const context=useContext(Usercontext )
@@ -22,7 +22,7 @@ const handleSubmit=(e)=>{
                  
                     localStorage.setItem("accessToken",res.data.accessToken)
                     Auth.setAuthState("authorized")
-                    history.push("/Dashboard")
+                    history.push("/admin/Dashboard")
                     
                 }
                 else
@@ -51,8 +51,8 @@ const handleSubmit=(e)=>{
         <form onSubmit={(e)=>handleSubmit(e)} method="POST" >
             <div>
             <div className="w-screen h-screen flex items-center justify-center bg-gray-100">
-                <div className="w-7/12 flex shadow-2xl h-fixedNoNavlg4  ">
-                    <div className="w-1/2 border-r-2 border-gray-300 py-5 h-full bg-white ">
+                <div className="w-7/12 lg:flex shadow-2xl h-fixedNoNavlg4  ">
+                    <div className=" w-full lg:w-1/2 border-r-2 border-gray-300 py-5 h-full bg-white ">
                         <div className="flex justify-center h-full ">
                             <div className="w-8/12 flex flex-col justify-center h-full">
                                 <h1 className="text-3xl font-bold flex justify-center py-2 mb-5">Admin Login</h1>
@@ -77,7 +77,7 @@ const handleSubmit=(e)=>{
                             
                         </div>
                     </div>
-                    <div className="w-1/2 flex items-center justify-center bg-white">
+                    <div className="w-1/2 hidden lg:flex items-center justify-center bg-white">
                          <img src="only logo.png" alt="images" className=" " />     
                     </div>
 
@@ -87,4 +87,4 @@ const handleSubmit=(e)=>{
         </form>
     )
 }
-export default AdminLogin
+export default AdminLoginMain

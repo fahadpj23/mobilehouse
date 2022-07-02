@@ -5,25 +5,26 @@ import Cart from './pages/cart';
 import Address from './pages/address';
 import {Route,BrowserRouter as Router,Switch} from  "react-router-dom";
 import SingleItem from './pages/singleitem'
-import Order from './pages/Order'
-import Admin from './pages/admin';
+import Order from './pages/admin/Order'
+import AdminLogin from './pages/adminLogin';
 import Category from './pages/category';    
-import Dashboard from './pages/Dashboard';
+import Dashboard from './pages/admin/Dashboard';
 import ContextProvider from './components/context/userContext';
 import {useEffect,useState} from 'react'
 import  MobileHouseApi from "./helpers/axiosinstance"
 import { AuthContext } from "./helpers/authcontext";
 import ProductList from './pages/productList'
-import Attribute from './pages/Attribute'
-import Product from './pages/Product';
+import Attribute from './pages/admin/Attribute'
+import Product from './pages/admin/Product';
 import OrderSuccess from './pages/ordersuccess';
-import Purchase from './pages/Purchase';
-import Supplier from 'pages/Supplier';
-import Hsncode from 'pages/HsnCode';
-import Brand from 'pages/Brand';
-import Heading from 'pages/Heading';
-import Banner from 'pages/Banner';
-import Ads from 'pages/Ads';
+import Purchase from './pages/admin/Purchase';
+import Supplier from 'pages/admin/Supplier';
+import Hsncode from 'pages/admin/HsnCode';
+import Brand from 'pages/admin/Brand';
+import Heading from 'pages/admin/Heading';
+import Banner from 'pages/admin/Banner';
+import Ads from 'pages/admin/Ads';
+
 
 function App(){
     const[ authState, setAuthState ]=useState("")
@@ -95,27 +96,30 @@ function App(){
              
                                     <Switch>
                                     <Route  path="/" exact  component={Home}/>  
-                                    <Route path="/Dashboard" component={Dashboard}/>
+                                    <Route path="/admin/Dashboard" component={Dashboard}/>
                                     
-                                    <Route  path="/orders" component={Order}/>
-                                    <Route  path="/Product" component={Product}/>
+                                    <Route  path="/admin/orders" component={Order}/>
+                                    <Route  path="/admin/Product" component={Product}/>
                                 
                                     <Route  path="/singleItem" component={SingleItem}/>
-                                    <Route  path="/Order" component={Order}/>
+                                    
                                     <Route  path="/Address" component={Address}/>
                                     <Route  path="/cart" component={Cart}/>
-                                    <Route  path="/Admin" component={Admin}/>
-                                    <Route  path="/Attribute" component={Attribute}/>
-                                    <Route  path="/category" component={Category}/>
+                                    <Route  path="/adminLogin" component={AdminLogin}/>
+                                    <Route  path="/admin/Attribute" component={Attribute}/>
+                                    <Route  path="/admin/category" component={Category}/>
                                     <Route  path="/ProductList" component={ProductList}/>
-                                    <Route  path="/OrderSuccess" component={OrderSuccess}/>
-                                    <Route  path="/Purchase" component={Purchase}/>
-                                    <Route  path="/Supplier" component={Supplier}/>
-                                    <Route  path="/Hsncode" component={Hsncode}/>
-                                    <Route  path="/Brand" component={Brand}/>
-                                    <Route  path="/Heading" component={Heading}/>
-                                    <Route  path="/Banner" component={Banner}/>
-                                    <Route  path="/Ads" component={Ads}/>
+                                    <Route  path="/admin/OrderSuccess" component={OrderSuccess}/>
+                                    <Route  path="/admin/Purchase" component={Purchase}/>
+                                    <Route  path="/admin/Supplier" component={Supplier}/>
+                                    <Route  path="/admin/Hsncode" component={Hsncode}/>
+                                    <Route  path="/admin/Brand" component={Brand}/>
+                                    <Route  path="/admin/Heading" component={Heading}/>
+                                    <Route  path="/admin/Banner" component={Banner}/>
+                                    <Route  path="/admin/Ads" component={Ads}/>
+                                   
+                                   
+
                                     <Route    component={PageNotFound}/>
 
                                     

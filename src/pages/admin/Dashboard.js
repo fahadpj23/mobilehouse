@@ -1,8 +1,8 @@
-import SideNav from "../components/admindashboard/sideNav";
+import SideNav from "../../components/admindashboard/sideNav";
 import {useContext} from 'react'
-import { AuthContext } from '../helpers/authcontext';
+import { AuthContext } from '../../helpers/authcontext';
 import { useHistory } from 'react-router-dom';
-import DashboardMain from "../components/admindashboard/dashboard/dashboardMain";
+import DashboardMain from "components/admindashboard/dashboard/dashboardMain";
 
 
 const Dashboard=()=>{
@@ -14,7 +14,7 @@ const Dashboard=()=>{
             
                 <DashboardMain/>
             :
-                history.push("/admin")
+                history.push("/AdminLogin")
             }
             
          </div>

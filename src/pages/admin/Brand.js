@@ -1,23 +1,23 @@
-import SideNav from "../components/admindashboard/sideNav";
+import SideNav from "../../components/admindashboard/sideNav";
 import {useContext} from 'react'
-import { AuthContext } from '../helpers/authcontext';
+import { AuthContext } from '../../helpers/authcontext';
 import { useHistory } from 'react-router-dom';
-import AttributeMain from "../components/admindashboard/Attribute/AttributeMain";
+import BrandMain from "components/admindashboard/Brand/BrandMain";
 
 
-const Attribute=()=>{
+const Brand=()=>{
     const Auth=useContext(AuthContext)
     let history=useHistory();
     return(
          <div className="flex">
              {Auth && Auth.authState=="authorized" ?
             
-                <AttributeMain/>
+                <BrandMain/>
             :
-                history.push("/admin")
+                history.push("/AdminLogin")
             }
             
          </div>
     )
 }
-export default Attribute
+export default Brand

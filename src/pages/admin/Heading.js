@@ -1,9 +1,9 @@
-import SideNav from "../components/admindashboard/sideNav";
+
 import {useContext,useEffect,useState} from 'react'
-import { AuthContext } from '../helpers/authcontext';
+import { AuthContext } from '../../helpers/authcontext';
 import { useHistory } from 'react-router-dom';
-import HeadingMain from "../components/admindashboard/Heading/HeadingMain";
-import MobileHouseApi from '../helpers/axiosinstance'
+import HeadingMain from "components/admindashboard/Heading/HeadingMain";
+import MobileHouseApi from '../../helpers/axiosinstance'
 
 
 const Heading=()=>{
@@ -31,7 +31,7 @@ const Heading=()=>{
               
                 />
             :
-                history.push("/admin")
+                history.push("/AdminLogin")
             }
             
          </div>

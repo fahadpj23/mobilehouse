@@ -1,8 +1,8 @@
-import SideNav from "../components/admindashboard/sideNav";
+import SideNav from "../../components/admindashboard/sideNav";
 import {useContext} from 'react'
-import { AuthContext } from '../helpers/authcontext';
+import { AuthContext } from '../../helpers/authcontext';
 import { useHistory } from 'react-router-dom';
-import AttributeMain from "../components/admindashboard/Attribute/AttributeMain";
+
 import AdsMain from "components/admindashboard/Ads/AdsMain";
 
 const Ads=()=>{
@@ -17,7 +17,7 @@ const Ads=()=>{
                 AdsImageArray={AdsImageArray}
                 />
             :
-                history.push("/admin")
+                history.push("/AdminLogin")
             }
             
          </div>
