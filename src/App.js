@@ -24,8 +24,11 @@ import Brand from 'pages/admin/Brand';
 import Heading from 'pages/admin/Heading';
 import Banner from 'pages/admin/Banner';
 import Ads from 'pages/admin/Ads';
-
-
+import TermsOfService from 'pages/TermOfService';
+import PrivacyPolicy from 'pages/PrivacyPolicy';
+import RefundPolicy from 'pages/RefundPolicy';
+import ShippingPolicy from 'pages/ShipplingPolicy';
+import AboutUs from 'pages/AboutUs';
 function App(){
     const[ authState, setAuthState ]=useState("")
     const[ UserauthState, setUserAuthState ]=useState("")
@@ -102,6 +105,7 @@ function App(){
                                     <Route  path="/admin/Product" component={Product}/>
                                 
                                     <Route  path="/singleItem" component={SingleItem}/>
+                                    <Route  path="/TermsOfService" component={TermsOfService}/>
                                     
                                     <Route  path="/Address" component={Address}/>
                                     <Route  path="/cart" component={Cart}/>
@@ -117,6 +121,10 @@ function App(){
                                     <Route  path="/admin/Heading" component={Heading}/>
                                     <Route  path="/admin/Banner" component={Banner}/>
                                     <Route  path="/admin/Ads" component={Ads}/>
+                                    <Route  path="/PrivacyPolicy" component={PrivacyPolicy}/>
+                                    <Route  path="/RefundPolicy" component={RefundPolicy}/>
+                                    <Route  path="/ShippingPolicy" component={ShippingPolicy}/>
+                                    <Route  path="/AboutUs" component={AboutUs}/>
                                    
                                    
 
