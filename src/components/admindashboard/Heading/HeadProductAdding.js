@@ -2,6 +2,7 @@ import { useState ,useEffect } from "react"
 import MobileHouseApi from "helpers/axiosinstance"
 import { MdDelete } from 'react-icons/md';
 import { AiOutlineClose } from 'react-icons/ai';
+import Paths from 'helpers/path'
 const HeadProductAdding=(props)=>{
  
     const [searchValue,setsearchValue]=useState("")
@@ -87,7 +88,7 @@ const HeadProductAdding=(props)=>{
                                                 return(
                                                     <div className="flex justify-between items-center w-full">
                                                         <h1 className="truncate w-6/12">{item1.name}</h1>
-                                                        <img src={   `http://localhost:9000/images/${item1.image}`} alt="" className="object-contain h-14 w-14 overflow-hidden" />
+                                                        <img src={   `${Paths.ImagePath}/${item1.image}`} alt="" className="object-contain h-14 w-14 overflow-hidden" />
                                                         <button type="button"  onClick={()=>addProduct(item1)} className="px-2 h-8 w-20 bg-red-500 focus:outline-none text-white rounded  ">ADD +</button>
 
                                                     </div>
@@ -102,7 +103,7 @@ const HeadProductAdding=(props)=>{
                                                 return(
                                                     <div className="relative border rounded border-gray-300 p-2 w-8/12 flex flex-col items-center justify-center  ">
                                                             <button onClick={()=>deleteProduct(item1.id)} className="absolute  top-1 right-1 "><MdDelete/></button>
-                                                            <img src={   `http://localhost:9000/images/${item1.image}`} alt="" className="object-contain h-28 w-28 overflow-hidden" />
+                                                            <img src={   `${Paths.ImagePath}/${item1.image}`} alt="" className="object-contain h-28 w-28 overflow-hidden" />
                                                             <h1 className="truncate w-full ">{item1.name}</h1>
                                                             <h1>RS:{item1.sellingprice}</h1>
 

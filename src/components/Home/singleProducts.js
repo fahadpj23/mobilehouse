@@ -4,6 +4,7 @@ import {Usercontext} from '../context/userContext'
 import {Component, useContext,useState} from 'react'
 import { GiConsoleController } from "react-icons/gi";
 import Nav from "./Nav";
+import Paths from 'helpers/path'
 
 const SingleProduct=(props)=>{
     const context=useContext(Usercontext)
@@ -21,20 +22,17 @@ const SingleProduct=(props)=>{
     // })
  
    
-   console.log(item)
+
     return(
         <div>
             
             <div  className="lg:10/12  w-full  rounded-lg flex flex-col overflow-hidden bg-gray-50 shadow-lg">
                             <Link to={{pathname: "/singleItem",   search: "?" + new URLSearchParams({productid: item.id}).toString() }} className="h-full items-center justify-center flex flex-col space-y-3 p-4 ">
-                                     <img src={`http://127.0.0.1:9000/images/${item.image}`} alt="dd" className="object-cover h-40 overflow-hidden transform hover:-translate-y-1 hover:scale-90 hover:duration-700 "/>
+                                     <img src={`${Paths.ImagePath}/${item.image}`} alt="dd" className="object-cover h-40 overflow-hidden transform hover:-translate-y-1 hover:scale-90 hover:duration-700 "/>
                                      
                             </Link>
                             
-                            {/* <Link to={{pathname: "/singleItem",   search: "?" + new URLSearchParams({productid: "clientId",pro:"fddf"}).toString() ,state:{itemid:item.id}}} className="h-full items-center justify-center flex flex-col space-y-3 p-3 ">
-                                     <img src={`http://127.0.0.1:9000/images/${item.image}`} alt="dd" className="object-cover h-48 overflow-hidden transform hover:-translate-y-1 hover:scale-110 hover:duration-700 "/>
-                                     
-                            </Link> */}
+                           
                         
                             <div className="px-2 py-2 flex justify-between">
                                     <div className="w-full">

@@ -2,6 +2,7 @@ import { useState ,useEffect ,useRef} from "react"
 import MobileHouseApi from "helpers/axiosinstance"
 import { MdDelete } from 'react-icons/md';
 import { AiOutlineClose } from 'react-icons/ai';
+import Paths from 'helpers/path'
 const AdsAdd=(props)=>{
     let imageDetails=""
     const [imageset,setimageset]=useState(false)
@@ -87,7 +88,7 @@ const AdsAdd=(props)=>{
                                 <div className="space-y-2 w-4/12">
                                     <button type="button" onClick={()=>(uploadimageButtonclick(),setposition(key))} className="  p-2 rounded border w-full border-gray-400 flex flex-col justify-center items-center">
                                         {/* <img src={  "/uploadimage.png"} alt="" className="object-contain h-48 w-4/12  overflow-hidden" /> */}
-                                        <img src={ props.AdsImageArray[key] ? props.AdsImageArray[key].imageBlob ? props.AdsImageArray[key].imageBlob : props.AdsImageArray[key].image && `http://localhost:9000/images/${props.AdsImageArray[key].image}`  : "/uploadimage.png"} alt="" className="object-fill h-48 w-full  overflow-hidden" />
+                                        <img src={ props.AdsImageArray[key] ? props.AdsImageArray[key].imageBlob ? props.AdsImageArray[key].imageBlob : props.AdsImageArray[key].image && `${Paths.ImagePath}/${props.AdsImageArray[key].image}`  : "/uploadimage.png"} alt="" className="object-fill h-48 w-full  overflow-hidden" />
                                         
                                     </button>
                                     {

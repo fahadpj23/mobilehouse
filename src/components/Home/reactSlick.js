@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Slider from "react-slick";
 import { HiArrowLeft, HiArrowRight } from 'react-icons/hi'
 import {Link} from "react-router-dom";
-
+import Paths from 'helpers/path'
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (
@@ -122,7 +122,7 @@ function SamplePrevArrow(props) {
 
                     <div className="py-4 px-2 h-40   " key={key}>
                         <div className=" flex flex-col bg-white w-full   rounded-lg  p-2">
-                            <img src={   `http://localhost:9000/images/${item.image}`} alt="" className="object-contain h-24 w-full overflow-hidden" />
+                            <img src={   `${Paths.ImagePath}/${item.image}`} alt="" className="object-contain h-24 w-full overflow-hidden" />
                             <h1 className="text-center font-semibold">{item.categoryName}</h1>
                         </div>
                     </div>

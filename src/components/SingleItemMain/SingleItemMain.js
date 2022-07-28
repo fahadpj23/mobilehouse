@@ -1,7 +1,7 @@
 import { ImTruck } from 'react-icons/im';
 import { IoMdCash } from 'react-icons/io';
 import {AiOutlineWhatsApp } from 'react-icons/ai';
-
+import Paths from 'helpers/path'
 import {Link} from "react-router-dom";
 import axios from 'axios'
 import { Usercontext } from '../context/userContext';
@@ -81,13 +81,13 @@ const SingleItemMain=(props)=>{
                             <div className="w-11/12 md:flex  mt-5 ">
                                 <div className="w-full md:w-5/12  flex-col space-y-4 ">
                                     <div className='flex justify-center items-center'>
-                                        <img src={displayimage ? `http://localhost:9000/images/${displayimage}` :`http://localhost:9000/images/${productImage[0]}`} alt="" className="object-contain  overflow-hidden h-96 "/>
+                                        <img src={displayimage ? `${Paths.ImagePath}/${displayimage}` :`${Paths.ImagePath}/${productImage[0]}`} alt="" className="object-contain  overflow-hidden h-96 "/>
                                     </div>
                                     <div className='flex space-x-2 w-full justify-center'>
                                     {
                                         productImage && productImage.map((item1,key)=>
                                         <button key={key} onClick={()=>setdisplayimage(productImage[key])}>
-                                            <img src={`http://localhost:9000/images/${productImage[key]}`} alt="" className="object-contain border p-2 border-gray-300 rounded overflow-hidden h-24 w-24 "/>
+                                            <img src={`${Paths.ImagePath}/${productImage[key]}`} alt="" className="object-contain border p-2 border-gray-300 rounded overflow-hidden h-24 w-24 "/>
                                         </button>
                                         )
                                     }
@@ -95,7 +95,7 @@ const SingleItemMain=(props)=>{
                                     <div className="space-x-3 flex">
                                         {/* <button className="w-6/12 font-semibold text-white bg-yellow-400 py-3">ADD TO CART</button> */}
                                         {/* <Link     to={{pathname: "/Address",   search: "?" + new URLSearchParams({productId:item.id,orderqty:qty}).toString(),state:{checkout:"single"} }} className="w-full rounded font-semibold flex justify-center focus:outline-none text-white bg-primary py-3 ">ORDER NOW</Link> */}
-                                        <a className='bg-green-600 w-full flex items-center justify-center space-x-1 rounded py-3' href={`https://wa.me/+919072430483?text=${document.location.href}`} target="_blank"><h1><AiOutlineWhatsApp className='text-white text-2xl'/></h1><h1 className="text-white ">Whatsapp Now</h1></a>
+                                        <a className='bg-green-600 w-full flex items-center justify-center space-x-1 rounded py-3' href={`https://wa.me/+919745286899?text=${document.location.href}`} target="_blank"><h1><AiOutlineWhatsApp className='text-white text-2xl'/></h1><h1 className="text-white ">Whatsapp Now</h1></a>
                                       {/* <Link to={{pathname: "/Address", state:{itemid:imagedisplay.id,orderqty:qty}}} onClick={()=>context.addtocart(item)} className="w-full font-semibold flex justify-center focus:outline-none text-white bg-primary py-3">ORDER NOW</Link> */}
                                     </div>
                                     
@@ -120,7 +120,7 @@ const SingleItemMain=(props)=>{
                                                    props.variants && props.variants.map((item1,key1)=>{
                                                             return(
                                                                 <button onClick={()=>props.singleitemset(item1)} className={`border p-2  ${item1.id==props.singleitem.id ? "border-red-300" : "border-gray-300"} focus:outline-none  flex flex-col items-center justify-center rounded`}>
-                                                                    <img src={`http://localhost:9000/images/${item1.image}`} alt="" className="object-contain  rounded overflow-hidden h-16 w-16 "/>
+                                                                    <img src={`${Paths.ImagePath}/${item1.image}`} alt="" className="object-contain  rounded overflow-hidden h-16 w-16 "/>
                                                                     <div className='flex'>
                                                                     {item1.attributes.map((item2,key2)=>{
                                                                         return(

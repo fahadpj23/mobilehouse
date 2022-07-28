@@ -14,14 +14,7 @@ const Banner=()=>{
      let history=useHistory();
   
    
-    // useEffect(()=>{
-    //     if(products=="")
-    //     {
-    //         MobileHouseApi.get('/headProduct').then((res)=>{
-    //            setproducts(res.data.products)
-    //         })
-    //     }
-    // },[])
+  
     return( 
          <div className="flex">
              {Auth && Auth.authState=="authorized" ?

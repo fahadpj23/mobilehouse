@@ -1,7 +1,8 @@
 import MobileHouseApi from "helpers/axiosinstance";
 import { useState ,useEffect,useRef} from "react"
-
+import Paths from 'helpers/path'
 import { AiOutlineClose } from 'react-icons/ai';
+
 const FormLayout=(props)=>{
     
     const [deletevalue,setdeletevalue]=useState("")
@@ -278,7 +279,7 @@ const FormLayout=(props)=>{
                                         }
                                                 <input type="file" ref={imageref} onChange={(e)=>{setimage(URL.createObjectURL(e.target.files[0]))}}  accept=".png,.jpg,.jpeg" className=" hidden"  name={item.name} id={item.name} /> 
                                                 <button type="button" onClick={()=>imageadd()}  className="  p-2 rounded border border-gray-400">
-                                                    <img src={image ? image :  props.operationitem.image ? `http://localhost:9000/images/${props.operationitem.image}` : "/uploadimage.png"}  alt="" className="object-contain h-16 w-16 overflow-hidden" />
+                                                    <img src={image ? image :  props.operationitem.image ? `${Paths.ImagePath}/${props.operationitem.image}` : "/uploadimage.png"}  alt="" className="object-contain h-16 w-16 overflow-hidden" />
                                                  
                                                 </button>
 

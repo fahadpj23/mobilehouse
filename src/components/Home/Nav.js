@@ -9,6 +9,7 @@ import UserRegister from './userRegister';
 import {AuthContext} from '../../helpers/authcontext'
 import { Usercontext } from '../context/userContext';
 import { useHistory } from 'react-router-dom';
+import Paths from 'helpers/path'
 const Nav=(props)=>{
 
     const context=useContext(AuthContext)
@@ -104,7 +105,7 @@ const Nav=(props)=>{
                                                 </div>
                                                 <div className='w-3/12'>
 
-                                                    <img src={   `http://localhost:9000/images/${item.image}`} alt="" className="object-contain h-14 w-14 overflow-hidden" />
+                                                    <img src={   `${Paths.ImagePath}/${item.image}`} alt="" className="object-contain h-14 w-14 overflow-hidden" />
                                                 </div>
 
                                             </div>

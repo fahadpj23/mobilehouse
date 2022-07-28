@@ -19,7 +19,7 @@ function Home() {
   const [Ads, setAds] = useState("")
 
   const AuthCon=useContext(AuthContext)
-  console.log(AuthCon)
+ 
  
   useEffect(() => {
          

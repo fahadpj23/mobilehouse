@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Usercontext } from '../context/userContext';
 import {useContext} from 'react'
+import Paths from 'helpers/path'
 const Cartitem=(props)=>{
     
     let item=props.item
@@ -24,7 +25,7 @@ const Cartitem=(props)=>{
                 <div className="flex space-x-3 justify-center">
                     <div className="w-6/12 flex justify-end">
                         <div className="w-6/12 ">
-                            <img  src={`http://localhost:9000/images/${item.image}`} alt="product image" className="h-28 w-28 object-fill"/>
+                            <img  src={`${Paths.ImagePath}/${item.image}`} alt="product image" className="h-28 w-28 object-fill"/>
                         </div>
                     </div>
                     

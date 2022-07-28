@@ -3,6 +3,7 @@ import React, { useContext, useState} from 'react';
 import { Usercontext } from '../context/userContext';
 import { useHistory } from "react-router-dom";
 import MobileHouseApi from '../../helpers/axiosinstance';
+import Paths from 'helpers/path'
 const AddressMain=(props)=>{
     const history = useHistory();
     const context=useContext(Usercontext)
@@ -107,7 +108,7 @@ const AddressMain=(props)=>{
                              <div key={key} className="space-y-3 flex space-x-3">
                                 <div className="">
                                     {console.log(item1)}
-                                    <img src={`http://localhost:9000/images/${item1.image}`} alt="" className=" overflow-hidden h-24 w-28 object-fill"/>
+                                    <img src={`${Paths.ImagePath}/${item1.image}`} alt="" className=" overflow-hidden h-24 w-28 object-fill"/>
     
                                 </div>
                                 <div>
