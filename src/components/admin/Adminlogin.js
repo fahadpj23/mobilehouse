@@ -51,11 +51,11 @@ const handleSubmit=(e)=>{
         <form onSubmit={(e)=>handleSubmit(e)} method="POST" >
             <div>
             <div className="w-screen h-screen flex items-center justify-center bg-gray-100">
-                <div className="w-7/12 lg:flex shadow-2xl h-fixedNoNavlg4  ">
+                <div className="w-10/12 md:w-7/12 lg:flex shadow-2xl h-96 md:h-fixedNoNavlg4  ">
                     <div className=" w-full lg:w-1/2 border-r-2 border-gray-300 py-5 h-full bg-white ">
                         <div className="flex justify-center h-full ">
                             <div className="w-8/12 flex flex-col justify-center h-full">
-                                <h1 className="text-3xl font-bold flex justify-center py-2 mb-5">Admin Login</h1>
+                                <h1 className="text-lg md:text-3xl font-bold flex justify-center py-2 mb-5">Admin Login</h1>
                                 <div className="space-y-3 flex flex-col py-3">
                                     
                                         <div className="space-y-1">
@@ -68,9 +68,9 @@ const handleSubmit=(e)=>{
                                         </div>
                                     
                                 </div>
-                                <div className="w-full flex  mt-3  justify-between  ">
-                                    <h1 className="text-blue-600 text-sm">forgot password?</h1>
-                                    <button className="w-3/12 bg-black text-white justify-end py-1 rounded-lg">Log In</button>
+                                <div className="w-full flex  mt-3  justify-end  ">
+                                    {/* <h1 className="text-blue-600 text-sm">forgot password?</h1> */}
+                                    <button className="w-8/12 md:w-3/12 bg-black text-white justify-end py-1 rounded-lg">Log In</button>
                                 </div>
                             </div>
                             
@@ -78,7 +78,7 @@ const handleSubmit=(e)=>{
                         </div>
                     </div>
                     <div className="w-1/2 hidden lg:flex items-center justify-center bg-white">
-                         <img src="only logo.png" alt="images" className=" " />     
+                         <img src="MobilehouseLogo.png" alt="images" className=" " />     
                     </div>
 
                 </div>

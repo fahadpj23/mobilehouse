@@ -4,7 +4,7 @@ const ShippingPolicy = () => {
   return (
     <div>
       <Nav />
-      <div className="flex justify-center mt-5">
+      <div className="flex justify-center py-5">
         <div className="w-8/12  space-y-4">
           <h1 className="font-bold text-xl">SHIPPING POLICY </h1>
 

@@ -19,7 +19,7 @@ function Home() {
   const [Ads, setAds] = useState("")
 
   const AuthCon=useContext(AuthContext)
- 
+
  
   useEffect(() => {
          
@@ -120,38 +120,7 @@ function Home() {
                      })
                      
                      }
-                      {/* {recommended!=="" && <ProductSlider
                       
-                       items={recommended}
-                       Heading="Recommends"
-                                  
-                      />}
-                       {recommended!=="" && <ProductSlider
-                      
-                      items={recommended}
-                      Heading="Trending Items"
-                                 
-                     />} */}
-                      
-                      {/* {accessories!=="" && <ProductSlider
-                      
-                      items={accessories}
-                      Heading="Headset"
-                      type="47"
-                                
-                     />}
-                      {headset!=="" && <ProductSlider
-                      
-                      items={headset}
-                      Heading="Accessories" 
-                      type="48"           
-                     />}
-                      {phone!=="" && <ProductSlider
-                      
-                      items={phone}
-                      Heading="phone" 
-                      type="49"           
-                     />} */}
                      
           </div>
         </div>

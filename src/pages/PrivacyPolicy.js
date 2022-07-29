@@ -4,7 +4,7 @@ const PrivacyPolicy=()=>{
     return(
             <div >
                 <Nav/>
-                <div className="flex justify-center mt-5">
+                <div className="flex justify-center py-5">
                 <div className="w-7/12 space-y-5">
 
 
@@ -102,7 +102,7 @@ const PrivacyPolicy=()=>{
 
                         <div className="space-y-3">
                         <h1>CONTACT US</h1>
-                        <h1>For more information about our privacy practices, if you have questions, or if you would like to make a complaint, please contact us by e‑mail at support@mydezire.com.</h1>
+                        <h1>For more information about our privacy practices, if you have questions, or if you would like to make a complaint, please contact us by e‑mail at support@mobilehouse.com.</h1>
                         </div>
 
 

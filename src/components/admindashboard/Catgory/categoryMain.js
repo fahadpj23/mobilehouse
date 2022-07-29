@@ -113,7 +113,7 @@ const CategoryMain=(props)=>{
     console.log(variantvalues)
    
     return(
-        <div className="flex w-full">
+        <div className="flex w-full h-screen overflow-auto">
             {
                     addcategory===true && 
                        
@@ -135,7 +135,7 @@ const CategoryMain=(props)=>{
                                  
                 }
             <SideNav/>
-            <div className="w-full">
+            <div className="w-full h-fixedNoNav3 overflow-auto  ">
                 
             <NavOperation
             AddNew={AddNew}

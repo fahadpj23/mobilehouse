@@ -3,7 +3,7 @@ const RefundPolicy = () => {
   return (
     <div>
       <Nav />
-      <div className="flex justify-center mt-5">
+      <div className="flex justify-center py-5">
         <div className="w-7/12 space-y-5">
           <h1 className="text-xl font-semibold">REFUND POLICY Returns</h1>
           <div className="space-y-4">

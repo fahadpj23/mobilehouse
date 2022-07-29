@@ -35,9 +35,9 @@ const AddProductWindow=(props)=>{
    },[imageset])
   
     return(
-        <form onSubmit={(e)=>props.handleSubmit(e)} method="post">
+        <form className="w-8/12 overflow-auto" onSubmit={(e)=>props.handleSubmit(e)} method="post">
     
-            <div className=" mt-5 w-full  grid grid-cols-2 gap-6">
+            <div className=" mt-5   grid grid-cols-1 md:grid-cols-2 gap-6">
               
                     
                     <div className=" text-sm">
@@ -130,26 +130,26 @@ const AddProductWindow=(props)=>{
             </div>
             <div className=" text-sm mt-4">
                         {/* <h1>Image</h1> */}
-                        <div className="flex space-x-2">
+                        <div className="grid  grid-cols-2 md:grid-cols-5 gap-2">
                             <input onChange={(e)=>{uploadimage(e) }} ref={imageref} accept=".png,.jpg,.jpeg"  type="file" className="w-full hidden  border-2 border-gray-400 rounded-md h-8 px-1"  name="image" id="image" />
 
-                            <button type="button" onClick={()=>uploadimageButtonclick(1)} className="  p-2 rounded border border-gray-400">
+                            <button type="button" onClick={()=>uploadimageButtonclick(1)} className="  p-2 rounded border border-gray-400 flex flex-col items-center justify-center">
                                 <img src={  props.productImageblob[0] ? props.productImageblob[0] : props.productImage[0] ? `${Paths.ImagePath}/${props.productImage[0]}` : "/uploadimage.png"} alt="" className="object-contain h-16 w-16 overflow-hidden" />
                                 <h1>image </h1>
                             </button>
-                            <button type="button" onClick={()=>uploadimageButtonclick(2)} className="  p-2 rounded border border-gray-400">
+                            <button type="button" onClick={()=>uploadimageButtonclick(2)} className="  p-2 rounded border border-gray-400 flex flex-col items-center justify-center">
                             <img src={  props.productImageblob[1] ? props.productImageblob[1] : props.productImage[1] ? `${Paths.ImagePath}/${props.productImage[1]}` : "/uploadimage.png"} alt="" className="object-contain h-16 w-16 overflow-hidden" />
                                 <h1>image </h1>
                             </button>
-                            <button  type="button" onClick={()=>uploadimageButtonclick(3)} className="  p-2 rounded border border-gray-400">
+                            <button  type="button" onClick={()=>uploadimageButtonclick(3)} className="  p-2 rounded border border-gray-400 flex flex-col items-center justify-center">
                             <img src={  props.productImageblob[2] ? props.productImageblob[2] : props.productImage[2] ? `${Paths.ImagePath}/${props.productImage[2]}` : "/uploadimage.png"} alt="" className="object-contain h-16 w-16 overflow-hidden" />
                                 <h1>image </h1>
                             </button>
-                            <button type="button" onClick={()=>uploadimageButtonclick(4)} className="  p-2 rounded border border-gray-400">
+                            <button type="button" onClick={()=>uploadimageButtonclick(4)} className="  p-2 rounded border border-gray-400 flex flex-col items-center justify-center">
                             <img src={  props.productImageblob[3] ? props.productImageblob[3] : props.productImage[3] ? `${Paths.ImagePath}/${props.productImage[3]}` : "/uploadimage.png"} alt="" className="object-contain h-16 w-16 overflow-hidden" />
                                 <h1>image </h1>
                             </button>
-                            <button type="button" onClick={()=>uploadimageButtonclick(5)} className="  p-2 rounded border border-gray-400">
+                            <button type="button" onClick={()=>uploadimageButtonclick(5)} className="  p-2 rounded border border-gray-400 flex flex-col items-center justify-center">
                             <img src={  props.productImageblob[4] ? props.productImageblob[4] : props.productImage[4] ? `${Paths.ImagePath}/${props.productImage[4]}` : "/uploadimage.png"} alt="" className="object-contain h-16 w-16 overflow-hidden" />
                                 <h1>image </h1>
                             </button>
@@ -164,8 +164,8 @@ const AddProductWindow=(props)=>{
                     <img src={`${Paths.ImagePath}/${product.image}`} alt="" className="object-contain h-48 overflow-hidden "/>
                     } */}
             <div className="flex justify-end  space-x-3 w-full mt-8 ">
-                    <button className="bg-red-500 text-white py-1 font-semibold rounded-md   px-1 w-3/12">RESET</button>
-                    <button   type="submit"  value="submit" className="bg-blue-500 text-white py-1  font-semibold rounded-md  px-1 w-3/12">Save</button>
+                    <button className="bg-red-500 text-white py-1 font-semibold rounded-md   px-1 w-8/12 md:w-3/12">RESET</button>
+                    <button   type="submit"  value="submit" className="bg-blue-500 text-white py-1  font-semibold rounded-md  px-1 w-8/12 md:w-3/12">Save</button>
             </div>
             
         </form>

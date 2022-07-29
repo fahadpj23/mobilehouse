@@ -82,8 +82,8 @@ const Nav=(props)=>{
                 <div className="w-full flex  items-center justify-between py-2">
                     <div className="w-full md:w-7/12 ">
                         <div className="flex items-center">
-                            <Link to={{pathname: "/" }}  className="w-8/12 md:w-6/12">
-                                <img src="mobilehouselogo.jpg" alt="logo" width="400" height="400"  />
+                            <Link to={{pathname: "/" }}  className="w-8/12 md:w-6/12 ml-2">
+                                <img src="MobilehouseLogo.png" alt="logo" width="300" height="300"  />
                                         
                             </Link>
                             <div className="relative sm:w-5/12 w-10/12 ">

@@ -4,7 +4,7 @@ const AboutUs = () => {
   return (
     <div>
       <Nav />
-      <div className="flex justify-center mt-5">
+      <div className="flex justify-center py-5">
         <div className="w-8/12  space-y-4">
           <h1 className="font-bold text-xl">ABOUT US </h1>
 
@@ -32,7 +32,7 @@ const AboutUs = () => {
             happy to issue a full refund. 
             <h1 className="font-semibold text-lg">HAVE ANY QUESTIONS? </h1>
             Contact us now
-            using our contact page, or email us at support@myMobile House.com Happy
+            using our contact page, or email us at support@myMobileHouse.com Happy
             shopping! The My Mobile House Team
           </div>
         </div>

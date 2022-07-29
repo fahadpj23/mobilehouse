@@ -14,7 +14,7 @@ const AdminLogin=()=>{
             {
 
                 Auth && Auth.authState=="authorized" ? 
-                history.push("/Dashboard")
+                history.push("/admin/Dashboard")
                 :
                 <AdminLoginMain/>
             }

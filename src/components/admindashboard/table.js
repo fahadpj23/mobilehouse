@@ -9,11 +9,11 @@ const TableContent=(props)=>{
  console.log(props)
     
     return(
-        <div className="px-2 h-full ">
+        <div className="px-2 h-full max-w-full overflow-auto">
             <div className="bg-gray-100 pb-2">
                 <h1 className="border border-gray-500 w-20 py-1 rounded text-center "><span className="font-semibold">All </span> <span className="font-semibold text-green-600">{props.Data.Data.length} </span></h1>
             </div>
-            <table className="min-w-full mt-5">
+            <table className="w-full mt-5 ">
             <tbody>
                 <tr className="py-5 " >
                     {
@@ -29,7 +29,7 @@ const TableContent=(props)=>{
                 {
                     props.Data.Data!=="" && props.Data.Data.map((item,key)=>{
                         return(
-                            <tr key={key} className="text-center">
+                            <tr key={key} className="text-center text-sm">
                             <td className="py-1  truncate">{key+1}</td>
                             {
                                 props.Data.TableHead.map((item1,key)=>{

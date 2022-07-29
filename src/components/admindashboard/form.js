@@ -168,8 +168,8 @@ const FormLayout=(props)=>{
     console.log(image)
     return(
         <div className="w-full h-full flex items-center bg-opacity-95 justify-center bg-gray-100 fixed top-0">
-        <div className=" space-y-4  w-4/12 h-4/5 ">
-            <div className="max-h-full bg-white p-4 overflow-auto">
+        <div className=" space-y-4 w-8/12  md:w-4/12 h-4/5 ">
+            <div className="max-h-full bg-white p-4 overflow-auto ">
                 <div className="w-full">
                     <button onClick={()=>props.close(false)} className="flex focus:outline-none justify-end w-full text-right"><AiOutlineClose/></button>
                     <h1 className="w-full flex justify-center text-xl font-semibold space-x-2"><span>{ props.operation==="" ? "ADD" :props.operation }</span><span>{props.head}</span> </h1>
@@ -192,7 +192,7 @@ const FormLayout=(props)=>{
                                                         <div className="flex space-x-1">
                                                             <input type="text" required={item.required && true} className={`  w-full ${item.name=="Address" && "h-20"} px-2 py-1 focus:outline-none rounded-md border border-gray-400`} defaultValue={ item.more ? "" : props.operationitem && props.operationitem[item.name] } name={item.name} id={item.name} />                                    
                                                             {
-                                                                item.more && <button type="button"  onClick={()=>addvalue(item.name)} className="px-2 py-1 bg-red-500 focus:outline-none text-white rounded w-2/12 ">ADD +</button>
+                                                                item.more && <button type="button"  onClick={()=>addvalue(item.name)} className="px-2 py-1 bg-red-500 focus:outline-none text-white rounded w-5/12 md:w-2/12 ">ADD +</button>
                                                             }
                                                         </div>
                                                         {
@@ -224,7 +224,7 @@ const FormLayout=(props)=>{
                                                     {
                                                         item.value&& item.value.map((item1,key1)=>{
                                                             return(
-                                                                <option value={item1.value}>{item1.name}</option>
+                                                                <option className="text-xs md:text-md" value={item1.value}>{item1.name}</option>
                                                             )
                                                         })
                                                     }
@@ -237,13 +237,13 @@ const FormLayout=(props)=>{
                                                         {
                                                             item.value&& item.value.map((item1,key1)=>{
                                                                 return(
-                                                                    <option value={item1}>{item1}</option>
+                                                                    <option className="text-xs md:text-md"  value={item1}>{item1}</option>
                                                                 )
                                                             })
                                                         }
                                                         </select>
                                                         {
-                                                                    item.more && <button type="button"  onClick={()=>addvalue(item.name)} className="px-2 py-1 bg-red-500 focus:outline-none text-white rounded w-3/12 ">ADD +</button>
+                                                                    item.more && <button type="button"  onClick={()=>addvalue(item.name)} className="px-2 py-1 bg-red-500 focus:outline-none text-white rounded w-5/12 md:w-3/12 ">ADD +</button>
                                                         }
                                                         </div>
                                                         {
@@ -315,7 +315,7 @@ const FormLayout=(props)=>{
                 })
             }
             <div className={`${props.operation=="view" ? " hidden" :"w-full flex justify-end"}`}>
-                 <input type="submit" value="Submit" className="bg-green-500 w-3/12 mt-10 cursor-pointer  focus:outline-none text-white font-semibold py-2 rounded-md" />
+                 <input type="submit" value="Submit" className="bg-green-500 w-4/12 md:w-3/12 mt-10 cursor-pointer  focus:outline-none text-white font-semibold py-2 rounded-md" />
 
             </div>
 

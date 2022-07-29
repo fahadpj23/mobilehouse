@@ -97,7 +97,7 @@ const HeadingMain=(props)=>{
  
    
     return(
-        <div className="flex w-full">
+        <div className="flex w-full h-screen overflow-auto">
             {
                     addHeading===true && 
                        
@@ -114,7 +114,7 @@ const HeadingMain=(props)=>{
                                         
                 }
             <SideNav/>
-            <div className="w-full">
+            <div className="w-full h-fixedNoNav3 overflow-auto ">
                 
             <NavOperation
             AddNew={AddNew}

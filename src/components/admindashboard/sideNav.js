@@ -16,13 +16,16 @@ import { FiLogOut } from 'react-icons/fi';
 
 const SideNav=()=>{
     let history=useHistory();
-    const[sidenav,setsidenav]=useState(true)
+    const[sidenav,setsidenav]=useState(false)
   
     const[currentitem,setcurrentitem]=useState(window.location.href.replace("http://localhost:3000/", ""))
   
 
     const LinkAddress=window.location.href.replace("http://localhost:3000/", "")
-   
+
+      
+    // const[currentitem,setcurrentitem]=useState(window.location.href.replace("https://fajarfahadfazil.ml/", ""))
+    // const LinkAddress=window.location.href.replace("https://fajarfahadfazil.ml/", "")
     const logoutadminpanel=()=>{
         localStorage.removeItem('accessToken')
         window.location.reload(false);
@@ -52,8 +55,8 @@ const SideNav=()=>{
                     :
                         <div className='space-y-5 px-5 text-xl'>
                             <button onClick={()=>history.push("/admin/Dashboard")}  className={` mt-10 w-full ${LinkAddress=="admin/Dashboard" && " text-blue-500 "  } focus:outline-none flex justify-center`}><AiFillDashboard/></button>
-                            <button onClick={()=>history.push("/admin/orders")}  className={` w-full ${LinkAddress=="admin/orders" && " text-blue-500 "  } focus:outline-none flex justify-center`}><FaTruckMoving/></button>
-                            <button onClick={()=>history.push("/admin/orders")} className={` w-full ${LinkAddress=="admin/Purchase" && " text-blue-500 "  } focus:outline-none flex justify-center`}><FaCartArrowDown/></button>
+                            {/* <button onClick={()=>history.push("/admin/orders")}  className={` w-full ${LinkAddress=="admin/orders" && " text-blue-500 "  } focus:outline-none flex justify-center`}><FaTruckMoving/></button> */}
+                            <button onClick={()=>history.push("/admin/Purchase")} className={` w-full ${LinkAddress=="admin/Purchase" && " text-blue-500 "  } focus:outline-none flex justify-center`}><FaCartArrowDown/></button>
                             <button onClick={()=>history.push("/admin/Product")} className={` w-full ${LinkAddress=="admin/Product" && " text-blue-500 "  } focus:outline-none flex justify-center`}><FaProductHunt/></button>
                             <button  onClick={()=>history.push("/admin/category")}className={` w-full ${LinkAddress=="admin/category" && " text-blue-500 "  } focus:outline-none flex justify-center`}><CgListTree/></button>
                             <button  onClick={()=>history.push("/admin/Attribute")}className={` w-full ${LinkAddress=="admin/Attribute" && " text-blue-500 "  } focus:outline-none flex justify-center`}><IoIosColorFilter/> </button>

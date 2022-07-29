@@ -84,7 +84,7 @@ const BannerMain=(props)=>{
  
    console.log(Banner)
     return(
-        <div className="flex w-full">
+        <div className="flex w-full h-screen overflow-auto">
             {
                     addBanner===true && 
                        
@@ -102,7 +102,7 @@ const BannerMain=(props)=>{
                                         
                 }
             <SideNav/>
-            <div className="w-full">
+            <div className="w-full h-fixedNoNav3 overflow-auto ">
                 
             <NavOperation
             AddNew={AddNew}
