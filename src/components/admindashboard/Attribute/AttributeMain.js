@@ -7,6 +7,7 @@ import MobileHouseApi from "helpers/axiosinstance";
 import { Usercontext } from "components/context/userContext";
 import TableContent from "../table";
 import NavOperation from "../operation";
+import MainLayoutAdmin from "../MainLayoutAdmin";
 const AttributeMain=()=>{
 
 
@@ -115,8 +116,8 @@ const AttributeMain=()=>{
                                     
                                    
                 }
-            <SideNav/>
-            <div className="w-full h-fixedNoNav3 overflow-auto  ">
+           
+            <MainLayoutAdmin>
                
                 <NavOperation
                 AddNew={AddNew}
@@ -130,8 +131,9 @@ const AttributeMain=()=>{
 
                         />
                     }
-                
-            </div>
+              </MainLayoutAdmin>
+         
+            
     </div>   
     )
 }

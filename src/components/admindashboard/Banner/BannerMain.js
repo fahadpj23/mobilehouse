@@ -8,6 +8,7 @@ import TableContent from "../table";
 import NavOperation from '../operation'
 import { AiFillSetting ,AiOutlineClose} from 'react-icons/ai';
 import BannerAdd from "./BannerAdd";
+import MainLayoutAdmin from "../MainLayoutAdmin";
 import { mobilehouseApi } from "axiosinstance";
 const BannerMain=(props)=>{
     const context=useContext(Usercontext )
@@ -101,8 +102,7 @@ const BannerMain=(props)=>{
                                   />
                                         
                 }
-            <SideNav/>
-            <div className="w-full h-fixedNoNav3 overflow-auto ">
+            <MainLayoutAdmin>
                 
             <NavOperation
             AddNew={AddNew}
@@ -117,7 +117,7 @@ const BannerMain=(props)=>{
                 }
                 
                 
-            </div>
+                </MainLayoutAdmin>
     </div>   
     )
 }

@@ -7,6 +7,7 @@ import { Usercontext } from "../../context/userContext";
 import TableContent from "../table";
 import NavOperation from '../operation'
 import { AiFillSetting ,AiOutlineClose} from 'react-icons/ai';
+import MainLayoutAdmin from "../MainLayoutAdmin";
 // import AdsAdd from "./AdsAdd";
 import { mobilehouseApi } from "axiosinstance";
 import AdsAdd from "./AdsAdd";
@@ -128,8 +129,7 @@ const AdsMain=(props)=>{
                                   />
                                         
                 }
-            <SideNav/>
-            <div className="w-full h-fixedNoNav3 overflow-auto ">
+             <MainLayoutAdmin>
                 
             <NavOperation
             AddNew={AddNew}
@@ -144,7 +144,7 @@ const AdsMain=(props)=>{
                 }
                 
                 
-            </div>
+            </MainLayoutAdmin>
     </div>   
     )
 }

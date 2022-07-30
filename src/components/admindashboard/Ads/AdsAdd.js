@@ -69,8 +69,8 @@ const AdsAdd=(props)=>{
     },[])
    
     return(
-        <div className="w-full h-full flex items-center bg-opacity-95 justify-center bg-gray-100 fixed top-0">
-                <div className="flex flex-col w-7/12 h-4/5 bg-white justify-between p-5">
+        <div className="w-full h-full flex items-center bg-opacity-95  justify-end md:justify-center bg-gray-100 fixed top-0 pr-3 md:pr-0">
+                <div className="flex flex-col w-9/12  md:w-7/12 h-4/5 bg-white justify-between p-5 overflow-auto">
                     <div className="space-y-3 relative p-2">
                     <button onClick={()=>props.setaddAds(false)} className="absolute text-xl -right-1 -top-1 focus:outline-none"><AiOutlineClose/></button>
                         {/* <img src={ props.AdsImageArray.length == 0 ?  "/uploadimage.png" :  props.AdsImageArray[props.AdsImageArray.length-1].imageBlob ? props.AdsImageArray[props.AdsImageArray.length-1].imageBlob : props.AdsImageArray[props.AdsImageArray.length-1].image && `http://localhost:9000/images/${props.AdsImageArray[props.AdsImageArray.length-1].image}` } alt="" className="object-contain h-48 w-full border mt-5 border-gray-400 rounded overflow-hidden" /> */}
@@ -82,10 +82,10 @@ const AdsAdd=(props)=>{
                         <div className="flex justify-between space-x-2">
                            
                             <input onChange={(e)=>{uploadimage(e) }} ref={imageref} accept=".png,.jpg,.jpeg"  type="file" className="w-full hidden  border-2 border-gray-400 rounded-md h-8 px-1"  name="image" id="image" />
-                            
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-3">
                            {[...Array(3)].map((item,key)=>{
                             return(
-                                <div className="space-y-2 w-4/12">
+                                <div className="space-y-2 w-10/12 ">
                                     <button type="button" onClick={()=>(uploadimageButtonclick(),setposition(key))} className="  p-2 rounded border w-full border-gray-400 flex flex-col justify-center items-center">
                                         {/* <img src={  "/uploadimage.png"} alt="" className="object-contain h-48 w-4/12  overflow-hidden" /> */}
                                         <img src={ props.AdsImageArray[key] ? props.AdsImageArray[key].imageBlob ? props.AdsImageArray[key].imageBlob : props.AdsImageArray[key].image && `${Paths.ImagePath}/${props.AdsImageArray[key].image}`  : "/uploadimage.png"} alt="" className="object-fill h-48 w-full  overflow-hidden" />
@@ -105,13 +105,14 @@ const AdsAdd=(props)=>{
                                 </div>
                             )
                            })}
+                           </div>
                         
                             
                         </div>
                        
                     </div>
                     <div className="w-full flex justify-end">
-                        <button onClick={()=>props.AdsUpload()} className="w-2/12 bg-red-500 text-white rounded p-2">Save</button> 
+                        <button onClick={()=>props.AdsUpload()} className="w-5/12 md:w-2/12 bg-red-500 text-white rounded p-2">Save</button> 
                     </div> 
 
 

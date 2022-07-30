@@ -6,6 +6,7 @@ import { AiFillSetting ,AiOutlineClose} from 'react-icons/ai';
 import PurchaseAdd from "./purchaseAdd";
 import { mobilehouseApi } from "axiosinstance";
 import TableContent from "../table";
+import MainLayoutAdmin from "../MainLayoutAdmin";
 const PurchaseMain=()=>{
 
     let purchasetable=[];
@@ -57,7 +58,7 @@ const PurchaseMain=()=>{
     },[])
 
     return(
-        <div className="flex w-full">
+        <div className="flex w-full h-screen overflow-auto">
              {
                     addpurchase===true && 
                         <div className="w-full h-full flex items-center bg-opacity-95 justify-center bg-gray-100 fixed top-0">
@@ -83,8 +84,7 @@ const PurchaseMain=()=>{
                            
                         </div>
                 }
-            <SideNav/>
-            <div className="w-10/12">
+             <MainLayoutAdmin>
                 
                <NavOperation
                AddNew={AddNew }
@@ -97,7 +97,8 @@ const PurchaseMain=()=>{
     
                     />
                 }
-            </div>
+             </MainLayoutAdmin>
+          
     </div>   
     )
 }

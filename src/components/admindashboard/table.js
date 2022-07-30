@@ -9,17 +9,17 @@ const TableContent=(props)=>{
  console.log(props)
     
     return(
-        <div className="px-2 h-full max-w-full overflow-auto">
-            <div className="bg-gray-100 pb-2">
+        <div className="px-2 h-full w-full overflow-auto">
+            <div className=" pb-2 w-full">
                 <h1 className="border border-gray-500 w-20 py-1 rounded text-center "><span className="font-semibold">All </span> <span className="font-semibold text-green-600">{props.Data.Data.length} </span></h1>
             </div>
-            <table className="w-full mt-5 ">
+            <table className="w-full mt-5  ">
             <tbody>
                 <tr className="py-5 " >
                     {
                     
                     props.Data.TableHead && props.Data.TableHead.map((item,key)=>
-                        <th key={key}>{item}</th>
+                        <th className="text-xs md:text-base px-3" key={key}>{item}</th>
                     )
                     }
                     <th className="flex justify-center  mt-1"><AiFillSetting/></th>
@@ -46,7 +46,7 @@ const TableContent=(props)=>{
                             }
                         
                             
-                            <td >
+                            <td className="pt-1" >
                             <TableOperation
                                 item={item}
                                 tableOperation={props.tableOperation}

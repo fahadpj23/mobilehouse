@@ -7,6 +7,7 @@ import { Usercontext } from "../../context/userContext";
 import TableContent from "../table";
 import NavOperation from '../operation'
 import { AiFillSetting ,AiOutlineClose} from 'react-icons/ai';
+import MainLayoutAdmin from "../MainLayoutAdmin";
 const CategoryMain=(props)=>{
     const context=useContext(Usercontext )
     const [addcategory,setaddcategory]=useState(false)
@@ -134,8 +135,8 @@ const CategoryMain=(props)=>{
                                     
                                  
                 }
-            <SideNav/>
-            <div className="w-full h-fixedNoNav3 overflow-auto  ">
+              <MainLayoutAdmin>
+           
                 
             <NavOperation
             AddNew={AddNew}
@@ -150,7 +151,7 @@ const CategoryMain=(props)=>{
                 }
                 
                 
-            </div>
+              </MainLayoutAdmin>
     </div>   
     )
 }

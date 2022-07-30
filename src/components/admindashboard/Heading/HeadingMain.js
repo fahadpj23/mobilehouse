@@ -9,6 +9,7 @@ import NavOperation from '../operation'
 import { AiFillSetting ,AiOutlineClose} from 'react-icons/ai';
 import HeadProductAdding from "./HeadProductAdding";
 import { mobilehouseApi } from "axiosinstance";
+import MainLayoutAdmin from "../MainLayoutAdmin";
 const HeadingMain=(props)=>{
     const context=useContext(Usercontext )
     const [addHeading,setaddHeading]=useState(false)
@@ -113,8 +114,7 @@ const HeadingMain=(props)=>{
                                   />
                                         
                 }
-            <SideNav/>
-            <div className="w-full h-fixedNoNav3 overflow-auto ">
+             <MainLayoutAdmin>
                 
             <NavOperation
             AddNew={AddNew}
@@ -129,7 +129,7 @@ const HeadingMain=(props)=>{
                 }
                 
                 
-            </div>
+                </MainLayoutAdmin>
     </div>   
     )
 }

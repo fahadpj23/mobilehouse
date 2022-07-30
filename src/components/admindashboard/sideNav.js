@@ -18,14 +18,14 @@ const SideNav=()=>{
     let history=useHistory();
     const[sidenav,setsidenav]=useState(false)
   
-    const[currentitem,setcurrentitem]=useState(window.location.href.replace("http://localhost:3000/", ""))
+    // const[currentitem,setcurrentitem]=useState(window.location.href.replace("http://localhost:3000/", ""))
   
 
-    const LinkAddress=window.location.href.replace("http://localhost:3000/", "")
+    // const LinkAddress=window.location.href.replace("http://localhost:3000/", "")
 
       
-    // const[currentitem,setcurrentitem]=useState(window.location.href.replace("https://fajarfahadfazil.ml/", ""))
-    // const LinkAddress=window.location.href.replace("https://fajarfahadfazil.ml/", "")
+    const[currentitem,setcurrentitem]=useState(window.location.href.substring(window.location.href.lastIndexOf("/") + 1, window.location.href.length))
+    const LinkAddress=window.location.href.substring(window.location.href.lastIndexOf("/") + 1, window.location.href.length)
     const logoutadminpanel=()=>{
         localStorage.removeItem('accessToken')
         window.location.reload(false);
@@ -37,34 +37,34 @@ const SideNav=()=>{
                 {
                     sidenav==true ? 
                         <div className='space-y-5 px-3 '>
-                            <button onClick={()=>history.push("/admin/Dashboard")}  className={` w-full text-left ${LinkAddress=="admin/Dashboard" && " text-blue-500 "  } focus:outline-none flex `}>Dashboard<AiFillDashboard className='mt-1 ml-2'/></button>
-                            {/* <button onClick={()=>history.push("/admin/orders")}  className={` w-full text-left ${LinkAddress=="admin/orders" && " text-blue-500 "  }focus:outline-none flex `}>orders<FaTruckMoving className='mt-1 ml-2'/></button> */}
-                            <button onClick={()=>history.push("/admin/Purchase")} className={` w-full text-left ${LinkAddress=="admin/Purchase" && " text-blue-500 "  }focus:outline-none flex `}>Purchase<FaCartArrowDown className='mt-1 ml-2'/></button>
-                            <button onClick={()=>history.push("/admin/Product")} className={` w-full text-left ${LinkAddress=="admin/Product" && " text-blue-500 "  }focus:outline-none flex `}>Product<FaProductHunt className='mt-1 ml-2'/></button>
-                            <button  onClick={()=>history.push("/admin/category")}className={` w-full text-left ${LinkAddress=="admin/category" && " text-blue-500 "  }focus:outline-none flex `}>category<CgListTree className='mt-1 ml-2'/></button>
-                            <button  onClick={()=>history.push("/admin/Attribute")}className={` w-full text-left ${LinkAddress=="admin/Attribute" && " text-blue-500 "  }focus:outline-none flex `}>Attribute <IoIosColorFilter className='mt-1 ml-2'/></button>
-                            <button  onClick={()=>history.push("/admin/Supplier")}className={` w-full text-left ${LinkAddress=="admin/Supplier" && " text-blue-500 "  }focus:outline-none flex `}>Supplier <IoIosPerson className='mt-1 ml-2 '/></button>
-                            <button  onClick={()=>history.push("/admin/HsnCode")}className={` w-full text-left ${LinkAddress=="admin/HsnCode" && " text-blue-500 "  } focus:outline-none flex `}>HsnCode <GiPayMoney className='mt-1 ml-2 '/></button>
-                            <button  onClick={()=>history.push("/admin/Heading")}className={` w-full text-left ${LinkAddress=="admin/Heading" && " text-blue-500 "  } focus:outline-none flex `}>Heading <BsCardHeading className='mt-1 ml-2 '/></button>
-                            <button  onClick={()=>history.push("/admin/Banner")}className={` w-full text-left ${LinkAddress=="admin/Banner" && " text-blue-500 "  } focus:outline-none flex `}>Banner <MdSlideshow className='mt-1 ml-2 '/></button>
-                            <button  onClick={()=>history.push("/admin/Ads")}className={` w-full text-left ${LinkAddress=="admin/Ads" && " text-blue-500 "  } focus:outline-none flex `}>Ads <RiAdvertisementLine className='mt-1 ml-2 '/></button>
-                            {/* <button  onClick={()=>history.push("/admin/HsnCode")}className={` w-full text-left ${LinkAddress=="admin/Dashboard" && " text-blue-500 "  }focus:outline-none flex `}>HsnCode <SiBrandfolder className='mt-1 ml-2 '/></button> */}
+                            <button onClick={()=>history.push("/admin/Dashboard")}  className={` w-full text-left ${LinkAddress=="Dashboard" && " text-blue-500 "  } focus:outline-none flex `}>Dashboard<AiFillDashboard className='mt-1 ml-2'/></button>
+                            {/* <button onClick={()=>history.push("/admin/orders")}  className={` w-full text-left ${LinkAddress=="orders" && " text-blue-500 "  }focus:outline-none flex `}>orders<FaTruckMoving className='mt-1 ml-2'/></button> */}
+                            <button onClick={()=>history.push("/admin/Purchase")} className={` w-full text-left ${LinkAddress=="Purchase" && " text-blue-500 "  }focus:outline-none flex `}>Purchase<FaCartArrowDown className='mt-1 ml-2'/></button>
+                            <button onClick={()=>history.push("/admin/Product")} className={` w-full text-left ${LinkAddress=="Product" && " text-blue-500 "  }focus:outline-none flex `}>Product<FaProductHunt className='mt-1 ml-2'/></button>
+                            <button  onClick={()=>history.push("/admin/category")}className={` w-full text-left ${LinkAddress=="category" && " text-blue-500 "  }focus:outline-none flex `}>category<CgListTree className='mt-1 ml-2'/></button>
+                            <button  onClick={()=>history.push("/admin/Attribute")}className={` w-full text-left ${LinkAddress=="Attribute" && " text-blue-500 "  }focus:outline-none flex `}>Attribute <IoIosColorFilter className='mt-1 ml-2'/></button>
+                            <button  onClick={()=>history.push("/admin/Supplier")}className={` w-full text-left ${LinkAddress=="Supplier" && " text-blue-500 "  }focus:outline-none flex `}>Supplier <IoIosPerson className='mt-1 ml-2 '/></button>
+                            <button  onClick={()=>history.push("/admin/HsnCode")}className={` w-full text-left ${LinkAddress=="HsnCode" && " text-blue-500 "  } focus:outline-none flex `}>HsnCode <GiPayMoney className='mt-1 ml-2 '/></button>
+                            <button  onClick={()=>history.push("/admin/Heading")}className={` w-full text-left ${LinkAddress=="Heading" && " text-blue-500 "  } focus:outline-none flex `}>Heading <BsCardHeading className='mt-1 ml-2 '/></button>
+                            <button  onClick={()=>history.push("/admin/Banner")}className={` w-full text-left ${LinkAddress=="Banner" && " text-blue-500 "  } focus:outline-none flex `}>Banner <MdSlideshow className='mt-1 ml-2 '/></button>
+                            <button  onClick={()=>history.push("/admin/Ads")}className={` w-full text-left ${LinkAddress=="Ads" && " text-blue-500 "  } focus:outline-none flex `}>Ads <RiAdvertisementLine className='mt-1 ml-2 '/></button>
+                            {/* <button  onClick={()=>history.push("/admin/HsnCode")}className={` w-full text-left ${LinkAddress=="Dashboard" && " text-blue-500 "  }focus:outline-none flex `}>HsnCode <SiBrandfolder className='mt-1 ml-2 '/></button> */}
 
                         </div>
                        
                     :
                         <div className='space-y-5 px-5 text-xl'>
-                            <button onClick={()=>history.push("/admin/Dashboard")}  className={` mt-10 w-full ${LinkAddress=="admin/Dashboard" && " text-blue-500 "  } focus:outline-none flex justify-center`}><AiFillDashboard/></button>
-                            {/* <button onClick={()=>history.push("/admin/orders")}  className={` w-full ${LinkAddress=="admin/orders" && " text-blue-500 "  } focus:outline-none flex justify-center`}><FaTruckMoving/></button> */}
-                            <button onClick={()=>history.push("/admin/Purchase")} className={` w-full ${LinkAddress=="admin/Purchase" && " text-blue-500 "  } focus:outline-none flex justify-center`}><FaCartArrowDown/></button>
-                            <button onClick={()=>history.push("/admin/Product")} className={` w-full ${LinkAddress=="admin/Product" && " text-blue-500 "  } focus:outline-none flex justify-center`}><FaProductHunt/></button>
-                            <button  onClick={()=>history.push("/admin/category")}className={` w-full ${LinkAddress=="admin/category" && " text-blue-500 "  } focus:outline-none flex justify-center`}><CgListTree/></button>
-                            <button  onClick={()=>history.push("/admin/Attribute")}className={` w-full ${LinkAddress=="admin/Attribute" && " text-blue-500 "  } focus:outline-none flex justify-center`}><IoIosColorFilter/> </button>
-                            <button  onClick={()=>history.push("/admin/Supplier")}className={` w-full ${LinkAddress=="admin/Supplier" && " text-blue-500 "  } focus:outline-none flex justify-center`}> <IoIosPerson className='mt-1 ml-2 text-white bg-red-200'/></button>
-                            <button  onClick={()=>history.push("/admin/Brand")}className={` w-full ${LinkAddress=="admin/HsnCode" && " text-blue-500 "  } focus:outline-none flex justify-center`}> <SiBrandfolder className='mt-1 ml-2 '/></button>
-                            <button  onClick={()=>history.push("/admin/Brand")}className={` w-full ${LinkAddress=="admin/Heading" && " text-blue-500 "  } focus:outline-none flex justify-center`}> <BsCardHeading className='mt-1 ml-2 '/></button>
-                            <button  onClick={()=>history.push("/admin/Banner")}className={` w-full ${LinkAddress=="admin/Banner" && " text-blue-500 "  } focus:outline-none flex justify-center`}> <MdSlideshow className='mt-1 ml-2 '/></button>
-                            <button  onClick={()=>history.push("/admin/Ads")}className={` w-full ${LinkAddress=="admin/ads" && " text-blue-500 "  } focus:outline-none flex justify-center`}> <RiAdvertisementLine className='mt-1 ml-2 '/></button>
+                            <button onClick={()=>history.push("/admin/Dashboard")}  className={` mt-10 w-full ${LinkAddress=="Dashboard" && " text-blue-500 "  } focus:outline-none flex justify-center`}><AiFillDashboard/></button>
+                            {/* <button onClick={()=>history.push("/admin/orders")}  className={` w-full ${LinkAddress=="orders" && " text-blue-500 "  } focus:outline-none flex justify-center`}><FaTruckMoving/></button> */}
+                            <button onClick={()=>history.push("/admin/Purchase")} className={` w-full ${LinkAddress=="Purchase" && " text-blue-500 "  } focus:outline-none flex justify-center`}><FaCartArrowDown/></button>
+                            <button onClick={()=>history.push("/admin/Product")} className={` w-full ${LinkAddress=="Product" && " text-blue-500 "  } focus:outline-none flex justify-center`}><FaProductHunt/></button>
+                            <button  onClick={()=>history.push("/admin/category")}className={` w-full ${LinkAddress=="category" && " text-blue-500 "  } focus:outline-none flex justify-center`}><CgListTree/></button>
+                            <button  onClick={()=>history.push("/admin/Attribute")}className={` w-full ${LinkAddress=="Attribute" && " text-blue-500 "  } focus:outline-none flex justify-center`}><IoIosColorFilter/> </button>
+                            <button  onClick={()=>history.push("/admin/Supplier")}className={` w-full ${LinkAddress=="Supplier" && " text-blue-500 "  } focus:outline-none flex justify-center`}> <IoIosPerson className='mt-1 ml-2 text-white bg-red-200'/></button>
+                            <button  onClick={()=>history.push("/admin/Brand")}className={` w-full ${LinkAddress=="HsnCode" && " text-blue-500 "  } focus:outline-none flex justify-center`}> <SiBrandfolder className='mt-1 ml-2 '/></button>
+                            <button  onClick={()=>history.push("/admin/Brand")}className={` w-full ${LinkAddress=="Heading" && " text-blue-500 "  } focus:outline-none flex justify-center`}> <BsCardHeading className='mt-1 ml-2 '/></button>
+                            <button  onClick={()=>history.push("/admin/Banner")}className={` w-full ${LinkAddress=="Banner" && " text-blue-500 "  } focus:outline-none flex justify-center`}> <MdSlideshow className='mt-1 ml-2 '/></button>
+                            <button  onClick={()=>history.push("/admin/Ads")}className={` w-full ${LinkAddress=="ads" && " text-blue-500 "  } focus:outline-none flex justify-center`}> <RiAdvertisementLine className='mt-1 ml-2 '/></button>
 
                         </div>
 

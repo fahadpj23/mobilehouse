@@ -6,6 +6,7 @@ import  mobilehouseApi  from '../../../helpers/axiosinstance'
 import TableContent from "../table";
 import MobileHouseApi from '../../../helpers/axiosinstance'
 import NavOperation from '../operation'
+import MainLayoutAdmin from '../MainLayoutAdmin'
 const AllProduct=(props)=>{
     const[addproduct,setaddproduct]=useState(false)
     const[product,setproduct]=useState("")
@@ -79,9 +80,7 @@ const AllProduct=(props)=>{
 
                
             }
-             <SideNav/>
-            
-            <div className="w-full  h-fixedNoNav3 overflow-auto">
+             <MainLayoutAdmin>
                 
                 <NavOperation
                  AddNew={AddNew}
@@ -97,7 +96,7 @@ const AllProduct=(props)=>{
                         }
                 </div>
                
-            </div>
+                </MainLayoutAdmin>
     
         </div>
     )
