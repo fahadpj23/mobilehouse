@@ -3,9 +3,9 @@ import { MdDelete } from 'react-icons/md';
 const PurchaseTable=(props)=>{
     console.log(props.purchasetable)
     return(
-        <div  className="w-full border border-gray-400 h-full rounded overflow-auto">
+        <div  className="w-full border border-gray-400 h-56 md:h-full rounded overflow-auto">
             <table className="min-w-full">
-                <tr className="bg-gray-500 text-white  text-sm tracking-wide ">
+                <tr className="bg-gray-500 md:text-base text-xs text-white   tracking-wide ">
                     <th className="py-1 font-semibold">SL No</th>
                     <th className=" font-semibold">product</th>
                     <th className=" font-semibold">Price</th>
@@ -18,7 +18,7 @@ const PurchaseTable=(props)=>{
                 {
                     props.purchasetable && props.purchasetable.map((item,key)=>{
                         return(
-                        <tr className="text-center ">
+                        <tr className="text-center md:text-base text-xs ">
                             <td className="py-2 mt-1">{key+1}</td>
                             <td>{item.id}</td>
                             <td>{item.purchasePrice}</td>

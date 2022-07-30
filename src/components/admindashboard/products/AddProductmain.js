@@ -96,7 +96,7 @@ const AddProductMain=(props)=>{
     return(
         <div className=" w-full flex  max-h-fixedNoNavlgmax overflow-auto justify-end md:justify-center  ">
        
-        <div className="w-9/12 sm:w-6/12 bg-white z-20 h-full flex relative justify-center py-16 mr-5">
+        <div className="w-10/12 sm:w-6/12 bg-white z-20 h-full flex relative justify-center py-16 mr-5">
         
         <div className="w-10/12  flex flex-col justify-center items-center ">
         <button onClick={()=>props.closeProductadd()} className=" absolute right-4 top-3 font-semibold text-xl"><AiOutlineClose/></button>

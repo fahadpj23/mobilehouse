@@ -124,7 +124,7 @@ const PurchaseAdd=(props)=>{
     return(
         <div>
             <div className="w-full p-3 space-y-4">
-                <div className=" space-x-2 grid grid-cols-5 gap-3">
+                <div className=" space-x-2 grid grid-cols-2 md:grid-cols-5 gap-3">
                     <div className="text-sm space-y-1">
                         <h1>invoice no</h1>
                         <input onChange={(e)=>setpurchasedetails({...purchasedetails, ['invoiceno'] : e.target.value})} className=" border focus:outline-none border-gray-400 rounded px-2 w-full text-sm py-1" ></input>
@@ -157,15 +157,15 @@ const PurchaseAdd=(props)=>{
                     
                 </div>
                 <div>
-                    <div className="flex space-x-2 h-full">
-                        <div className="w-7/12">
+                    <div className="space-y-6 md:space-y-0 md:flex space-x-0 md:space-x-2 h-full">
+                        <div className="w-full md:w-7/12 overflow-auto">
                              <PurchaseTable
                              purchasetable={props.purchasetable}
                              qtychange={qtychange}
                              removeproduct={removeproduct}
                              />  
                         </div>
-                        <div className="w-5/12 space-y-2">
+                        <div className="w-full md:w-5/12 space-y-2">
                                 <div className="flex space-x-2 relative ">
                                     <input onChange={(e)=>ProductSearch(e.target.value)} type="text" className=" border rounded px-2  border-gray-400 w-full" placeholder="search item"/>
                                     {searchValue && <div className="absolute top-8 w-full space-y-2  p-2 -left-2 h-96 shadow-xl bg-gray-200 overflow-auto">
@@ -175,10 +175,13 @@ const PurchaseAdd=(props)=>{
                                           searchProduct.products.map((item,key)=>{
                                               return(
                                                  
-                                                  <button onClick={()=>productAdd(item)} className="flex justify-between w-full hover:bg-gray-300 py-1 px-1 ">
-                                                      <h1>{item.name}</h1>
-                                                      <h1>{item.purchasePrice}</h1>
-                                                      <button className="bg-green-500 text-white px-2 text-sm py-1 tracking-wider font-semibold">ADD+</button>
+                                                  <button onClick={()=>productAdd(item)} className="flex justify-between w-full md:text-base text-xs hover:bg-gray-300 py-1 px-1 ">
+                                                      <h1 className="w-7/12">{item.name}</h1>
+                                                      <h1 className="w-2/12">{item.purchasePrice}</h1>
+                                                      <div className="h-full">
+                                                      <button className="bg-green-500 md:block hidden text-white px-2 text-sm py-1 tracking-wider font-semibold">ADD+</button>
+                                                      <button className="bg-green-500 block md:hidden text-white px-1 tracking-wider font-semibold text-2xl h-8 ">+</button>
+                                                      </div>
 
                                                   </button>
                                               )
@@ -199,16 +202,16 @@ const PurchaseAdd=(props)=>{
                              
                     </div>
                 </div>
-                <div className="w-full flex justify-between">
-                    <div className="w-5/12">
+                <div className="w-full md:flex justify-between space-y-5 md:space-y-0">
+                    <div className="w-full md:w-5/12">
                         <div className="text-sm space-y-1">
                             <h1>other expense</h1>
                             <input value={otherexpense} onChange={(e)=>setotherexpense(e.target.value)} className="w-8/12 focus:outline-none text-sm py-1 px-2 rounded border border-gray-400" type="number" />
                         </div>
                      
                     </div>
-                    <div className="w-7/12 flex   justify-end ">
-                        <div className="w-6/12 flex flex-col justify-between h-56 border border-gray-400 p-2 rounded">
+                    <div className="w-full md:w-7/12 flex   justify-start md:justify-end ">
+                        <div className="w-full md:w-6/12 flex flex-col justify-between h-56 border border-gray-400 p-2 rounded">
                             {
                                 props.purchasetable.map((item,key)=>{
                                     subTotal= +subTotal +(+item.purchasePrice * +item.productqty)
