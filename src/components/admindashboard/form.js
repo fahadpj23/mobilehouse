@@ -167,7 +167,7 @@ const FormLayout=(props)=>{
     },[deletevalue,editok,addval,variantoperation,deleteVariants])
     console.log(image)
     return(
-        <div className="w-full h-full flex items-center bg-opacity-95 justify-center bg-gray-100 fixed top-0">
+        <div className="w-full h-full flex items-center bg-opacity-95  justify-end pr-5 md:justify-center bg-gray-100 fixed top-0">
         <div className=" space-y-4 w-8/12  md:w-4/12 h-4/5 ">
             <div className="max-h-full bg-white p-4 overflow-auto ">
                 <div className="w-full">
@@ -183,7 +183,7 @@ const FormLayout=(props)=>{
                     return(
                         <div className="flex flex-col space-y-2 mt-7">
                             
-                              <label className="font-semibold" for="fname">{item.name}:</label>
+                              <label className="font-semibold text-sm md:text-base" for="fname">{item.name}:</label>
 
                               {(() => {
                                 switch (item.type) {
@@ -315,7 +315,7 @@ const FormLayout=(props)=>{
                 })
             }
             <div className={`${props.operation=="view" ? " hidden" :"w-full flex justify-end"}`}>
-                 <input type="submit" value="Submit" className="bg-green-500 w-4/12 md:w-3/12 mt-10 cursor-pointer  focus:outline-none text-white font-semibold py-2 rounded-md" />
+                 <input type="submit" value="Submit" className="bg-green-500 w-7/12 md:w-3/12 mt-10 cursor-pointer  focus:outline-none text-white font-semibold py-2 rounded-md" />
 
             </div>
 
