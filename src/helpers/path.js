@@ -1,6 +1,6 @@
 const Paths = {
-    ImagePath : 'http://localhost:9000/images',
-    // ImagePath : 'https://www.mobilehouseonline.in/nodejs/images',
+    // ImagePath : 'http://localhost:9000/images',
+    ImagePath : 'https://www.mobilehouseonline.in/nodejs/images',
     
 }
 
