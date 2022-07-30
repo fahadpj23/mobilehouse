@@ -65,7 +65,7 @@ const AllProduct=(props)=>{
         <div className="w-full flex h-screen ">
             {
                 addproduct==true && 
-                <div className='w-full fixed bg-gray-200 h-screen opacity-100 flex items-center justify-center    '>
+                <div className='w-full fixed bg-gray-200 h-screen opacity-100 flex items-center justify-center  z-20  '>
                      <AddProductMain
                         closeProductadd={closeProductadd}
                         productAddSuccess={productAddSuccess}

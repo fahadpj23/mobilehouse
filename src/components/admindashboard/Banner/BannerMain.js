@@ -85,10 +85,10 @@ const BannerMain=(props)=>{
  
    console.log(Banner)
     return(
-        <div className="flex w-full h-screen overflow-auto">
+        <div className="flex w-full h-screen overflow-auto relative ">
             {
                     addBanner===true && 
-                       
+                    <div className="w-full z-20 absolute left-0 right-0">
                                   <BannerAdd
                                      BannerImageArray={props.BannerImageArray}
                                     //  addBanner={addBanner}
@@ -100,6 +100,7 @@ const BannerMain=(props)=>{
                                     // setstatus={setstatus}
                                     // status={status}
                                   />
+                                  </div>
                                         
                 }
             <MainLayoutAdmin>

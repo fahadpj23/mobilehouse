@@ -2,12 +2,12 @@ import React from 'react';
 import SideNav from './sideNav';
 const MainLayoutAdmin=({children})=>{
     return(
-        <div className="w-screen flex">
-        <div className=" ">
+        <div className="w-screen flex relative ">
+        <div className=" absolute left-0 ">
             
             <SideNav/>
         </div>
-        <div className="w-full h-fixedNoNav3 overflow-auto ">
+        <div className=" h-fixedNoNav3 overflow-auto ml-12 md:ml-16 w-full ">
             <main>{children}</main>
         </div>
 

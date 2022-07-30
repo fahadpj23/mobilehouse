@@ -98,7 +98,7 @@ const AttributeMain=()=>{
            
  console.log(operationitem)
     return(
-        <div className="flex w-full h-screen overflow-auto">
+        <div className="flex w-full h-screen overflow-auto z-20">
              {
                     addattribute===true && 
                     

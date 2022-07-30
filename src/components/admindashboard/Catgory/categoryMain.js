@@ -114,7 +114,7 @@ const CategoryMain=(props)=>{
     console.log(variantvalues)
    
     return(
-        <div className="flex w-full h-screen overflow-auto">
+        <div className="flex w-full h-screen overflow-auto z-20">
             {
                     addcategory===true && 
                        

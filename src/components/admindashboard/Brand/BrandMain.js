@@ -104,7 +104,7 @@ const BrandMain=()=>{
            
  console.log(operationitem)
     return(
-        <div className="flex w-full">
+        <div className="flex w-full h-screen overflow-auto z-20">
              {
                     addHsn===true && 
                       

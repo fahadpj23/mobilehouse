@@ -66,11 +66,11 @@ const HeadProductAdding=(props)=>{
    console.log(props.status)
     return(
         <div className="w-full h-full flex items-center bg-opacity-95 justify-center bg-gray-100 fixed top-0">
-                <div className="flex flex-col w-7/12 h-4/5 bg-white justify-between p-5">
+                <div className="flex flex-col w-11/12 md:w-7/12 h-4/5 bg-white justify-between p-5 overflow-auto">
                     <div className="space-y-3 relative">
                          <button onClick={()=>props.setaddHeading(false)} className="absolute right-1 top-1 focus:outline-none"><AiOutlineClose/></button>
-                        <div className="flex space-x-3">
-                            <input onChange={(e)=>props.setHeading(e.target.value)} value={props.Heading} type="text" className="w-4/12 py-1  px-1 focus:outline-none border border-gray-400 rounded" placeholder="Heading"/>
+                        <div className="md:flex md:space-x-3 space-y-3 md:space-y-0 pt-5 md:pt-0">
+                            <input onChange={(e)=>props.setHeading(e.target.value)} value={props.Heading} type="text" className="w-full md:w-4/12 py-1  px-1 focus:outline-none border border-gray-400 rounded" placeholder="Heading"/>
                             <div className="flex space-x-2 items-center">
                                 <h1>Status</h1>
                                 <select onChange={(e)=>props.setstatus(e.target.value)} defaultValue={props.status} className="border border-gray-400 w-full py-1  px-1 focus:outline-none rounded">
@@ -82,14 +82,15 @@ const HeadProductAdding=(props)=>{
                         </div>
                         <hr className="w-full border bg-gray-500"></hr>
                         <div className="relative">
-                        <input type="text" onChange={(e)=>searchProduct(e.target.value)} value={searchValue}  autoComplete="off" placeholder="search product" className="w-6/12 py-1 border border-gray-400 rounded px-1 focus:outline-none " />
+                        <input type="text" onChange={(e)=>searchProduct(e.target.value)} value={searchValue}  autoComplete="off" placeholder="search product" className="w-full md:w-6/12 py-1 border border-gray-400 rounded px-1 focus:outline-none " />
                                             {searchValue &&  <div className="w-full shadow-sm h-96 overflow-auto absolute top-9 bg-white z-20">
                                             { products && products.map((item1,key1)=>{
                                                 return(
                                                     <div className="flex justify-between items-center w-full">
                                                         <h1 className="truncate w-6/12">{item1.name}</h1>
                                                         <img src={   `${Paths.ImagePath}/${item1.image}`} alt="" className="object-contain h-14 w-14 overflow-hidden" />
-                                                        <button type="button"  onClick={()=>addProduct(item1)} className="px-2 h-8 w-20 bg-red-500 focus:outline-none text-white rounded  ">ADD +</button>
+                                                        <button type="button"  onClick={()=>addProduct(item1)} className="px-2 h-8 md:block hidden w-20 bg-red-500 focus:outline-none text-white rounded  ">ADD +</button>
+                                                        <button type="button"  onClick={()=>addProduct(item1)} className="px-2 h-8 block md:hidden w-10 text-2xl bg-red-500 focus:outline-none text-white rounded  "> +</button>
 
                                                     </div>
                                                 )
@@ -101,7 +102,7 @@ const HeadProductAdding=(props)=>{
                                         {
                                             props.headproduct.map((item1,key)=>{
                                                 return(
-                                                    <div className="relative border rounded border-gray-300 p-2 w-8/12 flex flex-col items-center justify-center  ">
+                                                    <div className="relative border rounded border-gray-300 p-2  flex flex-col items-center justify-center h-56 ">
                                                             <button onClick={()=>deleteProduct(item1.id)} className="absolute  top-1 right-1 "><MdDelete/></button>
                                                             <img src={   `${Paths.ImagePath}/${item1.image}`} alt="" className="object-contain h-28 w-28 overflow-hidden" />
                                                             <h1 className="truncate w-full ">{item1.name}</h1>

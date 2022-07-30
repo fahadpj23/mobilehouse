@@ -113,10 +113,10 @@ const AdsMain=(props)=>{
  
    console.log(Ads)
     return(
-        <div className="flex w-full h-screen overflow-auto">
+        <div className="flex w-full h-screen overflow-auto relative ">
             {
                     addAds===true && 
-                       
+                                <div className="w-full z-20 absolute left-0 right-0">
                                   <AdsAdd
                                      AdsImageArray={props.AdsImageArray}
                                      addAds={addAds}
@@ -127,6 +127,7 @@ const AdsMain=(props)=>{
                                      operation={operation}
                                      operationid={operationid}
                                   />
+                                  </div>
                                         
                 }
              <MainLayoutAdmin>

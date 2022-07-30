@@ -61,7 +61,7 @@ const PurchaseMain=()=>{
         <div className="flex w-full h-screen overflow-auto">
              {
                     addpurchase===true && 
-                        <div className="w-full h-full flex items-center bg-opacity-95 justify-center bg-gray-100 fixed top-0">
+                        <div className="w-full h-full flex items-center bg-opacity-95 justify-center bg-gray-100 fixed top-0 z-20">
                             <div className=" space-y-4  w-full flex justify-center  h-4/5 ">
                                 <div className="max-h-full w-9/12 bg-white p-4 overflow-auto">
                                     <div className="w-full">

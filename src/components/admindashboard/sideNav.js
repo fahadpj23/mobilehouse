@@ -32,8 +32,8 @@ const SideNav=()=>{
     }
     return(
        
-             <div className={`${sidenav==true ?" space-y-4 flex flex-col justify-between  pl-3 relative  text-white bg-gray-600 h-screen px-5 transform duration-1000 pb-4  ": " space-y-4 flex flex-col  pl-3 relative  pb-4 justify-between  text-white h-screen bg-gray-600 transform duration-1000 -translate-x-6 sm:-translate-x-2  " }`}>
-                 <button onClick={()=>setsidenav(!sidenav)} className=' bg-gray-600 text-white absolute top-0 -right-8 focus:outline-none text-xl p-2'><GiHamburgerMenu/></button>
+             <div className={`${sidenav==true ?" space-y-4 flex flex-col justify-between  pl-3 relative  text-white bg-gray-600 h-screen px-5 transform duration-1000 pb-4  ": " space-y-4 flex flex-col   relative  pb-4 justify-between  text-white h-screen bg-gray-600 transform duration-1000 -translate-x-4 sm:-translate-x-2  " }`}>
+                 <button onClick={()=>setsidenav(!sidenav)} className=" bg-gray-600 text-white absolute top-0 -right-8 focus:outline-none text-xl p-2"><GiHamburgerMenu/></button>
                 {
                     sidenav==true ? 
                         <div className='space-y-5 px-3 '>
@@ -61,8 +61,8 @@ const SideNav=()=>{
                             <button  onClick={()=>history.push("/admin/category")}className={` w-full ${LinkAddress=="category" && " text-blue-500 "  } focus:outline-none flex justify-center`}><CgListTree/></button>
                             <button  onClick={()=>history.push("/admin/Attribute")}className={` w-full ${LinkAddress=="Attribute" && " text-blue-500 "  } focus:outline-none flex justify-center`}><IoIosColorFilter/> </button>
                             <button  onClick={()=>history.push("/admin/Supplier")}className={` w-full ${LinkAddress=="Supplier" && " text-blue-500 "  } focus:outline-none flex justify-center`}> <IoIosPerson className='mt-1 ml-2 text-white bg-red-200'/></button>
-                            <button  onClick={()=>history.push("/admin/Brand")}className={` w-full ${LinkAddress=="HsnCode" && " text-blue-500 "  } focus:outline-none flex justify-center`}> <SiBrandfolder className='mt-1 ml-2 '/></button>
-                            <button  onClick={()=>history.push("/admin/Brand")}className={` w-full ${LinkAddress=="Heading" && " text-blue-500 "  } focus:outline-none flex justify-center`}> <BsCardHeading className='mt-1 ml-2 '/></button>
+                            <button  onClick={()=>history.push("/admin/HsnCode")}className={` w-full ${LinkAddress=="HsnCode" && " text-blue-500 "  } focus:outline-none flex justify-center`}> <SiBrandfolder className='mt-1 ml-2 '/></button>
+                            <button  onClick={()=>history.push("/admin/Heading")}className={` w-full ${LinkAddress=="Heading" && " text-blue-500 "  } focus:outline-none flex justify-center`}> <BsCardHeading className='mt-1 ml-2 '/></button>
                             <button  onClick={()=>history.push("/admin/Banner")}className={` w-full ${LinkAddress=="Banner" && " text-blue-500 "  } focus:outline-none flex justify-center`}> <MdSlideshow className='mt-1 ml-2 '/></button>
                             <button  onClick={()=>history.push("/admin/Ads")}className={` w-full ${LinkAddress=="ads" && " text-blue-500 "  } focus:outline-none flex justify-center`}> <RiAdvertisementLine className='mt-1 ml-2 '/></button>
 
@@ -70,7 +70,7 @@ const SideNav=()=>{
 
                 }
    
-               <button onClick={()=>logoutadminpanel()} className='w-full focus:outline-none flex items-center  space-x-2 text-left pl-3 text-sm tracking-wider font-semibold'><h1 className={`${sidenav==true ? "block" : "hidden"}`} >LOGOUT</h1><h1 className=' text-lg '><FiLogOut/></h1></button>
+               <button onClick={()=>logoutadminpanel()} className='w-full focus:outline-none flex items-center  space-x-2 text-left pl-6 text-sm tracking-wider font-semibold'><h1 className={`${sidenav==true ? "block" : "hidden"}`} >LOGOUT</h1><h1 className=' text-lg '><FiLogOut/></h1></button>
              </div>
        
     )

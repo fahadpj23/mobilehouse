@@ -98,10 +98,10 @@ const HeadingMain=(props)=>{
  
    
     return(
-        <div className="flex w-full h-screen overflow-auto">
+        <div className="flex w-full h-screen overflow-auto z-20 relative">
             {
                     addHeading===true && 
-                       
+                      <div className="w-full z-20 absolute left-0 right-0">
                                   <HeadProductAdding
                                     headproduct={props.headproduct}
                                     setHeading={setHeading}
@@ -112,6 +112,7 @@ const HeadingMain=(props)=>{
                                     setstatus={setstatus}
                                     status={status}
                                   />
+                      </div>
                                         
                 }
              <MainLayoutAdmin>
