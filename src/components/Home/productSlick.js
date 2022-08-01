@@ -108,7 +108,7 @@ export default class  ProductSlider extends Component{
 
                 </div>
                 <Slider {...settings}>
-                {this.props.items.map((item,key)=>{
+                {this.props.items && this.props.items.map((item,key)=>{
                     return(
                         <div key={key} className="px-2 focus:outline-none ml-0 lg:ml-11">
                         <SingleProduct

@@ -40,21 +40,21 @@ const SingleItemMain=(props)=>{
      images && images.map((item,key)=>{
         item && productImage.push(item.replace(/^\s+|\s+$/gm,''))
     })
-    props.variants && props.variants.map((item1,key1)=>{
-         if(item1.attributes.some((productattribute)=>productattribute.attributeName=="ram")==true)
-         {
+    // props.variants && props.variants.map((item1,key1)=>{
+    //      if(item1.attributes.some((productattribute)=>productattribute.attributeName=="ram")==true)
+    //      {
              
-            // item1.attributes.map((item2,key2)=>{
-            //    ramArray.push(item1)
-            // })
-         }
-    }  
-    )
+    //         // item1.attributes.map((item2,key2)=>{
+    //         //    ramArray.push(item1)
+    //         // })
+    //      }
+    // }  
+    // )
 
 
     const context=useContext(Usercontext)
     
-        
+    console.log(props.variants)
 
     const checkpincode=()=>{
         axios.get(`http://localhost:9000/pincodecheck`,{params: { pincodeno: pincode}})
@@ -122,7 +122,7 @@ const SingleItemMain=(props)=>{
                                                                 <button onClick={()=>props.singleitemset(item1)} className={`border p-2  ${item1.id==props.singleitem.id ? "border-red-300" : "border-gray-300"} focus:outline-none  flex flex-col items-center justify-center rounded`}>
                                                                     <img src={`${Paths.ImagePath}/${item1.image}`} alt="" className="object-contain  rounded overflow-hidden h-16 w-16 "/>
                                                                     <div className='flex'>
-                                                                    {item1.attributes.map((item2,key2)=>{
+                                                                    {item1.attributes?.map((item2,key2)=>{
                                                                         return(
                                                                             item2.attributeName!="color" && <h1 className='flex' ><span>{item2.attributeValue} {item2.attributeName}</span><span className={`${key2+1== item1.attributes.length ? "hidden" : "block"}`}>,</span></h1>
                                                                         )

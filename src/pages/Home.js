@@ -105,7 +105,7 @@ function Home() {
                           />
                           <div className="hidden md:block">
                             <HomeAds
-                            Ads={Ads[key]}
+                            Ads={Ads}
                             />
                           </div>
                           <div className="block md:hidden">
