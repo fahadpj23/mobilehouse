@@ -79,7 +79,7 @@ const Nav=(props)=>{
             }
                 <div className="w-full  h-10 bg-gray-300 border-2 border-gray-100">
                 </div>
-                <div className="w-full flex  items-center justify-between py-2 pl-1 md:pl-0  pr-2 md:pr-0 md:px-0">
+                <div className="w-full flex  items-center justify-between py-2 pl-1 md:pl-0  pr-2  md:px-0">
                     <div className="w-full md:w-7/12 ">
                         <div className="flex items-center space-x-3 md:space-x-0">
                             <Link to={{pathname: "/" }}  className="w-8/12 md:w-6/12 ml-2">
@@ -124,8 +124,8 @@ const Nav=(props)=>{
                         <button className="focus:outline-none  text-sm lg:text-md hover:text-red-500">SERVICE</button>
                         <button className="focus:outline-none  text-sm lg:text-md hover:text-red-500">CONTACT</button>
                     </div> */}
-                    {/* <div className="w-2/12  space-x-5 flex">
-                            <div>
+                    <div className="w-2/12  space-x-5 flex justify-end md:justify-center">
+                            {/* <div>
                                 <button onClick={()=>{username==="Login/Signup" ? setloginstatus(true) : setlogout(!logout)}} className="flex hover:text-red-500 items-center relative focus:outline-none "><FaRegUserCircle className="mr-1 text-2xl  text-gray-700 font-light"/><h1 className="lg:block hidden">{username}</h1></button>
                                 {
                                 logout===true &&
@@ -136,12 +136,12 @@ const Nav=(props)=>{
                                     </div>
 
                                 }
-                            </div>
+                            </div> */}
                            
-                            <button onClick={()=>} className="flex items-center focus:outline-none "><AiOutlineShoppingCart className="mr-1 text-2xl text-gray-700  font-light"/><h1 className="lg:block hidden">Cart</h1></button>
-                            <Link to="/cart" className="flex items-center focus:outline-none"><AiOutlineShoppingCart className="mr-1 text-2xl text-gray-700  font-light"/><h1 className="lg:block hidden">Cart</h1></Link>
+                            {/* <button onClick={()=>console.log("df")} className="flex items-center focus:outline-none "><AiOutlineShoppingCart className="mr-1 text-2xl text-gray-700  font-light"/><h1 className="lg:block hidden">Cart</h1></button> */}
+                            <Link to="/cart" className="flex items-center focus:outline-none"><AiOutlineShoppingCart className="mr-1 text-2xl text-gray-700  font-light"/><h1 className="md:block hidden">Cart</h1></Link>
            
-                    </div> */}
+                    </div>
                     
                 </div>
                 {/* <hr className="w-full h-1 bg-gray-200"></hr> */}
