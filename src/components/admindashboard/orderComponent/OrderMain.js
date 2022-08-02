@@ -1,7 +1,7 @@
 
 import React, { useState,useEffect,useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import  { mobilehouseApi } from "../../../axiosinstance";
+import  { MobileHouseApi } from "../../../axiosinstance";
 import SideNav from "../sideNav";
 import { AuthContext } from "../../../helpers/authcontext";
 const OrderMain=()=>{
@@ -17,7 +17,7 @@ useEffect(() => {
             }
             else
             {
-                mobilehouseApi.get(`orderdetails`)  
+                MobileHouseApi.get(`orderdetails`)  
                 .then(res=>{
                    
                      setorderitems(res.data)

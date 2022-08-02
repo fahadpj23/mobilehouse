@@ -1,8 +1,8 @@
 import axios from "axios"
 import { useState ,useEffect ,useRef} from "react"
-import MobileHouseApi from "helpers/axiosinstance"
-import { mobilehouseApi } from "axiosinstance"
-import Paths from 'helpers/path'
+
+import {MobileHouseApi} from "helpers/axiosinstance";
+
 const AddProductWindow=(props)=>{
     const imageref=useRef("")
     const product=props.operationitem
@@ -134,23 +134,23 @@ const AddProductWindow=(props)=>{
                             <input onChange={(e)=>{uploadimage(e) }} ref={imageref} accept=".png,.jpg,.jpeg"  type="file" className="w-full hidden  border-2 border-gray-400 rounded-md h-8 px-1"  name="image" id="image" />
 
                             <button type="button" onClick={()=>uploadimageButtonclick(1)} className="  p-2 rounded border border-gray-400 flex flex-col items-center justify-center">
-                                <img src={  props.productImageblob[0] ? props.productImageblob[0] : props.productImage[0] ? `${Paths.ImagePath}/${props.productImage[0]}` : "/uploadimage.png"} alt="" className="object-contain h-16 w-16 overflow-hidden" />
+                                <img src={  props.productImageblob[0] ? props.productImageblob[0] : props.productImage[0] ? `${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${props.productImage[0]}` : "/uploadimage.png"} alt="" className="object-contain h-16 w-16 overflow-hidden" />
                                 <h1>image </h1>
                             </button>
                             <button type="button" onClick={()=>uploadimageButtonclick(2)} className="  p-2 rounded border border-gray-400 flex flex-col items-center justify-center">
-                            <img src={  props.productImageblob[1] ? props.productImageblob[1] : props.productImage[1] ? `${Paths.ImagePath}/${props.productImage[1]}` : "/uploadimage.png"} alt="" className="object-contain h-16 w-16 overflow-hidden" />
+                            <img src={  props.productImageblob[1] ? props.productImageblob[1] : props.productImage[1] ? `${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${props.productImage[1]}` : "/uploadimage.png"} alt="" className="object-contain h-16 w-16 overflow-hidden" />
                                 <h1>image </h1>
                             </button>
                             <button  type="button" onClick={()=>uploadimageButtonclick(3)} className="  p-2 rounded border border-gray-400 flex flex-col items-center justify-center">
-                            <img src={  props.productImageblob[2] ? props.productImageblob[2] : props.productImage[2] ? `${Paths.ImagePath}/${props.productImage[2]}` : "/uploadimage.png"} alt="" className="object-contain h-16 w-16 overflow-hidden" />
+                            <img src={  props.productImageblob[2] ? props.productImageblob[2] : props.productImage[2] ? `${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${props.productImage[2]}` : "/uploadimage.png"} alt="" className="object-contain h-16 w-16 overflow-hidden" />
                                 <h1>image </h1>
                             </button>
                             <button type="button" onClick={()=>uploadimageButtonclick(4)} className="  p-2 rounded border border-gray-400 flex flex-col items-center justify-center">
-                            <img src={  props.productImageblob[3] ? props.productImageblob[3] : props.productImage[3] ? `${Paths.ImagePath}/${props.productImage[3]}` : "/uploadimage.png"} alt="" className="object-contain h-16 w-16 overflow-hidden" />
+                            <img src={  props.productImageblob[3] ? props.productImageblob[3] : props.productImage[3] ? `${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${props.productImage[3]}` : "/uploadimage.png"} alt="" className="object-contain h-16 w-16 overflow-hidden" />
                                 <h1>image </h1>
                             </button>
                             <button type="button" onClick={()=>uploadimageButtonclick(5)} className="  p-2 rounded border border-gray-400 flex flex-col items-center justify-center">
-                            <img src={  props.productImageblob[4] ? props.productImageblob[4] : props.productImage[4] ? `${Paths.ImagePath}/${props.productImage[4]}` : "/uploadimage.png"} alt="" className="object-contain h-16 w-16 overflow-hidden" />
+                            <img src={  props.productImageblob[4] ? props.productImageblob[4] : props.productImage[4] ? `${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${props.productImage[4]}` : "/uploadimage.png"} alt="" className="object-contain h-16 w-16 overflow-hidden" />
                                 <h1>image </h1>
                             </button>
                             
@@ -161,7 +161,7 @@ const AddProductWindow=(props)=>{
                     <img src={productimageblob} alt="" className="object-contain h-48 overflow-hidden" />
                     :
                     product.image &&
-                    <img src={`${Paths.ImagePath}/${product.image}`} alt="" className="object-contain h-48 overflow-hidden "/>
+                    <img src={`${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${product.image}`} alt="" className="object-contain h-48 overflow-hidden "/>
                     } */}
             <div className="flex justify-end  space-x-3 w-full mt-8 ">
                     <button className="bg-red-500 text-white py-1 font-semibold rounded-md   px-1 w-8/12 md:w-3/12">RESET</button>

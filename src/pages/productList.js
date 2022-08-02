@@ -1,6 +1,6 @@
 
 import ProductListMain from '../components/ProductList/ProductListMain'
-import MobileHouseApi from '../helpers/axiosinstance'
+import {MobileHouseApi} from "helpers/axiosinstance";
 import { Link, useHistory } from 'react-router-dom';
 import { useEffect,useState } from 'react'
 const ProductList=(props)=>{

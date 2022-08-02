@@ -1,8 +1,14 @@
 import axios from 'axios';
 
-const mobilehouseApi = axios.create({
-  baseURL: 'http://localhost:9000',
+const MobileHouseApi = axios.create({
+  baseURL: process.env.REACT_APP_MOBILE_HOUSE,
 
 })
 
-export {mobilehouseApi}
+export {MobileHouseApi}
+
+
+
+// const MOBILE_HOUSEIMAGE =  process.env.REACT_APP_MOBILE_HOUSEIMAGE
+// export {MOBILE_HOUSEIMAGE}
+

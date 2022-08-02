@@ -1,5 +1,5 @@
 import PurchaseTable from "./purchaseTable"
-import MobileHouseApi from "helpers/axiosinstance"
+import {MobileHouseApi} from "helpers/axiosinstance";
 import { useState,useContext,useEffect } from "react";
 import { Usercontext } from "components/context/userContext";
 

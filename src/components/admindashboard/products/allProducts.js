@@ -2,9 +2,9 @@ import SingleProduct from '../../Home/singleProducts'
 import SideNav from '../sideNav'
 import AddProductMain from './AddProductmain'
 import { useState ,useEffect} from 'react'
-import  mobilehouseApi  from '../../../helpers/axiosinstance'
+import { MobileHouseApi}  from 'helpers/axiosinstance'
 import TableContent from "../table";
-import MobileHouseApi from '../../../helpers/axiosinstance'
+
 import NavOperation from '../operation'
 import MainLayoutAdmin from '../MainLayoutAdmin'
 const AllProduct=(props)=>{
@@ -41,7 +41,7 @@ const AllProduct=(props)=>{
         setoperationid("")
         setoperation("")
         setoperationitem("")
-        mobilehouseApi.get('/getProduct',{headers:{accessToken:localStorage.getItem("accessToken")}})
+        MobileHouseApi.get('/getProduct',{headers:{accessToken:localStorage.getItem("accessToken")}})
         .then((res)=>{
             setproduct(res.data)
         })
@@ -54,7 +54,7 @@ const AllProduct=(props)=>{
     useEffect(()=>{
         if(product=="")
         {
-            mobilehouseApi.get('/getProduct',{headers:{accessToken:localStorage.getItem("accessToken")}})
+            MobileHouseApi.get('/getProduct',{headers:{accessToken:localStorage.getItem("accessToken")}})
             .then((res)=>{
                 setproduct(res.data)
             })

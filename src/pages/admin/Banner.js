@@ -3,7 +3,7 @@ import {useContext,useEffect,useState} from 'react'
 import { AuthContext } from '../../helpers/authcontext';
 import { useHistory } from 'react-router-dom';
 
-import MobileHouseApi from '../../helpers/axiosinstance'
+import {MobileHouseApi} from "helpers/axiosinstance";
 import BannerMain from "components/admindashboard/Banner/BannerMain";
 
 

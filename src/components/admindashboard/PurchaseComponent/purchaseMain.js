@@ -4,7 +4,7 @@ import { useState,useEffect } from "react"
 import FormLayout from "../form"
 import { AiFillSetting ,AiOutlineClose} from 'react-icons/ai';
 import PurchaseAdd from "./purchaseAdd";
-import { mobilehouseApi } from "axiosinstance";
+import {MobileHouseApi} from "helpers/axiosinstance";
 import TableContent from "../table";
 import MainLayoutAdmin from "../MainLayoutAdmin";
 const PurchaseMain=()=>{
@@ -37,7 +37,7 @@ const PurchaseMain=()=>{
 
   const purchaseaddclose=()=>{
       setaddpurchase(false)
-      mobilehouseApi.get('/getPurchase')
+      MobileHouseApi.get('/getPurchase')
       .then((res)=>{
           setpurchase(res.data)
       })
@@ -50,7 +50,7 @@ const PurchaseMain=()=>{
     useEffect(()=>{
         if(purchase==="")
         {
-            mobilehouseApi.get('/getPurchase')
+            MobileHouseApi.get('/getPurchase')
             .then((res)=>{
                 setpurchase(res.data)
             })

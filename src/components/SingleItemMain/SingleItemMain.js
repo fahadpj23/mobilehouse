@@ -1,7 +1,7 @@
 import { ImTruck } from 'react-icons/im';
 import { IoMdCash } from 'react-icons/io';
 import {AiOutlineWhatsApp } from 'react-icons/ai';
-import Paths from 'helpers/path'
+
 import {Link} from "react-router-dom";
 import axios from 'axios'
 import { Usercontext } from '../context/userContext';
@@ -81,13 +81,13 @@ const SingleItemMain=(props)=>{
                             <div className="w-11/12 md:flex  mt-5 ">
                                 <div className="w-full md:w-5/12  flex-col space-y-4 ">
                                     <div className='flex justify-center items-center'>
-                                        <img src={displayimage ? `${Paths.ImagePath}/${displayimage}` :`${Paths.ImagePath}/${productImage[0]}`} alt="" className="object-contain  overflow-hidden h-96 "/>
+                                        <img src={displayimage ? `${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${displayimage}` :`${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${productImage[0]}`} alt="" className="object-contain  overflow-hidden h-96 "/>
                                     </div>
                                     <div className='flex space-x-2 w-full justify-center'>
                                     {
                                         productImage && productImage.map((item1,key)=>
                                         <button key={key} onClick={()=>setdisplayimage(productImage[key])}>
-                                            <img src={`${Paths.ImagePath}/${productImage[key]}`} alt="" className="object-contain border p-2 border-gray-300 rounded overflow-hidden h-24 w-24 "/>
+                                            <img src={`${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${productImage[key]}`} alt="" className="object-contain border p-2 border-gray-300 rounded overflow-hidden h-24 w-24 "/>
                                         </button>
                                         )
                                     }
@@ -120,7 +120,7 @@ const SingleItemMain=(props)=>{
                                                    props.variants && props.variants.map((item1,key1)=>{
                                                             return(
                                                                 <button onClick={()=>props.singleitemset(item1)} className={`border p-2  ${item1.id==props.singleitem.id ? "border-red-300" : "border-gray-300"} focus:outline-none  flex flex-col items-center justify-center rounded`}>
-                                                                    <img src={`${Paths.ImagePath}/${item1.image}`} alt="" className="object-contain  rounded overflow-hidden h-16 w-16 "/>
+                                                                    <img src={`${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${item1.image}`} alt="" className="object-contain  rounded overflow-hidden h-16 w-16 "/>
                                                                     <div className='flex'>
                                                                     {item1.attributes?.map((item2,key2)=>{
                                                                         return(

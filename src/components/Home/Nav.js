@@ -1,7 +1,7 @@
 
 import React, { useState,useContext} from 'react';
 import {FaRegUserCircle } from 'react-icons/fa';
-import  MobileHouseApi from "../../helpers/axiosinstance"
+import {MobileHouseApi} from "helpers/axiosinstance";
 import {AiOutlineShoppingCart } from 'react-icons/ai';
 import {Link} from "react-router-dom";
 import Login from './login';
@@ -9,7 +9,7 @@ import UserRegister from './userRegister';
 import {AuthContext} from '../../helpers/authcontext'
 import { Usercontext } from '../context/userContext';
 import { useHistory } from 'react-router-dom';
-import Paths from 'helpers/path'
+
 const Nav=(props)=>{
 
     const context=useContext(AuthContext)
@@ -79,15 +79,15 @@ const Nav=(props)=>{
             }
                 <div className="w-full  h-10 bg-gray-300 border-2 border-gray-100">
                 </div>
-                <div className="w-full flex  items-center justify-between py-2">
+                <div className="w-full flex  items-center justify-between py-2 pl-1 md:pl-0  pr-2 md:pr-0 md:px-0">
                     <div className="w-full md:w-7/12 ">
-                        <div className="flex items-center">
+                        <div className="flex items-center space-x-3 md:space-x-0">
                             <Link to={{pathname: "/" }}  className="w-8/12 md:w-6/12 ml-2">
                                 <img src="MobilehouseLogo.png" alt="logo" width="300" height="300"  />
                                         
                             </Link>
                             <div className="relative sm:w-5/12 w-10/12 ">
-                                <input onChange={(e)=>searchProduct(e.target.value)} type="text" placeholder="search here" className=" px-2 w-full rounded-lg  h-10 focus:outline-none border border-gray-400 "/>
+                                <input onChange={(e)=>searchProduct(e.target.value)} type="text" placeholder="search here" className=" px-2 w-full rounded h-8 text-sm  md:h-10 focus:outline-none border border-gray-300 "/>
                                 
                                 
                                 <div className={`${serachitemdis!=="" ? " absolute  top-10 z-20 max-h-96 w-96 bg-white shadow-xl rounded-lg p-2 flex flex-col overflow-y-scroll  ": "hidden"}`}>
@@ -105,7 +105,7 @@ const Nav=(props)=>{
                                                 </div>
                                                 <div className='w-3/12'>
 
-                                                    <img src={   `${Paths.ImagePath}/${item.image}`} alt="" className="object-contain h-14 w-14 overflow-hidden" />
+                                                    <img src={   `${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${item.image}`} alt="" className="object-contain h-14 w-14 overflow-hidden" />
                                                 </div>
 
                                             </div>

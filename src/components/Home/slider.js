@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css"; 
-import Paths from 'helpers/path'
+
 export default class SimpleSlider extends Component {
   render() {
     const settings = {
@@ -23,7 +23,7 @@ export default class SimpleSlider extends Component {
             this.props.Banner && this.props.Banner.map((item,key)=>{
               return(
                   <div  className="focus:outline-none">
-                   <img src={`${Paths.ImagePath}/${item.image}`} alt="images" className=" object-fit h-52  md:h-96  w-full" />
+                   <img src={`${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${item.image}`} alt="images" className=" object-fit h-36  md:h-96  w-full" />
                    </div >
               )
             })    

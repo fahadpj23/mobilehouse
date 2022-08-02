@@ -2,7 +2,7 @@
 import SimpleSlider from "../components/Home/slider";
 import Nav from "../components/Home/Nav"
 import CatSlider from "components/Home/reactSlick";
-import  MobileHouseApi from "../helpers/axiosinstance"
+import {MobileHouseApi} from "helpers/axiosinstance";
 import React, { useState,useEffect ,useContext} from 'react';
 import ProductSlider from "../components/Home/productSlick";
 import {AuthContext} from '../helpers/authcontext'
