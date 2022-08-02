@@ -43,7 +43,7 @@ const SingleProduct=(props)=>{
                                                 <h1 className="text-xs line-through truncate">₹{item.mrp}.00Rs</h1>
                                                
                                             </div>
-                                            {/* <div className="flex items-center justify-end w-7/12">
+                                            <div className="flex items-center justify-end w-7/12">
                                                 {
                                             
                                                     context.cart.find(item1 => item1.id === item.id)==undefined ?
@@ -52,7 +52,7 @@ const SingleProduct=(props)=>{
                                                         <button  className=" bg-blue-500  text-white text-xs py-2 font-semibold rounded-lg px-2 mt-2">GO TO CART</button>
             
                                                 } 
-                                            </div>    */}
+                                            </div>   
                                         </div>
                                        
                                        

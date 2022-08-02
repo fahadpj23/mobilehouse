@@ -87,30 +87,29 @@ const SingleItemMain=(props)=>{
                                     {
                                         productImage && productImage.map((item1,key)=>
                                         <button key={key} onClick={()=>setdisplayimage(productImage[key])}>
-                                            <img src={`${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${productImage[key]}`} alt="" className="object-contain border p-2 border-gray-300 rounded overflow-hidden h-24 w-24 "/>
+                                            <img src={`${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${productImage[key]}`} alt="" className="object-contain border p-2 border-gray-300 rounded overflow-hidden h-16 md:h-24 w-16 md:w-24 "/>
                                         </button>
                                         )
                                     }
                                     </div>
                                     <div className="space-x-3 flex">
-                                        {/* <button className="w-6/12 font-semibold text-white bg-yellow-400 py-3">ADD TO CART</button> */}
-                                        {/* <Link     to={{pathname: "/Address",   search: "?" + new URLSearchParams({productId:item.id,orderqty:qty}).toString(),state:{checkout:"single"} }} className="w-full rounded font-semibold flex justify-center focus:outline-none text-white bg-primary py-3 ">ORDER NOW</Link> */}
-                                        <a className='bg-green-600 w-full flex items-center justify-center space-x-1 rounded py-3' href={`https://wa.me/+919745286899?text=${document.location.href}`} target="_blank"><h1><AiOutlineWhatsApp className='text-white text-2xl'/></h1><h1 className="text-white ">Whatsapp Now</h1></a>
-                                      {/* <Link to={{pathname: "/Address", state:{itemid:imagedisplay.id,orderqty:qty}}} onClick={()=>context.addtocart(item)} className="w-full font-semibold flex justify-center focus:outline-none text-white bg-primary py-3">ORDER NOW</Link> */}
+                                        <button className="w-full rounded font-semibold text-white md:text-base text-sm bg-yellow-400 py-2 md:py-3">ADD TO CART</button>
+                                        <Link     to={{pathname: "/Address",   search: "?" + new URLSearchParams({productId:item.id,orderqty:qty}).toString(),state:{checkout:"single"} }} className="w-full md:text-base text-sm rounded font-semibold flex justify-center focus:outline-none text-white bg-primary py-2 md:py-3 ">ORDER NOW</Link>
+                                        {/* <a className='bg-green-600 w-full flex items-center justify-center space-x-1 rounded py-3' href={`https://wa.me/+919745286899?text=${document.location.href}`} target="_blank"><h1><AiOutlineWhatsApp className='text-white text-2xl'/></h1><h1 className="text-white ">Whatsapp Now</h1></a> */}
                                     </div>
                                     
                                     
 
                                 </div>
-                                <div className="ml-5 w-full md:w-7/12 flex flex-col  ">
-                                    <div className="w-10/12">
+                                <div className="ml-0 md:ml-5 w-full md:w-7/12 flex flex-col  ">
+                                    <div className="w-full md:w-10/12">
                                         <div className="mt-10 space-y-1">
-                                            <h1 className="text-xl font-semibold tracking-wider ">{item.name} </h1>
-                                            <h1 className='space-x-2'><span className="text-2xl font-bold text-green-600  ">₹{  item.salesPrice!=0 ? item.salesPrice :  item.sellingPrice}.00</span><span className="line-through ml-3 text-lg font-semibold text-gray-500">₹{item.mrp}.00</span><span className=' font-bold text-red-500'> { ((((+item.mrp)-(item.salesPrice!=0 ? +item.salesPrice :  +item.sellingPrice))/ +item.mrp)*100).toFixed(2)}% Off</span></h1>
+                                            <h1 className="text-base md:text-xl font-semibold tracking-normal md:tracking-wider ">{item.name} </h1>
+                                            <h1 className='space-x-2'><span className="text-lg md:text-2xl font-bold text-green-600  ">₹{  item.salesPrice!=0 ? item.salesPrice :  item.sellingPrice}.00</span><span className="line-through ml-3 text-sm md:text-lg font-semibold text-gray-500">₹{item.mrp}.00</span><span className=' font-bold text-red-500'> { Math.floor(((((+item.mrp)-(item.salesPrice!=0 ? +item.salesPrice :  +item.sellingPrice))/ +item.mrp)*100).toFixed(2))}% Off</span></h1>
                                             {/* <h1 className="flex items-center bg-green-500 w-8/12 py-2  text-white rounded px-2"><span ><ImTruck className=""/></span><span className="font-semibold ml-1 "> Free Shipping </span><span className="text-sm ml-1">  & Inclusive of all taxes</span></h1> */}
                                            
                                            
-                                           <div className='grid grid-cols-2 sm:grid-cols-3 gap-5'>
+                                           <div className='grid grid-cols-3 md:grid-cols-4 gap-5 pt-3'>
                                               
                                               
                                              
@@ -120,7 +119,7 @@ const SingleItemMain=(props)=>{
                                                    props.variants && props.variants.map((item1,key1)=>{
                                                             return(
                                                                 <button onClick={()=>props.singleitemset(item1)} className={`border p-2  ${item1.id==props.singleitem.id ? "border-red-300" : "border-gray-300"} focus:outline-none  flex flex-col items-center justify-center rounded`}>
-                                                                    <img src={`${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${item1.image}`} alt="" className="object-contain  rounded overflow-hidden h-16 w-16 "/>
+                                                                    <img src={`${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${item1.image}`} alt="" className="object-contain  rounded overflow-hidden h-14 md:h-16 w-14 md:w-16 "/>
                                                                     <div className='flex'>
                                                                     {item1.attributes?.map((item2,key2)=>{
                                                                         return(
@@ -134,9 +133,9 @@ const SingleItemMain=(props)=>{
                                                 }
                                               
                                            </div>
-                                           <div className='flex w-full space-x-7'>
+                                           <div className=' w-full  space-y-4 pt-5'>
                                            <div className='flex space-x-4'>
-                                                <h1 className='font-semibold text-gray-500 text-lg'>Specification </h1>
+                                                <h1 className='font-semibold text-gray-500 text-lg w-4/12 md:w-3/12'>Specification </h1>
                                                 <div className='mt-1'>
                                                 {
                                                     item && item.attributes.map((item1,key1)=>{
@@ -152,7 +151,7 @@ const SingleItemMain=(props)=>{
                                                 </div>
                                           </div>
                                           <div className='flex space-x-4'>
-                                                <h1 className='font-semibold text-gray-500 text-lg'>Services </h1>
+                                                <h1 className='font-semibold text-gray-500 text-lg w-4/12 md:w-3/12 pb-5'>Services </h1>
                                                 
                                                                 <li className='mt-1'>{item.warranty} Warranty</li>
                                                                 

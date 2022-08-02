@@ -96,7 +96,7 @@ const AddProductMain=(props)=>{
     return(
         <div className=" w-full flex  max-h-fixedNoNavlgmax overflow-auto justify-end md:justify-center  ">
        
-        <div className="w-10/12 sm:w-6/12 bg-white z-20 h-full flex relative justify-center py-16 mr-5">
+        <div className="w-10/12 lg:w-6/12 bg-white z-20 h-full flex relative justify-center py-16 mr-5">
         
         <div className="w-10/12  flex flex-col justify-center items-center ">
         <button onClick={()=>props.closeProductadd()} className=" absolute right-4 top-3 font-semibold text-xl"><AiOutlineClose/></button>
@@ -104,7 +104,7 @@ const AddProductMain=(props)=>{
                 
                 <div className="space-y-1">
                     <h1>select category *</h1>
-                    <select onChange={(e)=>categoryselect(e.target.value)} value={categoryid} className="border-2 border-gray-400 rounded-md w-10/12 md:w-5/12 text-sm focus:outline-none py-1">
+                    <select onChange={(e)=>categoryselect(e.target.value)} value={categoryid} className="border border-gray-400 rounded-md w-10/12 md:w-5/12 text-sm focus:outline-none py-1">
                         <option className="text-xs md:text-md">--Select Catgeory---</option>
                         {
                             catgeorytotal && catgeorytotal.Data.map((item,key)=>
