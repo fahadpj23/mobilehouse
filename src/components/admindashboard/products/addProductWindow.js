@@ -131,7 +131,7 @@ const AddProductWindow=(props)=>{
             <div className="mt-3 space-y-1">
                 <h1>Description</h1>
                
-                <textarea rows="4" cols="50" name="Description" id="Description" defaultValue={product.Description} className=" w-full border border-gray-400 rounded">
+                <textarea rows="4" cols="50" name="Description" id="Description" required defaultValue={product.Description} className=" w-full border border-gray-400 rounded">
                 </textarea>
             </div>
             <div className=" text-sm mt-4">
