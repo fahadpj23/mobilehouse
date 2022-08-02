@@ -4,7 +4,8 @@ import { Usercontext } from 'components/context/userContext';
 import {Route,BrowserRouter as Router} from  "react-router-dom";
 import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../../helpers/authcontext';
-import MobileHouseApi from 'helpers/axiosinstance';
+import {MobileHouseApi} from "helpers/axiosinstance"
+
 const AdminLoginMain=()=>{
 let history=useHistory();
 const Auth=useContext(AuthContext)

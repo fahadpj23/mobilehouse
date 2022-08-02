@@ -2,14 +2,14 @@ import SideNav from "../sideNav"
 
 import { useState ,useEffect,useContext} from "react"
 import FormLayout from '../form'
-import MobileHouseApi from "../../../helpers/axiosinstance";
+import {MobileHouseApi} from "helpers/axiosinstance";
 import { Usercontext } from "../../context/userContext";
 import TableContent from "../table";
 import NavOperation from '../operation'
 import { AiFillSetting ,AiOutlineClose} from 'react-icons/ai';
 import BannerAdd from "./BannerAdd";
 import MainLayoutAdmin from "../MainLayoutAdmin";
-import { mobilehouseApi } from "axiosinstance";
+
 const BannerMain=(props)=>{
     const context=useContext(Usercontext )
     const [addBanner,setaddBanner]=useState(false)
@@ -46,7 +46,7 @@ const BannerMain=(props)=>{
             formData.append("image"+ (key+1),item.image)
         })
         formData.append("images",JSON.stringify(props.BannerImageArray))
-        mobilehouseApi.post('/AddBanner',formData)
+        MobileHouseApi.post('/AddBanner',formData)
         .then((res)=>{
           if(res.data.success)
           {

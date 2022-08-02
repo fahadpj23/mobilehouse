@@ -2,14 +2,14 @@ import SideNav from "../sideNav"
 
 import { useState ,useEffect,useContext} from "react"
 import FormLayout from '../form'
-import MobileHouseApi from "../../../helpers/axiosinstance";
+import {MobileHouseApi} from "helpers/axiosinstance";
 import { Usercontext } from "../../context/userContext";
 import TableContent from "../table";
 import NavOperation from '../operation'
 import { AiFillSetting ,AiOutlineClose} from 'react-icons/ai';
 import MainLayoutAdmin from "../MainLayoutAdmin";
 // import AdsAdd from "./AdsAdd";
-import { mobilehouseApi } from "axiosinstance";
+
 import AdsAdd from "./AdsAdd";
 const AdsMain=(props)=>{
     const context=useContext(Usercontext )
@@ -63,7 +63,7 @@ const AdsMain=(props)=>{
                         formData.append("AdsImageArray",JSON.stringify(props.AdsImageArray))
                         formData.append("status",status)
                         formData.append("operation",operation)
-                        mobilehouseApi.post('/AddAds',formData,{headers:{accessToken:localStorage.getItem("accessToken")}})
+                        MobileHouseApi.post('/AddAds',formData,{headers:{accessToken:localStorage.getItem("accessToken")}})
                         .then((res)=>{
                         if(res.data.success)
                         {

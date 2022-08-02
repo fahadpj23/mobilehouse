@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react';
-import MobileHouseApi from '../helpers/axiosinstance';
+import {MobileHouseApi} from "helpers/axiosinstance";
 import SingleItemMain from '../components/SingleItemMain/SingleItemMain'
 import { useHistory } from 'react-router-dom';
 const SingleItem=(props)=>{

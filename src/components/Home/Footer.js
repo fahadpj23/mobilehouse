@@ -8,7 +8,7 @@ const Footer=()=>{
        
         <div className="md:flex text-sm ">
           <div className="w-full md:w-4/12 space-y-3 ">
-                    <img src="/MobilehouseLogo.png" className="h-16 w-5/12 flex items-start "/>
+                    <img src="/MobilehouseLogo.png" className="h-16 w-8/12  md:w-5/12 flex items-start "/>
                     <h1>WELCOME TO MOBILE HOUSE</h1>
                     <h1>MOBILE HOUSE was established in 2018 to spread happiness. Get the best deals on unique items here. MOBILE HOUSE is your fun shop to get the good stuff.</h1>
                     <div className=" w-full  flex   space-x-6 text-lg ">

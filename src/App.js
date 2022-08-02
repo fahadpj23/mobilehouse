@@ -11,7 +11,7 @@ import Category from './pages/category';
 import Dashboard from './pages/admin/Dashboard';
 import ContextProvider from './components/context/userContext';
 import {useEffect,useState} from 'react'
-import  MobileHouseApi from "./helpers/axiosinstance"
+import  {MobileHouseApi} from "./helpers/axiosinstance"
 import { AuthContext } from "./helpers/authcontext";
 import ProductList from './pages/productList'
 import Attribute from './pages/admin/Attribute'

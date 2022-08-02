@@ -2,7 +2,7 @@ import SideNav from "../sideNav"
 
 import { useState ,useEffect,useContext} from "react"
 import FormLayout from '../form'
-import MobileHouseApi from "../../../helpers/axiosinstance";
+import {MobileHouseApi} from "helpers/axiosinstance";
 import { Usercontext } from "../../context/userContext";
 import TableContent from "../table";
 import NavOperation from '../operation'

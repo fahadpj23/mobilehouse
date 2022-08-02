@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import Slider from "react-slick";
 import { HiArrowLeft, HiArrowRight } from 'react-icons/hi'
 import {Link} from "react-router-dom";
-import Paths from 'helpers/path'
+
+import {MobileHouseApiImage} from 'helpers/axiosinstance'
+
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (
@@ -96,7 +98,7 @@ function SamplePrevArrow(props) {
           settings: {
             infinite: true,
             speed: 500,
-            slidesToShow: 1.7,
+            slidesToShow: 3.4,
             slidesToScroll: 1,
             className: 'relative',
             swipeToSlide: true,
@@ -107,23 +109,25 @@ function SamplePrevArrow(props) {
 
       ]
     };
-
+     console.log(MobileHouseApiImage)
+  
     return (
       <div className="w-full flex justify-center">
-      <div className="px-3 my-3 bg-gray-50 w-10/12 ">
-        <div className="flex justify-between mx-6 ">
+      <div className="px-0 md:px-3 my-3 bg-gray-50 w-full md:w-10/12 ">
+        <div className="flex justify-between mx-1 md:mx-6 ">
+          
           <h1 className="relative sm:text-md text-sm"><b>Top Category</b></h1>
         </div>
         <Slider {...settings} className="">
           {props.category && props.category.map((item, key) => {
              
               return(
-                <Link className=" px-2 h-40 " to={{pathname: "/ProductList",search: "?" + new URLSearchParams({category: item.id,sort:"newestfirst"}).toString()}}>
+                <Link className=" px-2 h-32 md:h-40 " to={{pathname: "/ProductList",search: "?" + new URLSearchParams({category: item.id,sort:"newestfirst"}).toString()}}>
 
                     <div className="py-4 px-2 h-40   " key={key}>
-                        <div className=" flex flex-col bg-white w-full   rounded-lg  p-2">
-                            <img src={   `${Paths.ImagePath}/${item.image}`} alt="" className="object-contain h-24 w-full overflow-hidden" />
-                            <h1 className="text-center font-semibold">{item.categoryName}</h1>
+                        <div className=" flex flex-col bg-white w-full justify-center items-center  rounded-lg  p-2 space-y-2 ">
+                            <img src={   `${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${item.image}`} alt="" className="object-contain h-20 md:h-24 w-24 overflow-hidden " />
+                            <h1 className="text-center font-semibold text-xs  md:text-sm lowercase">{item.categoryName}</h1>
                         </div>
                     </div>
                  </Link>

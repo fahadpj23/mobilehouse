@@ -2,13 +2,13 @@ import SideNav from "../sideNav"
 
 import { useState ,useEffect,useContext} from "react"
 import FormLayout from '../form'
-import MobileHouseApi from "../../../helpers/axiosinstance";
+
 import { Usercontext } from "../../context/userContext";
 import TableContent from "../table";
 import NavOperation from '../operation'
 import { AiFillSetting ,AiOutlineClose} from 'react-icons/ai';
 import HeadProductAdding from "./HeadProductAdding";
-import { mobilehouseApi } from "axiosinstance";
+import {MobileHouseApi} from "helpers/axiosinstance";
 import MainLayoutAdmin from "../MainLayoutAdmin";
 const HeadingMain=(props)=>{
     const context=useContext(Usercontext )
@@ -39,8 +39,8 @@ const HeadingMain=(props)=>{
       const tableOperation=(operation,operationHeading)=>{
         console.log(operation)
         console.log(operationHeading)
-       
-          MobileHouseApi.get('/editGetHead',{params:{HeadingId:operationHeading.id}},{headers:{accessToken:localStorage.getItem("accessToken")}})
+        
+          MobileHouseApi.get('/editGetHead',{params:{HeadingId:operationHeading.id},headers:{accessToken:localStorage.getItem("accessToken")}})
           .then((res)=>{
             if(res.data.headEdit)
             {
@@ -69,7 +69,7 @@ const HeadingMain=(props)=>{
         formData.append("operationid",operationid)
         formData.append("status",status)
         formData.append("products",JSON.stringify(props.headproduct))
-        mobilehouseApi.post('/headingAdd',formData,{headers:{accessToken:localStorage.getItem("accessToken")}})
+        MobileHouseApi.post('/headingAdd',formData,{headers:{accessToken:localStorage.getItem("accessToken")}})
         .then((res)=>{
           if(res.data.success)
           {

@@ -3,7 +3,7 @@ import {useContext,useEffect} from 'react'
 import { AuthContext } from '../helpers/authcontext';
 import { useHistory } from 'react-router-dom';
 import CategoryMain from "../components/admindashboard/Catgory/categoryMain";
-import MobileHouseApi from '../helpers/axiosinstance'
+import {MobileHouseApi} from "helpers/axiosinstance";
 
 
 const Category=()=>{

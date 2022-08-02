@@ -4,7 +4,7 @@ import AddProductWindow from "./addProductWindow"
 import { AiOutlineClose} from 'react-icons/ai';
 import { useHistory } from 'react-router-dom';
 import SideNav from "../sideNav"
-import MobileHouseApi from "../../../helpers/axiosinstance"
+import {MobileHouseApi} from "helpers/axiosinstance"
 const AddProductMain=(props)=>{
     let history=useHistory();
     

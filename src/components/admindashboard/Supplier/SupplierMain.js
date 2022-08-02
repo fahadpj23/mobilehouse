@@ -6,7 +6,7 @@ import { AiFillSetting ,AiOutlineClose} from 'react-icons/ai';
 import NavOperation from "../operation";
 import { useState,useContext,useEffect } from "react";
 import FormLayout from '../form'
-import MobileHouseApi from "helpers/axiosinstance";
+import {MobileHouseApi} from "helpers/axiosinstance";
 import { Usercontext } from "components/context/userContext";
 import TableContent from "../table";
 import MainLayoutAdmin from "../MainLayoutAdmin";

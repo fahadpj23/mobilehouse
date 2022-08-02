@@ -6,4 +6,14 @@ const MobileHouseApi = axios.create({
 
 })
 
-export default MobileHouseApi
+export  {MobileHouseApi}
+
+const MobileHouseApiImage = axios.create({
+  baseURL: process.env.REACT_APP_MOBILE_HOUSEIMAGE,
+
+})
+
+export {MobileHouseApiImage}
+
+
+
