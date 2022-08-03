@@ -156,40 +156,40 @@ const AddProductWindow=(props)=>{
                         <div className="grid  grid-cols-2 md:grid-cols-5 gap-2">
                             <input onChange={(e)=>{uploadimage(e) }} ref={imageref} accept=".png,.jpg,.jpeg"  type="file" className="w-full hidden  border border-gray-400 rounded-md h-8 px-1"  name="image" id="image" />
                             <div className="rounded border border-gray-400">
-                                <button type="button" onClick={()=>deleteImage(0)} className=" focus:outline-none hover:text-red-500 flex justify-end z-20"><AiFillDelete/></button>
-                                <button type="button" onClick={()=>uploadimageButtonclick(1)} className="  pt-4 px-2 pb-2  flex flex-col items-center justify-center ">
+                                <button type="button" onClick={()=>deleteImage(0)} className=" focus:outline-none hover:text-red-500 w-full  flex justify-end mt-1 mr-2 z-20"><AiFillDelete/></button>
+                                <button type="button" onClick={()=>uploadimageButtonclick(1)} className="  pt-4 px-2  focus:outline-none w-full pb-2  flex flex-col items-center justify-center ">
                                     <img src={  props.productImageblob[0] ? props.productImageblob[0] : (props.productImage[0] && props.productImage[0]!="deleted" ) ? `${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${props.productImage[0]}` : "/uploadimage.png"} alt="" className="object-contain h-16 w-16 overflow-hidden" />
                                     {/* <h1>image </h1> */}
                                 </button>
                             </div>
 
                             <div className="rounded border border-gray-400">
-                                <button type="button" onClick={()=>deleteImage(1)} className=" focus:outline-none hover:text-red-500 flex justify-end z-20"><AiFillDelete/></button>
-                                <button type="button" onClick={()=>uploadimageButtonclick(2)} className="  pt-4 px-2 pb-2  flex flex-col items-center justify-center ">
+                                <button type="button" onClick={()=>deleteImage(1)} className=" focus:outline-none hover:text-red-500 w-full  flex justify-end mt-1 mr-2 z-20"><AiFillDelete/></button>
+                                <button type="button" onClick={()=>uploadimageButtonclick(2)} className="  pt-4 px-2  focus:outline-none w-full pb-2  flex flex-col items-center justify-center ">
                                     <img src={  props.productImageblob[1] ? props.productImageblob[1] : (props.productImage[1] && props.productImage[1]!="deleted" ) ? `${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${props.productImage[1]}` : "/uploadimage.png"} alt="" className="object-contain h-16 w-16 overflow-hidden" />
                                     {/* <h1>image </h1> */}
                                 </button>
                             </div>
 
                             <div className="rounded border border-gray-400">
-                                <button type="button" onClick={()=>deleteImage(2)} className=" focus:outline-none hover:text-red-500 flex justify-end z-20"><AiFillDelete/></button>
-                                <button  type="button" onClick={()=>uploadimageButtonclick(3)} className="  pt-4 px-2 pb-2  flex flex-col items-center justify-center ">
+                                <button type="button" onClick={()=>deleteImage(2)} className=" focus:outline-none hover:text-red-500 w-full  flex justify-end mt-1 mr-2 z-20"><AiFillDelete/></button>
+                                <button  type="button" onClick={()=>uploadimageButtonclick(3)} className="  pt-4 px-2  focus:outline-none w-full pb-2  flex flex-col items-center justify-center ">
                                     <img src={  props.productImageblob[2] ? props.productImageblob[2] : (props.productImage[2] && props.productImage[2]!="deleted" ) ? `${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${props.productImage[2]}` : "/uploadimage.png"} alt="" className="object-contain h-16 w-16 overflow-hidden" />
                                     {/* <h1>image </h1> */}
                                 </button>
                             </div>
 
                             <div className="rounded border border-gray-400">
-                                <button type="button" onClick={()=>deleteImage(3)} className=" focus:outline-none hover:text-red-500 flex justify-end z-20"><AiFillDelete/></button>
-                                <button type="button" onClick={()=>uploadimageButtonclick(4)} className="  pt-4 px-2 pb-2  flex flex-col items-center justify-center ">
+                                <button type="button" onClick={()=>deleteImage(3)} className=" focus:outline-none hover:text-red-500 w-full  flex justify-end mt-1 mr-2 z-20"><AiFillDelete/></button>
+                                <button type="button" onClick={()=>uploadimageButtonclick(4)} className="  pt-4 px-2  focus:outline-none w-full pb-2  flex flex-col items-center justify-center ">
                                     <img src={  props.productImageblob[3] ? props.productImageblob[3] :(props.productImage[3] && props.productImage[3]!="deleted" ) ? `${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${props.productImage[3]}` : "/uploadimage.png"} alt="" className="object-contain h-16 w-16 overflow-hidden" />
                                     {/* <h1>image </h1> */}
                                 </button>
                             </div>
 
                             <div className="rounded border border-gray-400">
-                                <button type="button" onClick={()=>deleteImage(4)} className=" focus:outline-none hover:text-red-500 flex justify-end z-20"><AiFillDelete/></button>
-                                <button type="button" onClick={()=>uploadimageButtonclick(5)} className="  pt-4 px-2 pb-2  flex flex-col items-center justify-center ">
+                                <button type="button" onClick={()=>deleteImage(4)} className=" focus:outline-none hover:text-red-500 w-full  flex justify-end mt-1 mr-2 z-20"><AiFillDelete/></button>
+                                <button type="button" onClick={()=>uploadimageButtonclick(5)} className="  pt-4 px-2  focus:outline-none w-full pb-2  flex flex-col items-center justify-center ">
                                     <img src={  props.productImageblob[4] ? props.productImageblob[4] : (props.productImage[4] && props.productImage[4]!="deleted" ) ? `${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${props.productImage[4]}` : "/uploadimage.png"} alt="" className="object-contain h-16 w-16 overflow-hidden" />
                                     {/* <h1>image </h1> */}
                                 </button>
