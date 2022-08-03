@@ -5,8 +5,10 @@ import Cartitem from './cartitem';
 const Cartmain=()=>{
     const context=useContext(Usercontext)
     let total=0;
+    let saved=0;
     context.cart.map((item,key)=>{
-        total=total+(item.price*item.qty)
+        total=total+(item.salesPrice!=0 ? item.salesPrice : item.sellingPrice*item.qty)
+        saved=saved+(+item.mrp- (+item.salesPrice!=0 ? item.salesPrice : item.sellingPrice))
         console.log(item.qty)
     })
     console.log(context)
@@ -56,8 +58,8 @@ const Cartmain=()=>{
                                     <h1>FREE</h1>
                                 </div>
                                 <div className="flex justify-between text-sm">
-                                    <h1>Product Total</h1>
-                                    <h1>{total}</h1>
+                                    <h1>Saved</h1>
+                                    <h1>{saved}</h1>
                                 </div>
                             </div>
 

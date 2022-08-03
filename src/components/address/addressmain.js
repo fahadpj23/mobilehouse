@@ -3,7 +3,7 @@ import React, { useContext, useState} from 'react';
 import { Usercontext } from '../context/userContext';
 import { useHistory } from "react-router-dom";
 import {MobileHouseApi} from "helpers/axiosinstance"
-
+import AddressProduct from './addressProduct';
 
 const AddressMain=(props)=>{
     const history = useHistory();
@@ -18,6 +18,7 @@ const AddressMain=(props)=>{
     // const [total, settotal] = useState(props.item.price*props.qty)
 
     let item=props.item 
+    console.log(item)
     let total=0
     console.log(item)
     var today = new Date();
@@ -77,13 +78,13 @@ const AddressMain=(props)=>{
                     <div className="space-y-6">
                         <div className="flex w-full space-x-3 ">
                             <input onChange={(e)=>setname(e.target.value)} className="w-6/12 text-gray-600 border border-gray-400 focus:outline-none focus:border-green-500 rounded-sm py-2 px-2  " placeholder="Name"/>
-                            <input className="w-6/12 text-gray-600 border-2 border-gray-400 rounded-sm py-2 px-2 focus:outline-none focus:border-green-500" placeholder=" Company Name(Optional)"/>
+                            <input className="w-6/12 text-gray-600 border border-gray-400 rounded-sm py-2 px-2 focus:outline-none focus:border-green-500" placeholder=" Company Name(Optional)"/>
                         </div>
                         <div className="flex space-x-3">
-                            <input onChange={(e)=>setphone(e.target.value)}className="w-6/12 text-gray-600  border-2 border-gray-400 rounded-sm py-2 px-2 focus:outline-none focus:border-green-500" placeholder="Phone Number"/>
-                            <input onChange={(e)=>setpincode(e.target.value)} className="w-6/12 text-gray-600 border-2 border-gray-400 rounded-sm py-2 px-2 focus:outline-none focus:border-green-500" placeholder=" pincode"/>
+                            <input onChange={(e)=>setphone(e.target.value)}className="w-6/12 text-gray-600  border border-gray-400 rounded-sm py-2 px-2 focus:outline-none focus:border-green-500" placeholder="Phone Number"/>
+                            <input onChange={(e)=>setpincode(e.target.value)} className="w-6/12 text-gray-600 border border-gray-400 rounded-sm py-2 px-2 focus:outline-none focus:border-green-500" placeholder=" pincode"/>
                         </div>
-                        <textarea onChange={(e)=>setaddress(e.target.value)} placeholder="address" className=" border-2 w-full h-24 focus:outline-none focus:border-green-500 px-2 border-gray-400 rounded-sm">
+                        <textarea onChange={(e)=>setaddress(e.target.value)} placeholder="address" className=" border w-full h-24 focus:outline-none focus:border-green-500 px-2 border-gray-400 rounded-sm">
 
                         </textarea>
                         <h1 className="w-full text-center bg-green-500 focus:outline-none text-white font-medium py-3">Deliver here</h1>
@@ -106,20 +107,10 @@ const AddressMain=(props)=>{
                         <h1 className="text-xl font-semibold my-5 ">Delivery Summary</h1>
                          {props.item && props.item.map((item1,key)=>{
                             return(
-                             <div key={key} className="space-y-3 flex space-x-3">
-                                <div className="">
-                                    {console.log(item1)}
-                                    <img src={`${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${item1.image}`} alt="" className=" overflow-hidden h-24 w-28 object-fill"/>
-    
-                                </div>
-                                <div>
-                                    <h1>{item1.name}</h1>
-                                    <h1>Standard Delivery</h1>
-                                    <h1>Rs:      {item1.salesPrice ?? item1.seliingPrice}</h1>
-                                    <h1>qty:     {item1.qty}</h1>
-                                </div>
-                             
-                         </div>
+                                <AddressProduct
+                                 product={item1}
+                                />
+                           
                             )
                         })} 
                            

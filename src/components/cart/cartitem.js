@@ -3,8 +3,17 @@ import { Usercontext } from '../context/userContext';
 import {useContext} from 'react'
 
 const Cartitem=(props)=>{
-    
     let item=props.item
+    let productImage=[];
+    let images=[];
+    if(item.image)
+     {
+        images=item.image.split(';')
+     }
+     images && images.map((item,key)=>{
+        item && productImage.push(item.replace(/^\s+|\s+$/gm,''))
+    })
+
     console.log(item)
     let context=useContext(Usercontext)
     const [qty, setqty] = useState(item.qty)
@@ -25,7 +34,7 @@ const Cartitem=(props)=>{
                 <div className="flex space-x-3 justify-center">
                     <div className="w-6/12 flex justify-end">
                         <div className="w-6/12 ">
-                            <img  src={`${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${item.image}`} alt="product image" className="h-28 w-28 object-fill"/>
+                            <img  src={`${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${productImage[0]}`} alt="product image" className="h-28 w-28 object-fill"/>
                         </div>
                     </div>
                     
@@ -36,8 +45,8 @@ const Cartitem=(props)=>{
                 </div>
                 </td>
                 <td className="space-x-1"><button onClick={()=>{qty-1 < 1 ? setqty(1) : qtyminus() }} className="bg-red-400 focus:outline-none text-white w-6">-</button><input value={qty} className="text-center focus:outline-none w-8 border-2 border-gray-200"/><button onClick={()=>{qty+1>item.maxqty ? alert( "only "+ item.maxqty+ "available") : qtyplus()}}className="bg-green-400 w-6 text-white focus:outline-none">+</button></td>
-                <td>{item.price}</td>
-                <td>{item.price*qty}</td>
+                <td>{item.salesPrice!=0 ? item.salesPrice : item.sellingPrice}</td>
+                <td>{item.salesPrice!=0 ? item.salesPrice : item.sellingPrice*qty}</td>
          </tr>
     )
 }

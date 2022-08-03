@@ -47,7 +47,7 @@ const SingleProduct=(props)=>{
                                                 {
                                             
                                                     context.cart.find(item1 => item1.id === item.id)==undefined ?
-                                                        <button onClick={()=>context.addtocart(item)} className=" bg-blue-500  text-white text-xs py-2 font-semibold rounded-lg px-2 mt-2">Add to Cart+</button>
+                                                        <button onClick={()=>context.addtocart(item)} className=" bg-blue-500 focus:outline-none  text-white text-xs py-2 font-semibold rounded-lg px-2 mt-2">Add to Cart+</button>
                                                     :
                                                         <button  className=" bg-blue-500  text-white text-xs py-2 font-semibold rounded-lg px-2 mt-2">GO TO CART</button>
             
