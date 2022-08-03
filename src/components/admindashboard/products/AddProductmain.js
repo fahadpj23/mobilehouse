@@ -40,7 +40,7 @@ const AddProductMain=(props)=>{
         data.append("categoryid",categoryid)
         data.append("operation",props.operation)
         data.append("operationid",props.operationid)
-        data.append("variantid",props.operationitem.variantid)
+        data.append("variantid",props.operationid ??"")
         data.append("variantimage",props.operationitem.image )
         data.append("image1",props.productImage[0] )
         data.append("image2",props.productImage[1] )
@@ -59,7 +59,7 @@ const AddProductMain=(props)=>{
          else
          {
             context.notify("Product added successfully","success")
-               props.productAddSuccess()
+          props.productAddSuccess()
 
          }
         })

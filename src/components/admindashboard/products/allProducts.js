@@ -1,13 +1,14 @@
 import SingleProduct from '../../Home/singleProducts'
 import SideNav from '../sideNav'
 import AddProductMain from './AddProductmain'
-import { useState ,useEffect} from 'react'
+import { useState ,useEffect ,useContext} from 'react'
 import { MobileHouseApi}  from 'helpers/axiosinstance'
 import TableContent from "../table";
-
+import { Usercontext } from "../../context/userContext";
 import NavOperation from '../operation'
 import MainLayoutAdmin from '../MainLayoutAdmin'
 const AllProduct=(props)=>{
+    const context=useContext(Usercontext )
     const[addproduct,setaddproduct]=useState(false)
     const[product,setproduct]=useState("")
     const [operation,setoperation]=useState("")
@@ -23,16 +24,35 @@ const AllProduct=(props)=>{
     }
 
     const tableOperation=(operation,item)=>{
-        console.log(item)
-        MobileHouseApi.get('/productdetails',{params:{productId:item.id},headers:{accessToken:localStorage.getItem("accessToken")}})
-        .then((res)=>{
-            setoperationitem(res.data)
-            setoperation(operation)
         
-            setoperationid(item.id)
-            setaddproduct(true)
-     
-        })
+        if(operation=="delete")
+        {
+            console.log(item)
+            MobileHouseApi.delete('/productDelete',{params:{productId:item.id},headers:{accessToken:localStorage.getItem("accessToken")}})
+            .then((res)=>{
+                if(res.data.success)
+                {
+                    context.notify(res.data.success,"success")
+                    MobileHouseApi.get('/getProduct',{headers:{accessToken:localStorage.getItem("accessToken")}})
+                    .then((res)=>{
+                        setproduct(res.data)
+                    })
+                }
+        
+            })
+        }
+        else
+        {
+            MobileHouseApi.get('/productdetails',{params:{productId:item.id},headers:{accessToken:localStorage.getItem("accessToken")}})
+            .then((res)=>{
+                setoperationitem(res.data)
+                setoperation(operation)
+            
+                setoperationid(item.id)
+                setaddproduct(true)
+        
+            })
+        }      
       
     }
 

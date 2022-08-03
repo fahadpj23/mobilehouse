@@ -27,7 +27,7 @@ const TableContent=(props)=>{
                     
                 </tr>
                 {
-                    props.Data.Data!=="" && props.Data.Data.map((item,key)=>{
+                    props.Data.Data && props.Data.Data.map((item,key)=>{
                         return(
                             <tr key={key} className="text-center text-sm">
                             <td className="py-1  truncate">{key+1}</td>

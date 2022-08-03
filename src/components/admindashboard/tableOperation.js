@@ -12,6 +12,7 @@ const TableOperation=(props)=>{
                                     <button  className="focus:outline-none" onClick={(e)=>(props.tableOperation("view",item),setoperationsview(false))}>view</button>
                                     <button  className="focus:outline-none" onClick={(e)=>(props.tableOperation("edit",item),setoperationsview(false))}>edit</button>
                                     <button  className="focus:outline-none" onClick={(e)=>(props.tableOperation("delete",item),setoperationsview(false))}>delete</button>
+                                    {/* variant option only show on product page */}
                                     {props.type=="product" && <button  className="focus:outline-none" onClick={(e)=>(props.tableOperation("variant",item),setoperationsview(false))}>Variant</button>}
                                 </div>
                             }
