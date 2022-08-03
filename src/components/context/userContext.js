@@ -13,6 +13,7 @@ const ContextProvider=(props)=>{
     
 
     const addtocart=(item)=>{
+        console.log(item)
         item.qty=1
         setcart([...cart,item]) 
       setcartadded(true) 

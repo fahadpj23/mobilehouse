@@ -93,7 +93,15 @@ const SingleItemMain=(props)=>{
                                     }
                                     </div>
                                     <div className="space-x-3 flex">
-                                        <button className="w-full rounded font-semibold text-white md:text-base text-sm bg-yellow-400 py-2 md:py-3">ADD TO CART</button>
+                                    {
+                                            
+                                            context.cart.find(item1 => item1.id === item.id)==undefined ?
+                                                <button onClick={()=>context.addtocart(item)} className=" w-full rounded font-semibold text-white md:text-base text-sm bg-yellow-400 py-2 md:py-3">Add to Cart+</button>
+                                            :
+                                                <button  className="  w-full rounded font-semibold text-white md:text-base text-sm bg-yellow-400 py-2 md:py-3">GO TO CART</button>
+    
+                                        } 
+                                        {/* <button onClick={()=>context.addtocart(item)} className="w-full rounded font-semibold text-white md:text-base text-sm bg-yellow-400 py-2 md:py-3">ADD TO CART</button> */}
                                         <Link     to={{pathname: "/Address",   search: "?" + new URLSearchParams({productId:item.id,orderqty:qty}).toString(),state:{checkout:"single"} }} className="w-full md:text-base text-sm rounded font-semibold flex justify-center focus:outline-none text-white bg-primary py-2 md:py-3 ">ORDER NOW</Link>
                                         {/* <a className='bg-green-600 w-full flex items-center justify-center space-x-1 rounded py-3' href={`https://wa.me/+919745286899?text=${document.location.href}`} target="_blank"><h1><AiOutlineWhatsApp className='text-white text-2xl'/></h1><h1 className="text-white ">Whatsapp Now</h1></a> */}
                                     </div>
