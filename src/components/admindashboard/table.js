@@ -37,14 +37,14 @@ const TableContent=(props)=>{
                                     if(key!=0)
                                     {
                                         return(
-                                            //when show multiple values like catgeory atribute then column width specify 
+                                           
                                             item1=="image" ?
                                                 <td className="flex items-center justify-center py-2">
                                                     <img src={`${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${item.image}`} alt="product image" className="object-cover h-16 w-16 overflow-hidden "/>
 
                                                 </td>
                                             :
-
+                                             //when show multiple values like catgeory atribute then column width specify 
                                             <td className ={`${ item1=="values" ? "  w-5/12" : "text-center"}`} key={key}>
                                                 <h1 className={`${ item1=="values" && "  break-words"}`}>{ item1=="values" ? item[item1].toString() : item1=="status"? item.status==1 ? "active" : "disable" : item[item1]} </h1> </td>
                                         )   
