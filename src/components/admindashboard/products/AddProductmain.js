@@ -7,7 +7,7 @@ import SideNav from "../sideNav"
 import {MobileHouseApi} from "helpers/axiosinstance"
 const AddProductMain=(props)=>{
     let history=useHistory();
-    
+    let categoryattributevalues=[];
 
     console.log(props.operationitem.category)
     const context=useContext(Usercontext )
@@ -26,6 +26,14 @@ const AddProductMain=(props)=>{
                     setcategoryid(catid)
                      MobileHouseApi.get("/getcategoryAttribute",{params:{"categoryid":catid},headers:{accessToken:localStorage.getItem("accessToken")}})
                      .then((res)=>{
+                        // res.data && res.data.map((item,key)=>{
+                        //     const myArray = (item.value).split(";");
+                        //     myArray && myArray.map((item1,key)=>{
+                        //         const items = (item1).split(",");
+                        //         console.log(items)
+                        //     })
+                        // })
+
                         setcategoryattribute(res.data)
                         console.log(res.data)
                      })
