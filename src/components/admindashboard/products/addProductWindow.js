@@ -126,7 +126,7 @@ const AddProductWindow=(props)=>{
                     
             
                 {
-                    props.categoryattribute && props.categoryattribute.map((item,key)=>{
+                    props.categoryattribute && props.categoryattribute!="NoAttribute" && props.categoryattribute.map((item,key)=>{
                         return(
                             <div key={key} className=" text-sm">
                                 <h1>{item.attributeName}</h1>
@@ -153,7 +153,7 @@ const AddProductWindow=(props)=>{
             </div>
             <div className=" text-sm mt-4">
                         {/* <h1>Image</h1> */}
-                        <div className="grid  grid-cols-2 md:grid-cols-5 gap-2">
+                        <div className="grid  grid-cols-2 sm:grid-cols-3 lg::grid-cols-5 gap-2">
                             <input onChange={(e)=>{uploadimage(e) }} ref={imageref} accept=".png,.jpg,.jpeg"  type="file" className="w-full hidden  border border-gray-400 rounded-md h-8 px-1"  name="image" id="image" />
                             <div className="rounded border border-gray-400">
                                 <button type="button" onClick={()=>deleteImage(0)} className=" focus:outline-none hover:text-red-500 w-full  flex justify-end mt-1 mr-2 z-20"><AiFillDelete/></button>

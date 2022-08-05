@@ -36,11 +36,11 @@ const SingleProduct=(props)=>{
                         
                             <div className="px-2 py-2 flex justify-between">
                                     <div className="w-full">
-                                        <h1 className="font-semibold text-md truncate">{item.name}</h1>
+                                        <h1 className="font-semibold text-sm md:text-md truncate">{item.name}</h1>
                                         <div className="flex justify-between w-full">
                                             <div className="w-10/12 md:w-5/12">
-                                                <h1 className="font-semibold truncate " >₹{(item.salesPrice && item.salesPrice!=0) ? item.salesPrice : item.sellingPrice}.00Rs</h1>
-                                                <h1 className="text-xs line-through truncate">₹{item.mrp}.00Rs</h1>
+                                                <h1 className="font-semibold truncate text-sm md:text-base " >₹{(item.salesPrice && item.salesPrice!=0) ? item.salesPrice : item.sellingPrice}.00Rs</h1>
+                                                <h1 className="text-xs line-through truncate ">₹{item.mrp}.00Rs</h1>
                                                
                                             </div>
                                             <div className="flex items-center justify-end w-7/12">

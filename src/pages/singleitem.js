@@ -12,6 +12,7 @@ const SingleItem=(props)=>{
     const [variantchoosed, setvariantchoosed] = useState(false)
     const [categoryVariant, setcategoryVariant] = useState("")
     const [reload, setreload] = useState(false)
+  
     const search = props.location.search;
     const productId = new URLSearchParams(search).get('productid')
         // if (history.action === 'PUSH') {
@@ -26,6 +27,8 @@ const SingleItem=(props)=>{
 
         if(history.action=="POP")
         {
+            
+            console.log("111111111111")  
             history.action="dsds"
             MobileHouseApi.get(`/singleview`,{params: { productId: productId}})
             
@@ -54,7 +57,7 @@ const SingleItem=(props)=>{
         }
      
     const singleitemset=(item1)=>{
-        console.log("11111111111")  
+      
         console.log(window.addEventListener)
             history.push({pathname:'singleItem',search: "?" + new URLSearchParams({productid: item1.id}).toString() })
             MobileHouseApi.get(`/singleview`,{params: { productId: item1.id}})
@@ -87,9 +90,11 @@ const SingleItem=(props)=>{
     
 
     useEffect(() => {
-       
+   
         if(singleitem=="" )
         {
+            console.log("2222222222")  
+           
             MobileHouseApi.get(`/singleview`,{params: { productId: productId}})
             
             .then(res=>{
@@ -114,6 +119,8 @@ const SingleItem=(props)=>{
                     })   
             })
         }
+      
+
     
         if(variantchoosed==true)
         {

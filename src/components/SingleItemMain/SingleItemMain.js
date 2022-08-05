@@ -110,14 +110,14 @@ const SingleItemMain=(props)=>{
 
                                 </div>
                                 <div className="ml-0 md:ml-5 w-full md:w-7/12 flex flex-col  ">
-                                    <div className="w-full md:w-10/12">
+                                    <div className="w-full lg:w-10/12">
                                         <div className="mt-10 space-y-1">
                                             <h1 className="text-base md:text-xl font-semibold tracking-normal md:tracking-wider ">{item.name} </h1>
                                             <h1 className='space-x-2'><span className="text-lg md:text-2xl font-bold text-green-600  ">₹{  item.salesPrice!=0 ? item.salesPrice :  item.sellingPrice}.00</span><span className="line-through ml-3 text-sm md:text-lg font-semibold text-gray-500">₹{item.mrp}.00</span><span className=' font-bold text-red-500'> { Math.floor(((((+item.mrp)-(item.salesPrice!=0 ? +item.salesPrice :  +item.sellingPrice))/ +item.mrp)*100).toFixed(2))}% Off</span></h1>
                                             {/* <h1 className="flex items-center bg-green-500 w-8/12 py-2  text-white rounded px-2"><span ><ImTruck className=""/></span><span className="font-semibold ml-1 "> Free Shipping </span><span className="text-sm ml-1">  & Inclusive of all taxes</span></h1> */}
                                            
                                            
-                                           <div className='grid grid-cols-3 md:grid-cols-4 gap-5 pt-3'>
+                                           <div className='grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 pt-3'>
                                               
                                               
                                              
@@ -128,10 +128,11 @@ const SingleItemMain=(props)=>{
                                                             return(
                                                                 <button onClick={()=>props.singleitemset(item1)} className={`border p-2  ${item1.id==props.singleitem.id ? "border-red-300" : "border-gray-300"} focus:outline-none  flex flex-col items-center justify-center rounded`}>
                                                                     <img src={`${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${item1.image}`} alt="" className="object-contain  rounded overflow-hidden h-14 md:h-16 w-14 md:w-16 "/>
-                                                                    <div className='flex'>
+                                                                    <div className=' text-sm'>
                                                                     {item1.attributes?.map((item2,key2)=>{
                                                                         return(
-                                                                            item2.attributeName!="color" && <h1 className='flex' ><span>{item2.attributeValue} {item2.attributeName}</span><span className={`${key2+1== item1.attributes.length ? "hidden" : "block"}`}>,</span></h1>
+                                                                            <h1 className='flex' ><span>{item2.attributeName} : {item2.attributeValue}  </span><span className={`${key2+1== item1.attributes.length ? "hidden" : "block"}`}>,</span></h1>
+                                                                            // item2.attributeName!="color" && <h1 className='flex' ><span>{item2.attributeValue} {item2.attributeName}</span><span className={`${key2+1== item1.attributes.length ? "hidden" : "block"}`}>,</span></h1>
                                                                         )
                                                                     })}
                                                                     </div>
