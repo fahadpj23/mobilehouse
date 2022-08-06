@@ -26,13 +26,7 @@ const AddProductMain=(props)=>{
                     setcategoryid(catid)
                      MobileHouseApi.get("/getcategoryAttribute",{params:{"categoryid":catid},headers:{accessToken:localStorage.getItem("accessToken")}})
                      .then((res)=>{
-                        // res.data && res.data.map((item,key)=>{
-                        //     const myArray = (item.value).split(";");
-                        //     myArray && myArray.map((item1,key)=>{
-                        //         const items = (item1).split(",");
-                        //         console.log(items)
-                        //     })
-                        // })
+                      
 
                         setcategoryattribute(res.data)
                         console.log(res.data)
@@ -85,12 +79,17 @@ const AddProductMain=(props)=>{
         if( props.operationitem && categoryset===false)
         {
             let imageArray
+            let positions=props.operationitem.imagepositions.split(';')
+            let imageposset=0
+            console.log(positions)
             if(props.operationitem.image)
              {
                 imageArray=props.operationitem.image.split(';')
              }
             imageArray && imageArray.map((item,key)=>{
-                props.productImage[key]= item.replace(/^\s+|\s+$/gm,'')
+                console.log(+positions[imageposset])
+                props.productImage[[+positions[imageposset]]-1]= item.replace(/^\s+|\s+$/gm,'')
+                imageposset=imageposset+1
             })
             if(catgeorytotal!="")
                 {

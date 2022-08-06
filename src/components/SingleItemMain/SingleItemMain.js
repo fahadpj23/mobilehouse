@@ -81,7 +81,7 @@ const SingleItemMain=(props)=>{
                             <div className="w-11/12 md:flex  mt-5 ">
                                 <div className="w-full md:w-5/12  flex-col space-y-4 ">
                                     <div className='flex justify-center items-center'>
-                                        <img src={displayimage ? `${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${displayimage}` :`${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${productImage[0]}`} alt="" className="object-contain  overflow-hidden h-96 "/>
+                                        <img src={displayimage ? `${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${displayimage}` :`${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${productImage[0]}`} alt="" className="object-contain  overflow-hidden h-44 md:h-96 "/>
                                     </div>
                                     <div className='flex space-x-2 w-full justify-center'>
                                     {
