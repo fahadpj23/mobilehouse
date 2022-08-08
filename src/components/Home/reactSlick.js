@@ -98,7 +98,7 @@ function SamplePrevArrow(props) {
           settings: {
             infinite: true,
             speed: 500,
-            slidesToShow: 3.4,
+            slidesToShow: 3.7,
             slidesToScroll: 1,
             className: 'relative',
             swipeToSlide: true,
@@ -122,10 +122,10 @@ function SamplePrevArrow(props) {
           {props.category && props.category.map((item, key) => {
              
               return(
-                <Link className=" px-2 h-32 md:h-40 " to={{pathname: "/ProductList",search: "?" + new URLSearchParams({category: item.id,sort:"newestfirst"}).toString()}}>
+                <Link className="  h-32 md:h-40 " to={{pathname: "/ProductList",search: "?" + new URLSearchParams({category: item.id,sort:"newestfirst"}).toString()}}>
 
-                    <div className="py-4 px-2 h-40   " key={key}>
-                        <div className=" flex flex-col bg-white w-full justify-center items-center  rounded-lg  p-2 space-y-2 ">
+                    <div className="py-4  h-40   " key={key}>
+                        <div className=" flex flex-col bg-white w-full justify-center items-center  rounded-lg   space-y-2 ">
                             <img src={   `${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${item.image}`} alt="" className="object-contain h-20 md:h-24 w-24 overflow-hidden " />
                             <h1 className="text-center font-semibold text-xs  md:text-sm lowercase">{item.categoryName}</h1>
                         </div>

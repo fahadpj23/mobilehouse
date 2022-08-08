@@ -22,7 +22,7 @@ const Cartmain=()=>{
                      </div>
                      <hr className="w-full h-0.5 py-3"></hr>
                     <div className="h-56 md:h-5/6 overflow-auto border md:border-none">
-                        <table className="w-full md:w-10/12 border-separate">
+                        <table className="min-w-full border-separate">
                             <tr className="text-xs md:text-sm font-semibold">
                                 <th>PRODUCT DETAILS</th>
                                 <th>QUANTITY</th>

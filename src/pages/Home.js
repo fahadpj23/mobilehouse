@@ -12,7 +12,7 @@ import Footer from "components/Home/Footer";
 function Home() {
  
   
-  const [recommended, setrecommended] = useState("")
+ 
   const [category, setcategory] = useState("")
   const [sliders, setsliders] = useState("")
   const [Banner, setBanner] = useState("")
@@ -23,10 +23,7 @@ function Home() {
  
   useEffect(() => {
          
-          MobileHouseApi.get("/MobileHouseRecommend")
-          .then(res=>{
-            setrecommended(res.data)
-          }) 
+        
           MobileHouseApi.get("/HomePageCategory")
           .then(res=>{
             setcategory(res.data.category)
@@ -44,25 +41,7 @@ function Home() {
           .then(res=>{
             setAds(res.data.Ads)
           }) 
-          // 
-
-
-
-          // MobileHouseApi.get("/getheadset")
-          // .then(res=>{
-          //   setaccessories(res.data)
-          // })
-
-          // MobileHouseApi.get("/getaccessories")
-          // .then(res=>{
-          //   setheadset(res.data)
-          // })
-          // MobileHouseApi.get("/getphone")
-          // .then(res=>{
-          //   setphone(res.data)
-          // })
-         
-       
+        
          
         }, [])
       console.log(sliders)
@@ -92,8 +71,8 @@ function Home() {
             <hr className="w-4/12 md:w-1/12 bg-blue-600 border-2 border-blue-400"></hr>
         </div> */}
         <div className="w-full flex justify-center">
-          <div className="w-11/12 px-6 space-y-10">
-                     {sliders && Ads &&
+          <div className="w-full px-3 md:px-6 md:w-11/12  space-y-10">
+                     {sliders  &&
                      sliders.map((item,key)=>{
                       return(
                       <div className="space-y-10">
