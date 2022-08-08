@@ -126,7 +126,7 @@ function SamplePrevArrow(props) {
 
                     <div className="py-4  h-40   " key={key}>
                         <div className=" flex flex-col bg-white w-full justify-center items-center  rounded-lg   space-y-2 ">
-                            <img src={   `${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${item.image}`} alt="" className="object-contain h-20 md:h-24 w-24 overflow-hidden " />
+                            <img src={   `${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${item.image}`} alt="" className="object-contain h-20 md:h-24 w-24 overflow-hidden p-2 " />
                             <h1 className="text-center font-semibold text-xs  md:text-sm lowercase">{item.categoryName}</h1>
                         </div>
                     </div>

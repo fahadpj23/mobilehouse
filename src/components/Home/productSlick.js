@@ -36,7 +36,7 @@ export default class  ProductSlider extends Component{
   }
     render(){
         const settings = {
-            infinite: false,
+            infinite: true,
             speed: 500,
             slidesToShow:6.2 ,
             slidesToScroll: 1,

@@ -24,14 +24,14 @@ const TableContent=(props)=>{
                         <th className="text-xs font-medium capitalize md:text-base px-3 py-3  " key={key}>{item}</th>
                     )
                     }
-                    <th className="flex justify-center  mt-4"><AiFillSetting/></th>
+                    <th className="flex justify-center mt-3 text-sm md:text-base md:mt-4"><AiFillSetting/></th>
 
                     
                 </tr>
                 {
                     props.Data.Data && props.Data.Data.map((item,key)=>{
                         return(
-                            <tr key={key} className="text-center text-sm border-b border-gray-300">
+                            <tr key={key} className="text-center text-xs md:text-sm border-b border-gray-300">
                             <td className="py-2  truncate">{key+1}</td>
                             {
                                 props.Data.TableHead.map((item1,key)=>{
