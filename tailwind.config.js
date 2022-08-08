@@ -22,6 +22,7 @@ module.exports = {
         fixedNoNavlg: 'calc(100vh - 4.75rem)',
         fixedNoNavlg4: 'calc(100vh - 15.75rem)',
         fixedNoNavlg5: 'calc(100vh - 5.75rem)',
+        fixedNoNavlg6: 'calc(100vh - 9.75rem)',
         userprofilemain: 'calc(100vh - 4.70rem - 2rem)',
         addrGrid:'160px'
         

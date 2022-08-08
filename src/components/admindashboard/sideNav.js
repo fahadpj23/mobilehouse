@@ -32,7 +32,7 @@ const SideNav=()=>{
     }
     return(
        
-             <div className={`${sidenav==true ?" space-y-4 flex flex-col justify-between  pl-3 relative  text-white bg-gray-600 h-screen px-5 transform duration-1000 pb-4  ": " space-y-4 flex flex-col   relative  pb-4 justify-between  text-white h-screen bg-gray-600 transform duration-1000 -translate-x-4 sm:-translate-x-2  " }`}>
+             <div className={`${sidenav==true ?" space-y-4 flex flex-col justify-between  pl-3 relative  text-white bg-gray-600 h-screen px-5 transform duration-1000 pb-4 z-20 ": " space-y-4 flex flex-col   relative  pb-4 justify-between  text-white h-screen bg-gray-600 transform duration-1000 -translate-x-4 sm:-translate-x-2  z-20 " }`}>
                  <button onClick={()=>setsidenav(!sidenav)} className=" bg-gray-600 text-white absolute top-0 -right-8 focus:outline-none text-xl p-2"><GiHamburgerMenu/></button>
                 {
                     sidenav==true ? 

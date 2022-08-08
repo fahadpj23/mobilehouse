@@ -9,28 +9,30 @@ const TableContent=(props)=>{
  console.log(props)
     
     return(
-        <div className="px-2 h-full w-full overflow-auto">
+        <div className="px-2 h-full    w-full overflow-auto">
             <div className=" pb-2 w-full">
                 <h1 className="border border-gray-500 w-20 py-1 rounded text-center "><span className="font-semibold">All </span> <span className="font-semibold text-green-600">{props.Data.Data.length} </span></h1>
             </div>
-            <table className="w-full mt-5  ">
+            <div className="h-fixedNoNavlg6  w-full overflow-auto">
+            <table className="w-full mt-5   ">
             <tbody>
-                <tr className="py-5 " >
+                
+                <tr className=" bg-gray-100   sticky -top-1" >
                     {
                     
                     props.Data.TableHead && props.Data.TableHead.map((item,key)=>
-                        <th className="text-xs md:text-base px-3" key={key}>{item}</th>
+                        <th className="text-xs font-medium capitalize md:text-base px-3 py-3  " key={key}>{item}</th>
                     )
                     }
-                    <th className="flex justify-center  mt-1"><AiFillSetting/></th>
+                    <th className="flex justify-center  mt-4"><AiFillSetting/></th>
 
                     
                 </tr>
                 {
                     props.Data.Data && props.Data.Data.map((item,key)=>{
                         return(
-                            <tr key={key} className="text-center text-sm">
-                            <td className="py-1  truncate">{key+1}</td>
+                            <tr key={key} className="text-center text-sm border-b border-gray-300">
+                            <td className="py-2  truncate">{key+1}</td>
                             {
                                 props.Data.TableHead.map((item1,key)=>{
                                     // check key!=0 bacuse table column need slno
@@ -70,6 +72,7 @@ const TableContent=(props)=>{
                 }
             </tbody>
         </table> 
+        </div>
     </div>
     )
 }
