@@ -79,12 +79,12 @@ const AddProductMain=(props)=>{
         if( props.operationitem && categoryset===false)
         {
             let imageArray
-            let positions=props.operationitem.imagepositions.split(';')
+            let positions=props.operationitem.imagepositions && props.operationitem.imagepositions.split(';')
             let imageposset=0
             console.log(positions)
             if(props.operationitem.image)
              {
-                imageArray=props.operationitem.image.split(';')
+                imageArray=props.operationitem.image && props.operationitem.image.split(';')
              }
             imageArray && imageArray.map((item,key)=>{
                 console.log(+positions[imageposset])
