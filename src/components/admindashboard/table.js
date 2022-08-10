@@ -4,13 +4,11 @@ import { BiDotsVerticalRounded } from 'react-icons/bi';
 import TableOperation from './tableOperation'
 import { MobileHouseApi } from "axiosinstance";
 const TableContent=(props)=>{
-    let headarray=[];
-    const[operationsview,setoperationsview]=useState(false)
-    const[SearchData,setSearchData]=useState(false)
-    const[TableData,setTableData]=useState(false)
+  
+    const[TableData,setTableData]=useState("")
     
     const[reload,setreload]=useState(false)
- console.log(props)
+    
     
     const SearchTable=(searchval)=>{
         MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:searchval},headers:{accessToken:localStorage.getItem("accessToken")}})
@@ -19,12 +17,15 @@ const TableContent=(props)=>{
             setreload(true)
         })
     }
-    useEffect(()=>{
+    
 
+
+    useEffect(()=>{
+        
         if(TableData=="")
         {
             MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:""},headers:{accessToken:localStorage.getItem("accessToken")}})
-            .then((res)=>{
+            .then((res)=>{ 
                 setTableData(res.data)
                 
             })

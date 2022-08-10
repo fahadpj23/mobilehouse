@@ -14,7 +14,7 @@ const AllProduct=(props)=>{
     const [operation,setoperation]=useState("")
     const[operationitem,setoperationitem]=useState("")
     const[operationid,setoperationid]=useState("")
-    const[refreshstate,setrefreshstate]=useState(false)
+   
     let productImageblob=["","","","",""]
     let productImage=["","","","",""]
     const closeProductadd=()=>{
@@ -34,7 +34,7 @@ const AllProduct=(props)=>{
                 if(res.data.success)
                 {
                     context.notify(res.data.success,"success")
-                    setrefreshstate(true)
+                    
                    
                 }
         
@@ -49,7 +49,7 @@ const AllProduct=(props)=>{
             
                 setoperationid(item.id)
                 setaddproduct(true)
-                setrefreshstate(true)
+          
         
             })
         }      
@@ -69,7 +69,7 @@ const AllProduct=(props)=>{
         setoperationid("")
         setoperation("")
         setoperationitem("")
-        setrefreshstate(true)
+        // window.location.reload(false);
         
     }
 
