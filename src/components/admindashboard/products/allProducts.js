@@ -102,9 +102,7 @@ const AllProduct=(props)=>{
             }
              <MainLayoutAdmin>
                 
-                <NavOperation
-                 AddNew={AddNew}
-                />
+              
                
                 <div className=' '>
                    
@@ -113,6 +111,7 @@ const AllProduct=(props)=>{
                         tableOperation={tableOperation}
                         type="product"
                         controller={props.controller}
+                        AddNew={AddNew}
                       
                         />
                         

@@ -3,13 +3,14 @@ import { AiFillSetting } from 'react-icons/ai';
 import { BiDotsVerticalRounded } from 'react-icons/bi';
 import TableOperation from './tableOperation'
 import { MobileHouseApi } from "axiosinstance";
+import NavOperation from "./operation";
 const TableContent=(props)=>{
   
     const[TableData,setTableData]=useState("")
     
     const[reload,setreload]=useState(false)
     
-    
+  
     const SearchTable=(searchval)=>{
         MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:searchval},headers:{accessToken:localStorage.getItem("accessToken")}})
         .then((res)=>{
@@ -20,6 +21,7 @@ const TableContent=(props)=>{
     
 
 
+    console.log(TableData)
     useEffect(()=>{
         
         if(TableData=="")
@@ -34,10 +36,14 @@ const TableContent=(props)=>{
         {
             setreload(false)
         }
-    },[reload])
+    },[reload,TableData])
 
     return(
         <div className="px-2 h-full    w-full overflow-auto">
+              <NavOperation
+                 AddNew={props.AddNew}
+                 setTableData={setTableData}
+                />
             <div className=" pb-2 w-full flex justify-between mt-1">
                 <h1 className="border border-gray-500 w-20 py-1 rounded text-center "><span className="font-semibold">All </span> <span className="font-semibold text-green-600">{TableData && TableData.Data.length} </span></h1>
                 <input onChange={(e)=>SearchTable(e.target.value)} type="text" placeholder="search" className="w-4/12 md:w-48 text-sm border border-gray-400  px-1 rounded py-2 focus:outline-none" />
@@ -89,6 +95,7 @@ const TableContent=(props)=>{
                                 item={item}
                                 tableOperation={props.tableOperation}
                                 type={props.type}
+                                setTableData={setTableData}
                             
                             />
                                 
