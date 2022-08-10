@@ -13,7 +13,9 @@ function Order(){
             
           {Auth && Auth.authState=="authorized" ?
             
-            <OrderMain/>
+            <OrderMain
+            controller="order"
+            />
             :
                 history.push("/AdminLogin")
             }

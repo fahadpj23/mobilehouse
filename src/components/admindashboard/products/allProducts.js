@@ -14,6 +14,7 @@ const AllProduct=(props)=>{
     const [operation,setoperation]=useState("")
     const[operationitem,setoperationitem]=useState("")
     const[operationid,setoperationid]=useState("")
+    const[refreshstate,setrefreshstate]=useState(false)
     let productImageblob=["","","","",""]
     let productImage=["","","","",""]
     const closeProductadd=()=>{
@@ -33,10 +34,8 @@ const AllProduct=(props)=>{
                 if(res.data.success)
                 {
                     context.notify(res.data.success,"success")
-                    MobileHouseApi.get('/getProduct',{headers:{accessToken:localStorage.getItem("accessToken")}})
-                    .then((res)=>{
-                        setproduct(res.data)
-                    })
+                    setrefreshstate(true)
+                   
                 }
         
             })
@@ -50,36 +49,36 @@ const AllProduct=(props)=>{
             
                 setoperationid(item.id)
                 setaddproduct(true)
+                setrefreshstate(true)
         
             })
         }      
       
     }
 
+    // const SearchTable=(searchval)=>{
+    //     MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:searchval},headers:{accessToken:localStorage.getItem("accessToken")}})
+    //     .then((res)=>{
+    //         setproduct(res.data)
+    //     })
+    // }
+
+
     const productAddSuccess=()=>{
         setaddproduct(false)
         setoperationid("")
         setoperation("")
         setoperationitem("")
-        MobileHouseApi.get('/getProduct',{headers:{accessToken:localStorage.getItem("accessToken")}})
-        .then((res)=>{
-            setproduct(res.data)
-        })
+        setrefreshstate(true)
+        
     }
 
     const AddNew=()=>{
         setaddproduct(true)
     }
 
-    useEffect(()=>{
-        if(product=="")
-        {
-            MobileHouseApi.get('/getProduct',{headers:{accessToken:localStorage.getItem("accessToken")}})
-            .then((res)=>{
-                setproduct(res.data)
-            })
-        }
-    })
+  
+   
     
     return(
         <div className="w-full flex h-screen ">
@@ -94,6 +93,7 @@ const AllProduct=(props)=>{
                         operationid={operationid}
                          productImageblob={productImageblob}
                          productImage={productImage}
+                         controller={props.controller}
                       
                      />
                 </div>
@@ -105,15 +105,17 @@ const AllProduct=(props)=>{
                 <NavOperation
                  AddNew={AddNew}
                 />
+               
                 <div className=' '>
-                    {
-                    product &&
+                   
                         <TableContent
-                        Data={product}
+                      
                         tableOperation={tableOperation}
                         type="product"
+                        controller={props.controller}
+                      
                         />
-                        }
+                        
                 </div>
                
                 </MainLayoutAdmin>

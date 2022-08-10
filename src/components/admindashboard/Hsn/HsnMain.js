@@ -11,12 +11,12 @@ import {MobileHouseApi} from "helpers/axiosinstance";
 import { Usercontext } from "components/context/userContext";
 import TableContent from "../table";
 import NavOperation from "../operation";
-const HsnMain=()=>{
+const HsnMain=(props )=>{
 
 
     const context=useContext(Usercontext )
     const [addHsn,setaddHsn]=useState(false)
-    const [HSN,setHSN]=useState("")
+  
     const [operation,setoperation]=useState("")
     const[operationitem,setoperationitem]=useState("")
     const[operationid,setoperationid]=useState("")
@@ -58,10 +58,7 @@ const HsnMain=()=>{
             setoperationid("")
             setoperation("")
             setoperationitem("")
-            MobileHouseApi.get('getHSN')
-            .then((res)=>{
-                setHSN(res.data)
-            })
+           
          }
         })
        
@@ -89,18 +86,7 @@ const HsnMain=()=>{
             
       }
 
-      useEffect(()=>{
-        if(HSN==="")
-        {
-        MobileHouseApi.get('getHSN')
-        .then((res)=>{
-            setHSN(res.data)
-        })
-        }
-        
-
-      },[addHsn,HSN])
-        console.log(HSN)
+     
            
  console.log(operationitem)
     return(
@@ -130,14 +116,14 @@ const HsnMain=()=>{
                 <NavOperation
                     AddNew={AddNew}
                 />
-                    {
-                        HSN &&
+                    
                         <TableContent
-                            Data={HSN}
+                           
                             tableOperation={tableOperation}
+                            controller={props.controller}
 
                         />
-                    }
+                 
                 </div>
                 </MainLayoutAdmin>
             

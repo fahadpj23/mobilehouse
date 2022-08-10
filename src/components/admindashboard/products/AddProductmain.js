@@ -70,7 +70,7 @@ const AddProductMain=(props)=>{
       useEffect(()=>{
         if(catgeorytotal==="")
         {
-            MobileHouseApi.get('/getCategory',{headers:{accessToken:localStorage.getItem("accessToken")}})
+            MobileHouseApi.get(`/category/getData`,{params:{search:""},headers:{accessToken:localStorage.getItem("accessToken")}})
             .then((res)=>{
                 console.log(res.data)
                 setcatgeorytotal(res.data)

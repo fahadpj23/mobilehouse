@@ -21,7 +21,7 @@ const SingleItem=(props)=>{
     //    if (history.action === 'POP') {
     //      setreload(true)
     // setreload(history.action)
-    console.log(history.action)
+ 
        
    
 

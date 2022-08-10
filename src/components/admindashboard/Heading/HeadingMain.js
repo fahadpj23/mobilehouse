@@ -17,7 +17,7 @@ const HeadingMain=(props)=>{
     const [operation,setoperation]=useState("")
     const[operationitem,setoperationitem]=useState("")
     const[operationid,setoperationid]=useState("")
-    const[HeadData,setHeadData]=useState("")
+ 
     const[editData,seteditData]=useState("")
     const[status,setstatus]=useState(1)
     
@@ -75,26 +75,17 @@ const HeadingMain=(props)=>{
           {
             setaddHeading(false )
             context.notify(res.data.success)
-            MobileHouseApi.get('/getHead',{headers:{accessToken:localStorage.getItem("accessToken")}})
-            .then((res)=>{
-            setHeadData(res.data)
-            })
+            // MobileHouseApi.get('/getHead',{headers:{accessToken:localStorage.getItem("accessToken")}})
+            // .then((res)=>{
+            // setHeadData(res.data)
+            // })
 
           }
         })
     //  }
     }
 
-      useEffect(()=>{
-        if(HeadData==="")
-        {
-            MobileHouseApi.get('/getHead',{headers:{accessToken:localStorage.getItem("accessToken")}})
-            .then((res)=>{
-            setHeadData(res.data)
-            })
-        }
-
-      },[HeadData])
+     
  
    
     return(
@@ -120,14 +111,15 @@ const HeadingMain=(props)=>{
             <NavOperation
             AddNew={AddNew}
             />
-                {
-                    HeadData &&
+                
+                   
                     <TableContent
-                         Data={HeadData}
+                        //  Data={HeadData}
                          tableOperation={tableOperation}
+                         controller={props.controller}
 
                     />
-                }
+                
                 
                 
                 </MainLayoutAdmin>

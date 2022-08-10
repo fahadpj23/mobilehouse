@@ -28,6 +28,7 @@ const Heading=()=>{
                 <HeadingMain
                     products={products}
                     headproduct={headproduct}
+                    controller="head"
               
                 />
             :

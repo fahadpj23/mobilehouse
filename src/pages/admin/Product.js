@@ -17,6 +17,7 @@ const Product=()=>{
                 
                 <AllProduct
                 product={products}
+                controller="product"
                 />
                 :
                     history.push("/AdminLogin")

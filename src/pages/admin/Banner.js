@@ -21,6 +21,7 @@ const Banner=()=>{
               
                 <BannerMain
                 BannerImageArray={BannerImageArray}
+                controller="banner"
               
                 />
             :

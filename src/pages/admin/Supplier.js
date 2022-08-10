@@ -9,7 +9,9 @@ const Supplier=()=>{
         <div className="flex">
              {Auth && Auth.authState=="authorized" ?
               
-              <SupplierMain/>
+              <SupplierMain
+              controller="supplier"
+              />
             :
                 history.push("/AdminLogin")
             }

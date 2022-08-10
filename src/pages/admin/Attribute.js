@@ -12,7 +12,9 @@ const Attribute=()=>{
          <div className="flex">
              {Auth && Auth.authState=="authorized" ?
             
-                <AttributeMain/>
+                <AttributeMain
+                controller="attribute"
+                />
             :
                 history.push("/AdminLogin")
             }

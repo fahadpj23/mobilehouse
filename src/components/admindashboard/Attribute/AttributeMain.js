@@ -8,7 +8,7 @@ import { Usercontext } from "components/context/userContext";
 import TableContent from "../table";
 import NavOperation from "../operation";
 import MainLayoutAdmin from "../MainLayoutAdmin";
-const AttributeMain=()=>{
+const AttributeMain=(props)=>{
 
 
     const context=useContext(Usercontext )
@@ -83,17 +83,17 @@ const AttributeMain=()=>{
             
       }
 
-      useEffect(()=>{
-        if(attribute==="")
-        {
-        MobileHouseApi.get('getattribute',{headers:{accessToken:localStorage.getItem("accessToken")}})
-        .then((res)=>{
-            setattribute(res.data)
-        })
-        }
+    //   useEffect(()=>{
+    //     if(attribute==="")
+    //     {
+    //     MobileHouseApi.get('getattribute',{headers:{accessToken:localStorage.getItem("accessToken")}})
+    //     .then((res)=>{
+    //         setattribute(res.data)
+    //     })
+    //     }
         
 
-      },[addattribute,attribute])
+    //   },[addattribute,attribute])
         console.log(attribute)
            
  console.log(operationitem)
@@ -123,14 +123,14 @@ const AttributeMain=()=>{
                 AddNew={AddNew}
                 />
             
-                    {
-                        attribute &&
+                  
                         <TableContent
                             Data={attribute}
                             tableOperation={tableOperation}
+                            controller={props.controller}
 
                         />
-                    }
+                    
               </MainLayoutAdmin>
          
             

@@ -15,6 +15,7 @@ const Ads=()=>{
             
                 <AdsMain
                 AdsImageArray={AdsImageArray}
+                controller="ads"
                 />
             :
                 history.push("/AdminLogin")

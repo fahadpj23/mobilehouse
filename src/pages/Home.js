@@ -82,17 +82,17 @@ function Home() {
                             Heading={item.Heading}
                                     
                           />
-                          <div className="hidden md:block">
+                          {/* <div className="hidden md:block">
                             <HomeAds
                             Ads={Ads}
                             />
-                          </div>
-                          <div className="block md:hidden">
+                          </div> */}
+                          {/* <div className="block md:hidden">
                             <SimpleSlider
                             Ads={Ads}
                             advertisment="advertisment"
                             />
-                          </div>
+                          </div> */}
                           
                      </div>
                       )

@@ -13,7 +13,9 @@ const Hsncode=()=>{
          <div className="flex">
              {Auth && Auth.authState=="authorized" ?
             
-                <HsnMain/>
+                <HsnMain
+                controller="hsn"
+                />
             :
                 history.push("/AdminLogin")
             }

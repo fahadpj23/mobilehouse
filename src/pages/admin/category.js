@@ -1,8 +1,8 @@
-import SideNav from "../components/admindashboard/sideNav";
+import SideNav from "../../components/admindashboard/sideNav";
 import {useContext,useEffect} from 'react'
-import { AuthContext } from '../helpers/authcontext';
+import { AuthContext } from 'helpers/authcontext';
 import { useHistory } from 'react-router-dom';
-import CategoryMain from "../components/admindashboard/Catgory/categoryMain";
+import CategoryMain from "components/admindashboard/Catgory/categoryMain";
 import {MobileHouseApi} from "helpers/axiosinstance";
 
 
@@ -25,6 +25,7 @@ const Category=()=>{
                
                 <CategoryMain
                 attributes={attributes}
+                controller="category"
               
                 />
             :

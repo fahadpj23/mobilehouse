@@ -97,21 +97,7 @@ const CategoryMain=(props)=>{
         }
     }
 
-      useEffect(()=>{
-        if(category==="")
-        {
-            MobileHouseApi.get('/getCategory',{headers:{accessToken:localStorage.getItem("accessToken")}})
-            .then((res)=>{
-            setcategory(res.data)
-            })
-        }
-        
-          
-        
-        
-
-      },[category])
-    console.log(variantvalues)
+    
    
     return(
         <div className="flex w-full h-screen overflow-auto z-20">
@@ -141,14 +127,14 @@ const CategoryMain=(props)=>{
             <NavOperation
             AddNew={AddNew}
             />
-                {
-                    category &&
+               
                     <TableContent
                          Data={category}
                          tableOperation={tableOperation}
+                         controller={props.controller}
 
                     />
-                }
+                
                 
                 
               </MainLayoutAdmin>
