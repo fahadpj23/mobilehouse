@@ -42,11 +42,11 @@ const ContextProvider=(props)=>{
     }
 
 
-    const notify = (msg) => {
+    const notify = (msg,type) => {
         
-        toast(msg,{
-            theme: "dark"
-        });
+        toast(msg,
+            {type:type,theme:"colored"}
+        );
 
     }
     

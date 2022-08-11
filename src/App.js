@@ -113,7 +113,7 @@ function App(){
                                     <Route  path="/admin/Attribute" component={Attribute}/>
                                     <Route  path="/admin/category" component={Category}/>
                                     <Route  path="/ProductList" component={ProductList}/>
-                                    <Route  path="/admin/OrderSuccess" component={OrderSuccess}/>
+                                    <Route  path="/OrderSuccess" component={OrderSuccess}/>
                                     <Route  path="/admin/Purchase" component={Purchase}/>
                                     <Route  path="/admin/Supplier" component={Supplier}/>
                                     <Route  path="/admin/Hsncode" component={Hsncode}/>

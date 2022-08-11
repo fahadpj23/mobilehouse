@@ -30,31 +30,22 @@ const AddressMain=(props)=>{
     // props.item.map((item,key)=>{
     //     total=total+item.price*item.qty
     // })
-    const placeorder=()=>{
+    const handleSubmit=(e)=>{
         
-        
+        e.preventDefault();
+        const data=new FormData(e.target)
        
-        let formData = new FormData();
-        formData.append('name',name)
-        formData.append('pincode',pincode)
-        formData.append('phone',phone)
-        formData.append('address',address)
+       
+        data.append('product',JSON.stringify(item)  )
         
-        formData.append('product',JSON.stringify(item)  )
-        // formData.append('qty',qty)
-        // formData.append('productname',productname)
-        // formData.append('total',total)
-        console.log(formData)
-        const config = {     
-            headers: { 'content-type': 'multipart/form-data' }
-        }
         
-        MobileHouseApi.post(`customerOrders`,formData)
+        MobileHouseApi.post(`customerOrders`,data)
         
         .then(res=>{
                 if(res.data.orderId)
                 {
-                    history.push({ pathname :"/OrderSuccess",state:{orderID:res.data.orderId}});
+                 history.push({ pathname :"/OrderSuccess",state:{orderID:res.data.orderId}});
+                  
                 }
                 else
                 {
@@ -71,20 +62,20 @@ const AddressMain=(props)=>{
           })  
     }
     return(
-        <div className="flex  h-screen overflow-y-auto">
+        <form onSubmit={(e)=>handleSubmit(e)} method="POST" className="flex  h-screen overflow-y-auto">
             <div className="w-8/12 h-fixedNoNavlg5 flex flex-col justify-center items-center">
                 <div className="flex flex-col w-10/12 px-5 ml-10 ">
                     <h1 className="text-2xl font-semibold py-7">Add Shipping Address</h1>
-                    <div className="space-y-6">
+                    <div  className="space-y-6">
                         <div className="flex w-full space-x-3 ">
-                            <input onChange={(e)=>setname(e.target.value)} className="w-6/12 text-gray-600 border border-gray-400 focus:outline-none focus:border-green-500 rounded-sm py-2 px-2  " placeholder="Name"/>
-                            <input className="w-6/12 text-gray-600 border border-gray-400 rounded-sm py-2 px-2 focus:outline-none focus:border-green-500" placeholder=" Company Name(Optional)"/>
+                            <input id="name" name="name" required className="w-6/12 text-gray-600 border border-gray-400 focus:outline-none focus:border-green-500 rounded-sm py-2 px-2  " placeholder="Name"/>
+                            <input id="company" name="company" className="w-6/12 text-gray-600 border border-gray-400 rounded-sm py-2 px-2 focus:outline-none focus:border-green-500" placeholder=" Company Name(Optional)"/>
                         </div>
                         <div className="flex space-x-3">
-                            <input onChange={(e)=>setphone(e.target.value)}className="w-6/12 text-gray-600  border border-gray-400 rounded-sm py-2 px-2 focus:outline-none focus:border-green-500" placeholder="Phone Number"/>
-                            <input onChange={(e)=>setpincode(e.target.value)} className="w-6/12 text-gray-600 border border-gray-400 rounded-sm py-2 px-2 focus:outline-none focus:border-green-500" placeholder=" pincode"/>
+                            <input id="phone" name="phone" required className="w-6/12 text-gray-600  border border-gray-400 rounded-sm py-2 px-2 focus:outline-none focus:border-green-500" placeholder="Phone Number"/>
+                            <input id="pincode" name="pincode" required  className="w-6/12 text-gray-600 border border-gray-400 rounded-sm py-2 px-2 focus:outline-none focus:border-green-500" placeholder=" pincode"/>
                         </div>
-                        <textarea onChange={(e)=>setaddress(e.target.value)} placeholder="address" className=" border w-full h-24 focus:outline-none focus:border-green-500 px-2 border-gray-400 rounded-sm">
+                        <textarea id="address" name="address" required placeholder="address" className=" border w-full h-24 focus:outline-none focus:border-green-500 px-2 border-gray-400 rounded-sm">
 
                         </textarea>
                         <h1 className="w-full text-center bg-green-500 focus:outline-none text-white font-medium py-3">Deliver here</h1>
@@ -121,14 +112,14 @@ const AddressMain=(props)=>{
                            total=total +  (item1.salesPrice ?? item1.seliingPrice) * +item1.qty
                         })}   
                         <h1 className=" flex justify-between mt-8 text-lg font-semibold"><span >Total Payable</span><span className="text-green-500 ">{total}</span></h1>
-                        <button onClick={()=>placeorder()} className="w-full text-white py-2 focus:outline-none bg-primary">Place Order</button>
+                        <button type='submit'  className="w-full text-white py-2 focus:outline-none bg-primary">Place Order</button>
                     </div>
                  
                 </div>
                 
             </div>
                 
-        </div>
+        </form>
     )
 }
 export default AddressMain

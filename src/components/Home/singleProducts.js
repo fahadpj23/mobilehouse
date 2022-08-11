@@ -50,7 +50,9 @@ const SingleProduct=(props)=>{
                                                     context.cart.find(item1 => item1.id === item.id)==undefined ?
                                                         <button onClick={()=>context.addtocart(item)} className=" md:bg-blue-500 text-blue-500 md:text-white focus:outline-none   text-lg md:text-xs py-2 font-semibold rounded px-2 mt-2"><h1 className='md:hidden block  text-2xl '><FaPlus  className="py-1"/></h1><h1 className='md:block hidden'>Add to Cart+</h1></button>
                                                     :
-                                                        <button  className="  md:bg-blue-500 text-blue-500 md:text-white focus:outline-none   text-lg md:text-xs py-2 font-semibold rounded px-2 mt-2"><h1 className='md:hidden block text-blue-500 h-6 pt-1'><AiOutlineShoppingCart/></h1><h1 className='md:block hidden'>GO TO CART</h1></button>
+                                                        // <button  className="  md:bg-blue-500 text-blue-500 md:text-white focus:outline-none   text-lg md:text-xs py-2 font-semibold rounded px-2 mt-2"><h1 className='md:hidden block text-blue-500 h-6 pt-1'><AiOutlineShoppingCart/></h1><h1 className='md:block hidden'>GO TO CART</h1></button>
+                                                        <Link to="/cart"  className="  md:bg-blue-500 text-blue-500 md:text-white focus:outline-none   text-lg md:text-xs py-2 font-semibold rounded px-2 mt-2"><h1 className='md:hidden block text-blue-500 h-6 pt-1'><AiOutlineShoppingCart/></h1><h1 className='md:block hidden'>GO TO CART</h1></Link>
+
             
                                                 } 
                                             </div>   

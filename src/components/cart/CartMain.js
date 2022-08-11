@@ -21,14 +21,8 @@ const Cartmain=()=>{
                         <h1>{context.cart.length} items</h1>
                      </div>
                      <hr className="w-full h-0.5 py-3"></hr>
-                    <div className="h-56 md:h-5/6 overflow-auto border md:border-none">
-                        <table className="min-w-full border-separate">
-                            <tr className="text-xs md:text-sm font-semibold">
-                                <th>PRODUCT DETAILS</th>
-                                <th>QUANTITY</th>
-                                <th>PRICE</th>
-                                <th>TOTAL</th>
-                            </tr>
+                    <div className="h-56 md:h-5/6 overflow-auto space-y-6 ">
+                       
                         {
                             context.cart.length!=0 && context.cart.map((item,key)=>{
                                 return(
@@ -38,7 +32,7 @@ const Cartmain=()=>{
                                 )
                             })
                         }
-                        </table>
+                      
                     </div>
                  </div>
                 <div className="w-full md:w-3/12 md:bg-gray-100 h-full ">
