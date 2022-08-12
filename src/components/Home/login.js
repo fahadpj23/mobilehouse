@@ -22,7 +22,7 @@ const Login=(props)=>{
                 }
                 else
                 {
-                    context.notify(res.data.error)
+                    context.notify(res.data.error,"error")
                 }
            console.log(res.data)
 

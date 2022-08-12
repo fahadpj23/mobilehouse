@@ -52,7 +52,7 @@ const AddressMain=(props)=>{
                     res.data.error.map((item,key)=>{
                         if(key===0)
                         {
-                            context.notify(` ${item.param} can't be empty`  )
+                            context.notify(` ${item.param} can't be empty` ,"error" )
                         }
                     })
                    

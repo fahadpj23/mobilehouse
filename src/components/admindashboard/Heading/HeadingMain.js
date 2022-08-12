@@ -74,7 +74,7 @@ const HeadingMain=(props)=>{
           if(res.data.success)
           {
             setaddHeading(false )
-            context.notify(res.data.success)
+            context.notify(res.data.success,"success")
             MobileHouseApi.get('/getHead',{headers:{accessToken:localStorage.getItem("accessToken")}})
             .then((res)=>{
             setHeadData(res.data)

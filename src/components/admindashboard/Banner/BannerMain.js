@@ -52,7 +52,7 @@ const BannerMain=(props)=>{
           {
             setaddBanner(false)
             
-            context.notify(res.data.success)
+            context.notify(res.data.success,"success")
             MobileHouseApi.get('/getBannerData',{headers:{accessToken:localStorage.getItem("accessToken")}})
             .then((res)=>{
             setBanner(res.data)
