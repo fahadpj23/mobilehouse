@@ -46,9 +46,21 @@ const TableContent=(props)=>{
 
                                                 </td>
                                             :
+
+                                            (item1=="status" && props.order) ?
+                                                <td>
+                                                    <select onChange={(e)=>props.DeliveryStatus(e.target.value,item)}  defaultValue={item.status} className="border border-gray-300 focus:outline-none rounded p-1">
+                                                        <option value="1">Pending</option>
+                                                        <option value="2">Packed</option>
+                                                        <option value="3">Delivered</option>
+                                                        <option value="4">Received</option>
+                                                    </select>
+                                                </td>
+                                            :
+
                                              //when show multiple values like catgeory atribute then column width specify 
                                             <td className ={`${ item1=="values" ? "  w-5/12" : "text-center"}`} key={key}>
-                                                <h1 className={`${ item1=="values" && "  break-words"}`}>{ item1=="values" ? item[item1].toString() : item1=="status"? item.status==1 ? "active" : "disable" : item[item1]} </h1> </td>
+                                                <h1 className={`${ item1=="values" && "  break-words"}`}>{ item1=="values" ? item[item1].toString() :  item1=="status"? item.status==1 ? "active" : "disable" : item[item1]} </h1> </td>
                                         )   
                                     }
                                 })
@@ -60,6 +72,8 @@ const TableContent=(props)=>{
                                 item={item}
                                 tableOperation={props.tableOperation}
                                 type={props.type}
+                                order={props.order}
+                                
                             
                             />
                                 

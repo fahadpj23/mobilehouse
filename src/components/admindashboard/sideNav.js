@@ -38,7 +38,7 @@ const SideNav=()=>{
                     sidenav==true ? 
                         <div className='space-y-5 px-3 '>
                             <button onClick={()=>history.push("/admin/Dashboard")}  className={` w-full text-left ${LinkAddress=="Dashboard" && " text-blue-500 "  } focus:outline-none flex `}>Dashboard<AiFillDashboard className='mt-1 ml-2'/></button>
-                            {/* <button onClick={()=>history.push("/admin/orders")}  className={` w-full text-left ${LinkAddress=="orders" && " text-blue-500 "  }focus:outline-none flex `}>orders<FaTruckMoving className='mt-1 ml-2'/></button> */}
+                            <button onClick={()=>history.push("/admin/orders")}  className={` w-full text-left ${LinkAddress=="orders" && " text-blue-500 "  }focus:outline-none flex `}>orders<FaTruckMoving className='mt-1 ml-2'/></button>
                             {/* <button onClick={()=>history.push("/admin/Purchase")} className={` w-full text-left ${LinkAddress=="Purchase" && " text-blue-500 "  }focus:outline-none flex `}>Purchase<FaCartArrowDown className='mt-1 ml-2'/></button> */}
                             <button onClick={()=>history.push("/admin/Product")} className={` w-full text-left ${LinkAddress=="Product" && " text-blue-500 "  }focus:outline-none flex `}>Product<FaProductHunt className='mt-1 ml-2'/></button>
                             <button  onClick={()=>history.push("/admin/category")}className={` w-full text-left ${LinkAddress=="category" && " text-blue-500 "  }focus:outline-none flex `}>category<CgListTree className='mt-1 ml-2'/></button>
@@ -55,7 +55,7 @@ const SideNav=()=>{
                     :
                         <div className='space-y-5 px-5 text-xl'>
                             <button onClick={()=>history.push("/admin/Dashboard")}  className={` mt-10 w-full ${LinkAddress=="Dashboard" && " text-blue-500 "  } focus:outline-none flex justify-center`}><AiFillDashboard/></button>
-                            {/* <button onClick={()=>history.push("/admin/orders")}  className={` w-full ${LinkAddress=="orders" && " text-blue-500 "  } focus:outline-none flex justify-center`}><FaTruckMoving/></button> */}
+                            <button onClick={()=>history.push("/admin/orders")}  className={` w-full ${LinkAddress=="orders" && " text-blue-500 "  } focus:outline-none flex justify-center`}><FaTruckMoving/></button>
                             {/* <button onClick={()=>history.push("/admin/Purchase")} className={` w-full ${LinkAddress=="Purchase" && " text-blue-500 "  } focus:outline-none flex justify-center`}><FaCartArrowDown/></button> */}
                             <button onClick={()=>history.push("/admin/Product")} className={` w-full ${LinkAddress=="Product" && " text-blue-500 "  } focus:outline-none flex justify-center`}><FaProductHunt/></button>
                             <button  onClick={()=>history.push("/admin/category")}className={` w-full ${LinkAddress=="category" && " text-blue-500 "  } focus:outline-none flex justify-center`}><CgListTree/></button>
