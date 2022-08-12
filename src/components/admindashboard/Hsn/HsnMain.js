@@ -107,7 +107,7 @@ const HsnMain=()=>{
         <div className="flex w-full h-screen overflow-auto z-20">
              {
                     addHsn===true && 
-                      
+                        <div className='w-screen fixed bg-gray-200 h-screen opacity-100 flex items-center justify-center  z-50  '>
                                         <FormLayout
                                             formdata={addformdata}
                                             handleSubmit={handleSubmit}
@@ -120,6 +120,7 @@ const HsnMain=()=>{
                                             head="HSN"
                                            
                                         />
+                        </div>
                                     
                                   
                 }

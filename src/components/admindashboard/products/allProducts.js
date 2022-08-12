@@ -93,7 +93,7 @@ const AllProduct=(props)=>{
             }
             {
                 addproduct==true && 
-                <div className='w-full fixed bg-gray-200 h-screen opacity-100 flex items-center justify-center  z-20  '>
+                <div className='w-screen fixed bg-gray-200 h-screen opacity-100 flex items-center justify-center  z-50  '>
                      <AddProductMain
                         closeProductadd={closeProductadd}
                         productAddSuccess={productAddSuccess}

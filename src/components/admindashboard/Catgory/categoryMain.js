@@ -118,7 +118,7 @@ const CategoryMain=(props)=>{
             {
                     addcategory===true && 
                        
-                                  
+                    <div className='w-screen fixed bg-gray-200 h-screen opacity-100 flex items-center justify-center  z-50  '>
                                         <FormLayout
                                             formdata={addformdata}
                                             handleSubmit={handleSubmit}
@@ -132,7 +132,7 @@ const CategoryMain=(props)=>{
                                             variants={variants}
                                             head="Category"
                                         />
-                                    
+                    </div>              
                                  
                 }
               <MainLayoutAdmin>

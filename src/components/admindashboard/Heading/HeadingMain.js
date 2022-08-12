@@ -101,7 +101,7 @@ const HeadingMain=(props)=>{
         <div className="flex w-full h-screen overflow-auto z-20 relative">
             {
                     addHeading===true && 
-                      <div className="w-full z-20 absolute left-0 right-0">
+                    <div className='w-screen fixed bg-gray-200 h-screen opacity-100 flex items-center justify-center  z-50  '>
                                   <HeadProductAdding
                                     headproduct={props.headproduct}
                                     setHeading={setHeading}
