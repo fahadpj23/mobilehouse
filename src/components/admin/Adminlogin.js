@@ -28,7 +28,7 @@ const handleSubmit=(e)=>{
                 }
                 else
                 {
-                    context.notify(res.data.error)
+                    context.notify(res.data.error,"error")
                 }
     })
 }

@@ -7,6 +7,7 @@ import TableContent from "../table";
 import { Usercontext } from "../../context/userContext";
 import NavOperation from '../operation'
 import MainLayoutAdmin from '../MainLayoutAdmin'
+import UploadSpinner from "../uploadstatus";
 const AllProduct=(props)=>{
     const context=useContext(Usercontext )
     const[addproduct,setaddproduct]=useState(false)
@@ -14,6 +15,7 @@ const AllProduct=(props)=>{
     const [operation,setoperation]=useState("")
     const[operationitem,setoperationitem]=useState("")
     const[operationid,setoperationid]=useState("")
+    const [uploadstatus,setuploadstatus]=useState(false)
     let productImageblob=["","","","",""]
     let productImage=["","","","",""]
     const closeProductadd=()=>{
@@ -43,6 +45,7 @@ const AllProduct=(props)=>{
         }
         else
         {
+            setuploadstatus(true)
             MobileHouseApi.get('/productdetails',{params:{productId:item.id},headers:{accessToken:localStorage.getItem("accessToken")}})
             .then((res)=>{
                 setoperationitem(res.data)
@@ -50,8 +53,9 @@ const AllProduct=(props)=>{
             
                 setoperationid(item.id)
                 setaddproduct(true)
-        
+                setuploadstatus(false)
             })
+            
         }      
       
     }
@@ -83,6 +87,10 @@ const AllProduct=(props)=>{
     
     return(
         <div className="w-full flex h-screen ">
+            {
+                uploadstatus==true &&
+                <UploadSpinner/>
+            }
             {
                 addproduct==true && 
                 <div className='w-full fixed bg-gray-200 h-screen opacity-100 flex items-center justify-center  z-20  '>

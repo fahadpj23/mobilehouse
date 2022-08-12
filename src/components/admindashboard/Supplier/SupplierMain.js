@@ -49,11 +49,11 @@ const SupplierMain=()=>{
         .then((res)=>{
          if(res.data.error)
          {
-                context.notify(res.data.error)
+                context.notify(res.data.error,"error")
          }
          else
          {
-            context.notify(res.data.success)
+            context.notify(res.data.success,"success")
             setaddsupplier(false)
             setoperationid("")
             setoperation("")
