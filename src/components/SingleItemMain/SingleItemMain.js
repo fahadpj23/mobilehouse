@@ -1,6 +1,4 @@
-import { ImTruck } from 'react-icons/im';
-import { IoMdCash } from 'react-icons/io';
-import {AiOutlineWhatsApp } from 'react-icons/ai';
+
 
 import {Link} from "react-router-dom";
 import axios from 'axios'
@@ -8,7 +6,7 @@ import { Usercontext } from '../context/userContext';
 import {useContext} from 'react'
 import React, { useState } from 'react';
 import ProductSlider from '../Home/productSlick'
-import Nav from 'components/Home/Nav';
+
 
 const SingleItemMain=(props)=>{
  
@@ -76,7 +74,7 @@ const SingleItemMain=(props)=>{
     return(
         <div className="">
             
-            <Nav/>
+          
                         <div className="w-full flex justify-center">
                             <div className="w-11/12 md:flex  mt-5 ">
                                 <div className="w-full md:w-5/12  flex-col space-y-4 ">

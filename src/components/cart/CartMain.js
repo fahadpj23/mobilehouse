@@ -14,7 +14,7 @@ const Cartmain=()=>{
     console.log(context)
      return(
          <div className="flex justify-center">
-             <div className="w-full px-0 md:px-3 md:flex h-screen ">
+             <div className="w-full px-0 md:px-3 md:flex h-full md:h-screen ">
                  <div className="w-full md:w-10/12 px-4">
                      <div className="flex justify-between text-lg md:text-2xl font-semibold py-4">
                         <h1>Shopping Cart</h1>

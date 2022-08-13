@@ -3,6 +3,7 @@ import ProductListMain from '../components/ProductList/ProductListMain'
 import {MobileHouseApi} from "helpers/axiosinstance";
 import { Link, useHistory } from 'react-router-dom';
 import { useEffect,useState } from 'react'
+import MainLayoutWebsite from "components/MainLayoutWebsite";
 const ProductList=(props)=>{
     let history=useHistory();
     const [products,setproducts]=useState("")
@@ -60,6 +61,7 @@ const ProductList=(props)=>{
       
         
         <div>
+             <MainLayoutWebsite>
             {
                 products &&
                 <ProductListMain
@@ -68,7 +70,7 @@ const ProductList=(props)=>{
                 sort={sort}
                 />
             }
-           
+           </MainLayoutWebsite>
         </div>
     )
 }

@@ -4,7 +4,7 @@ import { AuthContext } from '../helpers/authcontext';
 import { useHistory } from 'react-router-dom';
 import CategoryMain from "../components/admindashboard/Catgory/categoryMain";
 import {MobileHouseApi} from "helpers/axiosinstance";
-
+import MainLayoutWebsite from "components/MainLayoutWebsite";
 
 const Category=()=>{
     const Auth=useContext(AuthContext)
@@ -21,6 +21,7 @@ const Category=()=>{
     },[])
     return( 
          <div className="flex">
+              <MainLayoutWebsite>
              {Auth && Auth.authState=="authorized" ?
                
                 <CategoryMain
@@ -30,7 +31,7 @@ const Category=()=>{
             :
                 history.push("/admin")
             }
-            
+              </MainLayoutWebsite>
          </div>
     )
 }
