@@ -29,7 +29,8 @@ const AllProduct=(props)=>{
         
         if(operation=="delete")
         {
-            console.log(item)
+            if(window.confirm("Delete the product")==true)
+            {
             MobileHouseApi.delete('/productDelete',{params:{productId:item.id},headers:{accessToken:localStorage.getItem("accessToken")}})
             .then((res)=>{
                 if(res.data.success)
@@ -42,6 +43,7 @@ const AllProduct=(props)=>{
                 }
         
             })
+            }
         }
         else
         {
