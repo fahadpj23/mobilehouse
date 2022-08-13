@@ -36,13 +36,14 @@ const Address=(props)=>{
    
     return(
         <div>
-            {product!="" &&
-                <AddressMain
-                    item={product}
-                   
-                />
-            }
-           
+              
+                    {product!="" &&
+                        <AddressMain
+                            item={product}
+                        
+                        />
+                    }
+         
         </div>
     )
 }
