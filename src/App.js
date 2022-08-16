@@ -29,6 +29,7 @@ import PrivacyPolicy from 'pages/PrivacyPolicy';
 import RefundPolicy from 'pages/RefundPolicy';
 import ShippingPolicy from 'pages/ShipplingPolicy';
 import AboutUs from 'pages/AboutUs';
+import Profile from 'pages/profile';
 function App(){
     const[ authState, setAuthState ]=useState("")
     const[ UserauthState, setUserAuthState ]=useState("")
@@ -125,6 +126,7 @@ function App(){
                                     <Route  path="/RefundPolicy" component={RefundPolicy}/>
                                     <Route  path="/ShippingPolicy" component={ShippingPolicy}/>
                                     <Route  path="/AboutUs" component={AboutUs}/>
+                                    <Route  path="/Profile" component={Profile}/>
                                    
                                    
 
