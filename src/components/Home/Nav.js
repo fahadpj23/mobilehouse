@@ -3,6 +3,7 @@ import React, { useState,useContext} from 'react';
 import {FaRegUserCircle } from 'react-icons/fa';
 import {MobileHouseApi} from "helpers/axiosinstance";
 import {AiOutlineShoppingCart } from 'react-icons/ai';
+import {BsSearch } from 'react-icons/bs';
 import {Link} from "react-router-dom";
 import Login from './login';
 import UserRegister from './userRegister';
@@ -87,7 +88,7 @@ const Nav=(props)=>{
                                         
                             </Link>
                             <div className="relative sm:w-5/12 w-10/12 ">
-                                <input onChange={(e)=>searchProduct(e.target.value)} type="text" placeholder="search here" className=" px-2 w-full rounded h-8 text-sm  md:h-10 focus:outline-none border border-gray-300 "/>
+                                <input onChange={(e)=>searchProduct(e.target.value)} type="text" placeholder="search here" className=" hidden md:block px-2 w-full rounded h-8 text-sm  md:h-10 focus:outline-none border border-gray-300 "/>
                                 
                                 
                                 <div className={`${serachitemdis!=="" ? " absolute  top-10 z-20 max-h-96 w-96 bg-white shadow-xl rounded-lg p-2 flex flex-col overflow-y-scroll  ": "hidden"}`}>
@@ -120,7 +121,10 @@ const Nav=(props)=>{
                     </div>
                   
                     <div className="w-2/12  space-x-5 flex justify-end md:justify-center">
+                             <button className=" block md:hidden focus:outline-none  "><BsSearch/></button>
+
                             <div>
+                            
                             {/* <Link className="     flex items-center py-1 hover:text-blue-500" to={{pathname: "/AboutUs"}}>About Us</Link> */}
                             {
                                username==="Login/Signup" ?

@@ -21,7 +21,7 @@ const Category=()=>{
     },[])
     return( 
          <div className="flex">
-              <MainLayoutWebsite>
+             
              {Auth && Auth.authState=="authorized" ?
                
                 <CategoryMain
@@ -31,7 +31,7 @@ const Category=()=>{
             :
                 history.push("/admin")
             }
-              </MainLayoutWebsite>
+            
          </div>
     )
 }

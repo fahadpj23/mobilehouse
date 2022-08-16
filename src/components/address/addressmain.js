@@ -34,8 +34,7 @@ const AddressMain=(props)=>{
         
         e.preventDefault();
         const data=new FormData(e.target)
-       
-       
+        data.append("total",total)
         data.append('product',JSON.stringify(item)  )
         
         
