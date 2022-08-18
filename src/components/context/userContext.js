@@ -13,8 +13,9 @@ const ContextProvider=(props)=>{
     const[auth,setauth]=useState(false)
     
 
-    const addtocart=(item)=>{
+    const addtocart=(item,image)=>{
         console.log(item)
+        item.image=image
         item.qty=1
         setcart([...cart,item]) 
       setcartadded(true) 

@@ -34,32 +34,32 @@ const UserRegister=(props)=>{
         
 
    
-        <form onSubmit={(e)=>handleSubmit(e)} method="post" className="w-screen h-screen fixed flex items-center  bg-gray-100   bg-opacity-95 justify-center z-20 top-0 left-0 ">
+        <form onSubmit={(e)=>handleSubmit(e)} method="post" className="w-screen h-screen fixed flex items-center  bg-black   bg-opacity-80 justify-center z-20 top-0 left-0 ">
         
-            <div className="w-8/12 sm:w-4/12 lg:w-3/12 h-3/5 flex flex-col relative bg-white shadow-5xl pb-5 overflow-auto justify-between  rounded-lg">
+            <div className="w-8/12 sm:w-4/12 lg:w-3/12 h-3/5 flex flex-col relative bg-white shadow-5xl pb-5 overflow-auto justify-between  border  border-gray-400-lg">
                
                   
                 
                 <div className="w-full flex flex-col items-center h-full justify-evenly">
-                    <button className="absolute top-3 focus:outline-none right-3 "><AiOutlineClose/></button>
-                    <h1 className="text-2xl font-semibold  p-3w-full text-center">SignUp</h1>
-                    <div className="space-y-5 flex flex-col w-11/12  px-2 mt-6 ">
+                    <button type="button" onClick={()=> props.setregisteruser(false)} className="absolute top-3 focus:outline-none right-3 "><AiOutlineClose/></button>
+                    <h1 className="text-lg font-semibold text-center pb-3 mt-5">Welcome To MobileHouse</h1>
+                    <div className="space-y-5 flex flex-col w-11/12  px-2 mt-4 ">
                 
                        
-                        <input className=" pl-2 focus:outline-none  rounded py-2 bg-gray-200 " required type="text" id="username" name="username" placeholder='username' />
+                        <input className=" pl-2 focus:outline-none  border  border-gray-400 py-2 text-sm  " required type="text" id="username" name="username" placeholder='username' />
                         {alreadyexist==true && <h1 className='text-sm text-red-500'>username already in use</h1>}
                       
-                        <input className=" pl-2 focus:outline-none  rounded py-2 bg-gray-200 " required type="text" id="MobileNumber " name="MobileNumber" placeholder='Mobile Number '  />
-                        <input className=" pl-2 focus:outline-none  rounded py-2 bg-gray-200 " required type="text" id="password" name="password"  placeholder='password' />
+                        <input className=" pl-2 focus:outline-none  border  border-gray-400 py-2 text-sm  " required type="text" id="MobileNumber " name="MobileNumber" placeholder='Mobile Number '  />
+                        <input className=" pl-2 focus:outline-none  border  border-gray-400 py-2 text-sm  " required type="text" id="password" name="password"  placeholder='password' />
                       
-                         <input className=" pl-2 focus:outline-none  rounded py-2 bg-gray-200 " required type="text" id="ConfirmPassword" name="ConfirmPassword" placeholder='Confirm Password' />
+                         <input className=" pl-2 focus:outline-none  border  border-gray-400 py-2 text-sm  " required type="text" id="ConfirmPassword" name="ConfirmPassword" placeholder='Confirm Password' />
                         
                        
                         
 
                     </div>
-                    <div className='w-11/12 px-2'>
-                        <input type="submit" value="Submit" className="bg-gradient-to-r w-full from-red-700 to-red-300 focus:outline-none text-white font-semibold py-2 rounded" />
+                    <div className='w-11/12 flex justify-end mt-4'>
+                        <input type="submit" value="Submit" className="bg-black focus:outline-none text-xs sm:text-base text-white w-3/12 font-semibold py-2 rounded" />
 
                     </div>
 

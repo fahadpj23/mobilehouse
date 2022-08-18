@@ -72,7 +72,7 @@ export default class  ProductSlider extends Component{
               {
                 breakpoint: 1100,
                 settings: {
-                  slidesToShow:3.6,
+                  slidesToShow:3.2,
                   arrows:true,
                   nextArrow: <SampleNextArrow />,
                   prevArrow: <SamplePrevArrow />,
@@ -90,7 +90,7 @@ export default class  ProductSlider extends Component{
               {
                 breakpoint: 580,
                 settings: {
-                  slidesToShow:1.9 ,
+                  slidesToShow:2.3 ,
                   className:'relative',
                   arrows:false,
                 }
