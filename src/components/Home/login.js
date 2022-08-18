@@ -44,7 +44,7 @@ const Login=(props)=>{
             }
             else
             {
-                context.notify(res.data.error,"error")
+                context.notify(res.data.error,"warning")
             }
        console.log(res.data)
 
