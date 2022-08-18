@@ -2,6 +2,7 @@ import { useState,useContext } from "react"
 import axios from 'axios'
 import { AiOutlineClose } from 'react-icons/ai';
 import { Usercontext } from "../context/userContext";
+import { MobileHouseApi } from "helpers/axiosinstance";
 const Login=(props)=>{
     const context=useContext(Usercontext)
     const [loginst, setloginst] = useState("")
@@ -30,7 +31,7 @@ const Login=(props)=>{
     // }
     const handleSubmit=(e)=>{
         const data= new FormData(e.target)
-        axios.post(`http://localhost:9000/login`,data)
+        MobileHouseApi.post(`/login`,data)
         .then(res=>{
                
             if(res.data.UserToken)
