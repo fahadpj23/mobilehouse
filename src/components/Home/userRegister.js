@@ -25,6 +25,7 @@ const UserRegister=(props)=>{
                 localStorage.setItem("UserName",res.data.username)
                 props.setusername(res.data.username)
                 props.setregisteruser(false)
+                window.location.reload(false);
             }
         })
         e.preventDefault();
@@ -36,7 +37,7 @@ const UserRegister=(props)=>{
    
         <form onSubmit={(e)=>handleSubmit(e)} method="post" className="w-screen h-screen fixed flex items-center  bg-black   bg-opacity-80 justify-center z-20 top-0 left-0 ">
         
-            <div className="w-10/12 sm:w-4/12 lg:w-3/12 h-3/5 flex flex-col relative bg-white shadow-5xl pb-5 overflow-auto justify-between  border  border-gray-400-lg">
+            <div className="w-10/12 sm:w-4/12 xl:w-3/12 h-3/5 flex flex-col relative bg-white shadow-5xl pb-5 overflow-auto justify-between  border  border-gray-400-lg">
                
                   
                 

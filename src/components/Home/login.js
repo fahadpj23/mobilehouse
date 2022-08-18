@@ -40,10 +40,11 @@ const Login=(props)=>{
                 localStorage.setItem("UserToken",res.data.UserToken)
                 localStorage.setItem("UserName",res.data.username)
                 props.loginsuccess && props.loginsuccess(res.data.username)
+                window.location.reload(false);
             }
             else
             {
-                context.notify(res.data.error,"error")
+                context.notify(res.data.error,"warning")
             }
        console.log(res.data)
 
