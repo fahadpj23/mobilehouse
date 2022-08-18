@@ -1,8 +1,8 @@
-import SideNav from "../components/admindashboard/sideNav";
+import SideNav from "components/admindashboard/sideNav";
 import {useContext,useEffect} from 'react'
-import { AuthContext } from '../helpers/authcontext';
+import { AuthContext } from 'helpers/authcontext';
 import { useHistory } from 'react-router-dom';
-import CategoryMain from "../components/admindashboard/Catgory/categoryMain";
+import CategoryMain from "components/admindashboard/Catgory/categoryMain";
 import {MobileHouseApi} from "helpers/axiosinstance";
 import MainLayoutWebsite from "components/MainLayoutWebsite";
 
@@ -29,7 +29,7 @@ const Category=()=>{
               
                 />
             :
-                history.push("/admin")
+                history.push("/AdminLogin")
             }
             
          </div>

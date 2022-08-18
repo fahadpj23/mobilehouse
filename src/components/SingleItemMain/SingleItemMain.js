@@ -6,7 +6,7 @@ import { Usercontext } from '../context/userContext';
 import {useContext} from 'react'
 import React, { useState } from 'react';
 import ProductSlider from '../Home/productSlick'
-
+import { MobileHouseApi } from "helpers/axiosinstance";
 
 const SingleItemMain=(props)=>{
  
@@ -54,6 +54,9 @@ const SingleItemMain=(props)=>{
     
     console.log(props.variants)
 
+    const AddCart=(item)=>{
+        context.addtocart(item,productImage[0])
+    }
     const checkpincode=()=>{
         axios.get(`http://localhost:9000/pincodecheck`,{params: { pincodeno: pincode}})
         
@@ -70,7 +73,9 @@ const SingleItemMain=(props)=>{
           
           })  
     }
-    
+
+
+        console.log(localStorage.getItem('UserName'))
     return(
         <div className="">
             
@@ -94,7 +99,7 @@ const SingleItemMain=(props)=>{
                                     {
                                             
                                             context.cart.find(item1 => item1.id === item.id)==undefined ?
-                                                <button onClick={()=>context.addtocart(item)} className=" w-full rounded font-semibold text-white md:text-base text-sm bg-yellow-400 py-2 md:py-3">Add to Cart+</button>
+                                                <button onClick={()=>localStorage.getItem('UserName') ?  context.userCart(item)  : AddCart(item) } className=" w-full rounded font-semibold text-white md:text-base text-sm bg-yellow-400 py-2 md:py-3">Add to Cart+</button>
                                             :
                                                 <button  className="  w-full rounded font-semibold text-white md:text-base text-sm bg-yellow-400 py-2 md:py-3">GO TO CART</button>
     
