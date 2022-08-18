@@ -53,7 +53,7 @@ const Login=(props)=>{
     return(
         <form onSubmit={(e)=>handleSubmit(e)} method="post"className="w-full h-screen fixed flex items-center  bg-black   bg-opacity-80 justify-center z-20 top-0 left-0 ">
         
-            <div className=" w-10/12 md:w-4/12 xl:w-3/12 h-4/5 md:h-3/5 flex flex-col relative bg-white shadow-5xl pb-6 overflow-auto justify-center  rounded-lg">
+            <div className=" w-10/12 md:w-4/12 xl:w-3/12 h-3/5 flex flex-col relative bg-white shadow-5xl pb-6 overflow-auto justify-center  rounded-lg">
                 <div className="w-full flex flex-col px-3">
                     <button type="button" onClick={()=> props.setloginstatus(false)}className="absolute top-3 focus:outline-none right-3 z-20 "><AiOutlineClose/></button>
                     <h1 className="text-lg font-semibold text-center pb-3 mt-5">Welcome To MobileHouse</h1>
