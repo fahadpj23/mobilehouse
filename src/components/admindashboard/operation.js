@@ -4,6 +4,7 @@ import { FaPlus } from 'react-icons/fa';
 import { useState } from 'react';
 import AllProduct from './products/allProducts';
 import CategoryMain from './Catgory/categoryMain';
+import AttributeMain from './Attribute/AttributeMain';
 const NavOperation=(props)=>{
 
    console.log("dsd")
@@ -38,12 +39,22 @@ const NavOperation=(props)=>{
                                 props.controller=='category' &&
                                 <CategoryMain
                                     AddSucess={props.AddSucess}
+                                    AddWindowClose={props.AddWindowClose}
                                     operation={props.operation}
                                     operationitem={props.operationitem}
-                                    AddWindowClose={props.AddWindowClose}
                                 
                                 />
 
+                            }
+                            {
+                                props.controller=='attribute' &&
+                                <AttributeMain
+                                    AddSucess={props.AddSucess}
+                                    AddWindowClose={props.AddWindowClose}
+                                    operation={props.operation}
+                                    operationitem={props.operationitem}
+                                
+                                />
                             }
                            
                         </div>
