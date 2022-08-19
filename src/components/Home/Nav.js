@@ -3,6 +3,7 @@ import React, { useState,useContext} from 'react';
 import {FaRegUserCircle } from 'react-icons/fa';
 import {MobileHouseApi} from "helpers/axiosinstance";
 import {AiOutlineShoppingCart } from 'react-icons/ai';
+import {BsSearch } from 'react-icons/bs';
 import {Link} from "react-router-dom";
 import Login from './login';
 import UserRegister from './userRegister';
@@ -87,7 +88,7 @@ const Nav=(props)=>{
                                         
                             </Link>
                             <div className="relative sm:w-5/12 w-10/12 ">
-                                <input onChange={(e)=>searchProduct(e.target.value)} type="text" placeholder="search here" className=" px-2 w-full rounded h-8 text-sm  md:h-10 focus:outline-none border border-gray-300 "/>
+                                <input onChange={(e)=>searchProduct(e.target.value)} type="text" placeholder="search here" className=" hidden md:block px-2 w-full rounded h-8 text-sm  md:h-10 focus:outline-none border border-gray-300 "/>
                                 
                                 
                                 <div className={`${serachitemdis!=="" ? " absolute  top-10 z-20 max-h-96 w-96 bg-white shadow-xl rounded-lg p-2 flex flex-col overflow-y-scroll  ": "hidden"}`}>
@@ -118,16 +119,22 @@ const Nav=(props)=>{
                             </div>
                         </div>
                     </div>
-                    {/* <div className="space-x-4 md:space-x-6 xl:space-x-14 w-11/12  md:w-5/12  text-xs xs:text-sm md:text-lg  text-right md:text-left  p-3 sm:block hidden">
-                        <button className="focus:outline-none text-sm lg:text-md hover:text-red-500">HOME</button>
-                        <button className="focus:outline-none text-sm lg:text-md hover:text-red-500">ABOUT</button>
-                        <button className="focus:outline-none  text-sm lg:text-md hover:text-red-500">SERVICE</button>
-                        <button className="focus:outline-none  text-sm lg:text-md hover:text-red-500">CONTACT</button>
-                    </div> */}
+                  
                     <div className="w-2/12  space-x-5 flex justify-end md:justify-center">
-                            {/* <div>
-                                <button onClick={()=>{username==="Login/Signup" ? setloginstatus(true) : setlogout(!logout)}} className="flex hover:text-red-500 items-center relative focus:outline-none "><FaRegUserCircle className="mr-1 text-2xl  text-gray-700 font-light"/><h1 className="lg:block hidden">{username}</h1></button>
-                                {
+                             <button className=" block md:hidden focus:outline-none  "><BsSearch/></button>
+
+                            <div>
+                            
+                            {/* <Link className="     flex items-center py-1 hover:text-blue-500" to={{pathname: "/AboutUs"}}>About Us</Link> */}
+                            {
+                               username==="Login/Signup" ?
+
+                               <button onClick={()=> setloginstatus(true) } className="flex hover:text-red-500 items-center relative focus:outline-none "><FaRegUserCircle className="mr-1 text-2xl  text-gray-700 font-light"/><h1 className="lg:block hidden">{username}</h1></button>
+                               :
+                              <Link className="     flex items-center py-1 hover:text-blue-500" to={{pathname: "/Profile"}}><FaRegUserCircle className="mr-1 text-2xl  text-gray-700 font-light"/><h1 className="lg:block hidden">{username}</h1></Link> 
+                            }
+                                {/* <button onClick={()=>{username==="Login/Signup" ? setloginstatus(true) : setlogout(!logout)}} className="flex hover:text-red-500 items-center relative focus:outline-none "><FaRegUserCircle className="mr-1 text-2xl  text-gray-700 font-light"/><h1 className="lg:block hidden">{username}</h1></button> */}
+                                {/* {
                                 logout===true &&
                                     <div className="  absolute   z-20 shadow-lg  rounded-lg border border-gray-200  w-1/12 bg-white ">
                                          <button onClick={()=>{clearuser()}} className=" focus:outline-none   text-blue-600 px-2 font-bold py-2 w-full text-center hover:text-red-500 ">Profile</button>
@@ -135,8 +142,8 @@ const Nav=(props)=>{
                                         <button onClick={()=>{clearuser()}} className=" focus:outline-none r text-blue-600 px-2 font-bold py-2 w-full text-center hover:text-red-500 ">Log Out</button>
                                     </div>
 
-                                }
-                            </div> */}
+                                } */}
+                            </div>
                            
                             {/* <button onClick={()=>console.log("df")} className="flex items-center focus:outline-none "><AiOutlineShoppingCart className="mr-1 text-2xl text-gray-700  font-light"/><h1 className="lg:block hidden">Cart</h1></button> */}
                             <Link to="/cart" className="flex items-center focus:outline-none"><AiOutlineShoppingCart className="mr-1 text-2xl text-gray-700  font-light"/><h1 className="md:block hidden">Cart</h1></Link>

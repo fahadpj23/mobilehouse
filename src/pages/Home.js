@@ -7,7 +7,7 @@ import React, { useState,useEffect ,useContext} from 'react';
 import ProductSlider from "../components/Home/productSlick";
 import {AuthContext} from '../helpers/authcontext'
 import HomeAds from "components/Home/HomeAds";
-
+import MainLayoutWebsite from "components/MainLayoutWebsite";
 import Footer from "components/Home/Footer";
 function Home() {
  
@@ -49,9 +49,9 @@ function Home() {
     <div>
   
         
-        
+    <MainLayoutWebsite>
       <div className= "w-full overflow-hidden space-y-6 ">
-        <Nav/>
+       
         {
           Banner &&
           <SimpleSlider
@@ -108,6 +108,7 @@ function Home() {
        
         
       </div>
+      </MainLayoutWebsite>
       </div>
   );
 }

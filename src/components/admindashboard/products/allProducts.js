@@ -7,6 +7,7 @@ import TableContent from "../table";
 import { Usercontext } from "../../context/userContext";
 import NavOperation from '../operation'
 import MainLayoutAdmin from '../MainLayoutAdmin'
+import UploadSpinner from "../uploadstatus";
 const AllProduct=(props)=>{
     const context=useContext(Usercontext )
     const[addproduct,setaddproduct]=useState(false)
@@ -14,7 +15,7 @@ const AllProduct=(props)=>{
     const [operation,setoperation]=useState("")
     const[operationitem,setoperationitem]=useState("")
     const[operationid,setoperationid]=useState("")
-   
+    const [uploadstatus,setuploadstatus]=useState(false)
     let productImageblob=["","","","",""]
     let productImage=["","","","",""]
     const closeProductadd=()=>{
@@ -24,102 +25,78 @@ const AllProduct=(props)=>{
         setoperationitem("")
     }
 
-    const tableOperation=(operation,item)=>{
+    // const tableOperation=(operation,item)=>{
         
-        if(operation=="delete")
-        {
-            console.log(item)
-            MobileHouseApi.delete('/productDelete',{params:{productId:item.id},headers:{accessToken:localStorage.getItem("accessToken")}})
-            .then((res)=>{
-                if(res.data.success)
-                {
-                    context.notify(res.data.success,"success")
-                    
-                   
-                }
+    //     if(operation=="delete")
+    //     {
+    //         if(window.confirm("Delete the product")==true)
+    //         {
+    //         MobileHouseApi.delete('/productDelete',{params:{productId:item.id},headers:{accessToken:localStorage.getItem("accessToken")}})
+    //         .then((res)=>{
+    //             if(res.data.success)
+    //             {
+    //                 context.notify(res.data.success,"success")
+    //                 MobileHouseApi.get('/getProduct',{headers:{accessToken:localStorage.getItem("accessToken")}})
+    //                 .then((res)=>{
+    //                     setproduct(res.data)
+    //                 })
+    //             }
         
-            })
-        }
-        else
-        {
-            MobileHouseApi.get('/productdetails',{params:{productId:item.id},headers:{accessToken:localStorage.getItem("accessToken")}})
-            .then((res)=>{
-                setoperationitem(res.data)
-                setoperation(operation)
+    //         })
+    //         }
+    //     }
+    //     else
+    //     {
+    //         setuploadstatus(true)
+    //         MobileHouseApi.get('/productdetails',{params:{productId:item.id},headers:{accessToken:localStorage.getItem("accessToken")}})
+    //         .then((res)=>{
+    //             setoperationitem(res.data)
+    //             setoperation(operation)
             
-                setoperationid(item.id)
-                setaddproduct(true)
-          
-        
-            })
-        }      
+    //             setoperationid(item.id)
+    //             setaddproduct(true)
+    //             setuploadstatus(false)
+    //         })
+            
+    //     }      
       
-    }
-
-    // const SearchTable=(searchval)=>{
-    //     MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:searchval},headers:{accessToken:localStorage.getItem("accessToken")}})
-    //     .then((res)=>{
-    //         setproduct(res.data)
-    //     })
     // }
 
-
-    const productAddSuccess=()=>{
-        setaddproduct(false)
-        setoperationid("")
-        setoperation("")
-        setoperationitem("")
-        // window.location.reload(false);
-        
-    }
-
-    const AddNew=()=>{
-        setaddproduct(true)
-    }
-
+    useEffect(()=>{
+        if(props.operationitem)
+        {
+            MobileHouseApi.get('/productdetails',{params:{productId:props.operationitem.id},headers:{accessToken:localStorage.getItem("accessToken")}})
+            .then((res)=>{
+                setoperationitem(res.data)
+                
+                
+            })
+        }
+    },[])
   
-   
+ 
     
     return(
-        <div className="w-full flex h-screen ">
-            {
-                addproduct==true && 
-                <div className='w-full fixed bg-gray-200 h-screen opacity-100 flex items-center justify-center  z-20  '>
+      
+                <div className='w-screen fixed bg-gray-200 h-screen opacity-100 flex items-center justify-center  z-50  '>
                      <AddProductMain
                         closeProductadd={closeProductadd}
-                        productAddSuccess={productAddSuccess}
-                        operation={operation}
+                        AddSucess={props.AddSucess}
+                        operation={props.operation}
                         operationitem={operationitem}
-                        operationid={operationid}
+                        operationid={props.operationitem.id}
                          productImageblob={productImageblob}
                          productImage={productImage}
-                         controller={props.controller}
+                         AddWindowClose={props.AddWindowClose}
                       
                      />
                 </div>
 
                
-            }
-             <MainLayoutAdmin>
-                
-              
-               
-                <div className=' '>
-                   
-                        <TableContent
-                      
-                        tableOperation={tableOperation}
-                        type="product"
-                        controller={props.controller}
-                        AddNew={AddNew}
-                      
-                        />
-                        
-                </div>
-               
-                </MainLayoutAdmin>
+            
+            
     
-        </div>
+      
     )
 }
 export default AllProduct

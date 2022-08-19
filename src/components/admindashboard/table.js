@@ -5,8 +5,15 @@ import TableOperation from './tableOperation'
 import { MobileHouseApi } from "axiosinstance";
 import NavOperation from "./operation";
 const TableContent=(props)=>{
-  
+    let headarray=[];
+    
     const[TableData,setTableData]=useState("")
+    const[operation,setoperation]=useState("")
+    const[operationitem,setoperationitem ]=useState("")
+   
+   
+    const[AddNewstatus,setAddNewstatus]=useState(false)
+ console.log(props)
     
     const[reload,setreload]=useState(false)
     
@@ -19,13 +26,34 @@ const TableContent=(props)=>{
         })
     }
     
+    const AddSucess=()=>{
+        setAddNewstatus(false)
+        MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:""},headers:{accessToken:localStorage.getItem("accessToken")}})
+        .then((res)=>{ 
+            setTableData(res.data)
+            
+        }) 
+    }
 
+    //to Close Add Window
+    const AddWindowClose=()=>{
+        setAddNewstatus(false)
+    }
 
-    console.log(TableData)
+    const tableOperation=(operation,EditData)=>{
+        console.log("ds")
+        setoperation(operation)
+        setoperationitem(EditData)
+        setAddNewstatus(true)
+    }
+
+  
     useEffect(()=>{
         
+           
         if(TableData=="")
         {
+           
             MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:""},headers:{accessToken:localStorage.getItem("accessToken")}})
             .then((res)=>{ 
                 setTableData(res.data)
@@ -37,12 +65,18 @@ const TableContent=(props)=>{
             setreload(false)
         }
     },[reload,TableData])
-
+    console.log(TableData)
     return(
         <div className="px-2 h-full    w-full overflow-auto">
               <NavOperation
-                 AddNew={props.AddNew}
-                 setTableData={setTableData}
+                 controller={props.controller}
+                 AddSucess={AddSucess}
+                 setAddNewstatus={setAddNewstatus}
+                 AddNewstatus={AddNewstatus}
+                 operation={operation}
+                 operationitem={operationitem}
+                 AddWindowClose={AddWindowClose}
+                 
                 />
             <div className=" pb-2 w-full flex justify-between mt-1">
                 <h1 className="border border-gray-500 w-20 py-1 rounded text-center "><span className="font-semibold">All </span> <span className="font-semibold text-green-600">{TableData && TableData.Data.length} </span></h1>
@@ -81,9 +115,21 @@ const TableContent=(props)=>{
 
                                                 </td>
                                             :
+
+                                            (item1=="status" && props.order) ?
+                                                <td>
+                                                    <select onChange={(e)=>props.DeliveryStatus(e.target.value,item)}  defaultValue={item.status} className="border border-gray-300 focus:outline-none rounded p-1">
+                                                        <option value="1">Pending</option>
+                                                        <option value="2">Packed</option>
+                                                        <option value="3">Delivered</option>
+                                                        <option value="4">Received</option>
+                                                    </select>
+                                                </td>
+                                            :
+
                                              //when show multiple values like catgeory atribute then column width specify 
                                             <td className ={`${ item1=="values" ? "  w-5/12" : "text-center"}`} key={key}>
-                                                <h1 className={`${ item1=="values" && "  break-words"}`}>{ item1=="values" ? item[item1].toString() : item1=="status"? item.status==1 ? "active" : "disable" : item[item1]} </h1> </td>
+                                                <h1 className={`${ item1=="values" && "  break-words"}`}>{ item1=="values" ? item[item1].toString() :  item1=="status"? item.status==1 ? "active" : "disable" : item[item1]} </h1> </td>
                                         )   
                                     }
                                 })
@@ -92,12 +138,15 @@ const TableContent=(props)=>{
                             
                             <td className="pt-1" >
                             <TableOperation
+                                controller={props.controller}
                                 item={item}
-                                tableOperation={props.tableOperation}
+                                tableOperation={tableOperation}
                                 type={props.type}
                                 setTableData={setTableData}
+                              
                             
                             />
+                           
                                 
                                     
                             

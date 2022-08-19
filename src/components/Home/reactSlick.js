@@ -72,7 +72,7 @@ function SamplePrevArrow(props) {
           settings: {
             infinite: true,
             speed: 500,
-            slidesToShow: 2.7,
+            slidesToShow: 5.7,
             slidesToScroll: 1,
             className: 'relative ',
             swipeToSlide: true,
@@ -85,7 +85,7 @@ function SamplePrevArrow(props) {
           settings: {
             infinite: true,
             speed: 500,
-            slidesToShow: 2.1,
+            slidesToShow: 3.5,
             slidesToScroll: 1,
             className: 'relative ',
             swipeToSlide: true,

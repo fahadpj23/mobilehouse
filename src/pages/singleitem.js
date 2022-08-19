@@ -2,6 +2,7 @@ import React, { useState,useEffect } from 'react';
 import {MobileHouseApi} from "helpers/axiosinstance";
 import SingleItemMain from '../components/SingleItemMain/SingleItemMain'
 import { useHistory } from 'react-router-dom';
+import MainLayoutWebsite from 'components/MainLayoutWebsite';
 const SingleItem=(props)=>{
    
 
@@ -130,15 +131,17 @@ const SingleItem=(props)=>{
    
     return(
         <div className="">
-           
-            {singleitem &&<SingleItemMain
-             singleitem={singleitem}
-             relateditems={relateditems}
-             variants={variants}
-             singleitemset={singleitemset}
-             categoryVariant={categoryVariant}
-            /> }
+           <MainLayoutWebsite>
+                {singleitem &&<SingleItemMain
+                singleitem={singleitem}
+                relateditems={relateditems}
+                variants={variants}
+                singleitemset={singleitemset}
+                categoryVariant={categoryVariant}
+                /> }
+            </MainLayoutWebsite>
         </div>
+
     )
 }
 export default SingleItem

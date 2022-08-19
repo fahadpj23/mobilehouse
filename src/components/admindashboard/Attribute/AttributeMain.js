@@ -43,11 +43,11 @@ const AttributeMain=(props)=>{
         .then((res)=>{
          if(res.data.error)
          {
-                context.notify(res.data.error)
+                context.notify(res.data.error,"error")
          }
          else
          {
-            context.notify(res.data.success)
+            context.notify(res.data.success,"success")
             setaddattribute(false)
             setoperationid("")
             setoperation("")
@@ -98,10 +98,10 @@ const AttributeMain=(props)=>{
            
  console.log(operationitem)
     return(
-        <div className="flex w-full h-screen overflow-auto z-20">
+        <div className="flex w-screen h-screen overflow-auto z-50">
              {
                     addattribute===true && 
-                    
+                    <div className='w-screen fixed bg-gray-200 h-screen opacity-100 flex items-center justify-center  z-50  '>
                                         <FormLayout
                                             formdata={addformdata}
                                             handleSubmit={handleSubmit}
@@ -113,6 +113,7 @@ const AttributeMain=(props)=>{
                                             close={closeWindow}
                                             head="Attribute"
                                         />
+                    </div>
                                     
                                    
                 }

@@ -20,6 +20,7 @@ const HeadingMain=(props)=>{
  
     const[editData,seteditData]=useState("")
     const[status,setstatus]=useState(1)
+    const[HeadData,setHeadData]=useState("")
     
    
     const Headingvalues=[];
@@ -74,11 +75,11 @@ const HeadingMain=(props)=>{
           if(res.data.success)
           {
             setaddHeading(false )
-            context.notify(res.data.success)
-            // MobileHouseApi.get('/getHead',{headers:{accessToken:localStorage.getItem("accessToken")}})
-            // .then((res)=>{
-            // setHeadData(res.data)
-            // })
+            context.notify(res.data.success,"success")
+            MobileHouseApi.get('/getHead',{headers:{accessToken:localStorage.getItem("accessToken")}})
+            .then((res)=>{
+            setHeadData(res.data)
+            })
 
           }
         })
@@ -92,7 +93,7 @@ const HeadingMain=(props)=>{
         <div className="flex w-full h-screen overflow-auto z-20 relative">
             {
                     addHeading===true && 
-                      <div className="w-full z-20 absolute left-0 right-0">
+                    <div className='w-screen fixed bg-gray-200 h-screen opacity-100 flex items-center justify-center  z-50  '>
                                   <HeadProductAdding
                                     headproduct={props.headproduct}
                                     setHeading={setHeading}

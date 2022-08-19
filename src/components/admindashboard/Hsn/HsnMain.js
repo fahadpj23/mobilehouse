@@ -49,11 +49,11 @@ const HsnMain=(props )=>{
         .then((res)=>{
          if(res.data.error)
          {
-                context.notify(res.data.error)
+                context.notify(res.data.error,"error")
          }
          else
          {
-            context.notify(res.data.success)
+            context.notify(res.data.success,"success")
             setaddHsn(false)
             setoperationid("")
             setoperation("")
@@ -93,7 +93,7 @@ const HsnMain=(props )=>{
         <div className="flex w-full h-screen overflow-auto z-20">
              {
                     addHsn===true && 
-                      
+                        <div className='w-screen fixed bg-gray-200 h-screen opacity-100 flex items-center justify-center  z-50  '>
                                         <FormLayout
                                             formdata={addformdata}
                                             handleSubmit={handleSubmit}
@@ -106,6 +106,7 @@ const HsnMain=(props )=>{
                                             head="HSN"
                                            
                                         />
+                        </div>
                                     
                                   
                 }

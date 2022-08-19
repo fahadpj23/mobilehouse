@@ -69,7 +69,7 @@ const AdsMain=(props)=>{
                         {
                             setaddAds(false)
                             props.AdsImageArray.length=0;
-                            context.notify(res.data.success) 
+                            context.notify(res.data.success,"success") 
                             MobileHouseApi.get('/getAdsData',{headers:{accessToken:localStorage.getItem("accessToken")}})
                             .then((res)=>{
                             setAds(res.data)
@@ -116,7 +116,7 @@ const AdsMain=(props)=>{
         <div className="flex w-full h-screen overflow-auto relative ">
             {
                     addAds===true && 
-                                <div className="w-full z-20 absolute left-0 right-0">
+                    <div className='w-screen fixed bg-gray-200 h-screen opacity-100 flex items-center justify-center  z-50  '>
                                   <AdsAdd
                                      AdsImageArray={props.AdsImageArray}
                                      addAds={addAds}

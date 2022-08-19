@@ -1,9 +1,10 @@
 
 import Nav from "components/Home/Nav"
+import MainLayoutWebsite from "components/MainLayoutWebsite";
 const PrivacyPolicy=()=>{
     return(
             <div >
-                <Nav/>
+                 <MainLayoutWebsite>
                 <div className="flex justify-center py-5">
                 <div className="w-7/12 space-y-5">
 
@@ -112,6 +113,7 @@ const PrivacyPolicy=()=>{
 
                 </div>
                 </div>
+                </MainLayoutWebsite>
      </div>
     )
 }

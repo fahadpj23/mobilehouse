@@ -1,6 +1,4 @@
-import { ImTruck } from 'react-icons/im';
-import { IoMdCash } from 'react-icons/io';
-import {AiOutlineWhatsApp } from 'react-icons/ai';
+
 
 import {Link} from "react-router-dom";
 import axios from 'axios'
@@ -8,7 +6,7 @@ import { Usercontext } from '../context/userContext';
 import {useContext} from 'react'
 import React, { useState } from 'react';
 import ProductSlider from '../Home/productSlick'
-import Nav from 'components/Home/Nav';
+import { MobileHouseApi } from "helpers/axiosinstance";
 
 const SingleItemMain=(props)=>{
  
@@ -56,6 +54,9 @@ const SingleItemMain=(props)=>{
     
     console.log(props.variants)
 
+    const AddCart=(item)=>{
+        context.addtocart(item,productImage[0])
+    }
     const checkpincode=()=>{
         axios.get(`http://localhost:9000/pincodecheck`,{params: { pincodeno: pincode}})
         
@@ -72,11 +73,13 @@ const SingleItemMain=(props)=>{
           
           })  
     }
-    
+
+
+        console.log(localStorage.getItem('UserName'))
     return(
         <div className="">
             
-            <Nav/>
+          
                         <div className="w-full flex justify-center">
                             <div className="w-11/12 md:flex  mt-5 ">
                                 <div className="w-full md:w-5/12  flex-col space-y-4 ">
@@ -96,13 +99,18 @@ const SingleItemMain=(props)=>{
                                     {
                                             
                                             context.cart.find(item1 => item1.id === item.id)==undefined ?
-                                                <button onClick={()=>context.addtocart(item)} className=" w-full rounded font-semibold text-white md:text-base text-sm bg-yellow-400 py-2 md:py-3">Add to Cart+</button>
+                                                <button onClick={()=>localStorage.getItem('UserName') ?  context.userCart(item)  : AddCart(item) } className=" w-full rounded font-semibold text-white md:text-base text-sm bg-yellow-400 py-2 md:py-3">Add to Cart+</button>
                                             :
                                                 <button  className="  w-full rounded font-semibold text-white md:text-base text-sm bg-yellow-400 py-2 md:py-3">GO TO CART</button>
     
                                         } 
                                         {/* <button onClick={()=>context.addtocart(item)} className="w-full rounded font-semibold text-white md:text-base text-sm bg-yellow-400 py-2 md:py-3">ADD TO CART</button> */}
-                                        <Link     to={{pathname: "/Address",   search: "?" + new URLSearchParams({productId:item.id,orderqty:qty}).toString(),state:{checkout:"single"} }} className="w-full md:text-base text-sm rounded font-semibold flex justify-center focus:outline-none text-white bg-primary py-2 md:py-3 ">ORDER NOW</Link>
+                                        {item.maxqty<1 ?
+
+                                            <button onClick={()=>context.notify("product is out of stock","warning")}  className="w-full md:text-base text-sm rounded font-semibold flex justify-center focus:outline-none text-white bg-primary py-2 md:py-3 ">ORDER NOW   </button>
+                                            :
+                                            <Link     to={{pathname: "/Address",   search: "?" + new URLSearchParams({productId:item.id,orderqty:qty}).toString(),state:{checkout:"single"} }} className="w-full md:text-base text-sm rounded font-semibold flex justify-center focus:outline-none text-white bg-primary py-2 md:py-3 ">ORDER NOW</Link>
+                                        }
                                         {/* <a className='bg-green-600 w-full flex items-center justify-center space-x-1 rounded py-3' href={`https://wa.me/+919745286899?text=${document.location.href}`} target="_blank"><h1><AiOutlineWhatsApp className='text-white text-2xl'/></h1><h1 className="text-white ">Whatsapp Now</h1></a> */}
                                     </div>
                                     
@@ -114,6 +122,7 @@ const SingleItemMain=(props)=>{
                                         <div className="mt-10 space-y-1">
                                             <h1 className="text-base md:text-xl font-semibold tracking-normal md:tracking-wider ">{item.name} </h1>
                                             <h1 className='space-x-2'><span className="text-lg md:text-2xl font-bold text-green-600  ">₹{  item.salesPrice!=0 ? item.salesPrice :  item.sellingPrice}.00</span><span className="line-through ml-3 text-sm md:text-lg font-semibold text-gray-500">₹{item.mrp}.00</span><span className=' font-bold text-red-500'> { Math.floor(((((+item.mrp)-(item.salesPrice!=0 ? +item.salesPrice :  +item.sellingPrice))/ +item.mrp)*100).toFixed(2))}% Off</span></h1>
+                                            <h1 className='text-red-500 font-semibold'>{item.maxqty<1 && "Out of Stock"}</h1>
                                             {/* <h1 className="flex items-center bg-green-500 w-8/12 py-2  text-white rounded px-2"><span ><ImTruck className=""/></span><span className="font-semibold ml-1 "> Free Shipping </span><span className="text-sm ml-1">  & Inclusive of all taxes</span></h1> */}
                                            
                                            

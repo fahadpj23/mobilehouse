@@ -29,6 +29,7 @@ import PrivacyPolicy from 'pages/PrivacyPolicy';
 import RefundPolicy from 'pages/RefundPolicy';
 import ShippingPolicy from 'pages/ShipplingPolicy';
 import AboutUs from 'pages/AboutUs';
+import Profile from 'pages/profile';
 function App(){
     const[ authState, setAuthState ]=useState("")
     const[ UserauthState, setUserAuthState ]=useState("")
@@ -113,7 +114,7 @@ function App(){
                                     <Route  path="/admin/Attribute" component={Attribute}/>
                                     <Route  path="/admin/category" component={Category}/>
                                     <Route  path="/ProductList" component={ProductList}/>
-                                    <Route  path="/admin/OrderSuccess" component={OrderSuccess}/>
+                                    <Route  path="/OrderSuccess" component={OrderSuccess}/>
                                     <Route  path="/admin/Purchase" component={Purchase}/>
                                     <Route  path="/admin/Supplier" component={Supplier}/>
                                     <Route  path="/admin/Hsncode" component={Hsncode}/>
@@ -125,6 +126,7 @@ function App(){
                                     <Route  path="/RefundPolicy" component={RefundPolicy}/>
                                     <Route  path="/ShippingPolicy" component={ShippingPolicy}/>
                                     <Route  path="/AboutUs" component={AboutUs}/>
+                                    <Route  path="/Profile" component={Profile}/>
                                    
                                    
 

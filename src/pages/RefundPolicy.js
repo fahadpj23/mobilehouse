@@ -1,8 +1,9 @@
 import Nav from "components/Home/Nav";
+import MainLayoutWebsite from "components/MainLayoutWebsite";
 const RefundPolicy = () => {
   return (
     <div>
-      <Nav />
+       <MainLayoutWebsite>
       <div className="flex justify-center py-5">
         <div className="w-7/12 space-y-5">
           <h1 className="text-xl font-semibold">REFUND POLICY Returns</h1>
@@ -136,6 +137,7 @@ const RefundPolicy = () => {
           </div>
         </div>
       </div>
+      </MainLayoutWebsite>
     </div>
   );
 };

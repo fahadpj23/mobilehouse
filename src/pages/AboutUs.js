@@ -1,9 +1,9 @@
 import Nav from "components/Home/Nav";
-
+import MainLayoutWebsite from "components/MainLayoutWebsite";
 const AboutUs = () => {
   return (
     <div>
-      <Nav />
+        <MainLayoutWebsite>
       <div className="flex justify-center py-5">
         <div className="w-8/12  space-y-4">
           <h1 className="font-bold text-xl">ABOUT US </h1>
@@ -37,6 +37,7 @@ const AboutUs = () => {
           </div>
         </div>
       </div>
+      </MainLayoutWebsite>
     </div>
   );
 };

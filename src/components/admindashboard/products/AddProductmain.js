@@ -2,6 +2,7 @@ import { useState ,useEffect,useContext} from "react"
 import { Usercontext } from "../../context/userContext";
 import AddProductWindow from "./addProductWindow"
 import { AiOutlineClose} from 'react-icons/ai';
+import UploadSpinner from "../uploadstatus";
 import { useHistory } from 'react-router-dom';
 import SideNav from "../sideNav"
 import {MobileHouseApi} from "helpers/axiosinstance"
@@ -15,6 +16,7 @@ const AddProductMain=(props)=>{
     const [categoryid, setcategoryid] = useState(props.operationitem.category ?? "")
     const [catgeorytotal, setcatgeorytotal] = useState("")
     const [categoryattribute,setcategoryattribute]=useState("")
+    const [uploadstatus,setuploadstatus]=useState(false)
    
     const [categoryset,setcategoryset]=useState(false)
 
@@ -36,7 +38,7 @@ const AddProductMain=(props)=>{
 
   
     const handleSubmit=(e)=>{
-       
+        setuploadstatus(true)
         const data=new FormData(e.target)
         data.append("category",category)
         data.append("categoryid",categoryid)
@@ -56,12 +58,15 @@ const AddProductMain=(props)=>{
         .then((res)=>{
          if(res.data.error)
          {
-                context.notify(res.data.error)
+                context.notify(res.data.error,"error")
+                setuploadstatus(false)
          }
          else
          {
             context.notify("Product added successfully","success")
-          props.productAddSuccess()
+            setuploadstatus(false)
+             props.AddSucess()
+
 
          }
         })
@@ -79,12 +84,12 @@ const AddProductMain=(props)=>{
         if( props.operationitem && categoryset===false)
         {
             let imageArray
-            let positions=props.operationitem.imagepositions.split(';')
+            let positions=props.operationitem.imagepositions && props.operationitem.imagepositions.split(';')
             let imageposset=0
             console.log(positions)
             if(props.operationitem.image)
              {
-                imageArray=props.operationitem.image.split(';')
+                imageArray=props.operationitem.image && props.operationitem.image.split(';')
              }
             imageArray && imageArray.map((item,key)=>{
                 console.log(+positions[imageposset])
@@ -99,14 +104,19 @@ const AddProductMain=(props)=>{
         }
            
     })
-    console.log(catgeorytotal)
+    console.log(uploadstatus)
     return(
         <div className=" w-full flex  max-h-fixedNoNavlgmax overflow-auto justify-end md:justify-center  ">
        
+       {
+        uploadstatus==true && 
+            <UploadSpinner/>
+ 
+       }
         <div className="w-10/12 lg:w-6/12 bg-white z-20 h-full flex relative justify-center py-16 mr-5">
         
         <div className="w-10/12  flex flex-col justify-center items-center ">
-        <button onClick={()=>props.closeProductadd()} className=" absolute right-4 top-3 font-semibold text-xl"><AiOutlineClose/></button>
+        <button onClick={()=>props.AddWindowClose()} className=" absolute right-4 top-3 font-semibold text-xl"><AiOutlineClose/></button>
             <div className="w-full  ">
                 
                 <div className="space-y-1">

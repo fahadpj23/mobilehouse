@@ -8,7 +8,7 @@ const ProductListMain=(props)=>{
    
     return(
         <div className="">
-            <Nav/>
+            
             <div className="p-2 md:p-5">
                 <div className="flex justify-end w-full">
                     <select defaultValue={props.sort} onChange={(e)=>props.SortSelect(e.target.value)} className="border  border-gray-400 rounded-lg px-2 text-sm font-semibold py-1 focus:outline-none  ">

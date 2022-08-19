@@ -1,83 +1,59 @@
-
-import React, { useState,useEffect,useContext } from 'react';
-import { useHistory } from 'react-router-dom';
-import  { MobileHouseApi } from "../../../axiosinstance";
-import SideNav from "../sideNav";
-import { AuthContext } from "../../../helpers/authcontext";
-const OrderMain=()=>{
-    let history=useHistory();
-    let auth=useContext(AuthContext)
-    const [orderitems, setorderitems] = useState("")
-useEffect(() => {
-        if(auth!="")
-        {
-            if(auth.authState!="authorized")
-            {
-                history.push("/admin")
-            }
-            else
-            {
-                MobileHouseApi.get(`orderdetails`)  
-                .then(res=>{
-                   
-                     setorderitems(res.data)
-                  
-                  
-                  })  
-            }
-        }
-           
+import SideNav from "../sideNav"
+import TableContent from "../table";
+import { useState ,useEffect,useContext} from "react"
+import {MobileHouseApi} from "helpers/axiosinstance";
+import MainLayoutAdmin from "../MainLayoutAdmin";
+const OrderMain=(props)=>{
+   
+    const [OrderDetail, setOrderDetail] = useState("")
     
-}, [])
+    //function for set delivery status
+    const DeliveryStatus=(deliveryStatus,Orderdet)=>{
+        console.log(Orderdet)
+        const formData = new FormData();
+        formData.append('orderid',Orderdet.orderid)
+        formData.append('status',deliveryStatus)
+      
+        MobileHouseApi.post('/DeliveryStatusUpdate',formData,{headers:{accessToken:localStorage.getItem("accessToken")}})
+        .then((res)=>{
+           console.log(res.data)
+        })
+       
+    }       
+      useEffect(()=>{
+        if(OrderDetail==="")
+        {
+            MobileHouseApi.get('/getOrder',{headers:{accessToken:localStorage.getItem("accessToken")}})
+            .then((res)=>{
+             setOrderDetail(res.data)
+            })
+        }
+       
 
+      },[])
 
+   
     return(
-        <div className="flex">
-        {orderitems!=="" &&
-        <div className="flex w-full">
-        <SideNav/>
-        <div className="w-9/12 lg:w-10/12 overflow-auto">
-        <div className="ml-6">
-            <h1 className="text-2xl  text-green-500 font-semibold">Orders</h1>
-            <table className="min-w-full mt-5">
-                <tr>
-                    <th>Sl NO</th>
-                    <th>Order ID</th>
-                    <th>Customer</th>
-                    <th>Item ID</th>
-                    <th>Order Item</th>
-                    <th>qty</th>
-                    <th>Order Date</th>
-                    <th>Price</th>
-                    <th>Total</th>
-                    <th>Deliver Status</th>
-
-                </tr>
-                {
-                     orderitems.map((item,key)=>{
-                        return(
-                            <tr className="text-center">
-                                <td>{key+1}</td>
-                                <td>{item.orderid}</td>
-                                <td>{item.customername}</td>
-                                <td>{item.productid}</td>
-                                <td>{item.productname}</td>
-                                <td>{item.qty}</td>
-                                <td>{item.date}</td>
-                                <td>{item.price}</td>
-                                <td>{item.total}</td>
-                                <td>pending</td>
-                             </tr>
-                        )
-                    })
-                }
+        <div className="flex w-full h-screen overflow-auto z-20">
+           
+              <MainLayoutAdmin>
+           
                 
-            </table>
-        </div>
-        </div>
-        </div>}
-    </div>
-        
+                <div className="mt-10">
+                    {
+                        OrderDetail &&
+                        <TableContent
+                            Data={OrderDetail}
+                            order="order"
+                            DeliveryStatus={DeliveryStatus}
+                            
+
+                        />
+                    }
+                </div>
+                
+              </MainLayoutAdmin>
+    </div>   
     )
 }
 export default OrderMain
