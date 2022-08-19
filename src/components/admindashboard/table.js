@@ -6,12 +6,13 @@ import TableOperation from './tableOperation'
 const TableContent=(props)=>{
     let headarray=[];
     const[operationsview,setoperationsview]=useState(false)
+    const[TableData,setTableData]=useState(props.Data ??"")
  console.log(props)
     
     return(
         <div className="px-2 h-full    w-full overflow-auto">
             <div className=" pb-2 w-full">
-                <h1 className="border border-gray-500 w-20 py-1 rounded text-center "><span className="font-semibold">All </span> <span className="font-semibold text-green-600">{props.Data.Data.length} </span></h1>
+                <h1 className="border border-gray-500 w-20 py-1 rounded text-center "><span className="font-semibold">All </span> <span className="font-semibold text-green-600">{TableData.Data.length} </span></h1>
             </div>
             <div className="h-fixedNoNavlg6  w-full overflow-auto">
             <table className="w-full mt-5   ">
@@ -20,7 +21,7 @@ const TableContent=(props)=>{
                 <tr className=" bg-gray-100   sticky -top-1" >
                     {
                     
-                    props.Data.TableHead && props.Data.TableHead.map((item,key)=>
+                    TableData.TableHead && TableData.TableHead.map((item,key)=>
                         <th className="text-xs font-medium capitalize md:text-base px-3 py-3  " key={key}>{item}</th>
                     )
                     }
@@ -29,12 +30,12 @@ const TableContent=(props)=>{
                     
                 </tr>
                 {
-                    props.Data.Data && props.Data.Data.map((item,key)=>{
+                    TableData.Data && TableData.Data.map((item,key)=>{
                         return(
                             <tr key={key} className="text-center text-xs md:text-sm border-b border-gray-300">
                             <td className="py-2  truncate">{key+1}</td>
                             {
-                                props.Data.TableHead.map((item1,key)=>{
+                                TableData.TableHead.map((item1,key)=>{
                                     // check key!=0 bacuse table column need slno
                                     if(key!=0)
                                     {
