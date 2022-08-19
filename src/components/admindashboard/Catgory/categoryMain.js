@@ -16,7 +16,7 @@ const CategoryMain=(props)=>{
     const[attribute,setattribute]=useState("")
     console.log(props.operationitem)
     const values=props.operationitem.values;
-    let variantvalues=[]
+    let variantvalues=props.operationitem.variants
     const  addformdata=[
       {name:"categoryName",type:"text",required:"true"},
        {name:"status",type:"select",value:[{value:1,name:"active"},{value:0,name:"disable"}],required:"true"},
@@ -59,35 +59,7 @@ const CategoryMain=(props)=>{
 
    
 
-    //   const tableOperation=(operation,operationCategory)=>{
-    //     console.group(operation)
-    //     if(operation=="delete")
-    //     {
-    //       // window.confirm(`delete ${operationCategory.categoryName} `)
-    //         MobileHouseApi.delete('/CategoryDelete',{params:{categoryId:operationCategory.id},headers:{accessToken:localStorage.getItem("accessToken")}})
-    //         .then((res)=>{
-    //           console.log(res.data)
-    //         })
-    //     }
-    //     else
-    //     {
-    //       MobileHouseApi.get('/getCategoryVariant',{params:{categoryId:operationCategory.id},headers:{accessToken:localStorage.getItem("accessToken")}})
-    //       .then((res)=>{
-    //         console.log(res.data)
-    //             setvariants(res.data.categoryvariant)
-    //             setoperationid(operationCategory.id)
-    //             setoperationitem(operationCategory)
-    //             setoperation(operation)
-    //             setaddcategory(true)
-              
-           
-    //       })       
-        
-          
-        
 
-    //     }
-    // }
     useEffect(()=>{
       if(attribute=="")
       {
@@ -99,6 +71,7 @@ const CategoryMain=(props)=>{
           setattribute(res.data.attribute)
        
         }
+       
       })
       }
     },[attribute])
@@ -119,6 +92,7 @@ const CategoryMain=(props)=>{
                                             AddWindowClose={props.AddWindowClose}
                                             variantvalues={variantvalues}
                                             head="Category"
+                                           
                                            
                                         />
                     </div>              

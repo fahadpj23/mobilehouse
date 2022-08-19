@@ -15,7 +15,7 @@ const FormLayout=(props)=>{
     // const [searchValue,setsearchValue]=useState("")
     // const [products,setproducts]=useState("")
     const imageref=useRef()
-    console.log(props.formdata )
+    console.log(props )
 
     // input id get as parameter in addvalue function and set value to tagIdvalue
     const addvalue=(tagId)=>{
