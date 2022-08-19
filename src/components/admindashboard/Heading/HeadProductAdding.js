@@ -46,29 +46,29 @@ const HeadProductAdding=(props)=>{
   
    }
 
-   useEffect(()=>{
-        if(props.editData && editDataset==false)
-        {
-            props.headproduct.length=0;
-            console.log(props.editData)
-            props.setHeading(props.editData.Heading)
-            props.setstatus(props.editData.status)
-            props.editData.products && props.editData.products.map((item,key)=>{
+//    useEffect(()=>{
+//         if(props.editData && editDataset==false)
+//         {
+//             props.headproduct.length=0;
+//             console.log(props.editData)
+//             props.setHeading(props.editData.Heading)
+//             props.setstatus(props.editData.status)
+//             props.editData.products && props.editData.products.map((item,key)=>{
                 
-                props.headproduct.push(item)
+//                 props.headproduct.push(item)
                 
-            })
-            console.log(props.headproduct)
-            seteditDataset(true)
-        }
-   },[editDataset])
-   console.log(props.headproduct)
-   console.log(props.status)
+//             })
+//             console.log(props.headproduct)
+//             seteditDataset(true)
+//         }
+//    },[editDataset])
+//    console.log(props.headproduct)
+//    console.log(props.status)
     return(
         <div className="w-full h-full flex items-center bg-opacity-95 justify-center bg-gray-100 fixed top-0">
                 <div className="flex flex-col w-11/12 md:w-7/12 h-4/5 bg-white justify-between p-5 overflow-auto">
                     <div className="space-y-3 relative">
-                         <button onClick={()=>props.setaddHeading(false)} className="absolute right-1 top-1 focus:outline-none"><AiOutlineClose/></button>
+                         <button onClick={()=>props.AddWindowClose()} className="absolute right-1 top-1 focus:outline-none"><AiOutlineClose/></button>
                         <div className="md:flex md:space-x-3 space-y-3 md:space-y-0 pt-5 md:pt-0">
                             <input onChange={(e)=>props.setHeading(e.target.value)} value={props.Heading} type="text" className="w-full md:w-4/12 py-1  px-1 focus:outline-none border border-gray-400 rounded" placeholder="Heading"/>
                             <div className="flex space-x-2 items-center">

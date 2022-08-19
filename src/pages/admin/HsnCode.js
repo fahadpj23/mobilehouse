@@ -3,7 +3,8 @@
 import {useContext} from 'react'
 import { AuthContext } from '../../helpers/authcontext';
 import { useHistory } from 'react-router-dom';
-import HsnMain from "components/admindashboard/Hsn/HsnMain";
+import MainLayoutAdmin from 'components/admindashboard/MainLayoutAdmin';
+import TableContent from 'components/admindashboard/table';
 
 
 const Hsncode=()=>{
@@ -13,9 +14,11 @@ const Hsncode=()=>{
          <div className="flex">
              {Auth && Auth.authState=="authorized" ?
             
-                <HsnMain
-                controller="hsn"
+            <MainLayoutAdmin>
+                <TableContent
+                controller="HSN"
                 />
+            </MainLayoutAdmin>
             :
                 history.push("/AdminLogin")
             }
