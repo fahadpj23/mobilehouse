@@ -83,7 +83,7 @@ const TableContent=(props)=>{
                  AddWindowClose={AddWindowClose}
                  
                 />
-            <div className=" pb-2 w-full flex justify-between mt-1 px-2">
+            <div className=" pb-2 w-full flex justify-between mt-2 px-2">
                 <h1 className="border border-gray-500 w-20 py-1 rounded text-center "><span className="font-semibold">All </span> <span className="font-semibold text-green-600">{TableData && TableData.Data.length} </span></h1>
                 <input onChange={(e)=>(setsearchvalue(e.target.value),SearchTable(e.target.value))} value={searchvalue} type="text" placeholder="search" className="w-4/12 md:w-48 text-sm border border-gray-400  px-1 rounded py-2 focus:outline-none" />
             </div>
