@@ -15,8 +15,9 @@ export default class SimpleSlider extends Component {
       arrows:false
       
     };
+    console.log(this.props.Banner)
     return (
-      
+     
     <div className="w-full focus:outline-none "> 
         <Slider {...settings}>
           {

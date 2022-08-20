@@ -8,6 +8,7 @@ import AttributeMain from './Attribute/AttributeMain';
 import HsnMain from './Hsn/HsnMain';
 import HeadingMain from './Heading/HeadingMain';
 import BannerMain from './Banner/BannerMain';
+import AdsMain from './Ads/AdsMain';
 const NavOperation=(props)=>{
 
    console.log(props.controller)
@@ -88,6 +89,17 @@ const NavOperation=(props)=>{
                                    operationitem={props.operationitem}
                                
                                />  
+                            }
+                            {
+                                 props.controller=='Ads' &&
+                                 <AdsMain
+                                     AddSucess={props.AddSucess}
+                                     AddWindowClose={props.AddWindowClose}
+                                     operation={props.operation}
+                                     operationitem={props.operationitem}
+                                 
+                                 />  
+                                
                             }
                            
                         </div>
