@@ -17,7 +17,7 @@ const BannerAdd=(props)=>{
       imageref.current.click();
     }
     const uploadimage=(imagedetails)=>{
-        console.log("fdf")
+      
         console.log(imageposition)
          setimageset(false)
          imageDetails={position:imageposition ? imageposition : props.BannerImageArray.length+1,imageBlob:URL.createObjectURL(imagedetails.target.files[0]),image:imagedetails.target.files[0]}
@@ -25,7 +25,7 @@ const BannerAdd=(props)=>{
          imageposition ?  props.BannerImageArray[+imageposition-1]=imageDetails   :props.BannerImageArray.push(imageDetails)
          setimageDisplay( imageposition ? props.BannerImageArray[+imageposition-1] : URL.createObjectURL(imagedetails.target.files[0]))
        
-        console.log(props.BannerImageArray)
+        
        }
     return(
         <div className="w-full h-full flex items-center bg-opacity-95 justify-center bg-gray-100 fixed top-0">

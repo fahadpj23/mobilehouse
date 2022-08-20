@@ -15,7 +15,7 @@ const FormLayout=(props)=>{
     // const [searchValue,setsearchValue]=useState("")
     // const [products,setproducts]=useState("")
     const imageref=useRef()
-    console.log(props )
+  
 
     // input id get as parameter in addvalue function and set value to tagIdvalue
     const addvalue=(tagId)=>{
@@ -40,11 +40,7 @@ const FormLayout=(props)=>{
             
             }
         }
-         
-           
-       console.log(props.values)
-       
-       
+   
     }
    
     const setvariant=(tagId,index)=>{
@@ -77,30 +73,11 @@ const FormLayout=(props)=>{
 
     }
     
-    const addProduct=(product)=>{
-        console.log(product)
-    }
-
+   
     const imageadd=()=>{
         imageref.current.click()
     }
-    // if(props.variants)
-    //     {
-    //         props.variants.map((item,key)=>{
-    //             props.variantvalues.includes(item.attributeName)==false && props.variantvalues.push(item.attributeName)
-    //         })
-           
-    //     }
 
-//    const searchProduct=(searchItem)=>{
-//         setsearchValue(searchItem)
-//        MobileHouseApi.get('headProduct',{params:{searchitem:searchItem}})
-//        .then((res)=>{
-//            setproducts(res.data.products)
-//        })
-    
-//    }
-    
     useEffect(()=>{
         if(props.operation!=="" && editok===false)
         {
@@ -163,9 +140,9 @@ const FormLayout=(props)=>{
         {
             setaddval(false)
         }
-     console.log(props.variantvalues)
+
     },[deletevalue,editok,addval,variantoperation,deleteVariants])
-    console.log(image)
+    console.log(props)
     
     return(
         <div className="w-full h-full flex items-center bg-opacity-95 z-20  justify-center pr-5 md:justify-center bg-gray-100 fixed top-0">

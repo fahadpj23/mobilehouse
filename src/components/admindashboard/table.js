@@ -10,6 +10,7 @@ const TableContent=(props)=>{
     const[TableData,setTableData]=useState("")
     const[operation,setoperation]=useState("")
     const[operationitem,setoperationitem ]=useState("")
+    const[searchvalue,setsearchvalue ]=useState("")
    
    
     const[AddNewstatus,setAddNewstatus]=useState(false)
@@ -30,7 +31,7 @@ const TableContent=(props)=>{
         setAddNewstatus(false)
         setoperation("")
         setoperationitem("")
-        MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:""},headers:{accessToken:localStorage.getItem("accessToken")}})
+        MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:searchvalue},headers:{accessToken:localStorage.getItem("accessToken")}})
         .then((res)=>{ 
             setTableData(res.data)
             
@@ -71,7 +72,7 @@ const TableContent=(props)=>{
     },[reload,TableData])
     console.log(TableData)
     return(
-        <div className="px-2 h-full    w-full overflow-auto">
+        <div className=" h-full     w-full overflow-auto">
               <NavOperation
                  controller={props.controller}
                  AddSucess={AddSucess}
@@ -82,12 +83,12 @@ const TableContent=(props)=>{
                  AddWindowClose={AddWindowClose}
                  
                 />
-            <div className=" pb-2 w-full flex justify-between mt-1">
+            <div className=" pb-2 w-full flex justify-between mt-1 px-2">
                 <h1 className="border border-gray-500 w-20 py-1 rounded text-center "><span className="font-semibold">All </span> <span className="font-semibold text-green-600">{TableData && TableData.Data.length} </span></h1>
-                <input onChange={(e)=>SearchTable(e.target.value)} type="text" placeholder="search" className="w-4/12 md:w-48 text-sm border border-gray-400  px-1 rounded py-2 focus:outline-none" />
+                <input onChange={(e)=>(setsearchvalue(e.target.value),SearchTable(e.target.value))} value={searchvalue} type="text" placeholder="search" className="w-4/12 md:w-48 text-sm border border-gray-400  px-1 rounded py-2 focus:outline-none" />
             </div>
             <div className="h-fixedNoNavlg6  w-full overflow-auto">
-            <table className="w-full mt-5   ">
+            {TableData && <table className="w-full mt-5   ">
             <tbody>
                 
                 <tr className=" bg-gray-100   sticky -top-1" >
@@ -160,7 +161,7 @@ const TableContent=(props)=>{
                     })
                 }
             </tbody>
-        </table> 
+        </table> }
         </div>
     </div>
     )

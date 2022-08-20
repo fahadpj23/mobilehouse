@@ -27,6 +27,9 @@ const BannerMain=(props)=>{
             formData.append("image"+ (key+1),item.image)
         })
         formData.append("images",JSON.stringify(BannerImageArray))
+        formData.append("operation",props.operation)
+        formData.append("operationid",props.operationitem.id)
+        formData.append("position",props.operationitem.position)
         MobileHouseApi.post('/AddBanner',formData)
         .then((res)=>{
           if(res.data.success)

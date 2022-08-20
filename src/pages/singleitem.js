@@ -34,6 +34,8 @@ const SingleItem=(props)=>{
             MobileHouseApi.get(`/singleview`,{params: { productId: productId}})
             
             .then(res=>{
+                  if(res.data.product)
+                    {
                     const product=res.data.product;
                     
                     setsingleitem(product)
@@ -53,6 +55,11 @@ const SingleItem=(props)=>{
                     setcategoryVariant(res.data.categoryVariant)
                         
                     })  
+                }
+                else
+                {
+                    console.log(res.data.error)
+                }
             })   
            
         }
@@ -64,6 +71,8 @@ const SingleItem=(props)=>{
             MobileHouseApi.get(`/singleview`,{params: { productId: item1.id}})
             
             .then(res=>{
+                if(res.data.product)
+                {
                     const product=res.data.product;
                     
                     setsingleitem(product)
@@ -83,6 +92,11 @@ const SingleItem=(props)=>{
                     setcategoryVariant(res.data.categoryVariant)
                         
                     })  
+                }
+                else
+                {
+                    console.log(res.data.error)
+                }
             })   
             setvariantchoosed(true)   
 
@@ -99,8 +113,10 @@ const SingleItem=(props)=>{
             MobileHouseApi.get(`/singleview`,{params: { productId: productId}})
             
             .then(res=>{
+                    if(res.data.product)
+                    {
                     const product=res.data.product;
-                    console.log(res.data.product)
+                   
                     setsingleitem(product)
                     MobileHouseApi.get(`/related`,{params: { name: product.name, category:product.category,productId:product.id}})
                     .then(res=>{
@@ -117,7 +133,12 @@ const SingleItem=(props)=>{
                         console.log(res.data.categoryVariant)
                         setcategoryVariant(res.data.categoryVariant)
                         
-                    })   
+                    })
+                    }
+                    else
+                    {
+                        console.log(res.data.error)
+                    }   
             })
         }
       

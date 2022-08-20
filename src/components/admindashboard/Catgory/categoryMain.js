@@ -10,13 +10,11 @@ const CategoryMain=(props)=>{
   
   
     const [operation,setoperation]=useState("")
-    const[operationitem,setoperationitem]=useState("")
-    const[operationid,setoperationid]=useState("")
-    const[variants,setvariants]=useState("")
+   
     const[attribute,setattribute]=useState("")
     console.log(props.operationitem)
-    const values=props.operationitem.values;
-    let variantvalues=props.operationitem.variants
+    const values=props.operationitem.values ? props.operationitem.values : [];
+    let variantvalues=props.operationitem.variants ? props.operationitem.variants :[];
     const  addformdata=[
       {name:"categoryName",type:"text",required:"true"},
        {name:"status",type:"select",value:[{value:1,name:"active"},{value:0,name:"disable"}],required:"true"},
@@ -44,14 +42,7 @@ const CategoryMain=(props)=>{
          {
             context.notify(res.data.success,"success")
             props.AddSucess()
-            // setaddcategory(false)
-            // setoperationid("")
-            // setoperation("")
-            // setoperationitem("")
-            // MobileHouseApi.get('/getCategory',{headers:{accessToken:localStorage.getItem("accessToken")}})
-            // .then((res)=>{
-            //     setcategory(res.data)
-            // })
+        
          }
         })
         e.preventDefault();
