@@ -7,9 +7,10 @@ import CategoryMain from './Catgory/categoryMain';
 import AttributeMain from './Attribute/AttributeMain';
 import HsnMain from './Hsn/HsnMain';
 import HeadingMain from './Heading/HeadingMain';
+import BannerMain from './Banner/BannerMain';
 const NavOperation=(props)=>{
 
-   console.log("dsd")
+   console.log(props.controller)
     return(
         <div className=' bg-gray-100'>
             <div className="w-full sm:flex justify-between  pt-10 pb-5 px-3">
@@ -77,6 +78,16 @@ const NavOperation=(props)=>{
                                     operationitem={props.operationitem}
                                 
                                 />
+                            }
+                            {
+                               props.controller=='banner' &&
+                               <BannerMain
+                                   AddSucess={props.AddSucess}
+                                   AddWindowClose={props.AddWindowClose}
+                                   operation={props.operation}
+                                   operationitem={props.operationitem}
+                               
+                               />  
                             }
                            
                         </div>

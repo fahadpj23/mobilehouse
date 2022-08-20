@@ -12,113 +12,52 @@ import MainLayoutAdmin from "../MainLayoutAdmin";
 
 const BannerMain=(props)=>{
     const context=useContext(Usercontext )
-    const [addBanner,setaddBanner]=useState(false)
-    const [Banner,setBanner]=useState("")
-    // const [Heading,setHeading]=useState("")
-    // const [operation,setoperation]=useState("")
-    // const[operationitem,setoperationitem]=useState("")
-    // const[operationid,setoperationid]=useState("")
-    // const[HeadData,setHeadData]=useState("")
-    // const[editData,seteditData]=useState("")
-    // const[status,setstatus]=useState(1)
-    
-   
  
+    let BannerImageArray=[]
+   
+  console.log(props)
    
    
-
-      const AddNew=()=>{
-        setaddBanner(true)
-     }
-
-    //  const closeWindow=()=>{
-    //     setaddBanner(false)
-    //     setoperation("")
-    //     setoperationitem("")
-    //  }
 
      
     const BannerUpload=()=>{
-      // if(Heading && headproduct.length!=0)
-      // {
+     
         const formData = new FormData();
-        props.BannerImageArray.map((item,key)=>{
+        BannerImageArray.map((item,key)=>{
             formData.append("image"+ (key+1),item.image)
         })
-        formData.append("images",JSON.stringify(props.BannerImageArray))
+        formData.append("images",JSON.stringify(BannerImageArray))
         MobileHouseApi.post('/AddBanner',formData)
         .then((res)=>{
           if(res.data.success)
           {
-            setaddBanner(false)
+          
             
             context.notify(res.data.success,"success")
-            MobileHouseApi.get('/getBannerData',{headers:{accessToken:localStorage.getItem("accessToken")}})
-            .then((res)=>{
-            setBanner(res.data)
-            })
+            props.AddSucess()
 
           }
         })
-    //  }
+   
     }
-    const tableOperation=(operation,attribute)=>{
-        console.log(attribute)
-        // setoperationid(attribute.id)
-    
-        // setoperationitem(attribute)
-        // setoperation(operation)
-        // setaddattribute(true)
-        
-  }
-
-      useEffect(()=>{
-        if(Banner==="")
-        {
-            MobileHouseApi.get('/getBannerData',{headers:{accessToken:localStorage.getItem("accessToken")}})
-            .then((res)=>{
-            setBanner(res.data)
-            })
-        }
-
-      },[Banner])
  
-   console.log(Banner)
-    return(
-        <div className="flex w-full h-screen overflow-auto relative ">
-            {
-                    addBanner===true && 
-                    <div className='w-screen fixed bg-gray-200 h-screen opacity-100 flex items-center justify-center  z-50  '>
-                                  <BannerAdd
-                                     BannerImageArray={props.BannerImageArray}
-                                    //  addBanner={addBanner}
-                                    BannerUpload={BannerUpload}
-                                    setaddBanner={setaddBanner}
-                                    // editData={editData[0]}
-                                    // Heading={Heading}
-                                    // setaddBanner={setaddBanner}
-                                    // setstatus={setstatus}
-                                    // status={status}
-                                  />
-                                  </div>
-                                        
-                }
-            <MainLayoutAdmin>
-                
-            <NavOperation
-            AddNew={AddNew}
-            />
-                {
-                    Banner &&
-                    <TableContent
-                         Data={Banner}
-                         tableOperation={tableOperation}
 
-                    />
-                }
+    return(
+        <div >
+                  
+                                  <BannerAdd
+                                     BannerImageArray={BannerImageArray}
+                                    
+                                      BannerUpload={BannerUpload}
+                                      operation={props.operation}
+                                      operationitem={props.operationitem}
+                                      AddWindowClose={props.AddWindowClose}
                 
-                
-                </MainLayoutAdmin>
+                                  />
+                               
+                                        
+             
+               
     </div>   
     )
 }
