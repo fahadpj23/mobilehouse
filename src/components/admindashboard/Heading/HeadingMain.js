@@ -11,38 +11,33 @@ import {MobileHouseApi} from "helpers/axiosinstance";
 const HeadingMain=(props)=>{
     const context=useContext(Usercontext )
 
-    const [Heading,setHeading]=useState("")
-    
- 
-  
+    const [HeadingName,setHeadingName]=useState("")
+
     const[status,setstatus]=useState(1)
-   
-    
-   
-   
-   
-    const headproduct=[];
+
+    const headproduct=props.operationitem.products ?? [];
 
     
      
 
-    const HeadingAdd=()=>{
-      // if(Heading && headproduct.length!=0)
-      // {
-        const formData = new FormData();
-        formData.append("head",Heading)
-        formData.append("operation",props.operation)
-        formData.append("operationid",props.operationid)
-        formData.append("status",status)
-        formData.append("products",JSON.stringify(headproduct))
-        MobileHouseApi.post('/headingAdd',formData,{headers:{accessToken:localStorage.getItem("accessToken")}})
+    const HeadingAdd=(e)=>{
+    
+      e.preventDefault();
+      const data=new FormData(e.target)
+       
+     
+        data.append("operation",props.operation)
+        data.append("operationid",props.operationitem.id)
+ 
+        data.append("products",JSON.stringify(headproduct))
+        MobileHouseApi.post('/headingAdd',data,{headers:{accessToken:localStorage.getItem("accessToken")}})
         .then((res)=>{
           if(res.data.success)
           {
             props.AddSucess()
           }
         })
-    //  }
+   
     }
 
      
@@ -53,13 +48,15 @@ const HeadingMain=(props)=>{
            
                                   <HeadProductAdding
                                     headproduct={headproduct}
-                                    setHeading={setHeading}
-                                    HeadingAdd={HeadingAdd}
                                    
-                                    Heading={Heading}
+                                    HeadingAdd={HeadingAdd}
+                                    operationitem={props.operationitem}
+                                   
                                     AddWindowClose={props.AddWindowClose}
                                     setstatus={setstatus}
                                     status={status}
+                                    setHeadingName={setHeadingName}
+                                    HeadingName={HeadingName}
                                   />
                      
     </div>   

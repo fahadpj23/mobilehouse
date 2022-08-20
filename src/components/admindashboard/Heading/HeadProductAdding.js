@@ -5,6 +5,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 
 const HeadProductAdding=(props)=>{
  
+    console.log(props)
     const [searchValue,setsearchValue]=useState("")
     const [products,setproducts]=useState("")
     const [productdelete,setproductdelete]=useState(false)
@@ -17,7 +18,7 @@ const HeadProductAdding=(props)=>{
            setproducts(res.data.products)
        })
    }
-
+   console.log(props.operationitem)
    const addProduct=(productDetail)=>{
     if(props.headproduct.some((product)=>product.id==productDetail.id)==false)
         props.headproduct.push(productDetail)
@@ -65,15 +66,15 @@ const HeadProductAdding=(props)=>{
 //    console.log(props.headproduct)
 //    console.log(props.status)
     return(
-        <div className="w-full h-full flex items-center bg-opacity-95 justify-center bg-gray-100 fixed top-0">
+        <form method="post" onSubmit={(e)=>props.HeadingAdd(e)}  className="w-full h-full flex items-center bg-opacity-95 justify-center bg-gray-100 fixed top-0">
                 <div className="flex flex-col w-11/12 md:w-7/12 h-4/5 bg-white justify-between p-5 overflow-auto">
                     <div className="space-y-3 relative">
                          <button onClick={()=>props.AddWindowClose()} className="absolute right-1 top-1 focus:outline-none"><AiOutlineClose/></button>
                         <div className="md:flex md:space-x-3 space-y-3 md:space-y-0 pt-5 md:pt-0">
-                            <input onChange={(e)=>props.setHeading(e.target.value)} value={props.Heading} type="text" className="w-full md:w-4/12 py-1  px-1 focus:outline-none border border-gray-400 rounded" placeholder="Heading"/>
+                            <input  defaultValue={props.operationitem.Heading} required type="text" name="HeadName" id="HeadName" className="w-full md:w-4/12 py-1  px-1 focus:outline-none border border-gray-400 rounded" placeholder="Heading"/>
                             <div className="flex space-x-2 items-center">
                                 <h1>Status</h1>
-                                <select onChange={(e)=>props.setstatus(e.target.value)} defaultValue={props.status} className="border border-gray-400 w-full py-1  px-1 focus:outline-none rounded">
+                                <select  defaultValue={props.operationitem.status} name="status" id="status" className="border border-gray-400 w-full py-1  px-1 focus:outline-none rounded">
                                     <option value="1">active</option>
                                     <option value="0">disable</option>
                                 </select>
@@ -104,9 +105,9 @@ const HeadProductAdding=(props)=>{
                                                 return(
                                                     <div className="relative border rounded border-gray-300 p-2  flex flex-col items-center justify-center h-56 ">
                                                             <button onClick={()=>deleteProduct(item1.id)} className="absolute  top-1 right-1 "><MdDelete/></button>
-                                                            <img src={   `${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${item1.image}`} alt="" className="object-contain h-28 w-28 overflow-hidden" />
-                                                            <h1 className="truncate w-full ">{item1.name}</h1>
-                                                            <h1>RS:{item1.sellingprice}</h1>
+                                                            <img src={   `${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${item1.image}`} alt="" className="object-contain h-18 md:h-28 w-18 md:w-28 overflow-hidden" />
+                                                            <h1 className="truncate w-full text-xs md:text-base text-center">{item1.name}</h1>
+                                                            <h1 className="text-xs md:text-base text-center">Rs : {item1.sellingPrice}</h1>
 
                                                     </div>
 
@@ -120,12 +121,12 @@ const HeadProductAdding=(props)=>{
                         </div>
                         
                     </div>  
-                    <div className="w-full flex justify-end">
-                        <button onClick={()=>props.HeadingAdd()} className="w-2/12 bg-red-500 text-white rounded p-2">Save</button> 
+                    <div className="w-full flex justify-end  mt-2">
+                        <button type="submit" className="w-5/12 md:w-2/12 bg-red-500 text-white rounded p-2">Save</button> 
                     </div>    
 
                 </div>
-        </div>
+        </form>
     )
 }
 export default HeadProductAdding

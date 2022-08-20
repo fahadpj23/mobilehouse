@@ -28,6 +28,8 @@ const TableContent=(props)=>{
     
     const AddSucess=()=>{
         setAddNewstatus(false)
+        setoperation("")
+        setoperationitem("")
         MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:""},headers:{accessToken:localStorage.getItem("accessToken")}})
         .then((res)=>{ 
             setTableData(res.data)
@@ -38,10 +40,12 @@ const TableContent=(props)=>{
     //to Close Add Window
     const AddWindowClose=()=>{
         setAddNewstatus(false)
+        setoperation("")
+        setoperationitem("")
     }
 
     const tableOperation=(operation,EditData)=>{
-        console.log("ds")
+       
         setoperation(operation)
         setoperationitem(EditData)
         setAddNewstatus(true)
