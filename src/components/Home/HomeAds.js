@@ -5,9 +5,9 @@ const HomeAds=(props)=>{
         <div className="w-full">
             <div className="grid grid-cols-3 w-full gap-x-3 ">
             {
-                props.Ads && props.Ads.detail.map((item,key)=>{
+                props.Ads && props.Ads.detail?.map((item,key)=>{
                     return(
-                    <Link  to={{pathname: "/ProductList",search: "?" + new URLSearchParams({Brand:item.Brand,sort:"newestfirst"}).toString()}}   className=""><img src={`http://127.0.0.1:9000/images/${item.image}`} alt="ads image" className="object-fill h-64 overflow-hidden rounded-lg" /></Link> 
+                    <Link  to={{pathname: "/ProductList",search: "?" + new URLSearchParams({Brand:item.Brand,sort:"newestfirst"}).toString()}}   className="w-full"><img src={`${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${item.image}`} alt="ads image" className="object-fill w-full h-64 sm:h-40 md:h-64 overflow-hidden rounded" /></Link> 
                     )
 
                 })

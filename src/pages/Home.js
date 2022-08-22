@@ -82,12 +82,12 @@ function Home() {
                             Heading={item.Heading}
                                     
                           />
-                          <div className="hidden md:block">
+                          <div className="hidden sm:block">
                             <HomeAds
                             Ads={Ads[+key] }
                             />
                           </div>
-                          <div className="block md:hidden">
+                          <div className="block sm:hidden">
                             <SimpleSlider
                             Banner={Ads[key] && Ads[key].detail}
                             advertisment="advertisment"
