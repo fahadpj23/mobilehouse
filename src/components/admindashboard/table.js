@@ -4,8 +4,10 @@ import { BiDotsVerticalRounded } from 'react-icons/bi';
 import TableOperation from './tableOperation'
 import { MobileHouseApi } from "axiosinstance";
 import NavOperation from "./operation";
+import UploadSpinner from "./uploadstatus";
 const TableContent=(props)=>{
-    let headarray=[];
+
+ 
     
     const[TableData,setTableData]=useState("")
     const[operation,setoperation]=useState("")
@@ -83,11 +85,15 @@ const TableContent=(props)=>{
                  AddWindowClose={AddWindowClose}
                  
                 />
+                {
+                    TableData == "" &&
+                    <UploadSpinner/>
+                }
             <div className=" pb-2 w-full flex justify-between mt-2 px-2">
                 <h1 className="border border-gray-500 w-20 py-1 rounded text-center "><span className="font-semibold">All </span> <span className="font-semibold text-green-600">{TableData && TableData.Data.length} </span></h1>
-                <input onChange={(e)=>(setsearchvalue(e.target.value),SearchTable(e.target.value))} value={searchvalue} type="text" placeholder="search" className="w-4/12 md:w-48 text-sm border border-gray-400  px-1 rounded py-2 focus:outline-none" />
+                <input onChange={(e)=>(setsearchvalue(e.target.value),SearchTable(e.target.value))} value={searchvalue} type="text" placeholder="search" className="w-6/12 md:w-48 text-sm border border-gray-400  px-1 rounded py-2 focus:outline-none" />
             </div>
-            <div className="h-fixedNoNavlg6  w-full overflow-auto">
+            <div className="h-fixedNoNavlg6  w-full overflow-auto pr-2">
             {TableData && <table className="w-full mt-5   ">
             <tbody>
                 
