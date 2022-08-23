@@ -3,7 +3,7 @@
 import { useState ,useEffect,useContext} from "react"
 
 import {MobileHouseApi} from "helpers/axiosinstance";
-import { Usercontext } from "../../context/userContext";
+import { Usercontext } from "components/context/userContext";
 
 // import AdsAdd from "./AdsAdd";
 
@@ -41,10 +41,12 @@ const AdsMain=(props)=>{
                         formData.append("AdsImageArray",JSON.stringify(AdsImageArray))
                         formData.append("status",status)
                         formData.append("operation",props.operation)
+                        formData.append("operationid",props.operationitem.id)
                         MobileHouseApi.post('/AddAds',formData,{headers:{accessToken:localStorage.getItem("accessToken")}})
                         .then((res)=>{
                         if(res.data.success)
                         {
+                            context.notify(res.data.success,"success")
                             props.AddSucess()
 
                         }
