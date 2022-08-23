@@ -16,7 +16,7 @@ const AdsAdd=(props)=>{
          setimageset(true)
       imageref.current.click();
     }
-
+        console.log(  props.AdsImageArray)
     const uploadimage=(imagedetails)=>{
          setimageset(false)
          imageDetails={position:position+1,imageBlob:URL.createObjectURL(imagedetails.target.files[0]),image:imagedetails.target.files[0],Brand: props.AdsImageArray[position] && props.AdsImageArray[position].Brand ? props.AdsImageArray[position].Brand : ""}
@@ -52,27 +52,14 @@ const AdsAdd=(props)=>{
             .catch((err) => { console.log(err) });
         }
 
-        if(props.operation=="edit")
-        {
-            MobileHouseApi.get('/getAdsEdit',{params:{id:props.operationid},headers:{accessToken:localStorage.getItem("accessToken")}})
-            .then((res)=>{
-                props.setstatus(res.data.AdsDetails[0].status)
-                res.data.AdsDetails[0].details &&  res.data.AdsDetails[0].details.map((item,key)=>{
-                    imageDetails={position:key+1,imageBlob:"",image:item.image,Brand:item.brand}
-                    props.AdsImageArray[key]=imageDetails
-                })
-                seteditok(true)
-                 console.log(props.AdsImageArray)
-            })
-           
-        }
+       
     },[])
    
     return(
         <div className="w-full h-full flex items-center bg-opacity-95  justify-end md:justify-center bg-gray-100 fixed top-0 pr-3 md:pr-0">
-                <div className="flex flex-col w-11/12  md:w-7/12 h-4/5 bg-white justify-between p-5 overflow-auto">
+                <div className="flex flex-col w-11/12  xl:w-7/12  h-4/5 bg-white justify-between p-5 overflow-auto">
                     <div className="space-y-3 relative p-2">
-                    <button onClick={()=>props.setaddAds(false)} className="absolute text-xl -right-1 -top-1 focus:outline-none"><AiOutlineClose/></button>
+                    <button onClick={()=>props.AddWindowClose()} className="absolute text-xl -right-1 -top-1 focus:outline-none"><AiOutlineClose/></button>
                         {/* <img src={ props.AdsImageArray.length == 0 ?  "/uploadimage.png" :  props.AdsImageArray[props.AdsImageArray.length-1].imageBlob ? props.AdsImageArray[props.AdsImageArray.length-1].imageBlob : props.AdsImageArray[props.AdsImageArray.length-1].image && `http://localhost:9000/images/${props.AdsImageArray[props.AdsImageArray.length-1].image}` } alt="" className="object-contain h-48 w-full border mt-5 border-gray-400 rounded overflow-hidden" /> */}
                         <select className="border border-gray-400 rounded py-1 w-4/12">
                                 <option value="1">Active</option>
@@ -92,7 +79,7 @@ const AdsAdd=(props)=>{
                                         
                                     </button>
                                     {
-                                        Brand && <select value={props.AdsImageArray[key]?.Brand} onChange={(e)=>addBrand(key,e.target.value)} className="w-full border border-gray-400 rounded focus:outline-none text-sm py-1">
+                                        Brand && <select defaultValue={props.AdsImageArray[key]?.Brand} onChange={(e)=>addBrand(key,e.target.value)} className="w-full border border-gray-400 rounded focus:outline-none text-sm py-1">
                                             <option>--select--</option>
                                             {Brand.map((item1,key1)=>{
                                                 return(

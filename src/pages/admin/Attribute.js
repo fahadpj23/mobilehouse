@@ -2,8 +2,8 @@ import SideNav from "../../components/admindashboard/sideNav";
 import {useContext} from 'react'
 import { AuthContext } from '../../helpers/authcontext';
 import { useHistory } from 'react-router-dom';
-import AttributeMain from "components/admindashboard/Attribute/AttributeMain";
-
+import MainLayoutAdmin from "components/admindashboard/MainLayoutAdmin";
+import TableContent from "components/admindashboard/table";
 
 const Attribute=()=>{
     const Auth=useContext(AuthContext)
@@ -11,8 +11,14 @@ const Attribute=()=>{
     return(
          <div className="flex">
              {Auth && Auth.authState=="authorized" ?
-            
-                <AttributeMain/>
+                 <MainLayoutAdmin>
+                 <TableContent
+                  controller="attribute"
+                 />
+                 </MainLayoutAdmin>
+              
+               
+               
             :
                 history.push("/AdminLogin")
             }

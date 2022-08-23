@@ -1,26 +1,106 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { AiFillSetting } from 'react-icons/ai';
 import { BiDotsVerticalRounded } from 'react-icons/bi';
 import TableOperation from './tableOperation'
-
+import { MobileHouseApi } from "axiosinstance";
+import NavOperation from "./operation";
+import UploadSpinner from "./uploadstatus";
 const TableContent=(props)=>{
-    let headarray=[];
-    const[operationsview,setoperationsview]=useState(false)
+
+ 
+    
+    const[TableData,setTableData]=useState("")
+    const[operation,setoperation]=useState("")
+    const[operationitem,setoperationitem ]=useState("")
+    const[searchvalue,setsearchvalue ]=useState("")
+   
+   
+    const[AddNewstatus,setAddNewstatus]=useState(false)
  console.log(props)
     
+    const[reload,setreload]=useState(false)
+    
+  
+    const SearchTable=(searchval)=>{
+        MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:searchval},headers:{accessToken:localStorage.getItem("accessToken")}})
+        .then((res)=>{
+            setTableData(res.data)
+            setreload(true)
+        })
+    }
+    
+    const AddSucess=()=>{
+        setAddNewstatus(false)
+        setoperation("")
+        setoperationitem("")
+        MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:searchvalue},headers:{accessToken:localStorage.getItem("accessToken")}})
+        .then((res)=>{ 
+            setTableData(res.data)
+            
+        }) 
+    }
+
+    //to Close Add Window
+    const AddWindowClose=()=>{
+        setAddNewstatus(false)
+        setoperation("")
+        setoperationitem("")
+    }
+
+    const tableOperation=(operation,EditData)=>{
+       
+        setoperation(operation)
+        setoperationitem(EditData)
+        setAddNewstatus(true)
+    }
+
+  
+    useEffect(()=>{
+        
+           
+        if(TableData=="")
+        {
+           
+            MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:""},headers:{accessToken:localStorage.getItem("accessToken")}})
+            .then((res)=>{ 
+                setTableData(res.data)
+                
+            })
+        }
+        if(reload==true)
+        {
+            setreload(false)
+        }
+    },[reload,TableData])
+    console.log(TableData)
     return(
-        <div className="px-2 h-full    w-full overflow-auto">
-            <div className=" pb-2 w-full">
-                <h1 className="border border-gray-500 w-20 py-1 rounded text-center "><span className="font-semibold">All </span> <span className="font-semibold text-green-600">{props.Data.Data.length} </span></h1>
+        <div className=" h-full     w-full overflow-auto">
+              <NavOperation
+                 controller={props.controller}
+                 AddSucess={AddSucess}
+                 setAddNewstatus={setAddNewstatus}
+                 AddNewstatus={AddNewstatus}
+                 operation={operation}
+                 operationitem={operationitem}
+                 AddWindowClose={AddWindowClose}
+                 
+                />
+                {
+                    TableData == "" &&
+                    <UploadSpinner/>
+                }
+            <div className=" pb-2 w-full flex justify-between mt-2 px-2">
+                <h1 className="border border-gray-500 w-20 py-1 rounded text-center "><span className="font-semibold">All </span> <span className="font-semibold text-green-600">{TableData && TableData.Data.length} </span></h1>
+                <input onChange={(e)=>(setsearchvalue(e.target.value),SearchTable(e.target.value))} value={searchvalue} type="text" placeholder="search" className="w-6/12 md:w-48 text-sm border border-gray-400  px-1 rounded py-2 focus:outline-none" />
             </div>
-            <div className="h-fixedNoNavlg6  w-full overflow-auto">
-            <table className="w-full mt-5   ">
+            <div className="h-fixedNoNavlg6  w-full overflow-auto pr-2">
+            {TableData && <table className="w-full mt-5   ">
             <tbody>
                 
                 <tr className=" bg-gray-100   sticky -top-1" >
                     {
                     
-                    props.Data.TableHead && props.Data.TableHead.map((item,key)=>
+                    TableData  && TableData.TableHead.map((item,key)=>
                         <th className="text-xs font-medium capitalize md:text-base px-3 py-3  " key={key}>{item}</th>
                     )
                     }
@@ -29,12 +109,12 @@ const TableContent=(props)=>{
                     
                 </tr>
                 {
-                    props.Data.Data && props.Data.Data.map((item,key)=>{
+                     TableData  && TableData.Data.map((item,key)=>{
                         return(
                             <tr key={key} className="text-center text-xs md:text-sm border-b border-gray-300">
                             <td className="py-2  truncate">{key+1}</td>
                             {
-                                props.Data.TableHead.map((item1,key)=>{
+                                TableData  && TableData.TableHead.map((item1,key)=>{
                                     // check key!=0 bacuse table column need slno
                                     if(key!=0)
                                     {
@@ -69,13 +149,15 @@ const TableContent=(props)=>{
                             
                             <td className="pt-1" >
                             <TableOperation
+                                controller={props.controller}
                                 item={item}
-                                tableOperation={props.tableOperation}
+                                tableOperation={tableOperation}
                                 type={props.type}
-                                order={props.order}
-                                
+                                setTableData={setTableData}
+                              
                             
                             />
+                           
                                 
                                     
                             
@@ -85,7 +167,7 @@ const TableContent=(props)=>{
                     })
                 }
             </tbody>
-        </table> 
+        </table> }
         </div>
     </div>
     )

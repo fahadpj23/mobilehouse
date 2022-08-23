@@ -44,7 +44,7 @@ function Home() {
         
          
         }, [])
-      console.log(sliders)
+      console.log(Ads)
   return (
     <div>
   
@@ -72,7 +72,7 @@ function Home() {
         </div> */}
         <div className="w-full flex justify-center">
           <div className="w-full px-3 md:px-6 md:w-11/12  space-y-10">
-                     {sliders  &&
+                     {sliders && Ads  &&
                      sliders.map((item,key)=>{
                       return(
                       <div className="space-y-10">
@@ -82,14 +82,14 @@ function Home() {
                             Heading={item.Heading}
                                     
                           />
-                          <div className="hidden md:block">
+                          <div className="hidden sm:block">
                             <HomeAds
-                            Ads={Ads}
+                            Ads={Ads[+key] }
                             />
                           </div>
-                          <div className="block md:hidden">
+                          <div className="block sm:hidden">
                             <SimpleSlider
-                            Ads={Ads}
+                            Banner={Ads[key] && Ads[key].detail}
                             advertisment="advertisment"
                             />
                           </div>

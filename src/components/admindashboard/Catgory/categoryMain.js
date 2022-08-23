@@ -1,39 +1,36 @@
-import SideNav from "../sideNav"
+
 
 import { useState ,useEffect,useContext} from "react"
 import FormLayout from '../form'
 import {MobileHouseApi} from "helpers/axiosinstance";
 import { Usercontext } from "../../context/userContext";
-import TableContent from "../table";
-import NavOperation from '../operation'
-import { AiFillSetting ,AiOutlineClose} from 'react-icons/ai';
-import MainLayoutAdmin from "../MainLayoutAdmin";
+
 const CategoryMain=(props)=>{
     const context=useContext(Usercontext )
-    const [addcategory,setaddcategory]=useState(false)
-    const [category,setcategory]=useState("")
+  
+  
     const [operation,setoperation]=useState("")
-    const[operationitem,setoperationitem]=useState("")
-    const[operationid,setoperationid]=useState("")
-    const[variants,setvariants]=useState("")
    
-    const categoryvalues=[];
-    const variantvalues=[];
-    const addformdata=[
-        {name:"categoryName",type:"text",required:"true"},
-         {name:"status",type:"select",value:[{value:1,name:"active"},{value:0,name:"disable"}],required:"true"},
-        {name:"attribute",type:"select",value:props.attributes,more:"yes",},
-        {name:"image",type:"file",required:"true"}
-        
+    const[attribute,setattribute]=useState("")
+    console.log(props.operationitem)
+    const values=props.operationitem.values ? props.operationitem.values : [];
+    let variantvalues=props.operationitem.variants ? props.operationitem.variants :[];
+    const  addformdata=[
+      {name:"categoryName",type:"text",required:"true"},
+       {name:"status",type:"select",value:[{value:1,name:"active"},{value:0,name:"disable"}],required:"true"},
+      {name:"attribute",type:"select",value:attribute,more:"yes"},
+      {name:"image",type:"file",required:"true"}
+      
     ]
-   
+    console.log(props.operationitem)
     const handleSubmit=(e)=>{
         e.preventDefault();
         const data=new FormData(e.target)
-        data.append("categoryvalues",JSON.stringify( categoryvalues))
+        data.append("categoryvalues",JSON.stringify( values))
         data.append("variantvalues",JSON.stringify( variantvalues))
-        data.append("operation",operation)
-        data.append("operationid",operationid )
+       
+        data.append("operation",props.operation)
+        data.append("operationid",props.operationitem.id )
         MobileHouseApi.post('/categoryAdd',data)
         
         .then((res)=>{
@@ -44,114 +41,59 @@ const CategoryMain=(props)=>{
          else
          {
             context.notify(res.data.success,"success")
-            setaddcategory(false)
-            setoperationid("")
-            setoperation("")
-            setoperationitem("")
-            MobileHouseApi.get('/getCategory',{headers:{accessToken:localStorage.getItem("accessToken")}})
-            .then((res)=>{
-                setcategory(res.data)
-            })
+            props.AddSucess()
+        
          }
         })
         e.preventDefault();
       }
 
-      const AddNew=()=>{
-        setaddcategory(true)
-     }
-
-     const closeWindow=()=>{
-        setaddcategory(false)
-        setoperation("")
-        setoperationitem("")
-     }
-
-      const tableOperation=(operation,operationCategory)=>{
-        console.group(operation)
-        if(operation=="delete")
-        {
-          // window.confirm(`delete ${operationCategory.categoryName} `)
-            MobileHouseApi.delete('/CategoryDelete',{params:{categoryId:operationCategory.id},headers:{accessToken:localStorage.getItem("accessToken")}})
-            .then((res)=>{
-              console.log(res.data)
-            })
-        }
-        else
-        {
-          MobileHouseApi.get('/getCategoryVariant',{params:{categoryId:operationCategory.id},headers:{accessToken:localStorage.getItem("accessToken")}})
-          .then((res)=>{
-            console.log(res.data)
-                setvariants(res.data.categoryvariant)
-                setoperationid(operationCategory.id)
-                setoperationitem(operationCategory)
-                setoperation(operation)
-                setaddcategory(true)
-              
-           
-          })       
-        
-          
-        
-
-        }
-    }
-
-      useEffect(()=>{
-        if(category==="")
-        {
-            MobileHouseApi.get('/getCategory',{headers:{accessToken:localStorage.getItem("accessToken")}})
-            .then((res)=>{
-            setcategory(res.data)
-            })
-        }
-        
-          
-        
-        
-
-      },[category])
-    console.log(variantvalues)
    
+
+
+    useEffect(()=>{
+      if(attribute=="")
+      {
+      MobileHouseApi.get('/getAvailableAttribute',{headers:{accessToken:localStorage.getItem("accessToken")}}).then((res)=>{
+        if(res.data.attribute)
+        {
+          
+         
+          setattribute(res.data.attribute)
+       
+        }
+       
+      })
+      }
+    },[attribute])
+  
+    
     return(
-        <div className="flex w-full h-screen overflow-auto z-20">
-            {
-                    addcategory===true && 
+        <div >
+                  {attribute && 
                        
-                    <div className='w-screen fixed bg-gray-200 h-screen opacity-100 flex items-center justify-center  z-50  '>
+                    <div className=' '>
                                         <FormLayout
                                             formdata={addformdata}
                                             handleSubmit={handleSubmit}
-                                            values={categoryvalues}
+                                            values={values}
                                             operation={operation}
-                                            operationitem={operationitem}
-                                            Mainname={operationitem.categoryName}
-                                            Mainstatus={operationitem.status}
-                                            close={closeWindow}
+                                            operationitem={props.operationitem}
+                                            AddSucess={props.AddSucess}
+                                            AddWindowClose={props.AddWindowClose}
                                             variantvalues={variantvalues}
-                                            variants={variants}
                                             head="Category"
+                                           
+                                           
                                         />
                     </div>              
-                                 
-                }
-              <MainLayoutAdmin>
-           
-                
-            <NavOperation
-            AddNew={AddNew}
-            />
-                {
-                    category &&
-                    <TableContent
-                         Data={category}
-                         tableOperation={tableOperation}
-
-                    />
-                }
+                }    
+          
+               
+               
                 
                 
-              </MainLayoutAdmin>
+         
     </div>   
     )
 }

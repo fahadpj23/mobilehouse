@@ -12,7 +12,9 @@ const Brand=()=>{
          <div className="flex">
              {Auth && Auth.authState=="authorized" ?
             
-                <BrandMain/>
+                <BrandMain
+                controller="brand"
+                />
             :
                 history.push("/AdminLogin")
             }

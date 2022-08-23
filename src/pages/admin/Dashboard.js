@@ -12,7 +12,9 @@ const Dashboard=()=>{
          <div className="flex">
              {Auth && Auth.authState=="authorized" ?
             
-                <DashboardMain/>
+                <DashboardMain
+                controller="dashboard"
+                />
             :
                 history.push("/AdminLogin")
             }

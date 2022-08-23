@@ -9,7 +9,9 @@ const Purchase=()=>{
         <div className="flex">
                 {Auth && Auth.authState=="authorized" ?
                 
-                <PurchaseMain/>
+                <PurchaseMain
+                controller="purchase"
+                />
                  :
                 history.push("/AdminLogin")
                  }

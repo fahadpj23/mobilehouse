@@ -15,7 +15,7 @@ const FormLayout=(props)=>{
     // const [searchValue,setsearchValue]=useState("")
     // const [products,setproducts]=useState("")
     const imageref=useRef()
-    console.log(props.formdata )
+  
 
     // input id get as parameter in addvalue function and set value to tagIdvalue
     const addvalue=(tagId)=>{
@@ -40,11 +40,7 @@ const FormLayout=(props)=>{
             
             }
         }
-         
-           
-       console.log(props.values)
-       
-       
+   
     }
    
     const setvariant=(tagId,index)=>{
@@ -77,30 +73,11 @@ const FormLayout=(props)=>{
 
     }
     
-    const addProduct=(product)=>{
-        console.log(product)
-    }
-
+   
     const imageadd=()=>{
         imageref.current.click()
     }
-    // if(props.variants)
-    //     {
-    //         props.variants.map((item,key)=>{
-    //             props.variantvalues.includes(item.attributeName)==false && props.variantvalues.push(item.attributeName)
-    //         })
-           
-    //     }
 
-//    const searchProduct=(searchItem)=>{
-//         setsearchValue(searchItem)
-//        MobileHouseApi.get('headProduct',{params:{searchitem:searchItem}})
-//        .then((res)=>{
-//            setproducts(res.data.products)
-//        })
-    
-//    }
-    
     useEffect(()=>{
         if(props.operation!=="" && editok===false)
         {
@@ -163,15 +140,16 @@ const FormLayout=(props)=>{
         {
             setaddval(false)
         }
-     console.log(props.variantvalues)
+
     },[deletevalue,editok,addval,variantoperation,deleteVariants])
-    console.log(image)
+    console.log(props)
+    
     return(
         <div className="w-full h-full flex items-center bg-opacity-95 z-20  justify-center pr-5 md:justify-center bg-gray-100 fixed top-0">
         <div className=" space-y-4 w-10/12  md:w-4/12 h-4/5 ">
             <div className="max-h-full bg-white p-4 overflow-auto ">
                 <div className="w-full">
-                    <button onClick={()=>props.close(false)} className="flex focus:outline-none justify-end w-full text-right"><AiOutlineClose/></button>
+                    <button onClick={()=>props.AddWindowClose(false)} className="flex focus:outline-none justify-end w-full text-right"><AiOutlineClose/></button>
                     <h1 className="w-full flex justify-center text-xl font-semibold space-x-2"><span>{ props.operation==="" ? "ADD" :props.operation }</span><span>{props.head}</span> </h1>
                    
                 </div>
@@ -202,6 +180,7 @@ const FormLayout=(props)=>{
                                                                         props.values && props.values.map((item,key)=>{
                                                                             return(
                                                                                 <div className="w-full flex justify-between px-2 bg-gray-200 py-1 ">
+                                                                                    {console.log(item)}
                                                                                     <h1 className=" px-1  truncate w-10/12  ">{item}</h1 >
                                                                                     <button type="button" onClick={()=>{setdeletevalue(key+1)}} className={`${props.operation=="view" && " hidden"}`}  ><AiOutlineClose/></button>
                  
@@ -219,6 +198,7 @@ const FormLayout=(props)=>{
                                     return  <input type="number" required={item.required && true} className={`  w-full ${item.name=="Address" && "h-20"} px-2 py-1 rounded-md border border-gray-400`} defaultValue={  props.operationitem && props.operationitem[item.name]}  name={item.name} id={item.name} />                                    
 
                                 case 'select':
+                                            // item more means if select value stores in a array then ther will be item.more.if select head is status will be 0 or 1 we won't store anywhere.so no item.ore 
                                             return  !item.more ?  <select required={item.required && true} defaultValue={  props.operationitem && props.operationitem[item.name]} className="w-full px-2 py-1 rounded-md border border-gray-400" name={item.name}>
                                                     
                                                     {
@@ -230,14 +210,16 @@ const FormLayout=(props)=>{
                                                     }
                                                     </select>
                                                     :
+                                                    //if select value store in a array then this will work
                                                     <div>
                                                         <div className="flex space-x-1">
+                                                        {/* requires sent from formdata */}
                                                         <select required={item.required && true}    className="w-10/12 px-2 py-1 rounded-md border border-gray-400" name={item.name} id={item.name}>
                                                         <option value="">--select--</option>
                                                         {
                                                             item.value&& item.value.map((item1,key1)=>{
                                                                 return(
-                                                                    <option className="text-xs md:text-md"  value={item1}>{item1}</option>
+                                                                    <option className="text-xs md:text-md"  value={item1.name}>{item1.name}</option>
                                                                 )
                                                             })
                                                         }
@@ -246,9 +228,11 @@ const FormLayout=(props)=>{
                                                                     item.more && <button type="button"  onClick={()=>addvalue(item.name)} className="px-2 py-1 bg-red-500 focus:outline-none text-white rounded w-5/12 md:w-3/12 ">ADD +</button>
                                                         }
                                                         </div>
+                                                        {/* if click edit show already selected values in box */}
                                                         {
                                                             item.more && props.values.length!=0 &&
                                                                 <div className="space-y-1 mt-1 border border-gray-400 rounded p-2 max-h-48 overflow-auto">
+                                                                   
                                                                     {
                                                                         props.values && props.values.map((item,key)=>{
                                                                             return(

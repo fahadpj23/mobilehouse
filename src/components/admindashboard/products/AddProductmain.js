@@ -65,7 +65,7 @@ const AddProductMain=(props)=>{
          {
             context.notify("Product added successfully","success")
             setuploadstatus(false)
-             props.productAddSuccess()
+             props.AddSucess()
 
 
          }
@@ -75,7 +75,7 @@ const AddProductMain=(props)=>{
       useEffect(()=>{
         if(catgeorytotal==="")
         {
-            MobileHouseApi.get('/getCategory',{headers:{accessToken:localStorage.getItem("accessToken")}})
+            MobileHouseApi.get(`/category/getData`,{params:{search:""},headers:{accessToken:localStorage.getItem("accessToken")}})
             .then((res)=>{
                 console.log(res.data)
                 setcatgeorytotal(res.data)
@@ -116,7 +116,7 @@ const AddProductMain=(props)=>{
         <div className="w-10/12 lg:w-6/12 bg-white z-20 h-full flex relative justify-center py-16 mr-5">
         
         <div className="w-10/12  flex flex-col justify-center items-center ">
-        <button onClick={()=>props.closeProductadd()} className=" absolute right-4 top-3 font-semibold text-xl"><AiOutlineClose/></button>
+        <button onClick={()=>props.AddWindowClose()} className=" absolute right-4 top-3 font-semibold text-xl"><AiOutlineClose/></button>
             <div className="w-full  ">
                 
                 <div className="space-y-1">
