@@ -13,12 +13,32 @@ const ContextProvider=(props)=>{
     const[auth,setauth]=useState(false)
     
 
-    const addtocart=(item,image)=>{
-        console.log(item)
+    const addtocart=(item,qty,image)=>{
+       console.log(item)
+        if(localStorage.getItem('UserName'))
+        {
+                const formData=new FormData()
+                formData.append('productId',item.id)
+                formData.append('qty',qty)
+                MobileHouseApi.post('/CartAdd',formData,{headers:{UserToken:localStorage.getItem("UserToken")}})
+                .then((res)=>{
+              
+                    if(res.data.success)
+                    {
+                       
+                                setcartadded(true)
+                       
+                    }
+                })
+        }
+        else
+        {
         item.image=image
         item.qty=1
         setcart([...cart,item]) 
-      setcartadded(true) 
+        setcartadded(true) 
+        }
+      
     }
 
     const cartqty=(product,qty)=>{
@@ -71,8 +91,16 @@ const ContextProvider=(props)=>{
      
         if(cartadded==true  )
         {
-        localStorage.setItem('cart',JSON.stringify(cart))
-        setcartadded(false)
+            if(localStorage.getItem('UserName'))
+            {
+                setcartadded(false)
+           
+            }
+            else
+            {
+                localStorage.setItem('cart',JSON.stringify(cart))
+                setcartadded(false)
+            }
         }
         if(localStorage.getItem('UserToken'))
         {
