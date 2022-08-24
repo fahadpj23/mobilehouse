@@ -21,7 +21,7 @@ const Cartmain=()=>{
                         <h1>{context.cart.length} items</h1>
                      </div>
                      <hr className="w-full h-0.5 py-3"></hr>
-                    <div className="h-56 md:h-5/6 overflow-auto space-y-6 ">
+                    <div className="h-56 md:h-5/6 overflow-auto space-y-3 md:space-y-6 ">
                        
                         {
                             context.cart.length!=0 && context.cart.map((item,key)=>{

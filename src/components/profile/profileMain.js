@@ -2,14 +2,21 @@
 import { FaRegUserCircle } from 'react-icons/fa';
 import { useState } from 'react';
 import Myorder from './myorder';
-const ProfileMain=()=>{
 
+import {  useHistory } from 'react-router-dom';
+
+ 
+const ProfileMain=()=>{
+    let history=useHistory();
     const [sidenavValue,setsidenavValue]=useState(1)
 
     const userLogout=()=>{
         localStorage.removeItem('UserName')
         localStorage.removeItem('UserToken')
-    }
+        history.push('/')
+        window.location.reload(false);
+
+    }   
     console.log(sidenavValue)
     return(
         <div className="md:flex h-fixedNoNavlg6 px-2">
