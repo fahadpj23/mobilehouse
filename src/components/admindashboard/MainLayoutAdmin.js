@@ -8,7 +8,7 @@ const MainLayoutAdmin=({children})=>{
             <SideNav/>
 
         </div>
-        <div className=" h-fixedNoNav3 overflow-auto ml-12 md:ml-16 w-full ">
+        <div className=" h-fixedNoNav3 overflow-auto  md:ml-16 w-full ">
             
             <main>{children}</main>
         </div>

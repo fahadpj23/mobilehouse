@@ -1,3 +1,6 @@
+
+
+
 import { Link, useHistory } from 'react-router-dom';
 import { useState } from 'react';
 import { AiFillDashboard } from 'react-icons/ai';
@@ -32,10 +35,11 @@ const SideNav=()=>{
     }
     return(
        
-             <div className={`${sidenav==true ?" space-y-4 flex flex-col justify-between  pl-3 relative  text-white bg-gray-600 h-screen px-5 transform duration-1000 pb-4 z-10 ": " space-y-4 flex flex-col   relative  pb-4 justify-between  text-white h-screen bg-gray-600 transform duration-1000 -translate-x-4 sm:-translate-x-2  z-20 " }`}>
-                 <button onClick={()=>setsidenav(!sidenav)} className=" bg-gray-600 text-white absolute top-0 -right-8 focus:outline-none text-xl p-2"><GiHamburgerMenu/></button>
+             <div className={`${sidenav==true ?" space-y-4 flex flex-col justify-between  pl-3 relative  text-white bg-gray-600 h-screen px-5 transform duration-1000 pb-4 z-10 ": " space-y-4 flex flex-col   relative  pb-4 justify-between  text-white h-screen bg-gray-600 transform duration-700 -ml-1 sm:ml-0 -translate-x-16 sm:-translate-x-2  z-20 " }`}>
+                 <button onClick={()=>setsidenav(!sidenav)} className={`bg-gray-600 text-white absolute top-0 -right-8 focus:outline-none text-xl p-2`}><GiHamburgerMenu/></button>
                 {
-                    sidenav==true ? 
+                    sidenav==true ?
+                    <div className='flex flex-col justify-between h-full'>
                         <div className='space-y-5 px-3 '>
                             <button onClick={()=>history.push({pathname:'/admin/Dashboard',search: "?" + new URLSearchParams({pageNo: 1}).toString() })}  className={` w-full text-left ${LinkAddress=="Dashboard" && " text-blue-500 "  } focus:outline-none flex `}>Dashboard<AiFillDashboard className='mt-1 ml-2'/></button>
                             
@@ -52,26 +56,31 @@ const SideNav=()=>{
                             {/* <button  onClick={()=>history.push("/admin/HsnCode")}className={` w-full text-left ${LinkAddress=="Dashboard" && " text-blue-500 "  }focus:outline-none flex `}>HsnCode <SiBrandfolder className='mt-1 ml-2 '/></button> */}
 
                         </div>
-                       
-                    :
-                        <div className='space-y-5 px-5 text-xl'>
-                            <button  onClick={()=>history.push({pathname:'/admin/Dashboard',search: "?" + new URLSearchParams({pageNo: 1}).toString() })}  className={` mt-10 w-full ${LinkAddress=="Dashboard" && " text-blue-500 "  } focus:outline-none flex justify-center`}><AiFillDashboard/></button>
-                            <button onClick={()=>history.push({pathname:'/admin/orders',search: "?" + new URLSearchParams({pageNo: 1}).toString() })}   className={` w-full ${LinkAddress=="orders" && " text-blue-500 "  } focus:outline-none flex justify-center`}><FaTruckMoving/></button>
-                            {/* <button onClick={()=>history.push("/admin/Purchase")} className={` w-full ${LinkAddress=="Purchase" && " text-blue-500 "  } focus:outline-none flex justify-center`}><FaCartArrowDown/></button> */}
-                            <button onClick={()=>history.push({pathname:'/admin/Product',search: "?" + new URLSearchParams({pageNo: 1}).toString() })}   className={` w-full ${LinkAddress=="Product" && " text-blue-500 "  } focus:outline-none flex justify-center`}><FaProductHunt/></button>
-                            <button  onClick={()=>history.push("/admin/category")}className={` w-full ${LinkAddress=="category" && " text-blue-500 "  } focus:outline-none flex justify-center`}><CgListTree/></button>
-                            <button  onClick={()=>history.push("/admin/Attribute")}className={` w-full ${LinkAddress=="Attribute" && " text-blue-500 "  } focus:outline-none flex justify-center`}><IoIosColorFilter/> </button>
-                            <button  onClick={()=>history.push("/admin/Supplier")}className={` w-full ${LinkAddress=="Supplier" && " text-blue-500 "  } focus:outline-none flex justify-center`}> <IoIosPerson className='mt-1 ml-2 text-white bg-red-200'/></button>
-                            <button  onClick={()=>history.push("/admin/HsnCode")}className={` w-full ${LinkAddress=="HsnCode" && " text-blue-500 "  } focus:outline-none flex justify-center`}> <GiPayMoney className='mt-1 ml-2 '/></button>
-                            <button  onClick={()=>history.push("/admin/Heading")}className={` w-full ${LinkAddress=="Heading" && " text-blue-500 "  } focus:outline-none flex justify-center`}> <BsCardHeading className='mt-1 ml-2 '/></button>
-                            <button  onClick={()=>history.push("/admin/Banner")}className={` w-full ${LinkAddress=="Banner" && " text-blue-500 "  } focus:outline-none flex justify-center`}> <SiBrandfolder className='mt-1 ml-2 '/></button>
-                            <button  onClick={()=>history.push("/admin/Ads")}className={` w-full ${LinkAddress=="ads" && " text-blue-500 "  } focus:outline-none flex justify-center`}> <RiAdvertisementLine className='mt-1 ml-2 '/></button>
+                        <button onClick={()=>logoutadminpanel()} className='w-full focus:outline-none flex items-center  space-x-2 text-left pl-6 text-sm tracking-wider font-semibold'><h1 className={`${sidenav==true ? "block" : "hidden"}`} >LOGOUT</h1><h1 className=' text-lg '><FiLogOut/></h1></button>
+
+                       </div>
+                        :
+                        <div  className='flex flex-col justify-between h-full'>
+                            <div className='space-y-5 px-5 text-xl'>
+                                <button  onClick={()=>history.push({pathname:'/admin/Dashboard',search: "?" + new URLSearchParams({pageNo: 1}).toString() })}  className={` mt-10 w-full ${LinkAddress=="Dashboard" && " text-blue-500 "  } focus:outline-none flex justify-center`}><AiFillDashboard/></button>
+                                <button onClick={()=>history.push({pathname:'/admin/orders',search: "?" + new URLSearchParams({pageNo: 1}).toString() })}   className={` w-full ${LinkAddress=="orders" && " text-blue-500 "  } focus:outline-none flex justify-center`}><FaTruckMoving/></button>
+                                {/* <button onClick={()=>history.push("/admin/Purchase")} className={` w-full ${LinkAddress=="Purchase" && " text-blue-500 "  } focus:outline-none flex justify-center`}><FaCartArrowDown/></button> */}
+                                <button onClick={()=>history.push({pathname:'/admin/Product',search: "?" + new URLSearchParams({pageNo: 1}).toString() })}   className={` w-full ${LinkAddress=="Product" && " text-blue-500 "  } focus:outline-none flex justify-center`}><FaProductHunt/></button>
+                                <button  onClick={()=>history.push("/admin/category")}className={` w-full ${LinkAddress=="category" && " text-blue-500 "  } focus:outline-none flex justify-center`}><CgListTree/></button>
+                                <button  onClick={()=>history.push("/admin/Attribute")}className={` w-full ${LinkAddress=="Attribute" && " text-blue-500 "  } focus:outline-none flex justify-center`}><IoIosColorFilter/> </button>
+                                <button  onClick={()=>history.push("/admin/Supplier")}className={` w-full ${LinkAddress=="Supplier" && " text-blue-500 "  } focus:outline-none flex justify-center`}> <IoIosPerson className='mt-1 ml-2 text-white bg-red-200'/></button>
+                                <button  onClick={()=>history.push("/admin/HsnCode")}className={` w-full ${LinkAddress=="HsnCode" && " text-blue-500 "  } focus:outline-none flex justify-center`}> <GiPayMoney className='mt-1 ml-2 '/></button>
+                                <button  onClick={()=>history.push("/admin/Heading")}className={` w-full ${LinkAddress=="Heading" && " text-blue-500 "  } focus:outline-none flex justify-center`}> <BsCardHeading className='mt-1 ml-2 '/></button>
+                                <button  onClick={()=>history.push("/admin/Banner")}className={` w-full ${LinkAddress=="Banner" && " text-blue-500 "  } focus:outline-none flex justify-center`}> <SiBrandfolder className='mt-1 ml-2 '/></button>
+                                <button  onClick={()=>history.push("/admin/Ads")}className={` w-full ${LinkAddress=="ads" && " text-blue-500 "  } focus:outline-none flex justify-center`}> <RiAdvertisementLine className='mt-1 ml-2 '/></button>
+
+                            </div>
+                        <button onClick={()=>logoutadminpanel()} className='w-full focus:outline-none flex items-center  space-x-2 text-left pl-6 text-sm tracking-wider font-semibold'><h1 className={`${sidenav==true ? "block" : "hidden"}`} >LOGOUT</h1><h1 className=' text-lg '><FiLogOut/></h1></button>
 
                         </div>
-
-                }
+                    }
+      
    
-               <button onClick={()=>logoutadminpanel()} className='w-full focus:outline-none flex items-center  space-x-2 text-left pl-6 text-sm tracking-wider font-semibold'><h1 className={`${sidenav==true ? "block" : "hidden"}`} >LOGOUT</h1><h1 className=' text-lg '><FiLogOut/></h1></button>
              </div>
        
     )

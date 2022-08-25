@@ -107,7 +107,7 @@ const TableContent=(props)=>{
                 <input onChange={(e)=>(setsearchvalue(e.target.value),SearchTable(e.target.value))} value={searchvalue} type="text" placeholder="search" className="w-6/12 md:w-48 text-sm border border-gray-400  px-1 rounded py-2 focus:outline-none" />
             </div>
             <div className="h-fixedNoNavlg6  w-full overflow-auto pr-2">
-            {TableData && <table className="w-full mt-5   ">
+            {TableData && <table className="w-full mt-2  ">
             <tbody>
                 
                 <tr className=" bg-gray-100   sticky -top-1" >
@@ -183,12 +183,14 @@ const TableContent=(props)=>{
         </table> }
         
         </div>
+       
         {TotalCount!="" &&
         <PaginateTable
                       handlePageClick={handlePageClick}
                       pageSize={TotalCount/10}
                       pageNo={PageNo}
                      />}
+        
     </div>
     )
 }

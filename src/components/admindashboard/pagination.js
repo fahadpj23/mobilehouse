@@ -8,7 +8,7 @@ const PaginateTable =(props)=>{
                 pageCount={props.pageSize}
                
                 perPage={props.pageSize}
-                containerClassName="pl-0 list-none m-auto rounded sm:m-0 m-auto flex justify-center mb-2 overflow-auto"
+                containerClassName=" pl-0 list-none m-auto rounded sm:m-0 m-auto flex justify-center mb-2 overflow-auto"
                 pageClassName="page-item"
                 pageLinkClassName="relative block px-5 py-1.5  border"
                 activeLinkClassName="text-black bg-red-500 focus:outline-none text-white"
