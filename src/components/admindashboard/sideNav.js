@@ -46,7 +46,7 @@ const SideNav=()=>{
                             <button  onClick={()=>history.push("/admin/Supplier")}className={` w-full text-left ${LinkAddress=="Supplier" && " text-blue-500 "  }focus:outline-none flex `}>Supplier <IoIosPerson className='mt-1 ml-2 '/></button>
                             <button  onClick={()=>history.push("/admin/HsnCode")}className={` w-full text-left ${LinkAddress=="HsnCode" && " text-blue-500 "  } focus:outline-none flex `}>HsnCode <GiPayMoney className='mt-1 ml-2 '/></button>
                             <button  onClick={()=>history.push("/admin/Heading")}className={` w-full text-left ${LinkAddress=="Heading" && " text-blue-500 "  } focus:outline-none flex `}>Heading <BsCardHeading className='mt-1 ml-2 '/></button>
-                            <button  onClick={()=>history.push("/admin/Banner")}className={` w-full text-left ${LinkAddress=="Banner" && " text-blue-500 "  } focus:outline-none flex `}>Banner <MdSlideshow className='mt-1 ml-2 '/></button>
+                            <button  onClick={()=>history.push("/admin/Banner")}className={` w-full text-left ${LinkAddress=="Banner" && " text-blue-500 "  } focus:outline-none flex `}>Banner <SiBrandfolder className='mt-1 ml-2 '/></button>
                             <button  onClick={()=>history.push("/admin/Ads")}className={` w-full text-left ${LinkAddress=="Ads" && " text-blue-500 "  } focus:outline-none flex `}>Ads <RiAdvertisementLine className='mt-1 ml-2 '/></button>
                             {/* <button  onClick={()=>history.push("/admin/HsnCode")}className={` w-full text-left ${LinkAddress=="Dashboard" && " text-blue-500 "  }focus:outline-none flex `}>HsnCode <SiBrandfolder className='mt-1 ml-2 '/></button> */}
 
@@ -61,9 +61,9 @@ const SideNav=()=>{
                             <button  onClick={()=>history.push("/admin/category")}className={` w-full ${LinkAddress=="category" && " text-blue-500 "  } focus:outline-none flex justify-center`}><CgListTree/></button>
                             <button  onClick={()=>history.push("/admin/Attribute")}className={` w-full ${LinkAddress=="Attribute" && " text-blue-500 "  } focus:outline-none flex justify-center`}><IoIosColorFilter/> </button>
                             <button  onClick={()=>history.push("/admin/Supplier")}className={` w-full ${LinkAddress=="Supplier" && " text-blue-500 "  } focus:outline-none flex justify-center`}> <IoIosPerson className='mt-1 ml-2 text-white bg-red-200'/></button>
-                            <button  onClick={()=>history.push("/admin/HsnCode")}className={` w-full ${LinkAddress=="HsnCode" && " text-blue-500 "  } focus:outline-none flex justify-center`}> <SiBrandfolder className='mt-1 ml-2 '/></button>
+                            <button  onClick={()=>history.push("/admin/HsnCode")}className={` w-full ${LinkAddress=="HsnCode" && " text-blue-500 "  } focus:outline-none flex justify-center`}> <GiPayMoney className='mt-1 ml-2 '/></button>
                             <button  onClick={()=>history.push("/admin/Heading")}className={` w-full ${LinkAddress=="Heading" && " text-blue-500 "  } focus:outline-none flex justify-center`}> <BsCardHeading className='mt-1 ml-2 '/></button>
-                            <button  onClick={()=>history.push("/admin/Banner")}className={` w-full ${LinkAddress=="Banner" && " text-blue-500 "  } focus:outline-none flex justify-center`}> <MdSlideshow className='mt-1 ml-2 '/></button>
+                            <button  onClick={()=>history.push("/admin/Banner")}className={` w-full ${LinkAddress=="Banner" && " text-blue-500 "  } focus:outline-none flex justify-center`}> <SiBrandfolder className='mt-1 ml-2 '/></button>
                             <button  onClick={()=>history.push("/admin/Ads")}className={` w-full ${LinkAddress=="ads" && " text-blue-500 "  } focus:outline-none flex justify-center`}> <RiAdvertisementLine className='mt-1 ml-2 '/></button>
 
                         </div>

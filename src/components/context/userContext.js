@@ -46,6 +46,23 @@ const ContextProvider=(props)=>{
             if(item.id==product.id)
             {
                 item.qty=qty
+                if(localStorage.getItem('UserName'))
+                {
+                    console.log("dsd")
+                       const formData=new FormData()
+                       formData.append('qty',qty)
+                       formData.append('productId',product.id)
+                        MobileHouseApi.post('/CartQtyUpdate',formData,{headers:{UserToken:localStorage.getItem("UserToken")}})
+                        .then((res)=>{
+                      
+                            if(res.data.success)
+                            {
+                               
+                                 console.log(res.data.success)
+                               
+                            }
+                        })
+                }
             }
         })
       setcartadded(true) 

@@ -127,8 +127,6 @@ function App(){
                                     <Route  path="/ShippingPolicy" component={ShippingPolicy}/>
                                     <Route  path="/AboutUs" component={AboutUs}/>
                                     <Route  path="/Profile" component={Profile}/>
-                                   
-                                   
 
                                     <Route    component={PageNotFound}/>
 
