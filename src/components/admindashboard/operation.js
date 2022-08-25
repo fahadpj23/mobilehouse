@@ -17,7 +17,7 @@ const NavOperation=(props)=>{
             <div className="w-full sm:flex justify-between  pt-10 pb-5 px-3">
                 <div>
                
-                    <h1 className='ml-5 uppercase font-semibold text-lg'>{ window.location.href.substring(window.location.href.lastIndexOf("/") + 1, window.location.href.length)}</h1>
+                    <h1 className='ml-5  font-semibold text-lg uppercase'>{ props.controller}</h1>
                 </div>
                 <div className='flex space-x-3 justify-end'>
                     <button className=" flex items-center px-3 py-1 border border-gray-400 rounded space-x-1"><h1><AiFillDelete/></h1> <h1 className='hidden sm:block'>Delete</h1></button>

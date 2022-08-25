@@ -48,7 +48,7 @@ const ContextProvider=(props)=>{
                 item.qty=qty
                 if(localStorage.getItem('UserName'))
                 {
-                    console.log("dsd")
+                   
                        const formData=new FormData()
                        formData.append('qty',qty)
                        formData.append('productId',product.id)

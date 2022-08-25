@@ -1,19 +1,23 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState,useSearchParams } from "react"
 import { AiFillSetting } from 'react-icons/ai';
 import { BiDotsVerticalRounded } from 'react-icons/bi';
 import TableOperation from './tableOperation'
 import { MobileHouseApi } from "axiosinstance";
 import NavOperation from "./operation";
 import UploadSpinner from "./uploadstatus";
+import PaginateTable from "./pagination";
+import { useHistory } from "react-router";
 const TableContent=(props)=>{
-
- 
+    console.log(window.location.href.search)
+    const queryParams = new URLSearchParams(window.location.search)
+    const PageNo = queryParams.get("pageNo")
     
+    const history=useHistory()
     const[TableData,setTableData]=useState("")
     const[operation,setoperation]=useState("")
     const[operationitem,setoperationitem ]=useState("")
     const[searchvalue,setsearchvalue ]=useState("")
-   
+    const[TotalCount,setTotalCount ]=useState("")
    
     const[AddNewstatus,setAddNewstatus]=useState(false)
  console.log(props)
@@ -28,12 +32,21 @@ const TableContent=(props)=>{
             setreload(true)
         })
     }
-    
+    const handlePageClick=(e)=>{
+        console.log(e.selected  )
+       console.log(window.location.href)
+        history.replace( { search: "?" + new URLSearchParams({pageNo: +(e.selected) +1}).toString() })
+        MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:searchvalue,PageNo:+(e.selected) +1},headers:{accessToken:localStorage.getItem("accessToken")}})
+        .then((res)=>{ 
+            setTableData(res.data)
+            
+        }) 
+    }
     const AddSucess=()=>{
         setAddNewstatus(false)
         setoperation("")
         setoperationitem("")
-        MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:searchvalue},headers:{accessToken:localStorage.getItem("accessToken")}})
+        MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:searchvalue,},headers:{accessToken:localStorage.getItem("accessToken")}})
         .then((res)=>{ 
             setTableData(res.data)
             
@@ -61,10 +74,10 @@ const TableContent=(props)=>{
         if(TableData=="")
         {
            
-            MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:""},headers:{accessToken:localStorage.getItem("accessToken")}})
+            MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:"",PageNo:PageNo},headers:{accessToken:localStorage.getItem("accessToken")}})
             .then((res)=>{ 
                 setTableData(res.data)
-                
+                setTotalCount(res.data.Count)
             })
         }
         if(reload==true)
@@ -168,7 +181,14 @@ const TableContent=(props)=>{
                 }
             </tbody>
         </table> }
+        
         </div>
+        {TotalCount!="" &&
+        <PaginateTable
+                      handlePageClick={handlePageClick}
+                      pageSize={TotalCount/10}
+                      pageNo={PageNo}
+                     />}
     </div>
     )
 }

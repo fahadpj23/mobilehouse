@@ -20,6 +20,8 @@ const Cartitem=(props)=>{
     console.log(item)
     let context=useContext(Usercontext)
     const [qty, setqty] = useState(item.qty)
+
+    
     const qtyminus=()=>{
         context.cartqty(item,qty-1)
         setqty(qty-1)
