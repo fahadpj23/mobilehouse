@@ -26,9 +26,10 @@ const TableContent=(props)=>{
     
   
     const SearchTable=(searchval)=>{
-        MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:searchval},headers:{accessToken:localStorage.getItem("accessToken")}})
+        MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:searchval,PageNo:PageNo},headers:{accessToken:localStorage.getItem("accessToken")}})
         .then((res)=>{
             setTableData(res.data)
+            setTotalCount(res.data.Count)
             setreload(true)
         })
     }
@@ -39,6 +40,7 @@ const TableContent=(props)=>{
         MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:searchvalue,PageNo:+(e.selected) +1},headers:{accessToken:localStorage.getItem("accessToken")}})
         .then((res)=>{ 
             setTableData(res.data)
+            setTotalCount(res.data.Count)
             
         }) 
     }
@@ -49,6 +51,7 @@ const TableContent=(props)=>{
         MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:searchvalue,},headers:{accessToken:localStorage.getItem("accessToken")}})
         .then((res)=>{ 
             setTableData(res.data)
+            setTotalCount(res.data.Count)
             
         }) 
     }
@@ -103,7 +106,7 @@ const TableContent=(props)=>{
                     <UploadSpinner/>
                 }
             <div className=" pb-2 w-full flex justify-between mt-2 px-2">
-                <h1 className="border border-gray-500 w-20 py-1 rounded text-center "><span className="font-semibold">All </span> <span className="font-semibold text-green-600">{TableData && TableData.Data.length} </span></h1>
+                <h1 className="border border-gray-500 w-20 py-1 rounded text-center "><span className="font-semibold">All </span> <span className="font-semibold text-green-600">{TotalCount && TotalCount} </span></h1>
                 <input onChange={(e)=>(setsearchvalue(e.target.value),SearchTable(e.target.value))} value={searchvalue} type="text" placeholder="search" className="w-6/12 md:w-48 text-sm border border-gray-400  px-1 rounded py-2 focus:outline-none" />
             </div>
             <div className="h-fixedNoNavlg6  w-full overflow-auto pr-2">
