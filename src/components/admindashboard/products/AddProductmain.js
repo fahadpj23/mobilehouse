@@ -113,6 +113,10 @@ const AddProductMain=(props)=>{
             <UploadSpinner/>
  
        }
+       {
+        catgeorytotal=="" && 
+            <UploadSpinner/>
+       }
         <div className="w-10/12 lg:w-6/12 bg-white z-20 h-full flex relative justify-center py-16 mr-5">
         
         <div className="w-10/12  flex flex-col justify-center items-center ">
