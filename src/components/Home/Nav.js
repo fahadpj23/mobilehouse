@@ -60,7 +60,7 @@ const Nav=(props)=>{
     const searchClose=()=>{
         setMobileSearchStatus(false)
     }
-
+    console.log(serachitem)
     return(
         <div className="shadow-sm">
             {loginstatus===true&&
@@ -102,20 +102,22 @@ const Nav=(props)=>{
                                 <input onChange={(e)=>searchProduct(e.target.value)} type="text" placeholder="search here" className=" hidden md:block px-2 w-full rounded h-8 text-sm  md:h-10 focus:outline-none border border-gray-300 "/>
                                 
                                 
-                                <div className={`${serachitem!=="" && MobileSearchStatus==false ? " absolute  top-10 z-20 max-h-96 w-96 bg-white shadow-xl rounded-lg p-2 flex flex-col overflow-y-scroll  ": "hidden"}`}>
-                                {MobileSearchStatus==false && serachitem!=="" && serachitem.map((item,key)=>{
-                                    return(
-                                        // <Link to={{pathname: "/singleItem",   search: "?" + new URLSearchParams({productid: item.id}).toString() }} className="h-full items-center justify-center flex flex-col space-y-3 p-4 ">
-                                        // <img src={`http://127.0.0.1:9000/images/${item.image}`} alt="dd" className="object-cover h-40 overflow-hidden transform hover:-translate-y-1 hover:scale-90 hover:duration-700 "/>
-                                        
-                                        // </Link>
-                                        <button onClick={()=>selectNavProduct(item)}  className="hover:text-blue-400 text-left py-2 focus:outline-none">
+                                <div className={`${serachitem!=="" && MobileSearchStatus==false ? " absolute  top-10 z-20 max-h-128 w-96 bg-white shadow-xl rounded-lg p-2 flex flex-col overflow-y-scroll py-2   ": "hidden"}`}>
+                                        <div className=' flex flex-col  space-y-2'>
+                                        {MobileSearchStatus==false && serachitem!=="" && serachitem.products?.map((item,key)=>{
+                                            return(
+                                                // <Link to={{pathname: "/singleItem",   search: "?" + new URLSearchParams({productid: item.id}).toString() }} className="h-full items-center justify-center flex flex-col space-y-3 p-4 ">
+                                                // <img src={`http://127.0.0.1:9000/images/${item.image}`} alt="dd" className="object-cover h-40 overflow-hidden transform hover:-translate-y-1 hover:scale-90 hover:duration-700 "/>
+                                                
+                                                // </Link>
+
+                                             <button onClick={()=>selectNavProduct(item)}  className="hover:text-blue-400 text-left  focus:outline-none">
                                             <div className='flex'>
                                                 <div className='w-9/12 flex flex-col justify-center'>
                                                     <h1 className='text-black text-sm truncate'>{item.name}</h1>
                                                     <h1  className='text-blue-600 text-xs font-semibold'>in {item.categoryName}</h1>
                                                 </div>
-                                                <div className='w-3/12'>
+                                                <div className='w-3/12 flex justify-center'>
 
                                                     <img src={   `${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${item.image}`} alt="" className="object-contain h-14 w-14 overflow-hidden" />
                                                 </div>
@@ -123,9 +125,38 @@ const Nav=(props)=>{
                                             </div>
                                              
                                         </button>
+                                        )})}
+                                        </div>
+                                        <div className='mt-2'>
+                                        {serachitem && serachitem.category?.map((item,key)=>{
+                                                return(
+                                                    <Link className="  hover:text-blue-400 text-left py-2 focus:outline-none  flex items-center space-x-2 " to={{pathname: "/ProductList",search: "?" + new URLSearchParams({category: item.id,sort:"newestfirst"}).toString()}}>
+                                                    
+                                                        <h1 className='mt-1 text-gray-600 text-sm'><BsSearch/></h1>
+                                                        <h1 className='text-sm tracking-wide'>{item.categoryName}</h1> 
+                                                    </Link>
+                                                    
+                                                )
+                                            })}
+       
+                                        </div>
+                                        <div className=''>
+                                        {serachitem && serachitem.Brand?.map((item,key)=>{
+                                            return(
+                                            
+                                                <Link className="  hover:text-blue-400 text-left py-2 focus:outline-none  flex items-center space-x-2 " to={{pathname: "/ProductList",search: "?" + new URLSearchParams({Brand:item.Brand,sort:"newestfirst"}).toString()}}>
+                                                    <h1 className='mt-1 text-gray-600 text-sm'><BsSearch/></h1>
+                                                     <h1 className='text-sm tracking-wide'>{item.Brand}</h1> 
+                                                  
+                                                </Link>
+                                            
+                                            )
+                                        })}
+                                        </div>
+                                       
                                     
-                                    )
-                                })}
+                                    
+                                
                                 </div>
                             </div>
                         </div>

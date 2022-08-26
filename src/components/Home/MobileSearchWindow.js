@@ -9,7 +9,7 @@ const MobileSearchWindow=(props)=>{
 
    
     return(
-        <div className='fixed top-0 left-0 w-screen h-screen bg-white z-20 '>
+        <div className='block sm:hidden fixed top-0 left-0 w-screen h-screen bg-white z-20 '>
             <div className=" flex  items-center bg-white  border-b border-gray-200">
                 <FaArrowLeft onClick={(e)=>props.searchClose(e.target.value)} className=' text-sm text-gray-500 w-2/12 mt-1'/>
                 <input onChange={(e)=>{props.   searchProduct(e.target.value)}} className=" h-12 w-full focus:outline-none pr-2 " autoFocus placeholder='search..' type="search"/>
