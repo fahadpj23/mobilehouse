@@ -190,7 +190,7 @@ const TableContent=(props)=>{
         {TotalCount!="" &&
         <PaginateTable
                       handlePageClick={handlePageClick}
-                      pageSize={TotalCount/10}
+                      pageSize={TotalCount/13}
                       pageNo={PageNo}
                      />}
         
