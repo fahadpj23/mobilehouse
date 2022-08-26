@@ -10,34 +10,30 @@ import UserRegister from './userRegister';
 import {AuthContext} from '../../helpers/authcontext'
 import { Usercontext } from '../context/userContext';
 import { useHistory } from 'react-router-dom';
-
+import MobileSearchWindow from './MobileSearchWindow';
 const Nav=(props)=>{
 
     const context=useContext(AuthContext)
     const context1=useContext(Usercontext)
     let history=useHistory();
     
-    const [serachitemdis, setserachitemdis] = useState("")
+    const [serachitem, setserachitem] = useState("")
     const [loginstatus, setloginstatus] = useState(false)
     const [username, setusername] = useState(localStorage.getItem("UserName")  ? localStorage.getItem("UserName") :"Login/Signup")
     const [logout, setlogout] = useState(false)
     const [registeruser, setregisteruser] = useState(false)
+    const [MobileSearchStatus, setMobileSearchStatus] = useState(false)
 
    
 
 
-    const searchProduct=(searchitem1)=>{
-        if(searchitem1==="")
-        {
-            setserachitemdis("")
-        }
-        else
-        {
-            MobileHouseApi.get(`searchProduct`,{params: { searchitem: searchitem1}})
-        .then(res=>{
-             setserachitemdis(res.data);
-        })
-        }
+    const searchProduct=(searchval)=>{
+      
+            MobileHouseApi.get(`searchProduct`,{params: { searchitem: searchval}})
+            .then(res=>{
+             setserachitem(res.data);
+            })
+        
     }
 
     const selectNavProduct=(product)=>{
@@ -51,12 +47,18 @@ const Nav=(props)=>{
         
     }
 
-    const clearuser=()=>
-    {   
-        localStorage.removeItem("UserToken")
-        localStorage.removeItem("UserName")
-        setusername("Login/Signup")
-        setlogout(false)
+    // in mobile view  when search click then a window open for searching
+    const MobilesearchProduct=()=>{
+        MobileHouseApi.get(`searchProduct`,{params: { searchitem: ""}})
+        .then(res=>{
+         setserachitem(res.data);
+        })
+            setMobileSearchStatus(true)
+    }
+
+    //mobile view search close
+    const searchClose=()=>{
+        setMobileSearchStatus(false)
     }
 
     return(
@@ -78,7 +80,16 @@ const Nav=(props)=>{
                 />
 
             }
-                <div className="w-full  h-10 bg-gray-300 border-2 border-gray-100">
+            {
+                MobileSearchStatus==true && 
+                    <MobileSearchWindow
+                    searchClose={searchClose}
+                    serachitem={serachitem}
+                    selectNavProduct={selectNavProduct}
+                    searchProduct={searchProduct}
+                    />
+            }
+                <div className=" w-full h-5  md:h-10 bg-gray-300 border-2 border-gray-100">
                 </div>
                 <div className="w-full flex  items-center justify-between py-2 pl-1 md:pl-0  pr-2  md:px-0">
                     <div className="w-full md:w-7/12 ">
@@ -91,8 +102,8 @@ const Nav=(props)=>{
                                 <input onChange={(e)=>searchProduct(e.target.value)} type="text" placeholder="search here" className=" hidden md:block px-2 w-full rounded h-8 text-sm  md:h-10 focus:outline-none border border-gray-300 "/>
                                 
                                 
-                                <div className={`${serachitemdis!=="" ? " absolute  top-10 z-20 max-h-96 w-96 bg-white shadow-xl rounded-lg p-2 flex flex-col overflow-y-scroll  ": "hidden"}`}>
-                                {serachitemdis!=="" && serachitemdis.map((item,key)=>{
+                                <div className={`${serachitem!=="" && MobileSearchStatus==false ? " absolute  top-10 z-20 max-h-96 w-96 bg-white shadow-xl rounded-lg p-2 flex flex-col overflow-y-scroll  ": "hidden"}`}>
+                                {MobileSearchStatus==false && serachitem!=="" && serachitem.map((item,key)=>{
                                     return(
                                         // <Link to={{pathname: "/singleItem",   search: "?" + new URLSearchParams({productid: item.id}).toString() }} className="h-full items-center justify-center flex flex-col space-y-3 p-4 ">
                                         // <img src={`http://127.0.0.1:9000/images/${item.image}`} alt="dd" className="object-cover h-40 overflow-hidden transform hover:-translate-y-1 hover:scale-90 hover:duration-700 "/>
@@ -121,7 +132,7 @@ const Nav=(props)=>{
                     </div>
                   
                     <div className="w-2/12  space-x-5 flex justify-end md:justify-center">
-                             <button className=" block md:hidden focus:outline-none  "><BsSearch/></button>
+                             <button onClick={()=>MobilesearchProduct()} className=" block md:hidden focus:outline-none  "><BsSearch/></button>
 
                             <div>
                             
@@ -129,9 +140,9 @@ const Nav=(props)=>{
                             {
                                username==="Login/Signup" ?
 
-                               <button onClick={()=> setloginstatus(true) } className="flex hover:text-red-500 items-center relative focus:outline-none "><FaRegUserCircle className="mr-1 text-2xl  text-gray-700 font-light"/><h1 className="lg:block hidden">{username}</h1></button>
+                               <button onClick={()=> setloginstatus(true) } className="flex hover:text-red-500 items-center relative focus:outline-none "><FaRegUserCircle className="mr-1 text-xl md:text-2xl  text-gray-700 font-light"/><h1 className="lg:block hidden">{username}</h1></button>
                                :
-                              <Link className="     flex items-center py-1 hover:text-blue-500" to={{pathname: "/Profile"}}><FaRegUserCircle className="mr-1 text-2xl  text-gray-700 font-light"/><h1 className="lg:block hidden">{username}</h1></Link> 
+                              <Link className="     flex items-center py-1 hover:text-blue-500" to={{pathname: "/Profile"}}><FaRegUserCircle className="mr-1 text-xl md:text-2xl text-gray-700 font-light"/><h1 className="lg:block hidden">{username}</h1></Link> 
                             }
                                 {/* <button onClick={()=>{username==="Login/Signup" ? setloginstatus(true) : setlogout(!logout)}} className="flex hover:text-red-500 items-center relative focus:outline-none "><FaRegUserCircle className="mr-1 text-2xl  text-gray-700 font-light"/><h1 className="lg:block hidden">{username}</h1></button> */}
                                 {/* {

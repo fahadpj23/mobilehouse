@@ -98,7 +98,7 @@ function SamplePrevArrow(props) {
           settings: {
             infinite: true,
             speed: 500,
-            slidesToShow: 3.7,
+            slidesToShow: 4.7,
             slidesToScroll: 1,
             className: 'relative',
             swipeToSlide: true,
@@ -112,11 +112,11 @@ function SamplePrevArrow(props) {
      console.log(MobileHouseApiImage)
   
     return (
-      <div className="w-full flex justify-center">
-      <div className="px-0 md:px-3 my-3 bg-gray-50 w-full md:w-10/12 ">
+      <div className="w-full flex justify-center ">
+      <div className="px-0 md:px-3 my-5  w-full md:w-10/12 ">
         <div className="flex justify-between mx-1 md:mx-6 ">
           
-          <h1 className="relative sm:text-md text-sm"><b>Top Category</b></h1>
+          <h1 className="relative sm:text-md text-xs"><b>Top Category</b></h1>
         </div>
         <Slider {...settings} className="">
           {props.category && props.category.map((item, key) => {
@@ -126,8 +126,8 @@ function SamplePrevArrow(props) {
 
                     <div className="py-4  h-40   " key={key}>
                         <div className=" flex flex-col bg-white w-full justify-center items-center  rounded-lg   space-y-2 ">
-                            <img src={   `${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${item.image}`} alt="" className="object-contain h-20 md:h-24 w-24 overflow-hidden p-2 " />
-                            <h1 className="text-center font-semibold text-xs  md:text-sm lowercase">{item.categoryName}</h1>
+                            <img src={   `${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${item.image}`} alt="" className="object-contain h-16 md:h-24 w-16 overflow-hidden p-2 " />
+                            <h1 className="text-center font-medium md:font-semibold text-xs  md:text-sm lowercase">{item.categoryName}</h1>
                         </div>
                     </div>
                  </Link>
