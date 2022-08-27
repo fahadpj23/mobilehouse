@@ -37,6 +37,7 @@ const Nav=(props)=>{
     }
 
     const selectNavProduct=(product)=>{
+        console.log(product)
         history.push({pathname:'singleItem',search: "?" + new URLSearchParams({productid: product.id}).toString() })
         window.location.reload(false);
     }

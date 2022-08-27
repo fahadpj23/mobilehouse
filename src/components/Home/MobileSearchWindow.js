@@ -3,6 +3,7 @@ import { FaArrowLeft } from 'react-icons/fa';
 import { useState,useEffect } from 'react';
 import { MobileHouseApi } from 'helpers/axiosinstance';
 import {BsSearch } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 const MobileSearchWindow=(props)=>{
 
     const [searchitem,setsearchitem]=useState("")
@@ -43,22 +44,25 @@ const MobileSearchWindow=(props)=>{
             <div className='flex flex-col h-2/5  px-2'>
             {props.serachitem && props.serachitem.category?.map((item,key)=>{
                                     return(
-                                       
-                                        <button onClick={()=>props.selectNavProduct(item)}  className="hover:text-blue-400 text-left py-2 focus:outline-none px-2 flex items-center space-x-2">
-                                           <h1 className='mt-1 text-gray-600 text-xs'><BsSearch/></h1>
-                                            <h1 className='text-xs tracking-wide'>{item.categoryName}</h1> 
-                                        </button>
+                                        <Link className="  hover:text-blue-400 text-left py-2 focus:outline-none px-2 flex items-center space-x-2 " to={{pathname: "/ProductList",search: "?" + new URLSearchParams({category: item.id,sort:"newestfirst"}).toString()}}>
+                                                    
+                                                        <h1 className='mt-1 text-gray-600 text-sm'><BsSearch/></h1>
+                                                        <h1 className='text-sm tracking-wide'>{item.categoryName}</h1> 
+                                                    </Link>
+                                     
                                     
                                     )
                                 })}
        
             {props.serachitem && props.serachitem.Brand?.map((item,key)=>{
                                     return(
-                                       
-                                        <button onClick={()=>props.selectNavProduct(item)}  className="hover:text-blue-400 text-left py-2 focus:outline-none px-2 flex items-center space-x-2">
-                                           <h1 className='mt-1 text-gray-600 text-xs'><BsSearch/></h1>
-                                            <h1 className='text-xs tracking-wide'>{item.Brand}</h1> 
-                                        </button>
+                                        <Link className="  hover:text-blue-400 text-left py-2 focus:outline-none  flex items-center space-x-2hover:text-blue-400 text-left py-2 focus:outline-none px-2 flex items-center space-x-2 " to={{pathname: "/ProductList",search: "?" + new URLSearchParams({Brand:item.Brand,sort:"newestfirst"}).toString()}}>
+                                                    <h1 className='mt-1 text-gray-600 text-sm'><BsSearch/></h1>
+                                                     <h1 className='text-sm tracking-wide'>{item.Brand}</h1> 
+                                                  
+                                                </Link>
+                                            
+                                     
                                     
                                     )
                                 })}

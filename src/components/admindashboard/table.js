@@ -48,7 +48,7 @@ const TableContent=(props)=>{
         setAddNewstatus(false)
         setoperation("")
         setoperationitem("")
-        MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:searchvalue,},headers:{accessToken:localStorage.getItem("accessToken")}})
+        MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:searchvalue,PageNo:PageNo},headers:{accessToken:localStorage.getItem("accessToken")}})
         .then((res)=>{ 
             setTableData(res.data)
             setTotalCount(res.data.Count)

@@ -16,7 +16,7 @@ const SingleItem=(props)=>{
   
     const search = props.location.search;
     const productId = new URLSearchParams(search).get('productid')
-        // if (history.action === 'PUSH') {
+        // if (history.action === 'replace') {
         //     console.log("fdfdf")
         //    }
     //    if (history.action === 'POP') {
@@ -67,7 +67,7 @@ const SingleItem=(props)=>{
     const singleitemset=(item1)=>{
       
         console.log(window.addEventListener)
-            history.push({pathname:'singleItem',search: "?" + new URLSearchParams({productid: item1.id}).toString() })
+            history.replace({pathname:'singleItem',search: "?" + new URLSearchParams({productid: item1.id}).toString() })
             MobileHouseApi.get(`/singleview`,{params: { productId: item1.id}})
             
             .then(res=>{
