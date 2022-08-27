@@ -23,10 +23,25 @@ const Nav=(props)=>{
     const [logout, setlogout] = useState(false)
     const [registeruser, setregisteruser] = useState(false)
     const [MobileSearchStatus, setMobileSearchStatus] = useState(false)
+    const [serachValue, setserachValue] = useState("")
 
    
 
-
+    document.addEventListener('click', function(event) {
+        var ignoreClickOnMeElement = document.getElementById('productsearchInputTag');
+        var isClickInsideElement = ignoreClickOnMeElement.contains(event.target);
+        if(!isClickInsideElement)
+        {
+            setserachitem("")
+        }
+        else
+        {
+            MobileHouseApi.get(`searchProduct`,{params: { searchitem:serachValue}})
+        .then(res=>{
+         setserachitem(res.data);
+        })
+        }
+    });
     const searchProduct=(searchval)=>{
       
             MobileHouseApi.get(`searchProduct`,{params: { searchitem: searchval}})
@@ -100,12 +115,12 @@ const Nav=(props)=>{
                                         
                             </Link>
                             <div className="relative sm:w-5/12 w-10/12 ">
-                                <input onChange={(e)=>searchProduct(e.target.value)} type="text" placeholder="search here" className=" hidden md:block px-2 w-full rounded h-8 text-sm  md:h-10 focus:outline-none border border-gray-300 "/>
+                                <input id="productsearchInputTag" onChange={(e)=>(setserachValue(e.target.value),searchProduct(e.target.value))} type="text" placeholder="search here" className=" hidden md:block px-2 w-full rounded h-8 text-sm  md:h-10 focus:outline-none border border-gray-300 "/>
                                 
                                 
-                                <div className={`${serachitem!=="" && MobileSearchStatus==false ? " absolute  top-10 z-20 max-h-128 w-96 bg-white shadow-xl rounded-lg p-2 flex flex-col overflow-y-scroll py-2   ": "hidden"}`}>
+                                <div className={`${serachitem!=="" && MobileSearchStatus==false ? " hidden absolute  top-10 z-20 max-h-128 w-96 bg-white shadow-xl rounded-lg p-2 sm:flex flex-col overflow-y-scroll py-2   ": "hidden"}`}>
                                         <div className=' flex flex-col  space-y-2'>
-                                        {MobileSearchStatus==false && serachitem!=="" && serachitem.products?.map((item,key)=>{
+                                        {serachitem!=="" && serachitem.products?.map((item,key)=>{
                                             return(
                                                 // <Link to={{pathname: "/singleItem",   search: "?" + new URLSearchParams({productid: item.id}).toString() }} className="h-full items-center justify-center flex flex-col space-y-3 p-4 ">
                                                 // <img src={`http://127.0.0.1:9000/images/${item.image}`} alt="dd" className="object-cover h-40 overflow-hidden transform hover:-translate-y-1 hover:scale-90 hover:duration-700 "/>

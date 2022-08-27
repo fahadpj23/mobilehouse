@@ -140,7 +140,7 @@ const SingleItemMain=(props)=>{
                                                                     <div className=' text-sm'>
                                                                     {item1.attributes?.map((item2,key2)=>{
                                                                         return(
-                                                                            <h1 className='flex' ><span>{item2.attributeName} : {item2.attributeValue}  </span><span className={`${key2+1== item1.attributes.length ? "hidden" : "block"}`}>,</span></h1>
+                                                                            <h1 className='flex text-xs sm:text-sm' ><span>{item2.attributeName} : {item2.attributeValue}  </span><span className={`${key2+1== item1.attributes.length ? "hidden" : "block"}`}>,</span></h1>
                                                                             // item2.attributeName!="color" && <h1 className='flex' ><span>{item2.attributeValue} {item2.attributeName}</span><span className={`${key2+1== item1.attributes.length ? "hidden" : "block"}`}>,</span></h1>
                                                                         )
                                                                     })}
