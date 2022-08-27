@@ -16,7 +16,7 @@ const MobileSearchWindow=(props)=>{
                 <input onChange={(e)=>{props.   searchProduct(e.target.value)}} className=" h-12 w-full focus:outline-none pr-2 " autoFocus placeholder='search..' type="search"/>
             </div>
             <div className='h-full overflow-auto'>
-            <div className='flex flex-col h-3/5  px-2'>
+            <div className='flex flex-col   px-2'>
             {props.serachitem && props.serachitem.products?.map((item,key)=>{
                                     return(
                                         // <Link to={{pathname: "/singleItem",   search: "?" + new URLSearchParams({productid: item.id}).toString() }} className="h-full items-center justify-center flex flex-col space-y-3 p-4 ">
@@ -41,13 +41,13 @@ const MobileSearchWindow=(props)=>{
                                     )
                                 })}
             </div>
-            <div className='flex flex-col h-2/5  px-2'>
+            <div className='flex flex-col   px-2'>
             {props.serachitem && props.serachitem.category?.map((item,key)=>{
                                     return(
                                         <Link className="  hover:text-blue-400 text-left py-2 focus:outline-none px-2 flex items-center space-x-2 " to={{pathname: "/ProductList",search: "?" + new URLSearchParams({category: item.id,sort:"newestfirst"}).toString()}}>
                                                     
                                                         <h1 className='mt-1 text-gray-600 text-sm'><BsSearch/></h1>
-                                                        <h1 className='text-sm tracking-wide'>{item.categoryName}</h1> 
+                                                        <h1 className='text-xs tracking-wide'>{item.categoryName}</h1> 
                                                     </Link>
                                      
                                     
@@ -56,9 +56,9 @@ const MobileSearchWindow=(props)=>{
        
             {props.serachitem && props.serachitem.Brand?.map((item,key)=>{
                                     return(
-                                        <Link className="  hover:text-blue-400 text-left py-2 focus:outline-none  flex items-center space-x-2hover:text-blue-400 text-left py-2 focus:outline-none px-2 flex items-center space-x-2 " to={{pathname: "/ProductList",search: "?" + new URLSearchParams({Brand:item.Brand,sort:"newestfirst"}).toString()}}>
+                                        <Link className="  hover:text-blue-400 text-left py-2 focus:outline-none  flex items-center space-x-2hover:text-blue-400  px-2  space-x-2 " to={{pathname: "/ProductList",search: "?" + new URLSearchParams({Brand:item.Brand,sort:"newestfirst"}).toString()}}>
                                                     <h1 className='mt-1 text-gray-600 text-sm'><BsSearch/></h1>
-                                                     <h1 className='text-sm tracking-wide'>{item.Brand}</h1> 
+                                                     <h1 className='text-xs tracking-wide'>{item.Brand}</h1> 
                                                   
                                                 </Link>
                                             
