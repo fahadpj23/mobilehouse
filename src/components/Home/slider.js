@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css"; 
-
+import { Link } from "react-router-dom";
 export default class SimpleSlider extends Component {
   render() {
     const settings = {
@@ -24,7 +24,15 @@ export default class SimpleSlider extends Component {
             this.props.Banner && this.props.Banner.map((item,key)=>{
               return(
                   <div  className="focus:outline-none">
-                   <img src={`${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${item.image}`} alt="images" className=" object-fit h-36  md:h-96  w-full" />
+                    {
+                      this.props.Ads ?
+                      <Link  to={{pathname: "/ProductList",search: "?" + new URLSearchParams({Brand:item.Brand,sort:"newestfirst"}).toString()}}   className="w-full"><img src={`${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${item.image}`} alt="images" className=" object-fit h-36  md:h-96  w-full" /></Link> 
+
+                      :
+                      <img src={`${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${item.image}`} alt="images" className=" object-fit h-36  md:h-96  w-full" />
+
+                    }
+
                    </div >
               )
             })    

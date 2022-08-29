@@ -47,7 +47,7 @@ const UserRegister=(props)=>{
                     <div className="space-y-5 flex flex-col w-11/12  px-2 mt-4 ">
                 
                        
-                        <input className=" pl-2 focus:outline-none  border  border-gray-400 py-2 text-xs md:text-sm  " required type="text" id="username" name="username" placeholder='username' />
+                        <input className=" pl-2 focus:outline-none  border  border-gray-400 py-2 text-xs md:text-sm  " autoFocus required type="text" id="username" name="username" placeholder='username' />
                         {alreadyexist==true && <h1 className='text-sm text-red-500'>username already in use</h1>}
                       
                         <input className=" pl-2 focus:outline-none  border  border-gray-400 py-2 text-xs md:text-sm  " required type="text" id="MobileNumber " name="MobileNumber" placeholder='Mobile Number '  />

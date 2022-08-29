@@ -1,13 +1,23 @@
 
 import MainLayoutWebsite from "components/MainLayoutWebsite";
 import ProfileMain from "components/profile/profileMain";
-
+import { useHistory } from "react-router";
 const Profile=()=>{
+    const history=useHistory();
+
     return(
         <div>
-            <MainLayoutWebsite>
+            {
+               localStorage.getItem('UserName') ?
+               <MainLayoutWebsite>
                     <ProfileMain/>
-            </MainLayoutWebsite>
+                </MainLayoutWebsite>
+               :
+               
+               history.push("/")
+              
+            }
+          
             
         </div>
     )

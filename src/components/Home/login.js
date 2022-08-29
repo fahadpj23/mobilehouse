@@ -61,7 +61,7 @@ const Login=(props)=>{
                     <h1 className="text-lg font-semibold text-center pb-3 mt-5">Welcome To MobileHouse</h1>
                     {/* <h1 className="text-2xl font-bold  pb-3 mt-6 tracking-normal">LOGIN</h1> */}
                     <div className="space-y-6 flex flex-col w-full  mt-8 ">
-                        <input onChange={(e)=>{setusername(e.target.value)}} name="username"  className=" text-sm sm:text-base pl-2 focus:outline-none   border  border-gray-400 py-1.5 md:py-2 " placeholder="username "/>
+                        <input onChange={(e)=>{setusername(e.target.value)}} name="username"  autoFocus className=" text-sm sm:text-base pl-2 focus:outline-none   border  border-gray-400 py-1.5 md:py-2 " placeholder="username "/>
                         <input type="password"  onChange={(e)=>{setpassword(e.target.value)}} name="password" className="text-sm    sm:text-base  pl-2 focus:outline-none py-1.5 md:py-2 border   border-gray-400 " placeholder="password "/>
                         <h1 className="text-xs text-red-500">{loginst}</h1>
                         {/* <div className="flex items-center space-x-1">

@@ -219,9 +219,9 @@ const SingleItemMain=(props)=>{
                         </div>
                     
                 
-        {/* {props.relateditems!=="" &&
-        <div className="w-full flex justify-center">
-            <div className="w-10/12">
+         {props.relateditems!=="" &&
+        <div className="w-full flex justify-center mt-10 pt-10">
+            <div className="w-11/12">
                 <ProductSlider
                 Heading="Related Items"
                 items={props.relateditems}
@@ -230,7 +230,7 @@ const SingleItemMain=(props)=>{
              
         </div>
        
-        } */}
+        } 
 
         </div>
     )

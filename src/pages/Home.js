@@ -92,6 +92,7 @@ function Home() {
                             <SimpleSlider
                             Banner={Ads[key] && Ads[key].detail}
                             advertisment="advertisment"
+                            Ads="Ads"
                             />
                           </div>
                           

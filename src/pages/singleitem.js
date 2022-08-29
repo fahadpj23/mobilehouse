@@ -24,9 +24,9 @@ const SingleItem=(props)=>{
     // setreload(history.action)
  
        
-   
+    console.log(history.action)
 
-        if(history.action=="POP")
+        if(history.action=="POP" || history.action=="REPLACE")
         {
             
             console.log("111111111111")  
@@ -37,11 +37,11 @@ const SingleItem=(props)=>{
                   if(res.data.product)
                     {
                     const product=res.data.product;
-                    
+                    console.log(product)
                     setsingleitem(product)
-                    MobileHouseApi.get(`/related`,{params: { name: product.name, category:product.category,productId:product.id}})
+                    MobileHouseApi.get(`/related`,{params: {  category:product.category,variantid:product.variantid}})
                     .then(res=>{
-                        setrelateditems(res.data)
+                        setrelateditems(res.data.relatedProduct)
                         
                     })  
                     MobileHouseApi.get(`/variantproduct`,{params: { variantid: product.variantid}})
@@ -76,9 +76,9 @@ const SingleItem=(props)=>{
                     const product=res.data.product;
                     
                     setsingleitem(product)
-                    MobileHouseApi.get(`/related`,{params: { name: product.name, category:product.category,productId:product.id}})
+                    MobileHouseApi.get(`/related`,{params: { category:product.category,variantid:product.variantid}})
                     .then(res=>{
-                        setrelateditems(res.data)
+                        setrelateditems(res.data.relatedProduct)
                         
                     })  
                     MobileHouseApi.get(`/variantproduct`,{params: { variantid: product.variantid}})
@@ -102,7 +102,7 @@ const SingleItem=(props)=>{
 
     }
     
-    
+   
 
     useEffect(() => {
    
@@ -118,9 +118,9 @@ const SingleItem=(props)=>{
                     const product=res.data.product;
                    
                     setsingleitem(product)
-                    MobileHouseApi.get(`/related`,{params: { name: product.name, category:product.category,productId:product.id}})
+                    MobileHouseApi.get(`/related`,{params: { category:product.category,variantid:product.variantid}})
                     .then(res=>{
-                        setrelateditems(res.data)
+                        setrelateditems(res.data.relatedProduct)
                         
                     })  
                     MobileHouseApi.get(`/variantproduct`,{params: { variantid: product.variantid}})
