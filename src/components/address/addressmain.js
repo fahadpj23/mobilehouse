@@ -4,18 +4,14 @@ import { Usercontext } from '../context/userContext';
 import { useHistory } from "react-router-dom";
 import {MobileHouseApi} from "helpers/axiosinstance"
 import AddressProduct from './addressProduct';
+import Login from 'components/Home/login';
 
 const AddressMain=(props)=>{
     const history = useHistory();
     const context=useContext(Usercontext)
-    const [name, setname] = useState("")
-    const [pincode, setpincode] = useState("")
-    const [phone, setphone] = useState("")
-    const [address, setaddress] = useState("")
-    // const [productid, setproductid] = useState(props.item.id)
-    // const [productname, setproductname] = useState(props.item.name)
-    // const [qty, setqty] = useState(props.qty) 
-    // const [total, settotal] = useState(props.item.price*props.qty)
+
+    
+    const [LoginOpen, setLoginOpen] = useState(false)
 
     let item=props.item 
     console.log(item)
@@ -46,35 +42,36 @@ const AddressMain=(props)=>{
                  history.push({ pathname :"/OrderSuccess",state:{orderID:res.data.orderId}});
                   
                 }
-                else
+                if(res.data.error=="User not logged in")
                 {
-                    res.data.error.map((item,key)=>{
-                        if(key===0)
-                        {
-                            context.notify(` ${item.param} can't be empty` ,"error" )
-                        }
-                    })
                    
+                    setLoginOpen(true)
                 }
-        
           
           })  
     }
     return(
         <form onSubmit={(e)=>handleSubmit(e)} method="POST" className="lg:flex h-full lg:h-screen overflow-y-auto">
+            {
+                LoginOpen==true && 
+                
+                    <Login/>
+                
+            }
             <div className="w-full lg:w-8/12 h-full lg:h-fixedNoNavlg5 flex flex-col justify-center items-center">
+                
                 <div className="flex flex-col w-full lg:w-10/12 px-5 ml-0 lg:ml-10 ">
                     <h1 className="text-2xl font-semibold py-7">Add Shipping Address</h1>
                     <div  className="space-y-6">
                         <div className="flex w-full space-x-3 ">
-                            <input id="name" name="name" required className="w-6/12 text-sm text-gray-600 border border-gray-400 focus:outline-none focus:border-green-500 rounded-sm py-2 px-2  " placeholder="Name"/>
-                            <input id="company" name="company" className="w-6/12 text-sm text-gray-600 border border-gray-400 rounded-sm py-2 px-2 focus:outline-none focus:border-green-500" placeholder=" Company Name(Optional)"/>
+                            <input id="name" name="name" required className="w-6/12 text-xs md:text-sm text-gray-600 border border-gray-400 focus:outline-none focus:border-green-500 rounded-sm py-2 px-2  " placeholder="Name"/>
+                            <input id="company" name="company" className="w-6/12 text-xs md:text-sm text-gray-600 border border-gray-400 rounded-sm py-2 px-2 focus:outline-none focus:border-green-500" placeholder=" Company Name(Optional)"/>
                         </div>
                         <div className="flex space-x-3">
-                            <input id="phone" name="phone" required className="w-6/12 text-sm text-gray-600  border border-gray-400 rounded-sm py-2 px-2 focus:outline-none focus:border-green-500" placeholder="Phone Number"/>
-                            <input id="pincode" name="pincode" required  className="w-6/12 text-sm text-gray-600 border border-gray-400 rounded-sm py-2 px-2 focus:outline-none focus:border-green-500" placeholder=" pincode"/>
+                            <input id="phone" name="phone" required className="w-6/12 text-xs md:text-sm text-gray-600  border border-gray-400 rounded-sm py-2 px-2 focus:outline-none focus:border-green-500" placeholder="Phone Number"/>
+                            <input id="pincode" name="pincode" required  className="w-6/12 text-xs md:text-sm text-gray-600 border border-gray-400 rounded-sm py-2 px-2 focus:outline-none focus:border-green-500" placeholder=" pincode"/>
                         </div>
-                        <textarea id="address" name="address" required placeholder="address" className=" text-sm border w-full h-24 focus:outline-none focus:border-green-500 px-2 border-gray-400 rounded-sm">
+                        <textarea id="address" name="address" required placeholder="address" className=" text-xs md:text-sm border w-full h-24 focus:outline-none focus:border-green-500 px-2 border-gray-400 rounded-sm">
 
                         </textarea>
                         <h1 className="w-full text-center bg-green-500 rounded focus:outline-none text-white font-medium py-1 md:py-3">Deliver here</h1>

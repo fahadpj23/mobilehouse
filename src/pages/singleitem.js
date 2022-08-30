@@ -13,7 +13,7 @@ const SingleItem=(props)=>{
     const [variantchoosed, setvariantchoosed] = useState(false)
     const [categoryVariant, setcategoryVariant] = useState("")
     const [reload, setreload] = useState(false)
-  
+    
     const search = props.location.search;
     const productId = new URLSearchParams(search).get('productid')
         // if (history.action === 'replace') {
@@ -26,7 +26,7 @@ const SingleItem=(props)=>{
        
     console.log(history.action)
 
-        if(history.action=="POP" || history.action=="REPLACE")
+        if(history.action=="POP" || history.action=="PUSH")
         {
             
             console.log("111111111111")  

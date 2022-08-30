@@ -6,8 +6,7 @@ import { MobileHouseApi } from "helpers/axiosinstance";
 const Login=(props)=>{
     const context=useContext(Usercontext)
     const [loginst, setloginst] = useState("")
-    const [username, setusername] = useState("")
-    const [password, setpassword] = useState("")
+  
 
 
     // const loginf=()=>{
@@ -55,14 +54,14 @@ const Login=(props)=>{
     return(
         <form onSubmit={(e)=>handleSubmit(e)} method="post"className="w-full h-screen fixed flex items-center  bg-black   bg-opacity-80 justify-center z-20 top-0 left-0 ">
         
-            <div className=" w-10/12 md:w-4/12 xl:w-3/12 h-3/5 flex flex-col relative bg-white shadow-5xl pb-6 overflow-auto justify-center  rounded-lg">
+            <div className=" w-10/12 md:w-4/12 xl:w-3/12 h-3/5 flex flex-col relative bg-white shadow-5xl pb-6  justify-center  rounded-lg">
                 <div className="w-full flex flex-col px-3">
                     <button type="button" onClick={()=> props.setloginstatus(false)}className="absolute top-3 focus:outline-none right-3 z-20 "><AiOutlineClose/></button>
                     <h1 className="text-lg font-semibold text-center pb-3 mt-5">Welcome To MobileHouse</h1>
                     {/* <h1 className="text-2xl font-bold  pb-3 mt-6 tracking-normal">LOGIN</h1> */}
                     <div className="space-y-6 flex flex-col w-full  mt-8 ">
-                        <input onChange={(e)=>{setusername(e.target.value)}} name="username"  autoFocus className=" text-sm sm:text-base pl-2 focus:outline-none   border  border-gray-400 py-1.5 md:py-2 " placeholder="username "/>
-                        <input type="password"  onChange={(e)=>{setpassword(e.target.value)}} name="password" className="text-sm    sm:text-base  pl-2 focus:outline-none py-1.5 md:py-2 border   border-gray-400 " placeholder="password "/>
+                        <input  name="username"  autoFocus className=" text-sm sm:text-base pl-2 focus:outline-none   border  border-gray-400 py-1.5 md:py-2 " placeholder="username "/>
+                        <input type="password"   name="password" className="text-sm    sm:text-base  pl-2 focus:outline-none py-1.5 md:py-2 border   border-gray-400 " placeholder="password "/>
                         <h1 className="text-xs text-red-500">{loginst}</h1>
                         {/* <div className="flex items-center space-x-1">
                              <input type="checkbox" id="login" value="login" name="login"/> 

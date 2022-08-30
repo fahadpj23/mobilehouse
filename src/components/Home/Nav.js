@@ -29,8 +29,10 @@ const Nav=(props)=>{
 
     document.addEventListener('click', function(event) {
         var ignoreClickOnMeElement = document.getElementById('productsearchInputTag');
+        if(ignoreClickOnMeElement)
+        {
         var isClickInsideElement = ignoreClickOnMeElement.contains(event.target);
-        if(!isClickInsideElement)
+        if ( !isClickInsideElement)
         {
             setserachitem("")
         }
@@ -40,6 +42,7 @@ const Nav=(props)=>{
         .then(res=>{
          setserachitem(res.data);
         })
+        }
         }
     });
     const searchProduct=(searchval)=>{

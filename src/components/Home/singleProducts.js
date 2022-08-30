@@ -23,7 +23,7 @@ const SingleProduct=(props)=>{
     // })
     const singleProductView=(item)=>{
        
-        history.replace({ pathname: "/singleItem",   search: "?" + new URLSearchParams({productid: item.id}).toString() })
+        history.push({ pathname: "/singleItem",   search: "?" + new URLSearchParams({productid: item.id}).toString() })
        
     }
    
