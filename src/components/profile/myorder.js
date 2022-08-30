@@ -6,7 +6,7 @@ const Myorder=()=>{
     const [MyOrder, setMyOrder] = useState("")
 
     useEffect(()=>{
-        MobileHouseApi.get('/MyOrderDetails')
+        MobileHouseApi.get('/MyOrderDetails',{headers:{UserToken:localStorage.getItem("UserToken")}})
         .then((res)=>{
             setMyOrder(res.data.MyOrder)
         })

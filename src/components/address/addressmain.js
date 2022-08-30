@@ -26,15 +26,21 @@ const AddressMain=(props)=>{
     // props.item.map((item,key)=>{
     //     total=total+item.price*item.qty
     // })
-    const handleSubmit=(e)=>{
-        
+
+    const LogOpen=(e)=>{
         e.preventDefault();
+    }
+
+    const handleSubmit=(e)=>{
+        e.preventDefault();
+      
+   
         const data=new FormData(e.target)
         data.append("total",total)
         data.append('product',JSON.stringify(item)  )
         
         
-        MobileHouseApi.post(`customerOrders`,data)
+        MobileHouseApi.post(`customerOrders`,data,{headers:{UserToken:localStorage.getItem("UserToken")}})
         
         .then(res=>{
                 if(res.data.orderId)
@@ -42,22 +48,22 @@ const AddressMain=(props)=>{
                  history.push({ pathname :"/OrderSuccess",state:{orderID:res.data.orderId}});
                   
                 }
-                if(res.data.error=="User not logged in")
-                {
-                   
-                    setLoginOpen(true)
-                }
-          
+           
           })  
+        
     }
     return(
-        <form onSubmit={(e)=>handleSubmit(e)} method="POST" className="lg:flex h-full lg:h-screen overflow-y-auto">
-            {
-                LoginOpen==true && 
+        <div>  
+        {
+                !localStorage.getItem('UserName')  ?
+
                 
                     <Login/>
+                    :
                 
-            }
+         
+        <form onSubmit={(e)=>{localStorage.getItem('UserName')  ?  handleSubmit(e) :  LogOpen(e) }} method="POST" className="lg:flex h-full lg:h-screen overflow-y-auto">
+          
             <div className="w-full lg:w-8/12 h-full lg:h-fixedNoNavlg5 flex flex-col justify-center items-center">
                 
                 <div className="flex flex-col w-full lg:w-10/12 px-5 ml-0 lg:ml-10 ">
@@ -68,8 +74,8 @@ const AddressMain=(props)=>{
                             <input id="company" name="company" className="w-6/12 text-xs md:text-sm text-gray-600 border border-gray-400 rounded-sm py-2 px-2 focus:outline-none focus:border-green-500" placeholder=" Company Name(Optional)"/>
                         </div>
                         <div className="flex space-x-3">
-                            <input id="phone" name="phone" required className="w-6/12 text-xs md:text-sm text-gray-600  border border-gray-400 rounded-sm py-2 px-2 focus:outline-none focus:border-green-500" placeholder="Phone Number"/>
-                            <input id="pincode" name="pincode" required  className="w-6/12 text-xs md:text-sm text-gray-600 border border-gray-400 rounded-sm py-2 px-2 focus:outline-none focus:border-green-500" placeholder=" pincode"/>
+                            <input id="phone" name="phone"   pattern="[0-9]{10}" title="Phone Number must be 10 digit" required className="w-6/12 text-xs md:text-sm text-gray-600  border border-gray-400 rounded-sm py-2 px-2 focus:outline-none focus:border-green-500" placeholder="Phone Number"/>
+                            <input id="pincode" name="pincode"  required pattern="[0-9]{6}" title="pincode must be 6 digit"   className="w-6/12 text-xs md:text-sm text-gray-600 border border-gray-400 rounded-sm py-2 px-2 focus:outline-none focus:border-green-500" placeholder=" pincode"/>
                         </div>
                         <textarea id="address" name="address" required placeholder="address" className=" text-xs md:text-sm border w-full h-24 focus:outline-none focus:border-green-500 px-2 border-gray-400 rounded-sm">
 
@@ -83,7 +89,7 @@ const AddressMain=(props)=>{
                 <div className="w-full lg:w-10/12 justify-center h-fixedNoNavlg5 flex flex-col ">
                     <div>
                         {/* <h1 className="text-2xl text-green-500 font-semibold flex justify-center underline">Delivery</h1> */}
-                        <h1 className="text-xl font-semibold my-5 ">Order Summary</h1>
+                        <h1 className="text-lg md:text-xl font-semibold my-5 ">Order Summary</h1>
                         <div className="space-y-2">
                             <h1 className="flex justify-between"><span> Total order</span><span className="text-red-500 pb-5">{ props.item &&  props.item.length}</span></h1>
                             {/* <h1 className="flex justify-between"><span>Delivery charge</span><span className="text-red-500">Free</span></h1> */}
@@ -91,7 +97,7 @@ const AddressMain=(props)=>{
                        
                     </div>
                     <div className='max-h-80 overflow-auto'>
-                        <h1 className="text-xl font-semibold my-5 ">Delivery Summary</h1>
+                        <h1 className="text-lg md:text-xl font-semibold my-5 ">Delivery Summary</h1>
                         <div className="space-y-2">
                             {props.item && props.item.map((item1,key)=>{
                                 return(
@@ -118,6 +124,7 @@ const AddressMain=(props)=>{
             </div>
                 
         </form>
+        }</div>  
     )
 }
 export default AddressMain

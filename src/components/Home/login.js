@@ -29,6 +29,7 @@ const Login=(props)=>{
     //     })   
     // }
     const handleSubmit=(e)=>{
+        e.preventDefault();
         const data= new FormData(e.target)
         MobileHouseApi.post(`/login`,data)
         .then(res=>{
@@ -39,7 +40,7 @@ const Login=(props)=>{
                 localStorage.setItem("UserToken",res.data.UserToken)
                 localStorage.setItem("UserName",res.data.username)
                 props.loginsuccess && props.loginsuccess(res.data.username)
-                window.location.reload(false);
+             window.location.reload(false);
             }
             else
             {
@@ -48,7 +49,7 @@ const Login=(props)=>{
        console.log(res.data)
 
             })   
-        e.preventDefault();
+
       }
 
     return(
@@ -73,7 +74,7 @@ const Login=(props)=>{
                         {/* <button className="text-gray-600 focus:outline-none">forgot password?</button> */}
                         <div className=" text-xs md:text-base flex space-x-2 justify-end  mt-8">
                             <h1>not a memeber</h1>
-                            <button onClick={()=>(props.setloginstatus(false),props.setregisteruser(true))} className="text-blue-500 focus:outline-none text-xs md:text-sm">Sign Up now?</button>
+                            <button type="button" onClick={()=>(props.setloginstatus(false),props.setregisteruser(true))} className="text-blue-500 focus:outline-none text-xs md:text-sm">Sign Up now?</button>
                         </div>
                         <div className="text-xs">
                             <h1 className="space-x-1"><span>By continuing, you agree to Mobile House</span><span className="font-semibold">Terms of Use</span><span>and</span><span className="font-semibold">Privacy Policy.</span>   </h1>
