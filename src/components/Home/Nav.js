@@ -181,7 +181,7 @@ const Nav=(props)=>{
                         </div>
                     </div>
                   
-                    <div className="w-2/12  space-x-5 flex justify-end md:justify-center">
+                    <div className="w-2/12  space-x-5 flex justify-end md:justify-center items-center">
                              <button onClick={()=>MobilesearchProduct()} className=" block md:hidden focus:outline-none  "><BsSearch/></button>
 
                             <div>

@@ -98,7 +98,7 @@ function SamplePrevArrow(props) {
           settings: {
             infinite: true,
             speed: 500,
-            slidesToShow: 2.9,
+            slidesToShow: 3.7,
             slidesToScroll: 1,
             className: 'relative',
             swipeToSlide: true,
@@ -118,17 +118,17 @@ function SamplePrevArrow(props) {
           
           <h1 className="relative sm:text-sm text-xs "><b>Top Category</b></h1>
         </div>
-        <Slider {...settings} className="mt-2">
+        <Slider {...settings} className="mt-2 p-1">
         {/* <div className="grid grid-cols-8"> */}
           {props.category && props.category.map((item, key) => {
              
               return(
                 <Link className="  h-32 md:h-40 px-2 py-2 " to={{pathname: "/ProductList",search: "?" + new URLSearchParams({category: item.id,sort:"newestfirst"}).toString()}}>
 
-                    <div className="rounded-lg  shadow-md  py-2 border border-gray-100 bg-white " key={key}>
+                    <div className="rounded-lg shadow-sm  py-2 border border-gray-100 bg-white px-1 " key={key}>
                         <div className=" flex flex-col  w-full justify-center items-center  rounded-lg   ">
                             <img src={   `${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${item.image}`} alt="" className="object-contain h-16 md:h-20 w-16 md:w-24 overflow-hidden p-2 " />
-                            <h1 className="text-center font-normal capitalize  text-xs  tracking-wide">{item.categoryName}</h1>
+                            <h1 className="w-full text-center font-normal capitalize text-cart md:text-xs  tracking-wide truncate">{item.categoryName}</h1>
                         </div>
                     </div>
                  </Link>

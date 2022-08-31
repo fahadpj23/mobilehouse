@@ -36,7 +36,7 @@ export default class  ProductSlider extends Component{
   }
     render(){
         const settings = {
-            infinite: true,
+            infinite: this.props.items.length >6 ,
             speed: 500,
             slidesToShow:6.2 ,
             slidesToScroll: 1,
@@ -121,7 +121,7 @@ export default class  ProductSlider extends Component{
                 <Slider {...settings}>
                 {this.props.items && this.props.items.map((item,key)=>{
                     return(
-                        <div key={key} className="px-2 focus:outline-none ml-0 lg:ml-11">
+                        <div key={key} className="px-2 focus:outline-none ml-0 lg:ml-11 py-1">
                         <SingleProduct
                             item={item}
                         />

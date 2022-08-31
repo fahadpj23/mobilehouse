@@ -2,7 +2,7 @@
 import { FaRegUserCircle } from 'react-icons/fa';
 import { useState } from 'react';
 import Myorder from './myorder';
-
+import PersonalInformation from './Personal_Information';
 import {  useHistory } from 'react-router-dom';
 
  
@@ -31,7 +31,7 @@ const ProfileMain=()=>{
                     <button  onClick={()=>sidenavValue==2 ?  setsidenavValue("") : setsidenavValue(2)} className="border border-gray-400 rounded py-2 focus:outline-none">Personal Information</button>
                     {
                         sidenavValue && sidenavValue==2&&
-                                <div className='block md:hidden'>dsdsd</div>
+                                <div className='block md:hidden'><PersonalInformation/></div>
                     }
                     <button  onClick={()=>sidenavValue==3 ? setsidenavValue("") : setsidenavValue(3)} className="border border-gray-400 rounded py-2 focus:outline-none">Address</button>
                     {
@@ -59,7 +59,7 @@ const ProfileMain=()=>{
                                 break;
                             case 2: 
                             return ( 
-                                <div>Case 2</div>
+                                <div><PersonalInformation/></div>
                                 )
                                 break;
                             case 3:

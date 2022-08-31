@@ -152,9 +152,9 @@ const SingleItemMain=(props)=>{
                                               
                                            </div>
                                            <div className=' w-full  space-y-4 pt-5'>
-                                           <div className='flex space-x-4'>
-                                                <h1 className='font-semibold text-gray-500 text-lg w-4/12 md:w-3/12'>Specification </h1>
-                                                <div className='mt-1'>
+                                           <div className='md:flex space-x-4'>
+                                                <h1 className='font-semibold text-gray-700 text-lg w-4/12 md:w-3/12'>Specification </h1>
+                                                <div className='mt-1 text-sm'>
                                                 {
                                                     item && item.attributes.map((item1,key1)=>{
                                                         return(
@@ -168,8 +168,8 @@ const SingleItemMain=(props)=>{
                                                 }
                                                 </div>
                                           </div>
-                                          <div className='flex space-x-4'>
-                                                <h1 className='font-semibold text-gray-500 text-lg w-4/12 md:w-3/12 pb-5'>Services </h1>
+                                          <div className='md:flex space-x-4 pb-5 text-sm'>
+                                                <h1 className='font-semibold text-gray-700 text-lg w-4/12 md:w-3/12 '>Services </h1>
                                                 
                                                                 <li className='mt-1'>{item.warranty} Warranty</li>
                                                                 
@@ -220,7 +220,7 @@ const SingleItemMain=(props)=>{
                     
                 
          {props.relateditems!=="" &&
-        <div className="w-full flex justify-center mt-10 pt-10">
+        <div className="w-full flex justify-center  mt-0 md:mt-8 py-6 md:py-10 ">
             <div className="w-11/12">
                 <ProductSlider
                 Heading="Related Items"
