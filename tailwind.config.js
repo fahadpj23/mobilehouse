@@ -28,6 +28,10 @@ module.exports = {
         
         
        },
+       fontSize: {
+        'cart': '.65rem',
+       
+      },
        maxHeight: {
         
         fixedNoNavlgmax: 'calc(100vh - 5.75rem)',

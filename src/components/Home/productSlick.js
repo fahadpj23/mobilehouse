@@ -98,7 +98,7 @@ export default class  ProductSlider extends Component{
               {
                 breakpoint: 460,
                 settings: {
-                  slidesToShow:1.9,
+                  slidesToShow:2.1,
                   className:'relative',
                   arrows:false,
                 }

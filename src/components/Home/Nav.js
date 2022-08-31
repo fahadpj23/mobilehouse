@@ -43,7 +43,7 @@ const Nav=(props)=>{
          setserachitem(res.data);
         })
         }
-        }
+         }
     });
     const searchProduct=(searchval)=>{
       
@@ -114,11 +114,11 @@ const Nav=(props)=>{
                     <div className="w-full md:w-7/12 ">
                         <div className="flex items-center space-x-3 md:space-x-0">
                             <Link to={{pathname: "/" }}  className="w-8/12 md:w-6/12 ml-2">
-                                <img src="MobilehouseLogo.png" alt="logo" width="300" height="300"  />
+                                <img src="MobilehouseLogo.png" alt="logo" width="250" height="250"  />
                                         
                             </Link>
                             <div className="relative sm:w-5/12 w-10/12 ">
-                                <input id="productsearchInputTag" onChange={(e)=>(setserachValue(e.target.value),searchProduct(e.target.value))} type="text" placeholder="search here" className=" hidden md:block px-2 w-full rounded h-8 text-sm  md:h-10 focus:outline-none border border-gray-300 "/>
+                                <input id="productsearchInputTag" onChange={(e)=>(setserachValue(e.target.value),searchProduct(e.target.value))} type="text" placeholder="search here" className=" hidden md:block px-2 w-full rounded h-8 text-sm  md:h-9 focus:outline-none border border-gray-300 "/>
                                 
                                 
                                 <div className={`${serachitem!=="" && MobileSearchStatus==false ? " hidden absolute  top-10 z-20 max-h-128 w-96 bg-white shadow-xl rounded-lg p-2 sm:flex flex-col overflow-y-scroll py-2   ": "hidden"}`}>

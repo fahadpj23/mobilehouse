@@ -33,12 +33,12 @@ function SamplePrevArrow(props) {
     const settings = {
       infinite: true,
       speed: 500,
-      slidesToShow: 7.3,
+      slidesToShow: 8.7,
       slidesToScroll: 1,
       arrows: true,
       nextArrow: <SampleNextArrow />,
       prevArrow: <SamplePrevArrow />,
-      className: 'px-20 relative',
+      className: 'px-10 relative',
       swipeToSlide: true,
       
       responsive: [
@@ -98,7 +98,7 @@ function SamplePrevArrow(props) {
           settings: {
             infinite: true,
             speed: 500,
-            slidesToShow: 4.7,
+            slidesToShow: 2.9,
             slidesToScroll: 1,
             className: 'relative',
             swipeToSlide: true,
@@ -112,22 +112,23 @@ function SamplePrevArrow(props) {
      console.log(MobileHouseApiImage)
   
     return (
-      <div className="w-full flex justify-center ">
-      <div className="px-0 md:px-3 my-5  w-full md:w-10/12 ">
+      <div className="w-full flex justify-center bg-gray-50 ">
+      <div className="px-0 md:px-3 my-5  w-full md:w-11/12  ">
         <div className="flex justify-between mx-1 md:mx-6 ">
           
-          <h1 className="relative sm:text-md text-xs"><b>Top Category</b></h1>
+          <h1 className="relative sm:text-sm text-xs "><b>Top Category</b></h1>
         </div>
-        <Slider {...settings} className="">
+        <Slider {...settings} className="mt-2">
+        {/* <div className="grid grid-cols-8"> */}
           {props.category && props.category.map((item, key) => {
              
               return(
-                <Link className="  h-32 md:h-40 " to={{pathname: "/ProductList",search: "?" + new URLSearchParams({category: item.id,sort:"newestfirst"}).toString()}}>
+                <Link className="  h-32 md:h-40 px-2 py-2 " to={{pathname: "/ProductList",search: "?" + new URLSearchParams({category: item.id,sort:"newestfirst"}).toString()}}>
 
-                    <div className="py-4  h-40   " key={key}>
-                        <div className=" flex flex-col bg-white w-full justify-center items-center  rounded-lg   space-y-2 ">
-                            <img src={   `${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${item.image}`} alt="" className="object-contain h-16 md:h-24 w-16 overflow-hidden p-2 " />
-                            <h1 className="text-center font-medium md:font-semibold text-xs  md:text-sm lowercase">{item.categoryName}</h1>
+                    <div className="rounded-lg  shadow-md  py-2 border border-gray-100 bg-white " key={key}>
+                        <div className=" flex flex-col  w-full justify-center items-center  rounded-lg   ">
+                            <img src={   `${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${item.image}`} alt="" className="object-contain h-16 md:h-20 w-16 md:w-24 overflow-hidden p-2 " />
+                            <h1 className="text-center font-normal capitalize  text-xs  tracking-wide">{item.categoryName}</h1>
                         </div>
                     </div>
                  </Link>
@@ -135,7 +136,7 @@ function SamplePrevArrow(props) {
           }
            
           )}
-       
+       {/* </div> */}
         </Slider>
       </div>
       </div>
