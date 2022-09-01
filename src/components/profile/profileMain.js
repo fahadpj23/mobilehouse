@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Myorder from './myorder';
 import PersonalInformation from './Personal_Information';
 import {  useHistory } from 'react-router-dom';
-
+import Profile_Address from './profile_Address';
  
 const ProfileMain=()=>{
     let history=useHistory();
@@ -19,7 +19,7 @@ const ProfileMain=()=>{
     }   
     console.log(sidenavValue)
     return(
-        <div className="md:flex h-fixedNoNavlg6 px-2">
+        <div className="md:flex h-fixedNoNavlg7 px-2">
             <div className="w-full md:w-2/12 flex flex-col px-2 justify-between h-full">
                 <div className=" space-y-3 w-full flex flex-col">
                     <button   className="border border-gray-400 rounded py-2 focus:outline-none flex items-center justify-center space-x-2 "><span className=''><FaRegUserCircle className='text-2xl h-full '/></span><span></span>Hi,<span className='font-semibold'>{localStorage.getItem('UserName')}</span></button>
@@ -36,7 +36,7 @@ const ProfileMain=()=>{
                     <button  onClick={()=>sidenavValue==3 ? setsidenavValue("") : setsidenavValue(3)} className="border border-gray-400 rounded py-2 focus:outline-none">Address</button>
                     {
                         sidenavValue && sidenavValue==3 &&
-                                <div className='block md:hidden'>dsdsd</div>
+                                <div className='block md:hidden'><Profile_Address/></div>
                     }
                     <button  onClick={()=>sidenavValue==4 ? setsidenavValue("") : setsidenavValue(4)} className="border border-gray-400 rounded py-2 focus:outline-none">Cart</button>
                     {
@@ -64,7 +64,7 @@ const ProfileMain=()=>{
                                 break;
                             case 3:
                             return ( 
-                                <div>Case 3</div>
+                                <div><Profile_Address/></div>
                                 )
                                 break;
                             case 4:

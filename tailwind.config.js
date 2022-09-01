@@ -18,6 +18,7 @@ module.exports = {
         fixedNoNav3: 'calc(100vh - 0.80rem)',
         fixedNoNav: 'calc(100vh - 2.80rem)',
         fixedNoNav1: 'calc(100vh - 11.80rem)',
+        fixedNoNavlg7: 'calc(100vh - 9.80rem)',
         fixedNoNav2: 'calc(100vh - 45.80rem)',
         fixedNoNavlg: 'calc(100vh - 4.75rem)',
         fixedNoNavlg4: 'calc(100vh - 15.75rem)',
