@@ -128,9 +128,11 @@ const TableContent=(props)=>{
                      TableData  && TableData.Data.map((item,key)=>{
                         return(
                             <tr key={key} className="text-center text-xs md:text-sm border-b border-gray-300">
+                               
                             <td className="py-2  truncate">{key+1}</td>
                             {
                                 TableData  && TableData.TableHead.map((item1,key)=>{
+                                    {console.log(props.controller)}
                                     // check key!=0 bacuse table column need slno
                                     if(key!=0)
                                     {
@@ -143,7 +145,7 @@ const TableContent=(props)=>{
                                                 </td>
                                             :
 
-                                            (item1=="status" && props.order) ?
+                                            (item1=="status" && props.controller=="CustomerOrder") ?
                                                 <td>
                                                     <select onChange={(e)=>props.DeliveryStatus(e.target.value,item)}  defaultValue={item.status} className="border border-gray-300 focus:outline-none rounded p-1">
                                                         <option value="1">Pending</option>

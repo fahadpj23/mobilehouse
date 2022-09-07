@@ -31,7 +31,7 @@ const SingleProduct=(props)=>{
     return(
         <div>
             
-            <div  className="lg:10/12  w-full  rounded-lg flex flex-col overflow-hidden border border-gray-100 shadow-sm bg-white">
+            <div  className="  w-full  rounded-lg flex flex-col overflow-hidden border border-gray-400 shadow-sm bg-white">
                             <button onClick={()=>singleProductView(item)}  className="h-full items-center justify-center flex flex-col space-y-2 p-3 focus:outline-none">
                                      <img src={`${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${item.image}`} alt="product image " className="object-cover h-28 md:h-40 overflow-hidden transform hover:-translate-y-1 hover:scale-90 hover:duration-700 focus:outline-none"/>
                                      

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 const HomeAds=(props)=>{
     console.log(props)
     return(
-        <div className="w-full">
+        <div className="w-full ">
             <div className="grid grid-cols-3 w-full gap-x-3 ">
             {
                 props.Ads && props.Ads.detail?.map((item,key)=>{

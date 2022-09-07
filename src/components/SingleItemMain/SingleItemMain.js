@@ -52,10 +52,11 @@ const SingleItemMain=(props)=>{
 
     const context=useContext(Usercontext)
     
-    console.log(props.variants)
+    console.log(productImage)
 
     const AddCart=(item)=>{
-        context.addtocart(item,productImage[0])
+
+        context.addtocart(item,1,productImage[0])
     }
     const checkpincode=()=>{
         axios.get(`http://localhost:9000/pincodecheck`,{params: { pincodeno: pincode}})
@@ -176,6 +177,15 @@ const SingleItemMain=(props)=>{
                                                            
                                                
                                           </div>
+                                          <div className='md:flex space-x-4 pb-5 text-sm'>
+                                                <h1 className='font-semibold text-gray-700 text-lg w-4/12 md:w-3/12 '> Description </h1>
+                                                
+                                                                <li className='mt-1'>{item. Description} </li>
+                                                                
+                                                           
+                                               
+                                          </div>
+                                         
                                           </div>
                                             
                                             {/* <div>

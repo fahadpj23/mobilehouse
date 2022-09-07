@@ -31,7 +31,7 @@ const CategoryMain=(props)=>{
        
         data.append("operation",props.operation)
         data.append("operationid",props.operationitem.id )
-        MobileHouseApi.post('/categoryAdd',data)
+        MobileHouseApi.post('/categoryAdd',data,{headers:{accessToken:localStorage.getItem("accessToken")}})
         
         .then((res)=>{
          if(res.data.error)

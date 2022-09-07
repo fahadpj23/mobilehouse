@@ -6,8 +6,10 @@ const MainLayoutWebsite=({children})=>{
     return(
         <div className="w-full  h-full">
       
-            
-        <Nav/>
+         <div className='sticky top-0 z-20 bg-white shadow-lg'>
+             <Nav/>  
+        </div>   
+       
 
      
          <main>{children}</main>

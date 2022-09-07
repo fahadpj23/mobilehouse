@@ -33,7 +33,7 @@ function SamplePrevArrow(props) {
     const settings = {
       infinite: true,
       speed: 500,
-      slidesToShow: 8.7,
+      slidesToShow: 9.7,
       slidesToScroll: 1,
       arrows: true,
       nextArrow: <SampleNextArrow />,
@@ -112,22 +112,22 @@ function SamplePrevArrow(props) {
      console.log(MobileHouseApiImage)
   
     return (
-      <div className="w-full flex justify-center bg-gray-50 ">
-      <div className="px-0 md:px-3 my-5  w-full md:w-11/12  ">
+      <div className="w-full flex justify-center bg-yellow-500 py-5 ">
+      <div className="px-0 md:px-3  w-full md:w-11/12  ">
         <div className="flex justify-between mx-1 md:mx-6 ">
           
-          <h1 className="relative sm:text-sm text-xs "><b>Top Category</b></h1>
+          <h1 className="relative sm:text-xl uppercase tracking-wide text-xs "><b>Top Category</b></h1>
         </div>
-        <Slider {...settings} className="mt-2 p-1">
-        {/* <div className="grid grid-cols-8"> */}
+        {/* <Slider {...settings} className="mt-2 p-1"> */}
+        <div className="grid grid-cols-3 md:grid-cols-8">
           {props.category && props.category.map((item, key) => {
              
               return(
-                <Link className="  h-32 md:h-40 px-2 py-2 " to={{pathname: "/ProductList",search: "?" + new URLSearchParams({category: item.id,sort:"newestfirst"}).toString()}}>
+                <Link className="  h-32 md:h-48 px-2 py-2 " to={{pathname: "/ProductList",search: "?" + new URLSearchParams({category: item.id,sort:"newestfirst"}).toString()}}>
 
                     <div className="rounded-lg shadow-sm  py-2 border border-gray-100 bg-white px-1 " key={key}>
                         <div className=" flex flex-col  w-full justify-center items-center  rounded-lg   ">
-                            <img src={   `${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${item.image}`} alt="" className="object-contain h-16 md:h-20 w-16 md:w-24 overflow-hidden p-2 " />
+                            <img src={   `${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${item.image}`} alt="" className="object-contain h-20 md:h-32 w-20 md:w-32 overflow-hidden p-2 " />
                             <h1 className="w-full text-center font-normal capitalize text-cart md:text-xs  tracking-wide truncate">{item.categoryName}</h1>
                         </div>
                     </div>
@@ -136,8 +136,8 @@ function SamplePrevArrow(props) {
           }
            
           )}
-       {/* </div> */}
-        </Slider>
+        </div> 
+        {/* </Slider> */}
       </div>
       </div>
 

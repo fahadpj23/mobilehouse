@@ -11,6 +11,7 @@ const ProductList=(props)=>{
     const category = new URLSearchParams(window.location.search).get('category') && new URLSearchParams(window.location.search).get('category')
     const productCategory = new URLSearchParams(window.location.search).get('productCategory') && new URLSearchParams(window.location.search).get('productCategory')
     const Brand = new URLSearchParams(window.location.search).get('Brand') && new URLSearchParams(window.location.search).get('Brand')
+    const searchValue = new URLSearchParams(window.location.search).get('searchitem') && new URLSearchParams(window.location.search).get('searchitem')
     const sort = new URLSearchParams(window.location.search).get('sort') && new URLSearchParams(window.location.search).get('sort')
     
     // sort change then  change url and relaod 3 type pf product list so check params value and set related to it when change url
@@ -42,6 +43,15 @@ const ProductList=(props)=>{
                 .then(res=>{
                     setproducts(res.data.brandProduct)
                 }) 
+        }
+
+        //when click enter while type in search select all product name start with search value
+        else if(new URLSearchParams(window.location.search).get('searchitem'))
+        {
+            MobileHouseApi.get("/viewSerachValueProduct",{params:{searchValue:searchValue,sort:sort}})
+            .then(res=>{
+                setproducts(res.data.viewSearchProduct)
+            }) 
         }
         //when click view all in product slide this will work
         else

@@ -1,5 +1,5 @@
 
-import React, { useState,useContext} from 'react';
+import React, { useState,useContext,useEffect} from 'react';
 import {FaRegUserCircle } from 'react-icons/fa';
 import {MobileHouseApi} from "helpers/axiosinstance";
 import {AiOutlineShoppingCart } from 'react-icons/ai';
@@ -13,21 +13,21 @@ import { useHistory } from 'react-router-dom';
 import MobileSearchWindow from './MobileSearchWindow';
 const Nav=(props)=>{
 
-    const context=useContext(AuthContext)
-    const context1=useContext(Usercontext)
+   
     let history=useHistory();
     
     const [serachitem, setserachitem] = useState("")
     const [loginstatus, setloginstatus] = useState(false)
     const [username, setusername] = useState(localStorage.getItem("UserName")  ? localStorage.getItem("UserName") :"Login/Signup")
-    const [logout, setlogout] = useState(false)
+   
     const [registeruser, setregisteruser] = useState(false)
     const [MobileSearchStatus, setMobileSearchStatus] = useState(false)
-    const [serachValue, setserachValue] = useState("")
+    const [searchValue, setsearchValue] = useState("")
 
    
 
     document.addEventListener('click', function(event) {
+       
         var ignoreClickOnMeElement = document.getElementById('productsearchInputTag');
         if(ignoreClickOnMeElement)
         {
@@ -38,13 +38,15 @@ const Nav=(props)=>{
         }
         else
         {
-            MobileHouseApi.get(`searchProduct`,{params: { searchitem:serachValue}})
-        .then(res=>{
-         setserachitem(res.data);
-        })
+            MobileHouseApi.get(`searchProduct`,{params: { searchitem:searchValue}})
+            .then(res=>{
+            setserachitem(res.data);
+            })
         }
          }
     });
+
+
     const searchProduct=(searchval)=>{
       
             MobileHouseApi.get(`searchProduct`,{params: { searchitem: searchval}})
@@ -79,9 +81,28 @@ const Nav=(props)=>{
     const searchClose=()=>{
         setMobileSearchStatus(false)
     }
-    console.log(serachitem)
+   
+    function onKeyup(e) {
+        console.log(e)
+        if (e.key == 'Enter') {
+          
+        
+            console.log(searchValue)
+            // history.push({pathname: "/ProductList",search: "?" + new URLSearchParams({searchitem:searchValue,sort:"newestfirst"}).toString()})
+            console.log("sdsdsssssssssss")
+        
+    
+        }
+       
+      }
+    
+    useEffect(()=>{
+        window.addEventListener("keyup", onKeyup);
+    },[])
+
+ console.log(searchValue)
     return(
-        <div className="shadow-sm">
+        <div className="shadow-sm ">
             {loginstatus===true&&
                 <Login
                     loginsuccess={loginsuccess}
@@ -108,7 +129,7 @@ const Nav=(props)=>{
                     searchProduct={searchProduct}
                     />
             }
-                <div className=" w-full h-5  md:h-10 bg-gray-300 border-2 border-gray-100">
+                <div className=" w-full h-5  md:h-10 bg-gray-300 border-2 border-gray-100 sticky top-0">
                 </div>
                 <div className="w-full flex  items-center justify-between py-2 pl-1 md:pl-0  pr-2  md:px-0">
                     <div className="w-full md:w-7/12 ">
@@ -118,18 +139,14 @@ const Nav=(props)=>{
                                         
                             </Link>
                             <div className="relative sm:w-5/12 w-10/12 ">
-                                <input id="productsearchInputTag" onChange={(e)=>(setserachValue(e.target.value),searchProduct(e.target.value))} type="text" placeholder="search here" className=" hidden md:block px-2 w-full rounded h-8 text-sm  md:h-9 focus:outline-none border border-gray-300 "/>
+                                <input id="productsearchInputTag"  onChange={(e)=>(setsearchValue(e.target.value),searchProduct(e.target.value))} type="text" placeholder="search here" className=" hidden md:block px-2 w-full rounded h-8 text-sm  md:h-9 focus:outline-none border border-gray-300 "/>
                                 
                                 
                                 <div className={`${serachitem!=="" && MobileSearchStatus==false ? " hidden absolute  top-10 z-20 max-h-128 w-96 bg-white shadow-xl rounded-lg p-2 sm:flex flex-col overflow-y-scroll py-2   ": "hidden"}`}>
                                         <div className=' flex flex-col  space-y-2'>
                                         {serachitem!=="" && serachitem.products?.map((item,key)=>{
                                             return(
-                                                // <Link to={{pathname: "/singleItem",   search: "?" + new URLSearchParams({productid: item.id}).toString() }} className="h-full items-center justify-center flex flex-col space-y-3 p-4 ">
-                                                // <img src={`http://127.0.0.1:9000/images/${item.image}`} alt="dd" className="object-cover h-40 overflow-hidden transform hover:-translate-y-1 hover:scale-90 hover:duration-700 "/>
                                                 
-                                                // </Link>
-
                                              <button onClick={()=>selectNavProduct(item)}  className="hover:text-blue-400 text-left  focus:outline-none">
                                             <div className='flex'>
                                                 <div className='w-9/12 flex flex-col justify-center'>

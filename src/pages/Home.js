@@ -47,11 +47,11 @@ function Home() {
         }, [])
       console.log(Ads)
   return (
-    <div>
+    <div className="">
   
         
     <MainLayoutWebsite>
-      <div className= "w-full overflow-hidden space-y-6 ">
+      <div className= "w-full overflow-hidden ">
        
         {
           Banner &&
@@ -71,19 +71,19 @@ function Home() {
             <p className="font-serif text-xs md:text-base">We package the products with best services to make you a happy customer</p>
             <hr className="w-4/12 md:w-1/12 bg-blue-600 border-2 border-blue-400"></hr>
         </div> */}
-        <div className="w-full flex justify-center">
-          <div className="w-full px-3 md:px-6 md:w-11/12  space-y-10">
+        <div className="w-full flex justify-center ">
+          <div className="w-full  ">
                      {sliders && Ads  &&
                      sliders.map((item,key)=>{
                       return(
-                      <div className="space-y-10">
+                      <div className="">
                           <ProductSlider
                             id={item.id}
                             items={item.products}
                             Heading={item.Heading}
                                     
                           />
-                          <div className="hidden sm:block">
+                          <div className="hidden sm:block ">
                             <HomeAds
                             Ads={Ads[+key] }
                             />
