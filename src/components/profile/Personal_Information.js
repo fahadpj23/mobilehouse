@@ -24,7 +24,7 @@ const PersonalInformation=()=>{
             PersonalDetails && <div className="flex flex-col w-11/12">
 
             <h1 className="text-xl font-semibold pb-5">Personal Information</h1>
-                <div className="space-y-6 w-10/12 sm:w-3/12">
+                <div className="space-y-6 w-10/12 md:w-3/12">
                 <div className=" space-y-6">
                     <div className="text-sm font-semibold space-y-1">
 

@@ -5,7 +5,7 @@ import Myorder from './myorder';
 import PersonalInformation from './Personal_Information';
 import {  useHistory } from 'react-router-dom';
 import Profile_Address from './profile_Address';
- 
+import Cartmain from 'components/cart/CartMain'
 const ProfileMain=()=>{
     let history=useHistory();
     const [sidenavValue,setsidenavValue]=useState(1)
@@ -41,7 +41,7 @@ const ProfileMain=()=>{
                     <button  onClick={()=>sidenavValue==4 ? setsidenavValue("") : setsidenavValue(4)} className="border border-gray-400 rounded py-2 focus:outline-none">Cart</button>
                     {
                         sidenavValue && sidenavValue==4 &&
-                                <div className='block sm:hidden'>dsdsd</div>
+                                <div className='block sm:hidden'><Cartmain profilecart="profilecart"/></div>
                     }
                 </div>
                     <button onClick={()=>userLogout()}  className="border border-gray-400 rounded py-2 focus:outline-none">Log Out</button>
@@ -69,7 +69,9 @@ const ProfileMain=()=>{
                                 break;
                             case 4:
                                     return ( 
-                                        <div>Case4</div>
+                                        <div><Cartmain
+                                            profilecart="profilecart"
+                                            /></div>
                                         )
                                         break;
                              default: return(

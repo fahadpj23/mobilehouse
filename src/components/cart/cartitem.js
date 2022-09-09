@@ -40,7 +40,7 @@ const Cartitem=(props)=>{
                     <div className="flex space-x-3  px-3 items-center h-24 md:h-32">
                     
                             <div className="w-4/12  flex justify-center">
-                                <img  src={`${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${productImage[0]}`} alt="product image" className="h-16 md:h-32 w-14 md:w-32 object-contain"/>
+                                <img  src={`${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${productImage[0]}`} alt="product image" className="h-16 sm:h-24 lg:h-32 w-14 sm:w-24 lg:w-32 object-contain"/>
                             </div>
                             <div className="w-6/12 flex flex-col justify-center space-y-3 h-full">
                                 <h1 className="text-left text-sm md:text-lg font-bold ">{item.name}</h1>
