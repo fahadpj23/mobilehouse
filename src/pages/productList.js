@@ -22,12 +22,12 @@ const ProductList=(props)=>{
           })
           window.location.reload(false);
     }
-    console.log( history.action)
+   
     if( history.action=="PUSH"){
         history.action="ok"
         if(new URLSearchParams(window.location.search).get('productCategory'))
         {
-            console.log("1111")
+           
             MobileHouseApi.get("/viewSliderProduct",{params:{productCategory:productCategory,sort:sort}})
             .then(res=>{
                 setproducts(res.data.headProduct)
@@ -38,7 +38,7 @@ const ProductList=(props)=>{
         // when click ads on home page then this will work
         if(new URLSearchParams(window.location.search).get('Brand'))
         {
-        console.log("22222")
+      
         MobileHouseApi.get("/viewBrandProduct",{params:{Brand:Brand,sort:sort}})
             .then(res=>{
                 setproducts(res.data.brandProduct)
@@ -49,10 +49,10 @@ const ProductList=(props)=>{
 
         if(new URLSearchParams(window.location.search).get('category'))
         {
-        console.log("444")
+        
         MobileHouseApi.get("/viewCategoryProduct",{params:{category:category,sort:sort}})
         .then(res=>{
-            console.log(res.data)
+           
         setproducts(res.data)
         }) 
 
@@ -63,7 +63,7 @@ const ProductList=(props)=>{
         if(new URLSearchParams(window.location.search).get('searchitem'))
         {
         
-        console.log("33333")
+        
         MobileHouseApi.get("/viewSerachValueProduct",{params:{searchValue:searchValue,sort:sort}})
         .then(res=>{
             setproducts(res.data.viewSearchProduct)
@@ -76,12 +76,12 @@ const ProductList=(props)=>{
        
         if(products=="")
         {
-            console.log("")
+           
          
         //when productlist related to catgeory 
         if(new URLSearchParams(window.location.search).get('productCategory'))
             {
-                console.log("1111")
+             
                 MobileHouseApi.get("/viewSliderProduct",{params:{productCategory:productCategory,sort:sort}})
                 .then(res=>{
                     setproducts(res.data.headProduct)
@@ -92,7 +92,7 @@ const ProductList=(props)=>{
         // when click ads on home page then this will work
         if(new URLSearchParams(window.location.search).get('Brand'))
         {
-            console.log("22222")
+           
             MobileHouseApi.get("/viewBrandProduct",{params:{Brand:Brand,sort:sort}})
                 .then(res=>{
                     setproducts(res.data.brandProduct)
@@ -103,10 +103,10 @@ const ProductList=(props)=>{
 
          if(new URLSearchParams(window.location.search).get('category'))
         {
-            console.log("444")
+       
             MobileHouseApi.get("/viewCategoryProduct",{params:{category:category,sort:sort}})
             .then(res=>{
-                console.log(res.data)
+               
              setproducts(res.data)
             }) 
           
@@ -117,7 +117,7 @@ const ProductList=(props)=>{
         if(new URLSearchParams(window.location.search).get('searchitem'))
             {
                
-              console.log("33333")
+            
               MobileHouseApi.get("/viewSerachValueProduct",{params:{searchValue:searchValue,sort:sort}})
               .then(res=>{
                   setproducts(res.data.viewSearchProduct)
@@ -126,7 +126,7 @@ const ProductList=(props)=>{
         }
 
     },[])
-   console.log(products)
+
     return(
       
         
