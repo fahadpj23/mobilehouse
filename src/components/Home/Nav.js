@@ -1,5 +1,5 @@
 
-import React, { useState,useContext,useEffect} from 'react';
+import React, { useState,useContext,useEffect ,useMemo} from 'react';
 import {FaRegUserCircle } from 'react-icons/fa';
 import {MobileHouseApi} from "helpers/axiosinstance";
 import {AiOutlineShoppingCart } from 'react-icons/ai';
@@ -7,10 +7,10 @@ import {BsSearch } from 'react-icons/bs';
 import {Link} from "react-router-dom";
 import Login from './login';
 import UserRegister from './userRegister';
-import {AuthContext} from '../../helpers/authcontext'
-import { Usercontext } from '../context/userContext';
+
 import { useHistory } from 'react-router-dom';
 import MobileSearchWindow from './MobileSearchWindow';
+import { debounce } from 'lodash';
 const Nav=(props)=>{
 
    
@@ -36,25 +36,27 @@ const Nav=(props)=>{
         {
             setserachitem("")
         }
-        else
-        {
-            MobileHouseApi.get(`searchProduct`,{params: { searchitem:searchValue}})
-            .then(res=>{
-            setserachitem(res.data);
-            })
-        }
+        // else
+        // {
+        //     MobileHouseApi.get(`searchProduct`,{params: { searchitem:searchValue}})
+        //     .then(res=>{
+        //     setserachitem(res.data);
+        //     })
+        //     console.log("ds")
+        // }
          }
     });
 
 
     const searchProduct=(searchval)=>{
-      
+            console.log(searchval)
             MobileHouseApi.get(`searchProduct`,{params: { searchitem: searchval}})
             .then(res=>{
-             setserachitem(res.data);
+           setserachitem(res.data);
             })
         
     }
+    const debounceFn= useMemo(() => debounce(searchProduct, 500), []);
 
     const selectNavProduct=(product)=>{
         console.log(product)
@@ -75,7 +77,7 @@ const Nav=(props)=>{
          setserachitem(res.data);
         })
             setMobileSearchStatus(true)
-    }
+    } 
 
     //mobile view search close
     const searchClose=()=>{
@@ -83,13 +85,12 @@ const Nav=(props)=>{
     }
    
     function onKeyup(e) {
-        console.log(e)
+        console.log(e) 
         if (e.key == 'Enter') {
-          
-        
-            console.log(searchValue)
-            // history.push({pathname: "/ProductList",search: "?" + new URLSearchParams({searchitem:searchValue,sort:"newestfirst"}).toString()})
-            console.log("sdsdsssssssssss")
+           
+       
+            history.push({pathname: "/productList",search: "?" + new URLSearchParams({searchitem:document.getElementById('productsearchInputTag').value,sort:"newestfirst"}).toString()})
+            // console.log("sdsdsssssssssss")
         
     
         }
@@ -129,7 +130,7 @@ const Nav=(props)=>{
                     searchProduct={searchProduct}
                     />
             }
-                <div className=" w-full h-5  md:h-10 bg-gray-300 border-2 border-gray-100 sticky top-0">
+                <div className=" w-full h-5  md:h-10 bg-gray-300 border-2 border-gray-100 ">
                 </div>
                 <div className="w-full flex  items-center justify-between py-2 pl-1 md:pl-0  pr-2  md:px-0">
                     <div className="w-full md:w-7/12 ">
@@ -139,7 +140,7 @@ const Nav=(props)=>{
                                         
                             </Link>
                             <div className="relative sm:w-5/12 w-10/12 ">
-                                <input id="productsearchInputTag"  onChange={(e)=>(setsearchValue(e.target.value),searchProduct(e.target.value))} type="text" placeholder="search here" className=" hidden md:block px-2 w-full rounded h-8 text-sm  md:h-9 focus:outline-none border border-gray-300 "/>
+                                <input id="productsearchInputTag"  onChange={(e)=>(setsearchValue(e.target.value),debounceFn(e.target.value))} type="text" placeholder="search here" className=" hidden md:block px-2 w-full rounded h-8 text-sm  md:h-9 focus:outline-none border border-gray-300 "/>
                                 
                                 
                                 <div className={`${serachitem!=="" && MobileSearchStatus==false ? " hidden absolute  top-10 z-20 max-h-128 w-96 bg-white shadow-xl rounded-lg p-2 sm:flex flex-col overflow-y-scroll py-2   ": "hidden"}`}>

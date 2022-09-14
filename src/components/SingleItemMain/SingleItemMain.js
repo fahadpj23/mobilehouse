@@ -76,7 +76,6 @@ const SingleItemMain=(props)=>{
     }
 
 
-        console.log(localStorage.getItem('UserName'))
     return(
         <div className="">
             

@@ -3,6 +3,7 @@ import {MobileHouseApi} from "helpers/axiosinstance";
 import SingleItemMain from '../components/SingleItemMain/SingleItemMain'
 import { useHistory } from 'react-router-dom';
 import MainLayoutWebsite from 'components/MainLayoutWebsite';
+import UploadSpinner from 'components/admindashboard/uploadstatus';
 const SingleItem=(props)=>{
    
 
@@ -13,6 +14,7 @@ const SingleItem=(props)=>{
     const [variantchoosed, setvariantchoosed] = useState(false)
     const [categoryVariant, setcategoryVariant] = useState("")
     const [reload, setreload] = useState(false)
+    const [pageLoad, setpageLoad] = useState(false)
     
     const search = props.location.search;
     const productId = new URLSearchParams(search).get('productid')
@@ -29,7 +31,7 @@ const SingleItem=(props)=>{
         if(history.action=="POP" || history.action=="PUSH")
         {
             
-            console.log("111111111111")  
+            setpageLoad(true)
             history.action="dsds"
             MobileHouseApi.get(`/singleview`,{params: { productId: productId}})
             
@@ -55,10 +57,16 @@ const SingleItem=(props)=>{
                     setcategoryVariant(res.data.categoryVariant)
                         
                     })  
+                    setTimeout(() => {
+                        setpageLoad(false)
+                    }, 300);
                 }
                 else
                 {
                     console.log(res.data.error)
+                    setTimeout(() => {
+                        setpageLoad(false)
+                    }, 300);
                 }
             })   
            
@@ -67,6 +75,7 @@ const SingleItem=(props)=>{
     const singleitemset=(item1)=>{
       
         console.log(window.addEventListener)
+        // setpageLoad(true)
             history.replace({pathname:'singleItem',search: "?" + new URLSearchParams({productid: item1.id}).toString() })
             MobileHouseApi.get(`/singleview`,{params: { productId: item1.id}})
             
@@ -75,27 +84,33 @@ const SingleItem=(props)=>{
                 {
                     const product=res.data.product;
                     
-                    setsingleitem(product)
-                    MobileHouseApi.get(`/related`,{params: { category:product.category,variantid:product.variantid}})
-                    .then(res=>{
-                        setrelateditems(res.data.relatedProduct)
+                     setsingleitem(product)
+                    // MobileHouseApi.get(`/related`,{params: { category:product.category,variantid:product.variantid}})
+                    // .then(res=>{
+                    //     setrelateditems(res.data.relatedProduct)
                         
-                    })  
-                    MobileHouseApi.get(`/variantproduct`,{params: { variantid: product.variantid}})
-                    .then(res=>{
-                    setvariants(res.data.variants)
+                    // })  
+                    // MobileHouseApi.get(`/variantproduct`,{params: { variantid: product.variantid}})
+                    // .then(res=>{
+                    // setvariants(res.data.variants)
                         
-                    })  
-                    MobileHouseApi.get(`/categoryVariant`,{params: { category:product.category}})
-                    .then(res=>{
-                        console.log(res.data.categoryVariant)
-                    setcategoryVariant(res.data.categoryVariant)
+                    // })  
+                    // MobileHouseApi.get(`/categoryVariant`,{params: { category:product.category}})
+                    // .then(res=>{
+                    //     console.log(res.data.categoryVariant)
+                    // setcategoryVariant(res.data.categoryVariant)
                         
-                    })  
+                    // }) 
+                    // setTimeout(() => {
+                    //     setpageLoad(false)
+                    // }, 300);
                 }
                 else
                 {
                     console.log(res.data.error)
+                    // setTimeout(() => {
+                    //     setpageLoad(false)
+                    // }, 300);
                 }
             })   
             setvariantchoosed(true)   
@@ -108,7 +123,7 @@ const SingleItem=(props)=>{
    
         if(singleitem=="" )
         {
-            console.log("2222222222")  
+            setpageLoad(true)  
            
             MobileHouseApi.get(`/singleview`,{params: { productId: productId}})
             
@@ -134,10 +149,17 @@ const SingleItem=(props)=>{
                         setcategoryVariant(res.data.categoryVariant)
                         
                     })
+                    setTimeout(() => {
+                        setpageLoad(false)
+                    }, 300);
                     }
                     else
                     {
                         console.log(res.data.error)
+                        setTimeout(() => {
+                            setpageLoad(false)
+                        }, 300);
+                      
                     }   
             })
         }
@@ -152,6 +174,9 @@ const SingleItem=(props)=>{
    
     return(
         <div className="">
+            {pageLoad==true ? 
+            <UploadSpinner/>
+            :
            <MainLayoutWebsite>
                 {singleitem &&<SingleItemMain
                 singleitem={singleitem}
@@ -160,7 +185,7 @@ const SingleItem=(props)=>{
                 singleitemset={singleitemset}
                 categoryVariant={categoryVariant}
                 /> }
-            </MainLayoutWebsite>
+            </MainLayoutWebsite>}
         </div>
 
     )

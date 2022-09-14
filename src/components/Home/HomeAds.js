@@ -2,12 +2,18 @@ import { Link } from "react-router-dom"
 const HomeAds=(props)=>{
     console.log(props)
     return(
-        <div className="w-full ">
-            <div className="grid grid-cols-3 w-full gap-x-3 ">
+        <div className="w-full  p-2">
+            <div className="grid grid-cols-3 w-full gap-x-3  ">
             {
                 props.Ads && props.Ads.detail?.map((item,key)=>{
                     return(
-                    <Link  to={{pathname: "/ProductList",search: "?" + new URLSearchParams({Brand:item.Brand,sort:"newestfirst"}).toString()}}   className="w-full"><img src={`${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${item.image}`} alt="ads image" className="object-fill w-full h-64 sm:h-40 md:h-64 overflow-hidden rounded" /></Link> 
+                    <div className="p-3 space-y-5  shadow-lg border border-gray-200   rounded">
+                        <Link  to={{pathname: "/ProductList",search: "?" + new URLSearchParams({Brand:item.Brand,sort:"newestfirst"}).toString()}}   className="w-full"><img src={`${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${item.image}`} alt="ads image" className="object-fill w-full h-64 sm:h-40 md:h-64 overflow-hidden rounded" /></Link> 
+                        <div className="flex justify-end">
+                            <button className="bg-blue-500 text-white text-sm rounded-lg py-1 px-3 ">Shop Now</button>
+                            
+                        </div>
+                    </div>
                     )
 
                 })

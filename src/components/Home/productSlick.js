@@ -107,25 +107,26 @@ export default class  ProductSlider extends Component{
             ]
             };
              
-            console.log(this.props)
+            console.log(this.props.Heading)
             return (
      
-              <div className="bg-blue-300 px-2">
+              <div className=" px-2">
                 
                 <div className="w-full flex justify-between py-4 items-center" >
-                 <h2 className="font-semibold text-sm md:text-base text-white">{this.props.Heading}</h2>
+                 <h1 className="font-semibold text-sm md:text-base ">{this.props.Heading}</h1>
                  <Link className="bg-blue-500 rounded  text-white px-3 text-sm flex items-center py-1" to={{pathname: "/ProductList",search: "?" + new URLSearchParams({productCategory:this.props.id,sort:"newestfirst"})}}>View All</Link>
                  {/* <Link to={{pathname: "/singleItem",   search: "?" + new URLSearchParams({productid: item.id}).toString() }} className="h-full items-center justify-center flex flex-col space-y-3 p-3 "> */}
 
                 </div>
                 {/* <Slider {...settings}> */}
-                <div className=" grid grid-cols-2 md:grid-cols-6">
+                <div className=" grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6">
                 {this.props.items && this.props.items.map((item,key)=>{
                     return(
                         <div key={key} className="px-2 focus:outline-none  py-1">
                         <SingleProduct
                             item={item}
                         />
+                        
                     </div>
                     )
                     

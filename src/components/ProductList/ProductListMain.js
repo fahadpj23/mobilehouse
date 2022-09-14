@@ -4,7 +4,7 @@ import Nav from "components/Home/Nav"
 const ProductListMain=(props)=>{
 
 
-
+console.log(props.products)
    
     return(
         <div className="">
