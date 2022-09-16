@@ -1,4 +1,4 @@
-import { useEffect, useState,useSearchParams } from "react"
+import { useEffect, useState,useContext } from "react"
 import { AiFillSetting } from 'react-icons/ai';
 import { BiDotsVerticalRounded } from 'react-icons/bi';
 import TableOperation from './tableOperation'
@@ -7,7 +7,10 @@ import NavOperation from "./operation";
 import UploadSpinner from "./uploadstatus";
 import PaginateTable from "./pagination";
 import { useHistory } from "react-router";
+import { Usercontext } from 'components/context/userContext';
+
 const TableContent=(props)=>{
+    const context=useContext(Usercontext)
     console.log(window.location.href.search)
     const queryParams = new URLSearchParams(window.location.search)
     const PageNo = queryParams.get("pageNo")
@@ -64,10 +67,31 @@ const TableContent=(props)=>{
     }
 
     const tableOperation=(operation,EditData)=>{
-       
+        if(operation=="delete" && props.controller=="product" )
+        {
+            if(window.confirm("Delete the product")==true)
+            {
+            MobileHouseApi.delete('/productDelete',{params:{productId:EditData.id},headers:{accessToken:localStorage.getItem("accessToken")}})
+            .then((res)=>{
+                if(res.data.success)
+                {
+                     context.notify(res.data.success,"success")
+                    MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:"",PageNo:PageNo},headers:{accessToken:localStorage.getItem("accessToken")}})
+                    .then((res)=>{
+                        setTableData(res.data)
+                        setTotalCount(res.data.Count)
+                    })
+                }
+        
+            })
+            }
+        }
+        else
+        {
         setoperation(operation)
         setoperationitem(EditData)
         setAddNewstatus(true)
+        }
     }
 
   

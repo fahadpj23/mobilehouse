@@ -10,8 +10,7 @@ import HeadingMain from './Heading/HeadingMain';
 import BannerMain from './Banner/BannerMain';
 import AdsMain from './Ads/AdsMain';
 const NavOperation=(props)=>{
-
-   console.log(props.controller)
+  
     return(
         <div className=' bg-gray-100'>
             <div className="w-full sm:flex justify-between  pt-10 pb-5 px-3">
