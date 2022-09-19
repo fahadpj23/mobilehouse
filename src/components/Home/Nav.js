@@ -88,9 +88,11 @@ const Nav=(props)=>{
         console.log(e) 
         if (e.key == 'Enter') {
            
-       
+            setserachitem("")
+            setsearchValue("")
             history.push({pathname: "/productList",search: "?" + new URLSearchParams({searchitem:document.getElementById('productsearchInputTag').value,sort:"newestfirst"}).toString()})
             // console.log("sdsdsssssssssss")
+      
         
     
         }
