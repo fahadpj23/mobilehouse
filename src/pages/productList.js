@@ -13,8 +13,9 @@ const ProductList=(props)=>{
     const Brand = new URLSearchParams(window.location.search).get('Brand') && new URLSearchParams(window.location.search).get('Brand')
     const searchValue = new URLSearchParams(window.location.search).get('searchitem') && new URLSearchParams(window.location.search).get('searchitem')
     const sort = new URLSearchParams(window.location.search).get('sort') && new URLSearchParams(window.location.search).get('sort')
-    
-    // sort change then  change url and relaod 3 type pf product list so check params value and set related to it when change url
+    const minprice=new URLSearchParams(window.location.search).get('minprice') && new URLSearchParams(window.location.search).get('minprice')
+    const maxprice=new URLSearchParams(window.location.search).get('maxprice') && new URLSearchParams(window.location.search).get('maxprice')
+    // sort change then  change url and relaod. 3 type of product list(newest first,hightolow..) so check params value and set related to it when change url
     const SortSelect=(sortvalue)=>{
         history.push({
             pathname: '/ProductList',
@@ -22,13 +23,24 @@ const ProductList=(props)=>{
           })
           window.location.reload(false);
     }
+
+    
+   //show result of price filter
+   const priceResult=(min,max)=>{
+    history.replace({
+        pathname: '/ProductList',
+        search: `${category ? "category" : productCategory ? "productCategory" : "Brand"}=${category ? category : productCategory ? productCategory : Brand}&sort=${sort}&minprice=${min} + &maxprice=${max}`
+      })
+      window.location.reload(false);
+
+    }
    
     if( history.action=="PUSH"){
         history.action="ok"
         if(new URLSearchParams(window.location.search).get('productCategory'))
         {
            
-            MobileHouseApi.get("/viewSliderProduct",{params:{productCategory:productCategory,sort:sort}})
+            MobileHouseApi.get("/viewSliderProduct",{params:{productCategory:productCategory,sort:sort,minprice:minprice,maxprice:maxprice}})
             .then(res=>{
                 setproducts(res.data.headProduct)
             }) 
@@ -39,7 +51,7 @@ const ProductList=(props)=>{
         if(new URLSearchParams(window.location.search).get('Brand'))
         {
       
-        MobileHouseApi.get("/viewBrandProduct",{params:{Brand:Brand,sort:sort}})
+        MobileHouseApi.get("/viewBrandProduct",{params:{Brand:Brand,sort:sort,minprice:minprice,maxprice:maxprice}})
             .then(res=>{
                 setproducts(res.data.brandProduct)
             }) 
@@ -50,7 +62,7 @@ const ProductList=(props)=>{
         if(new URLSearchParams(window.location.search).get('category'))
         {
         
-        MobileHouseApi.get("/viewCategoryProduct",{params:{category:category,sort:sort}})
+        MobileHouseApi.get("/viewCategoryProduct",{params:{category:category,sort:sort,minprice:minprice,maxprice:maxprice}})
         .then(res=>{
            
         setproducts(res.data)
@@ -64,7 +76,7 @@ const ProductList=(props)=>{
         {
         
         
-        MobileHouseApi.get("/viewSerachValueProduct",{params:{searchValue:searchValue,sort:sort}})
+        MobileHouseApi.get("/viewSerachValueProduct",{params:{searchValue:searchValue,sort:sort,minprice:minprice,maxprice:maxprice}})
         .then(res=>{
             setproducts(res.data.viewSearchProduct)
         }) 
@@ -82,7 +94,7 @@ const ProductList=(props)=>{
         if(new URLSearchParams(window.location.search).get('productCategory'))
             {
              
-                MobileHouseApi.get("/viewSliderProduct",{params:{productCategory:productCategory,sort:sort}})
+                MobileHouseApi.get("/viewSliderProduct",{params:{productCategory:productCategory,sort:sort,minprice:minprice,maxprice:maxprice}})
                 .then(res=>{
                     setproducts(res.data.headProduct)
                 }) 
@@ -93,7 +105,7 @@ const ProductList=(props)=>{
         if(new URLSearchParams(window.location.search).get('Brand'))
         {
            
-            MobileHouseApi.get("/viewBrandProduct",{params:{Brand:Brand,sort:sort}})
+            MobileHouseApi.get("/viewBrandProduct",{params:{Brand:Brand,sort:sort,minprice:minprice,maxprice:maxprice}})
                 .then(res=>{
                     setproducts(res.data.brandProduct)
                 }) 
@@ -104,7 +116,7 @@ const ProductList=(props)=>{
          if(new URLSearchParams(window.location.search).get('category'))
         {
        
-            MobileHouseApi.get("/viewCategoryProduct",{params:{category:category,sort:sort}})
+            MobileHouseApi.get("/viewCategoryProduct",{params:{category:category,sort:sort,minprice:minprice,maxprice:maxprice}})
             .then(res=>{
                
              setproducts(res.data)
@@ -118,7 +130,7 @@ const ProductList=(props)=>{
             {
                
             
-              MobileHouseApi.get("/viewSerachValueProduct",{params:{searchValue:searchValue,sort:sort}})
+              MobileHouseApi.get("/viewSerachValueProduct",{params:{searchValue:searchValue,sort:sort,minprice:minprice,maxprice:maxprice}})
               .then(res=>{
                   setproducts(res.data.viewSearchProduct)
               }) 
@@ -138,6 +150,7 @@ const ProductList=(props)=>{
                 products={products}
                 SortSelect={SortSelect}
                 sort={sort}
+                priceResult={priceResult}
                 />
             }
            </MainLayoutWebsite>
@@ -146,7 +159,7 @@ const ProductList=(props)=>{
 }
 export default ProductList
 
-//    MobileHouseApi.get("/ProductList",{params:{type:new URLSearchParams(window.location.search).get('type'),productList:new URLSearchParams(window.location.search).get(`${new URLSearchParams(window.location.search).get('type')}`),sort:sort}})
+//    MobileHouseApi.get("/ProductList",{params:{type:new URLSearchParams(window.location.search).get('type'),productList:new URLSearchParams(window.location.search).get(`${new URLSearchParams(window.location.search).get('type')}`),sort:sort,minprice:minprice,maxprice:maxprice}})
 //             .then(res=>{
 //                 console.log(res.data.headProduct)
 //             })  
