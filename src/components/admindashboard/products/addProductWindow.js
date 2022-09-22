@@ -40,6 +40,7 @@ const AddProductWindow=(props)=>{
    }
 
    useEffect(()=>{
+    //to get HSN
     MobileHouseApi.get('getHSN')
     .then((res)=>{
         setHSN(res.data)

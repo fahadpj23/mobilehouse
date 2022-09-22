@@ -162,7 +162,7 @@ const TableContent=(props)=>{
                             <td className="py-2  truncate">{key+1}</td>
                             {
                                 TableData  && TableData.TableHead.map((item1,key)=>{
-                                    {console.log(props.controller)}
+                                  
                                     // check key!=0 bacuse table column need slno
                                     if(key!=0)
                                     {
