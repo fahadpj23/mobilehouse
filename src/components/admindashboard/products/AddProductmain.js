@@ -83,24 +83,42 @@ const AddProductMain=(props)=>{
         }
         if( props.operationitem && categoryset===false)
         {
-            let imageArray
-            let positions=props.operationitem.imagepositions && props.operationitem.imagepositions.split(';')
-            let imageposset=0
-            console.log(positions)
-            if(props.operationitem.image)
-             {
-                imageArray=props.operationitem.image && props.operationitem.image.split(';')
-             }
-            imageArray && imageArray.map((item,key)=>{
-                console.log(+positions[imageposset])
-                props.productImage[[+positions[imageposset]]-1]= item.replace(/^\s+|\s+$/gm,'')
-                imageposset=imageposset+1
+            // console.log(props.operationitem)
+            // let imageArray
+            // //first position split and add image to that positon 
+            // let positions=props.operationitem.imagepositions && props.operationitem.imagepositions.split(';')
+            // let imageposset=0
+            // console.log(positions)
+            // if(props.operationitem.image)
+            //  {
+            //     imageArray=props.operationitem.image && props.operationitem.image.split(';')
+            //  }
+            // imageArray && imageArray.map((item,key)=>{
+            //     console.log(+positions[imageposset])
+            //     props.productImage[[+positions[imageposset]]-1]= item.replace(/^\s+|\s+$/gm,'')
+            //     imageposset=imageposset+1
+            // })
+          
+            MobileHouseApi.get(`/productImageDetails`,{params:{productid:props.operationid},headers:{accessToken:localStorage.getItem("accessToken")}})
+            .then((res)=>{
+                res.data.images && res.data.images.map((item,key)=>{
+                    if(item.image)
+                    {
+                        props.productImage[key]= item.image
+                        console.log(res.data.images.length)
+                        
+                    }
+                    if(res.data.images.length==key+1)
+                        {
+                            if(catgeorytotal!="")
+                            {
+                            setcategoryset(true)
+                            categoryselect(props.operationitem.category)
+                            }
+                        }
+                })
             })
-            if(catgeorytotal!="")
-                {
-                setcategoryset(true)
-                categoryselect(props.operationitem.category)
-                }
+           
         }
            
     })

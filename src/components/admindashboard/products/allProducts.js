@@ -24,7 +24,7 @@ const AllProduct=(props)=>{
         setoperation("")
         setoperationitem("")
     }
-
+    console.log(props.operationitem)
     // const tableOperation=(operation,item)=>{
         
     //     if(operation=="delete")
@@ -73,7 +73,7 @@ const AllProduct=(props)=>{
             })
         }
     },[])
-  
+    console.log(operationitem)
  
     
     return(
