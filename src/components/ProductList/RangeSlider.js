@@ -19,9 +19,9 @@ function valuetext(value) {
 }
 export default function RangeSlider(props) {
   const classes = useStyles();
-  const [value, setValue] = useState([0, 500]);
-  const [minvalue, setminvalue] = useState(0)
-  const [maxvalue, setmaxvalue] = useState(props.maxval)
+  const [value, setValue] = useState([0, props.maxvalue]);
+  const [minvalue, setminvalue] = useState(props.minprice ??0)
+  const [maxvalue, setmaxvalue] = useState(props.maxprice ?? props.maxval)
 
   const handleChange = (event, newValue) => {
    

@@ -7,21 +7,23 @@ import RangeSlider from "./RangeSlider";
 const ProductListMain=(props)=>{
     
     //here retrieve all brand from product array and filter array
-     let Brand=[...new Set(props.products.map(a =>  a.Brand))]
-
+     let Brand=[...new Set(props.products.map(a =>  (""+a.Brand.replace(/\s+/g, '')).toUpperCase()))]
+ 
      //take price from product array and sort it for rangslider max value find
-     let price=props.products[0].MaxsalesPrice>props.products[0].MaxsellingPrice ? props.products[0].MaxsalesPrice : props.products[0].MaxsellingPrice
+      let Maximumprice=props.products.length!=0 && props.products[0]?.MaxsalesPrice>props.products[0]?.MaxsellingPrice ? props.products[0]?.MaxsalesPrice : props.products[0]?.MaxsellingPrice
   
     // when click brand or price then filter head set to that value
    const [filterhead,setfilterhead]=useState("")
-    console.log(props.products[0].MaxsalesPrice)
-    console.log(props.products[0].MaxsellingPrice)
+    // console.log(props.products[0].MaxsalesPrice)
+    // console.log(props.products[0].MaxsellingPrice)
+    console.log(props.products.length)
 
     return(
         <div className="">
            
-            <div className="p-2 md:p-5">
-                <div  className="flex justify-between w-full">
+           {props.products.length!=0 ?<div className="p-2 md:p-5">
+                
+                    <div  className="flex justify-between w-full">
                     <div className="w-8/12 flex space-x-2 ml-5  ">
                     
                         <div className="relative">
@@ -34,8 +36,10 @@ const ProductListMain=(props)=>{
                                         <div className="absolute left-0 top-10  shadow-xl rounded z-20  bg-gray-100  w-80 p-2 flex flex-col justify-center space-y-4 items-center">
                                                
                                                    <RangeSlider
-                                                   maxval={price }
+                                                   maxval={Maximumprice }
                                                    priceResult={props.priceResult}
+                                                   minprice={props.minprice}
+                                                   maxprice={props.maxprice}
                                                    />
                                                   
                                                
@@ -50,11 +54,14 @@ const ProductListMain=(props)=>{
                             </button>
                             {
                                 filterhead=="Brand" && 
-                                    <div className="absolute left-0 top-10 z-20 bg-white">
+                                    <div className="absolute left-0 top-9 z-10  space-y-3 p-4 w-48  bg-gray-100 shadow-xl flex flex-col max-h-64 overflow-auto">
                                             {
                                                 Brand && Brand.map((item,key)=>{
                                                     return(
-                                                        <h1>{item}</h1>
+                                                        <div className="flex space-x-3">
+                                                            <input type="checkbox" onChange={(e)=>e.target.checked ? props.BrandChoose(e.target.value) : props.BrandRemove(e.target.value) } id={item} name={item} value={item} className="text-xs font-semibold tracking-wide hover:bg-blue-300 text-left py-2 rounded px-1"/>
+                                                            <h1>{item}</h1>
+                                                        </div>
                                                     )
                                                 })
                                             }
@@ -88,7 +95,13 @@ const ProductListMain=(props)=>{
                             })
                         }
                     </div>
+                   
                 </div>
+                 :
+                 <div className="h-fixedNoNavlg7 w-full flex justify-center items-center ">
+                            <img src='./productNotFound.jpg' alt="no Product Found"/>
+                 </div>
+                 }
            
         </div>
        
