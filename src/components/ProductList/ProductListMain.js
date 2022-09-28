@@ -7,7 +7,7 @@ import RangeSlider from "./RangeSlider";
 const ProductListMain=(props)=>{
     
     //here retrieve all brand from product array and filter array
-     let Brand=[...new Set(props.products.map(a =>  (""+a.Brand.replace(/\s+/g, '')).toUpperCase()))]
+   
  
      //take price from product array and sort it for rangslider max value find
       let Maximumprice=props.products.length!=0 && props.products[0]?.MaxsalesPrice>props.products[0]?.MaxsellingPrice ? props.products[0]?.MaxsalesPrice : props.products[0]?.MaxsellingPrice
@@ -16,7 +16,7 @@ const ProductListMain=(props)=>{
    const [filterhead,setfilterhead]=useState("")
     // console.log(props.products[0].MaxsalesPrice)
     // console.log(props.products[0].MaxsellingPrice)
-    console.log(props.products.length)
+    console.log(props.productBrand)
 
     return(
         <div className="">
@@ -56,11 +56,11 @@ const ProductListMain=(props)=>{
                                 filterhead=="Brand" && 
                                     <div className="absolute left-0 top-9 z-10  space-y-3 p-4 w-48  bg-gray-100 shadow-xl flex flex-col max-h-64 overflow-auto">
                                             {
-                                                Brand && Brand.map((item,key)=>{
+                                                props.productBrand && props.productBrand.map((item,key)=>{
                                                     return(
                                                         <div className="flex space-x-3">
-                                                            <input type="checkbox" onChange={(e)=>e.target.checked ? props.BrandChoose(e.target.value) : props.BrandRemove(e.target.value) } id={item} name={item} value={item} className="text-xs font-semibold tracking-wide hover:bg-blue-300 text-left py-2 rounded px-1"/>
-                                                            <h1>{item}</h1>
+                                                            <input type="checkbox" onChange={(e)=>e.target.checked ? props.BrandChoose(e.target.value) : props.BrandRemove(e.target.value) } id={item.Brand} name={item.Brand} value={item.Brand} className="text-xs font-semibold tracking-wide hover:bg-blue-300 text-left py-2 rounded px-1"/>
+                                                            <h1>{item.Brand}</h1>
                                                         </div>
                                                     )
                                                 })

@@ -23,7 +23,7 @@ const Myorder=()=>{
                 MyOrder.length!=0 ?
                 MyOrder.map((item,key)=>{
                     return(
-                        <div>
+                        <div key={key}>
                             <MyorderProduct
                             item={item}
                             />

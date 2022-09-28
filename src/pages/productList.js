@@ -8,7 +8,9 @@ const ProductList=(props)=>{
     let history=useHistory();
     const [products,setproducts]=useState("")
     const [BrandChoosed,setBrandChoosed]=useState([])
+    const [productBrand,setproductBrand]=useState("")
     
+    const productListType = new URLSearchParams(window.location.search).get('type') && new URLSearchParams(window.location.search).get('type')
     const category = new URLSearchParams(window.location.search).get('category') && new URLSearchParams(window.location.search).get('category')
     const productCategory = new URLSearchParams(window.location.search).get('productCategory') && new URLSearchParams(window.location.search).get('productCategory')
     const Brand = new URLSearchParams(window.location.search).get('Brand') && new URLSearchParams(window.location.search).get('Brand')
@@ -30,22 +32,30 @@ const ProductList=(props)=>{
 
     //when choose a brand this function will work
     const BrandChoose=(BrandSele)=>{
-        console.log(BrandSele)
-        setBrandChoosed(BrandChoosed=>[...BrandChoosed,"'"+BrandSele+"'"])
-        history.replace({
-            pathname: '/ProductList',
-            search: `${category ? "category" : productCategory ? "productCategory" : "Brand"}=${category ? category : productCategory ? productCategory : Brand}&sort=${sort}&BND=${BrandChoosed.toString()} &minprice=${minprice??0} + &maxprice=${maxprice??5000} `
-          })
+        console.log(BrandChoosed.includes(BrandSele))
+        if(BrandChoosed.includes(BrandSele)==false)
+        {
+            setBrandChoosed(BrandChoosed=>[...BrandChoosed,BrandSele])
+            history.replace({
+                pathname: '/ProductList',
+                search: `${category ? "category" : productCategory ? "productCategory" : "Brand"}=${category ? category : productCategory ? productCategory : Brand}&sort=${sort}&BND=${BrandChoosed.toString()} &minprice=${minprice??0} + &maxprice=${maxprice??5000} `
+            })
+        }
+        
         //   window.location.reload(false);
     }
 
     //BrandChoose Remove
     const BrandRemove=(BrandSele)=>{
-        console.log("ds")
+      
+            BrandChoosed.filter((item,key)=>item==BrandSele)
+            setBrandChoosed((prevBrandchoosed)=>prevBrandchoosed.filter((brandfilter)=>brandfilter!=BrandSele))
+          
+        
     }
    //show result of price filter
    const priceResult=(min,max)=>{
-    history.replace({
+    history.replace({ 
         pathname: '/ProductList',
         search: `${category ? "category" : productCategory ? "productCategory" : "Brand"}=${category ? category : productCategory ? productCategory : Brand}&sort=${sort}&minprice=${min} + &maxprice=${max}`
       })
@@ -83,7 +93,8 @@ const ProductList=(props)=>{
         MobileHouseApi.get("/viewCategoryProduct",{params:{category:category,sort:sort,minprice:minprice,maxprice:maxprice,BND:BND}})
         .then(res=>{
            
-        setproducts(res.data)
+        setproducts(res.data.products)
+        setproductBrand(res.data.ProductBrand)
         }) 
 
         }   
@@ -102,57 +113,66 @@ const ProductList=(props)=>{
     }
 
  console.log(BND)
+ console.log(productListType)
     useEffect(()=>{
         
         if(products=="")
         {
-           
-            BND && setBrandChoosed(BND.split(',').map(s => `'${s}'`).join(','))
-        //when productlist related to catgeory 
-        if(new URLSearchParams(window.location.search).get('productCategory'))
-            {
-             
-                MobileHouseApi.get("/viewSliderProduct",{params:{productCategory:productCategory,sort:sort,minprice:minprice,maxprice:maxprice}})
-                .then(res=>{
-                    setproducts(res.data.headProduct)
-                }) 
-              
-            } 
+         
+            BND && setBrandChoosed(BND.replace(/ /g,'').split(','))
 
-        // when click ads on home page then this will work
-        if(new URLSearchParams(window.location.search).get('Brand'))
-        {
-           
-            MobileHouseApi.get("/viewBrandProduct",{params:{Brand:Brand,sort:sort,minprice:minprice,maxprice:maxprice}})
-                .then(res=>{
-                    setproducts(res.data.brandProduct)
-                }) 
-        }
-
-      //when click view all in product slide this will work
-
-         if(new URLSearchParams(window.location.search).get('category'))
-        {
-       
-            MobileHouseApi.get("/viewCategoryProduct",{params:{category:category,sort:sort,minprice:minprice,maxprice:maxprice,BND:BND && BND.split(',').map(s => `'${s}'`).join(',')}})
-            .then(res=>{
-               
-             setproducts(res.data)
-            }) 
           
-        }
+        
+            MobileHouseApi.get(`/productList/${productListType}`,{params:{[productListType]:new URLSearchParams(window.location.search).get(productListType),sort:sort,minprice:minprice,maxprice:maxprice}})
+            .then(res=>{
+                setproducts(res.data.products)
+            }) 
+        //when productlist related to catgeory 
+    //     if(new URLSearchParams(window.location.search).get('productCategory'))
+    //         {
+             
+    //             MobileHouseApi.get("/viewSliderProduct",{params:{productCategory:productCategory,sort:sort,minprice:minprice,maxprice:maxprice}})
+    //             .then(res=>{
+    //                 setproducts(res.data.headProduct)
+    //             }) 
+              
+    //         } 
 
-         //when click enter while type in search select all product name start with search value
+    //     // when click ads on home page then this will work
+    //     if(new URLSearchParams(window.location.search).get('Brand'))
+    //     {
+           
+    //         MobileHouseApi.get("/viewBrandProduct",{params:{Brand:Brand,sort:sort,minprice:minprice,maxprice:maxprice}})
+    //             .then(res=>{
+    //                 setproducts(res.data.brandProduct)
+    //             }) 
+    //     }
 
-        if(new URLSearchParams(window.location.search).get('searchitem'))
-            {
+    //   //when click view all in product slide this will work
+
+    //      if(new URLSearchParams(window.location.search).get('category'))
+    //     {
+       
+    //         MobileHouseApi.get("/viewCategoryProduct",{params:{category:category,sort:sort,minprice:minprice,maxprice:maxprice,BND:BND && BND.split(',').map(s => `'${s}'`).join(',')}})
+    //         .then(res=>{
+               
+    //          setproducts(res.data.products)
+    //          setproductBrand(res.data.ProductBrand)
+    //         }) 
+          
+    //     }
+
+    //      //when click enter while type in search select all product name start with search value
+
+    //     if(new URLSearchParams(window.location.search).get('searchitem'))
+    //         {
                
             
-              MobileHouseApi.get("/viewSerachValueProduct",{params:{searchValue:searchValue,sort:sort,minprice:minprice,maxprice:maxprice}})
-              .then(res=>{
-                  setproducts(res.data.viewSearchProduct)
-              }) 
-            }
+    //           MobileHouseApi.get("/viewSerachValueProduct",{params:{searchValue:searchValue,sort:sort,minprice:minprice,maxprice:maxprice}})
+    //           .then(res=>{
+    //               setproducts(res.data.viewSearchProduct)
+    //           }) 
+    //         }
         }
 
     },[])
@@ -174,6 +194,7 @@ console.log(BrandChoosed)
                 maxprice={maxprice}
                 BrandChoose={BrandChoose}
                 BrandRemove={BrandRemove}
+                productBrand={productBrand}
                 />
             }
            </MainLayoutWebsite>

@@ -16,7 +16,7 @@ const Nav=(props)=>{
    
     let history=useHistory();
     
-    const [serachitem, setserachitem] = useState("")
+    const [searchitem, setsearchitem] = useState("")
     const [loginstatus, setloginstatus] = useState(false)
     const [username, setusername] = useState(localStorage.getItem("UserName")  ? localStorage.getItem("UserName") :"Login/Signup")
    
@@ -34,13 +34,13 @@ const Nav=(props)=>{
         var isClickInsideElement = ignoreClickOnMeElement.contains(event.target);
         if ( !isClickInsideElement)
         {
-            setserachitem("")
+            setsearchitem("")
         }
         // else
         // {
         //     MobileHouseApi.get(`searchProduct`,{params: { searchitem:searchValue}})
         //     .then(res=>{
-        //     setserachitem(res.data);
+        //     setsearchitem(res.data);
         //     })
         //     console.log("ds")
         // }
@@ -52,7 +52,7 @@ const Nav=(props)=>{
             console.log(searchval)
             MobileHouseApi.get(`searchProduct`,{params: { searchitem: searchval}})
             .then(res=>{
-           setserachitem(res.data);
+           setsearchitem(res.data);
             })
         
     }
@@ -74,7 +74,7 @@ const Nav=(props)=>{
     const MobilesearchProduct=()=>{
         MobileHouseApi.get(`searchProduct`,{params: { searchitem: ""}})
         .then(res=>{
-         setserachitem(res.data);
+         setsearchitem(res.data);
         })
             setMobileSearchStatus(true)
     } 
@@ -84,26 +84,33 @@ const Nav=(props)=>{
         setMobileSearchStatus(false)
     }
    
-    function onKeyup(e) {
-        console.log(e) 
-        if (e.key == 'Enter') {
-           
-            setserachitem("")
-            setsearchValue("")
-            history.push({pathname: "/productList",search: "?" + new URLSearchParams({searchitem:document.getElementById('productsearchInputTag').value,sort:"newestfirst"}).toString()})
-            // console.log("sdsdsssssssssss")
+    // function onKeyup(e) {
+    //     console.log(e) 
+    //     if (e.key == 'Enter') {
+    //         console.log("dsds")
+    //         let serachval=document.getElementById('productsearchInputTag').value
+    //         history.push({pathname: "/productList",search: "?" + new URLSearchParams({type:'searchitem',searchitem:serachval,sort:"newestfirst"}).toString()})
+    //         // setsearchitem("")
+    //         // setsearchValue("")
       
         
     
-        }
+    //     }
        
-      }
+    //   }
     
     useEffect(()=>{
-        window.addEventListener("keyup", onKeyup);
+       var inputdiv = document.getElementById("productsearchInputTag");
+       inputdiv.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+           setsearchValue("")
+        history.push({pathname: "/productList",search: "?" + new URLSearchParams({type:'searchitem',searchitem:document.getElementById('productsearchInputTag').value,sort:"newestfirst"}).toString()})
+       
+    }
+    });
     },[])
 
- console.log(searchValue)
+
     return(
         <div className="shadow-sm ">
             {loginstatus===true&&
@@ -127,7 +134,7 @@ const Nav=(props)=>{
                 MobileSearchStatus==true && 
                     <MobileSearchWindow
                     searchClose={searchClose}
-                    serachitem={serachitem}
+                    searchitem={searchitem}
                     selectNavProduct={selectNavProduct}
                     searchProduct={searchProduct}
                     />
@@ -141,13 +148,13 @@ const Nav=(props)=>{
                                 <img src="MobilehouseLogo.png" alt="logo" width="250" height="250"  />
                                         
                             </Link>
-                            <div className="relative sm:w-5/12 w-10/12 ">
+                            <div className="relative sm:w-5/12 w-10/12 "  onMouseEnter={()=>console.log("dsd")}>
                                 <input id="productsearchInputTag"  onChange={(e)=>(setsearchValue(e.target.value),debounceFn(e.target.value))} type="text" placeholder="search here" className=" hidden md:block px-2 w-full rounded h-8 text-sm  md:h-9 focus:outline-none border border-gray-300 "/>
                                 
                                 
-                                <div className={`${serachitem!=="" && MobileSearchStatus==false ? " hidden absolute  top-10 z-20 max-h-128 w-96 bg-white shadow-xl rounded-lg p-2 sm:flex flex-col overflow-y-scroll py-2   ": "hidden"}`}>
+                                <div className={`${searchValue!="" && searchitem!=="" && MobileSearchStatus==false ? " hidden absolute  top-10 z-20 max-h-128 w-96 bg-white shadow-xl rounded-lg p-2 sm:flex flex-col overflow-y-scroll py-2   ": "hidden"}`}>
                                         <div className=' flex flex-col  space-y-2'>
-                                        {serachitem!=="" && serachitem.products?.map((item,key)=>{
+                                        {searchitem!=="" && searchitem.products?.map((item,key)=>{
                                             return(
                                                 
                                              <button onClick={()=>selectNavProduct(item)}  className="hover:text-blue-400 text-left  focus:outline-none">
@@ -167,7 +174,7 @@ const Nav=(props)=>{
                                         )})}
                                         </div>
                                         <div className='mt-2'>
-                                        {serachitem && serachitem.category?.map((item,key)=>{
+                                        {searchitem && searchitem.category?.map((item,key)=>{
                                                 return(
                                                     <Link className="  hover:text-blue-400 text-left py-2 focus:outline-none  flex items-center space-x-2 " to={{pathname: "/ProductList",search: "?" + new URLSearchParams({category: item.id,sort:"newestfirst"}).toString()}}>
                                                     
@@ -180,7 +187,7 @@ const Nav=(props)=>{
        
                                         </div>
                                         <div className=''>
-                                        {serachitem && serachitem.Brand?.map((item,key)=>{
+                                        {searchitem && searchitem.Brand?.map((item,key)=>{
                                             return(
                                             
                                                 <Link className="  hover:text-blue-400 text-left py-2 focus:outline-none  flex items-center space-x-2 " to={{pathname: "/ProductList",search: "?" + new URLSearchParams({Brand:item.Brand,sort:"newestfirst"}).toString()}}>
