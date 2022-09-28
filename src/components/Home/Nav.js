@@ -137,6 +137,7 @@ const Nav=(props)=>{
                     searchitem={searchitem}
                     selectNavProduct={selectNavProduct}
                     searchProduct={searchProduct}
+                    setsearchValue={setsearchValue}
                     />
             }
                 <div className=" w-full h-5  md:h-10 bg-gray-300 border-2 border-gray-100 ">
@@ -149,7 +150,7 @@ const Nav=(props)=>{
                                         
                             </Link>
                             <div className="relative sm:w-5/12 w-10/12 "  onMouseEnter={()=>console.log("dsd")}>
-                                <input id="productsearchInputTag"  onChange={(e)=>(setsearchValue(e.target.value),debounceFn(e.target.value))} type="text" placeholder="search here" className=" hidden md:block px-2 w-full rounded h-8 text-sm  md:h-9 focus:outline-none border border-gray-300 "/>
+                                <input id="productsearchInputTag" autoComplete="off" onChange={(e)=>(setsearchValue(e.target.value),debounceFn(e.target.value))} type="text" placeholder="search here" className=" hidden md:block px-2 w-full rounded h-8 text-sm  md:h-9 focus:outline-none border border-gray-300 "/>
                                 
                                 
                                 <div className={`${searchValue!="" && searchitem!=="" && MobileSearchStatus==false ? " hidden absolute  top-10 z-20 max-h-128 w-96 bg-white shadow-xl rounded-lg p-2 sm:flex flex-col overflow-y-scroll py-2   ": "hidden"}`}>

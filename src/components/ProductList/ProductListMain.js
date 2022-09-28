@@ -14,8 +14,7 @@ const ProductListMain=(props)=>{
   
     // when click brand or price then filter head set to that value
    const [filterhead,setfilterhead]=useState("")
-    // console.log(props.products[0].MaxsalesPrice)
-    // console.log(props.products[0].MaxsellingPrice)
+   
     console.log(props.productBrand)
 
     return(
