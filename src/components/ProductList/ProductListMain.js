@@ -3,7 +3,7 @@ import Nav from "components/Home/Nav"
 import { IoIosArrowDown } from 'react-icons/io';
 import { useState } from "react";
 import RangeSlider from "./RangeSlider";
-
+import PaginateTable from "components/admindashboard/pagination";
 const ProductListMain=(props)=>{
     
     //here retrieve all brand from product array and filter array
@@ -15,7 +15,9 @@ const ProductListMain=(props)=>{
     // when click brand or price then filter head set to that value
    const [filterhead,setfilterhead]=useState("")
    
-    console.log(props.productBrand)
+    console.log(props.BrandChoosed.includes("HZ"))
+
+    
 
     return(
         <div className="">
@@ -53,17 +55,23 @@ const ProductListMain=(props)=>{
                             </button>
                             {
                                 filterhead=="Brand" && 
-                                    <div className="absolute left-0 top-9 z-10  space-y-3 p-4 w-48  bg-gray-100 shadow-xl flex flex-col max-h-64 overflow-auto">
-                                            {
-                                                props.productBrand && props.productBrand.map((item,key)=>{
-                                                    return(
-                                                        <div className="flex space-x-3">
-                                                            <input type="checkbox" onChange={(e)=>e.target.checked ? props.BrandChoose(e.target.value) : props.BrandRemove(e.target.value) } id={item.Brand} name={item.Brand} value={item.Brand} className="text-xs font-semibold tracking-wide hover:bg-blue-300 text-left py-2 rounded px-1"/>
-                                                            <h1>{item.Brand}</h1>
-                                                        </div>
-                                                    )
-                                                })
-                                            }
+                                    <div className="absolute left-0 top-9 z-10  space-y-3 p-4 w-48  bg-gray-100 shadow-xl flex flex-col h-72 ">
+                                            <div className="space-y-4">
+                                                <div className="space-y-2 h-52 overflow-auto  w-44">
+                                                {
+                                                    props.productBrand && props.productBrand.map((item,key)=>{
+                                                        return(
+                                                            <div className="flex space-x-3">
+                                                                <input checked={props.BrandChoosed && props.BrandChoosed.includes((item.Brand).replace(/\s/g, ""))}  type="checkbox" onChange={(e)=>e.target.checked ? props.BrandChoose(e.target.value) : props.BrandRemove(e.target.value) } id={item.Brand} name={item.Brand} value={item.Brand} className="text-xs focus:outline-none font-semibold tracking-wide hover:bg-blue-300 text-left py-2 rounded px-1"/>
+                                                                <h1>{item.Brand}</h1>
+                                                            </div>
+                                                        )
+                                                    })
+                                                }
+                                                </div>
+                                                <button onClick={()=>props.BrandFilter()}  className='w-full focus:outline-none bg-blue-600 py-1 tracking-wider text-white text-sm rounded-2xl'>View Result</button>
+                                            </div>
+
                                     </div>
                             }
                         </div>
@@ -94,6 +102,11 @@ const ProductListMain=(props)=>{
                             })
                         }
                     </div>
+                    <PaginateTable
+                      handlePageClick={props.handlePageClick}
+                      pageSize={props.TotalProduct/30}
+                      pageNo={props.PageNo}
+                     />
                    
                 </div>
                  :

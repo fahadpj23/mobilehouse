@@ -1,6 +1,6 @@
 import ReactPaginate from 'react-paginate';
 const PaginateTable =(props)=>{
-   
+   console.log(props)
             return (
                 <div className="py-6">
                 <ReactPaginate 
