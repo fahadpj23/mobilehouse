@@ -11,6 +11,8 @@ const ProductList=(props)=>{
     const [BrandChoosed,setBrandChoosed]=useState([])
     const [productBrand,setproductBrand]=useState("")
     const [TotalProduct,setTotalProduct]=useState("")
+    const [minpricevalue,setminpricevalue]=useState("")
+    const [maxpricevalue,setmaxpricevalue]=useState("")
     
     const productListType = new URLSearchParams(window.location.search).get('type') && new URLSearchParams(window.location.search).get('type')
     const sort = new URLSearchParams(window.location.search).get('sort') && new URLSearchParams(window.location.search).get('sort')
@@ -22,10 +24,11 @@ const ProductList=(props)=>{
     console.log(PageNo)
 
     const handlePageClick=(e)=>{
+        console.log(BrandChoosed.length==0?"asd":"erty")
         console.log(e.selected  )
         history.replace({
             pathname: '/ProductList',
-            search: `type=${productListType}&${productListType}=${new URLSearchParams(window.location.search).get(productListType)}&sort=${sort}&PageNo=${+(e.selected) +1}&BND=${BrandChoosed.toString()} &minprice=${minprice??0} + &maxprice=${maxprice??5000000}`
+            search: `type=${productListType}&${productListType}=${new URLSearchParams(window.location.search).get(productListType)}&sort=${sort}&PageNo=${+(e.selected) +1} ${BrandChoosed.length==0 ? `&BND=${BrandChoosed.toString()}`:""} ${minpricevalue ? `&minprice=${minprice}  &maxprice=${maxprice}` : ""}`
           })
         //    window.location.reload(false);
     }
@@ -33,28 +36,31 @@ const ProductList=(props)=>{
     const SortSelect=(sortvalue)=>{
         history.replace({
             pathname: '/ProductList',
-            search: `type=${productListType}&${productListType}=${new URLSearchParams(window.location.search).get(productListType)}&sort=${sortvalue}&BND=${BrandChoosed.toString()} &minprice=${minprice??0} + &maxprice=${maxprice??5000000}`
+            search: `type=${productListType}&${productListType}=${new URLSearchParams(window.location.search).get(productListType)}&sort=${sortvalue}${BrandChoosed.length==0 ? `&BND=${BrandChoosed.toString()}`:""} ${minpricevalue ? `&minprice=${minprice}  &maxprice=${maxprice}` : ""}`
           })
         //   window.location.reload(false);
     }
 
     //when choose a brand this function will work
     const BrandChoose=(BrandSele)=>{
-        console.log(BrandChoosed.includes(BrandSele))
+       
         if(BrandChoosed.includes(BrandSele)==false)
         {
             setBrandChoosed(BrandChoosed=>[...BrandChoosed,BrandSele.replace(/\s/g, "")])
             
         }
         
+        
         //   window.location.reload(false);
     }
 
     //BrandFilter execute
     const BrandFilter=()=>{
+        console.log("fd")
+        console.log(BrandChoosed)
         history.replace({
             pathname: '/ProductList',
-            search: `type=${productListType}&${productListType}=${new URLSearchParams(window.location.search).get(productListType)}&sort=${sort}&PageNo=1&BND=${BrandChoosed.toString()} &minprice=${minprice??0} + &maxprice=${maxprice??500000} `
+            search: `type=${productListType}&${productListType}=${new URLSearchParams(window.location.search).get(productListType)}&sort=${sort}&PageNo=1${BrandChoosed.length!=0 ? `&BND=${BrandChoosed.toString()}`:""}${minpricevalue ? `&minprice=${minprice}  &maxprice=${maxprice}` : ""} `
         })
         // window.location.reload(false);
     }
@@ -69,19 +75,21 @@ const ProductList=(props)=>{
     }
    //show result of price filter
    const priceResult=(min,max)=>{
+    setminpricevalue(min)
+    setmaxpricevalue(max)
     history.replace({ 
         pathname: `/ProductList`,
-        search: `type=${productListType}&${productListType}=${new URLSearchParams(window.location.search).get(productListType)}&sort=${sort}&PageNo=1&minprice=${min} + &maxprice=${max}`
+        search: `type=${productListType}&${productListType}=${new URLSearchParams(window.location.search).get(productListType)}&sort=${sort}${BrandChoosed.length==0 ? `&BND=${BrandChoosed.toString()}`:""}&PageNo=1 &minprice=${min}  &maxprice=${max}`
       })
     //   window.location.reload(false);
 
     }
    
     if( history.action=="REPLACE"){
-        
+            console.log(BrandChoosed.length)
         console.log(BND=="" ? "we" : "bt")
         history.action="ok"
-        MobileHouseApi.get(`/productList/${productListType}`,{params:{[productListType]:new URLSearchParams(window.location.search).get(productListType),sort:sort,BND:BrandChoosed ?   BrandChoosed.map(item => "'" + item + "'").join() : "NOBRAND",PageNo:PageNo,minprice:minprice,maxprice:maxprice}})
+        MobileHouseApi.get(`/productList/${productListType}`,{params:{[productListType]:new URLSearchParams(window.location.search).get(productListType),sort:sort,BND:BrandChoosed.length!=0 ?   BrandChoosed.map(item => "'" + item + "'").join() : "NOBRAND",PageNo:PageNo,minprice:minprice,maxprice:maxprice}})
         .then(res=>{
             setproducts(res.data.products)
             setproductBrand(res.data.Brand)
@@ -97,8 +105,8 @@ const ProductList=(props)=>{
         {
          
             BND && setBrandChoosed(BND.replace(/ /g,'').split(','))
-
-            console.log("assssssssssssssssss")
+            console.log(BND)
+            console.log(BND==null?"ds":"qqqqqqq")
         
             MobileHouseApi.get(`/productList/${productListType}`,{params:{[productListType]:new URLSearchParams(window.location.search).get(productListType),PageNo:PageNo,BND:BND ?  "'"+(BND.replace(/ /g,'').split(',')).join("','")+"'" : "NOBRAND",sort:sort,minprice:minprice,maxprice:maxprice}})
             .then(res=>{

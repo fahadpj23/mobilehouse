@@ -41,6 +41,7 @@ const ProductListMain=(props)=>{
                                                    priceResult={props.priceResult}
                                                    minprice={props.minprice}
                                                    maxprice={props.maxprice}
+                                                   
                                                    />
                                                   
                                                
@@ -89,7 +90,7 @@ const ProductListMain=(props)=>{
                 
 
             
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 p-2 md:p-5">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-10 p-2 md:p-5">
                         {
                             props.products.map((item,key)=>{
                                 return(
