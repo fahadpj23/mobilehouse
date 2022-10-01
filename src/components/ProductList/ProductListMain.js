@@ -41,7 +41,7 @@ const ProductListMain=(props)=>{
                                                    priceResult={props.priceResult}
                                                    minprice={props.minprice}
                                                    maxprice={props.maxprice}
-                                                   
+                                                   setfilterhead={setfilterhead}
                                                    />
                                                   
                                                
@@ -70,7 +70,7 @@ const ProductListMain=(props)=>{
                                                     })
                                                 }
                                                 </div>
-                                                <button onClick={()=>props.BrandFilter()}  className='w-full focus:outline-none bg-blue-600 py-1 tracking-wider text-white text-sm rounded-2xl'>View Result</button>
+                                                <button onClick={()=>(props.BrandFilter(),setfilterhead(""))}  className='w-full focus:outline-none bg-blue-600 py-1 tracking-wider text-white text-sm rounded-2xl'>View Result</button>
                                             </div>
 
                                     </div>

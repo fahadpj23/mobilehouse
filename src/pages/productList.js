@@ -24,8 +24,7 @@ const ProductList=(props)=>{
     console.log(PageNo)
 
     const handlePageClick=(e)=>{
-        console.log(BrandChoosed.length==0?"asd":"erty")
-        console.log(e.selected  )
+     
         history.replace({
             pathname: '/ProductList',
             search: `type=${productListType}&${productListType}=${new URLSearchParams(window.location.search).get(productListType)}&sort=${sort}&PageNo=${+(e.selected) +1} ${BrandChoosed.length==0 ? `&BND=${BrandChoosed.toString()}`:""} ${minpricevalue ? `&minprice=${minprice}  &maxprice=${maxprice}` : ""}`
@@ -56,8 +55,7 @@ const ProductList=(props)=>{
 
     //BrandFilter execute
     const BrandFilter=()=>{
-        console.log("fd")
-        console.log(BrandChoosed)
+      
         history.replace({
             pathname: '/ProductList',
             search: `type=${productListType}&${productListType}=${new URLSearchParams(window.location.search).get(productListType)}&sort=${sort}&PageNo=1${BrandChoosed.length!=0 ? `&BND=${BrandChoosed.toString()}`:""}${minpricevalue ? `&minprice=${minprice}  &maxprice=${maxprice}` : ""} `
@@ -86,8 +84,8 @@ const ProductList=(props)=>{
     }
    
     if( history.action=="REPLACE"){
-            console.log(BrandChoosed.length)
-        console.log(BND=="" ? "we" : "bt")
+         
+      
         history.action="ok"
         MobileHouseApi.get(`/productList/${productListType}`,{params:{[productListType]:new URLSearchParams(window.location.search).get(productListType),sort:sort,BND:BrandChoosed.length!=0 ?   BrandChoosed.map(item => "'" + item + "'").join() : "NOBRAND",PageNo:PageNo,minprice:minprice,maxprice:maxprice}})
         .then(res=>{
@@ -105,8 +103,7 @@ const ProductList=(props)=>{
         {
          
             BND && setBrandChoosed(BND.replace(/ /g,'').split(','))
-            console.log(BND)
-            console.log(BND==null?"ds":"qqqqqqq")
+          
         
             MobileHouseApi.get(`/productList/${productListType}`,{params:{[productListType]:new URLSearchParams(window.location.search).get(productListType),PageNo:PageNo,BND:BND ?  "'"+(BND.replace(/ /g,'').split(',')).join("','")+"'" : "NOBRAND",sort:sort,minprice:minprice,maxprice:maxprice}})
             .then(res=>{

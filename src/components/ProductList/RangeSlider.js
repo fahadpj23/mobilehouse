@@ -72,7 +72,7 @@ export default function RangeSlider(props) {
         <div className='space-y-2 mt-3'>
           <button onClick={()=>(setmaxvalue(props.maxval),setminvalue(0))}  className='w-full focus:outline-none flex justify-center tracking-wider hover:text-red-500'>Clear</button>
          
-          <button onClick={()=>props.priceResult(minvalue,maxvalue)} className='w-full focus:outline-none bg-blue-600 py-2 tracking-wider text-white rounded-2xl'>View Result</button>
+          <button onClick={()=>(props.priceResult(minvalue,maxvalue),props.setfilterhead(""))} className='w-full focus:outline-none bg-blue-600 py-2 tracking-wider text-white rounded-2xl'>View Result</button>
         </div>
         
     </div>
