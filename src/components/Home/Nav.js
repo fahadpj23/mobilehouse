@@ -104,7 +104,7 @@ const Nav=(props)=>{
        inputdiv.addEventListener("keypress", function(event) {
         if (event.key === "Enter") {
            setsearchValue("")
-        history.push({pathname: "/productList",search: "?" + new URLSearchParams({type:'searchitem',searchitem:document.getElementById('productsearchInputTag').value,sort:"newestfirst"}).toString()})
+        history.replace({pathname: "/productList",search: "?" + new URLSearchParams({type:'searchitem',searchitem:document.getElementById('productsearchInputTag').value,sort:"newestfirst",PageNo:1}).toString()})
        
     }
     });

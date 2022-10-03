@@ -22,7 +22,7 @@ const ProductListMain=(props)=>{
     return(
         <div className="">
            
-           {props.products.length!=0 ?<div className="p-2 md:p-5">
+         <div className="p-2 md:p-5">
                 
                     <div  className="flex justify-between w-full">
                     <div className="w-8/12 flex space-x-2 ml-5  ">
@@ -90,7 +90,7 @@ const ProductListMain=(props)=>{
                 
 
             
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-10 p-2 md:p-5">
+                {props.products.length!=0 ?<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-10 p-2 md:p-5">
                         {
                             props.products.map((item,key)=>{
                                 return(
@@ -103,6 +103,11 @@ const ProductListMain=(props)=>{
                             })
                         }
                     </div>
+                      :
+                      <div className="h-fixedNoNavlg7 w-full flex justify-center items-center ">
+                                 <img src='./productNotFound.jpg' alt="no Product Found"/>
+                      </div>
+                      }
                     <PaginateTable
                       handlePageClick={props.handlePageClick}
                       pageSize={props.TotalProduct/30}
@@ -110,11 +115,7 @@ const ProductListMain=(props)=>{
                      />
                    
                 </div>
-                 :
-                 <div className="h-fixedNoNavlg7 w-full flex justify-center items-center ">
-                            <img src='./productNotFound.jpg' alt="no Product Found"/>
-                 </div>
-                 }
+               
            
         </div>
        
