@@ -9,7 +9,8 @@ import {AuthContext} from '../helpers/authcontext'
 import HomeAds from "components/Home/HomeAds";
 import MainLayoutWebsite from "components/MainLayoutWebsite";
 import Footer from "components/Home/Footer";
-
+// const HomeAds=React.lazy(()=>import('components/Home/HomeAds'))
+// const ProductSlider=React.lazy(()=>import('components/Home/productSlick'))
 function Home() {
  
   
@@ -45,6 +46,7 @@ function Home() {
         
          
         }, [])
+       
       console.log(Ads)
   return (
     <div className="">
@@ -83,6 +85,7 @@ function Home() {
                             Heading={item.Heading}
                                     
                           />
+                        
                           <div className="hidden sm:block ">
                             <HomeAds
                             Ads={Ads[+key] }
