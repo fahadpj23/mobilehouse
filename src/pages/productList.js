@@ -13,6 +13,7 @@ const ProductList=(props)=>{
     const [TotalProduct,setTotalProduct]=useState("")
     const [minpricevalue,setminpricevalue]=useState("")
     const [maxpricevalue,setmaxpricevalue]=useState("")
+    const [productsset,setproductsset]=useState(false)
     
     const productListType = new URLSearchParams(window.location.search).get('type') && new URLSearchParams(window.location.search).get('type')
     const sort = new URLSearchParams(window.location.search).get('sort') && new URLSearchParams(window.location.search).get('sort')
@@ -84,7 +85,7 @@ const ProductList=(props)=>{
     }
    
     if( history.action=="REPLACE"){
-         
+         console.log("fd")
       
         history.action="ok"
         MobileHouseApi.get(`/productList/${productListType}`,{params:{[productListType]:new URLSearchParams(window.location.search).get(productListType),sort:sort,BND:BrandChoosed.length!=0 ?   BrandChoosed.map(item => "'" + item + "'").join() : "NOBRAND",PageNo:PageNo,minprice:minprice,maxprice:maxprice}})
@@ -92,19 +93,20 @@ const ProductList=(props)=>{
             setproducts(res.data.products)
             setproductBrand(res.data.Brand)
             setTotalProduct(res.data.TotalProduct)
+
+            console.log("aseret")
+            // setproductsset(true)
         }) 
     }
 
- console.log(BND)
- console.log(productListType)
+ 
     useEffect(()=>{
         
-        if(products=="" &&   history.action!="ok")
+        if(products=="" )
         {
          
             BND && setBrandChoosed(BND.replace(/ /g,'').split(','))
           
-        
             MobileHouseApi.get(`/productList/${productListType}`,{params:{[productListType]:new URLSearchParams(window.location.search).get(productListType),PageNo:PageNo,BND:BND ?  "'"+(BND.replace(/ /g,'').split(',')).join("','")+"'" : "NOBRAND",sort:sort,minprice:minprice,maxprice:maxprice}})
             .then(res=>{
                 setproducts(res.data.products)
@@ -113,10 +115,15 @@ const ProductList=(props)=>{
             }) 
       
         }
+        // if(productsset==true)
+        // {
+        //     setproductsset(false)
+        //     console.log("dsdsd")
+        // }
 
-    },[])
-    console.log( "'"+BrandChoosed.join("','")+"'")
-// console.log(BrandChoosed.toString())
+    },[productsset])
+
+
     return(
       
         
