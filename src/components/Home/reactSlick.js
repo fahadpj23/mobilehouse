@@ -119,7 +119,7 @@ function SamplePrevArrow(props) {
           <h1 className="relative sm:text-xl uppercase tracking-wide text-xs text-white "><b>Top Category</b></h1>
         </div>
         {/* <Slider {...settings} className="mt-2 p-1"> */}
-        <div className="grid grid-cols-3 md:grid-cols-8">
+        <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-7 xl:grid-cols-8">
           {props.category && props.category.map((item, key) => {
              
               return(
