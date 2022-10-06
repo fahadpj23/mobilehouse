@@ -6,11 +6,10 @@ import RangeSlider from "./RangeSlider";
 import PaginateTable from "components/admindashboard/pagination";
 const ProductListMain=(props)=>{
     
-    //here retrieve all brand from product array and filter array
-   
- 
+      
+    
      //take price from product array and sort it for rangslider max value find
-      let Maximumprice=props.products.length!=0 && props.products[0]?.MaxsalesPrice>props.products[0]?.MaxsellingPrice ? props.products[0]?.MaxsalesPrice : props.products[0]?.MaxsellingPrice
+      let Maximumprice=props.products.length!=0 && props.products[0]?.MaxsalesPrice>props.products[0]?.MaxsellingPrice ? props.products[0]?.MaxsalesPrice : props.products[0]?.MaxsellingPrice 
   
     // when click brand or price then filter head set to that value
    const [filterhead,setfilterhead]=useState("")
