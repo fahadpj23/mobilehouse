@@ -13,6 +13,8 @@ const ContextProvider=(props)=>{
     const[auth,setauth]=useState(false)
     
 
+   
+
     const addtocart=(item,qty,image)=>{
        console.log(item)
         if(localStorage.getItem('UserName'))

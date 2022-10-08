@@ -88,7 +88,7 @@ function Home() {
                         
                           <div className="hidden sm:block ">
                             <HomeAds
-                            Ads={Ads[+key] }
+                            Ads={Ads[key] }
                             />
                           </div>
                           <div className="block sm:hidden">
