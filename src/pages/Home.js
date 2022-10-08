@@ -21,7 +21,24 @@ function Home() {
   const [Ads, setAds] = useState("")
 
   const AuthCon=useContext(AuthContext)
+  const cardPayment=()=>{
 
+    let product=[
+      {
+        id:1,quantity:6
+      },
+      {
+        id:2,quantity:2
+      }
+    ]
+    const data=new FormData()
+
+    data.append("items",JSON.stringify(product))
+   MobileHouseApi.post('/create-checkout-session',data)
+   .then((res)=>{
+    window.location=res.data.url
+   })
+  }
  
   useEffect(() => {
          
@@ -61,6 +78,7 @@ function Home() {
           Banner={Banner}
           />
         }
+        <button onClick={()=>cardPayment()} className="bg-red-500 text-white p-5 ml-5">checkout</button>
       
         {
                         <CatSlider
