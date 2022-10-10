@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import {MobileHouseApi} from "helpers/axiosinstance"
 import AddressProduct from './addressProduct';
 import Login from 'components/Home/login';
-
+import { Link } from 'react-router-dom';
 const AddressMain=(props)=>{
     const history = useHistory();
     const context=useContext(Usercontext)
@@ -113,10 +113,10 @@ const AddressMain=(props)=>{
                     </div>
                     <div className="space-y-5"> 
                     {props.item && props.item.map((item1,key)=>{
-                           total=total +  (item1.salesPrice ?? item1.seliingPrice) * +item1.qty
+                           total=total +  (item1.salesPrice ?? item1.sellingPrice) * (+item1.qty? item.qty :1)
                         })}   
                         <h1 className=" flex justify-between mt-8 text-lg font-bold"><span >Total Payable</span><span className="text-green-700 ">{total}</span></h1>
-                        <button type='submit'  className="w-full text-white py-2 focus:outline-none bg-primary">Place Order</button>
+                        <Link to={{pathname:"/Payment",state:{product:props.item}}}  className="w-full text-white py-2 focus:outline-none bg-primary">Place Order</Link>
                     </div>
                  
                 </div>

@@ -7,10 +7,23 @@ const Address=(props)=>{
     const context=useContext(Usercontext)
     const search = props.location.search;
     const productId = new URLSearchParams(search).get('productId')
-    const orderqty=new URLSearchParams(search).get('orderqty')
+    const CheckoutType=new URLSearchParams(search).get('CheckoutType')
     const [product, setproduct] = useState("")
     useEffect(() => {
-        if(props.location.state.checkouttype)
+
+        if(CheckoutType=="Single")
+        {
+            MobileHouseApi.get('/getSingleProductDetailsCheckout',{params:{productId:productId}})
+            .then((res)=>{
+                    
+                    setproduct(res.data.product)
+            })
+            .catch(error=>{
+                console.log(error)
+            })
+        }
+      
+        if(CheckoutType=="Cart")
         {
           let items=[]
           context.cart && context.cart.map((item,key)=>{
@@ -18,19 +31,19 @@ const Address=(props)=>{
           })
           setproduct(items)
         }
-        else
-        {
-        MobileHouseApi.get(`customerorderdetails`,{params: { productId: productId}})
+        // else
+        // {
+        // MobileHouseApi.get(`customerorderdetails`,{params: { productId: productId}})
         
-        .then(res=>{
-        let items=[]
-        items.push(res.data);
-        res.data.qty=orderqty
-        setproduct(items)
-        console.log(res.data)
+        // .then(res=>{
+        // let items=[]
+        // items.push(res.data);
+        // res.data.qty=orderqty
+        // setproduct(items)
+        // console.log(res.data)
 
-          })  
-         }
+        //   })  
+        //  }
     }, [])
 
    

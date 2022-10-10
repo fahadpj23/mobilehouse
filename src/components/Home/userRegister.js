@@ -7,8 +7,8 @@ import 'react-toastify/dist/ReactToastify.css';
 const UserRegister=(props)=>{
 
     const[alreadyexist,setalreadyexist]=useState(false)
-    const context1=useContext(Usercontext)
-    console.log(context1)
+    const context=useContext(Usercontext)
+    console.log(context)
     const handleSubmit=(e)=>{
         const data= new FormData(e.target)
       
@@ -16,7 +16,7 @@ const UserRegister=(props)=>{
         .then((res)=>{
            if(res.data.alreadyexist)
            {
-            context1.notify("username already exist")
+            context.notify("username already exist")
 
            }
             if(res.data.UserToken)
@@ -37,12 +37,12 @@ const UserRegister=(props)=>{
    
         <form onSubmit={(e)=>handleSubmit(e)} method="post" className="w-screen h-screen fixed flex items-center  bg-black   bg-opacity-80 justify-center z-20 top-0 left-0 ">
         
-            <div className="w-10/12 sm:w-4/12 xl:w-3/12 h-3/5 flex flex-col relative bg-white shadow-5xl pb-5 overflow-auto justify-between  border  border-gray-400-lg">
+            <div className=" w-8/12 md:w-4/12 lg:w-3/12 h-3/5 flex flex-col relative bg-white shadow-5xl pb-5 overflow-auto justify-between  border  border-gray-400-lg">
                
                   
                 
                 <div className="w-full flex flex-col items-center h-full justify-evenly">
-                    <button type="button" onClick={()=> props.setregisteruser(false)} className="absolute top-3 focus:outline-none right-3 "><AiOutlineClose/></button>
+                    <button type="button" onClick={()=> context.setregisteruser(false)} className="absolute top-3 focus:outline-none right-3 "><AiOutlineClose/></button>
                     <h1 className="text-lg font-semibold text-center pb-3 mt-5">Welcome To MobileHouse</h1>
                     <div className="space-y-5 flex flex-col w-11/12  px-2 mt-4 ">
                 

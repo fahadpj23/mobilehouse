@@ -93,10 +93,14 @@ const ProductListMain=(props)=>{
                         {
                             props.products.map((item,key)=>{
                                 return(
+                                    <div key={key}>
                                     <SingleProduct
                                     item={item}
-
                                     />
+                                    </div>
+                                    
+
+                                   
                                 )
                                 
                             })

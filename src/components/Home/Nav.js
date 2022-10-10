@@ -7,20 +7,19 @@ import {BsSearch } from 'react-icons/bs';
 import {Link} from "react-router-dom";
 import Login from './login';
 import UserRegister from './userRegister';
-
+import { Usercontext } from 'components/context/userContext';
 import { useHistory } from 'react-router-dom';
 import MobileSearchWindow from './MobileSearchWindow';
 import { debounce } from 'lodash';
 const Nav=(props)=>{
 
-   
+    let context=useContext(Usercontext)
     let history=useHistory();
     
     const [searchitem, setsearchitem] = useState("")
-    const [loginstatus, setloginstatus] = useState(false)
+ 
     const [username, setusername] = useState(localStorage.getItem("UserName")  ? localStorage.getItem("UserName") :"Login/Signup")
    
-    const [registeruser, setregisteruser] = useState(false)
     const [MobileSearchStatus, setMobileSearchStatus] = useState(false)
     const [searchValue, setsearchValue] = useState("")
 
@@ -64,11 +63,11 @@ const Nav=(props)=>{
         window.location.reload(false);
     }
 
-    const loginsuccess=(userna)=>{
-        setloginstatus(false)
-        setusername(userna)
+    // const loginsuccess=(userna)=>{
+    //     setloginstatus(false)
+    //     setusername(userna)
         
-    }
+    // }
 
     // in mobile view  when search click then a window open for searching
     const MobilesearchProduct=()=>{
@@ -113,19 +112,15 @@ const Nav=(props)=>{
 
     return(
         <div className="shadow-sm ">
-            {loginstatus===true&&
+            {context.loginstatus===true&&
                 <Login
-                    loginsuccess={loginsuccess}
-                    setloginstatus={setloginstatus}
-                    setregisteruser={setregisteruser}
+                   
                     
                 />
             }
             {
-                registeruser===true &&
+                context.registeruser===true &&
                 <UserRegister
-                    setregisteruser={setregisteruser}
-                    setusername={setusername}
                    
                 />
 
@@ -218,7 +213,7 @@ const Nav=(props)=>{
                             {
                                username==="Login/Signup" ?
 
-                               <button onClick={()=> setloginstatus(true) } className="flex hover:text-red-500 items-center relative focus:outline-none "><FaRegUserCircle className="mr-1 text-xl md:text-2xl  text-gray-700 font-light"/><h1 className="lg:block hidden">{username}</h1></button>
+                               <button onClick={()=> context.setloginstatus(true) } className="flex hover:text-red-500 items-center relative focus:outline-none "><FaRegUserCircle className="mr-1 text-xl md:text-2xl  text-gray-700 font-light"/><h1 className="lg:block hidden">{username}</h1></button>
                                :
                               <Link className="     flex items-center py-1 hover:text-blue-500" to={{pathname: "/Profile"}}><FaRegUserCircle className="mr-1 text-xl md:text-2xl text-gray-700 font-light"/><h1 className="lg:block hidden">{username}</h1></Link> 
                             }

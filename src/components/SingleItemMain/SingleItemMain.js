@@ -7,6 +7,7 @@ import {useContext} from 'react'
 import React, { useState } from 'react';
 import ProductSlider from '../Home/productSlick'
 import { MobileHouseApi } from "helpers/axiosinstance";
+import Login from "components/Home/login";
 
 const SingleItemMain=(props)=>{
  
@@ -52,7 +53,7 @@ const SingleItemMain=(props)=>{
 
     const context=useContext(Usercontext)
     
-    console.log(productImage)
+    console.log(localStorage.getItem('UserToken'))
 
     const AddCart=(item)=>{
 
@@ -78,7 +79,10 @@ const SingleItemMain=(props)=>{
 
     return(
         <div className="">
-            
+                {
+                    context.loginstatus==true && 
+                        <Login/>
+                }
           
                         <div className="w-full flex justify-center">
                             <div className="w-11/12 md:flex  mt-5 ">
@@ -105,11 +109,14 @@ const SingleItemMain=(props)=>{
     
                                         } 
                                         {/* <button onClick={()=>context.addtocart(item)} className="w-full rounded font-semibold text-white md:text-base text-sm bg-yellow-400 py-2 md:py-3">ADD TO CART</button> */}
-                                        {item.maxqty<1 ?
+                                        {item.maxqty>0 &&
 
-                                            <button onClick={()=>context.notify("product is out of stock","warning")}  className="w-full md:text-base text-sm rounded font-semibold flex justify-center focus:outline-none text-white bg-primary py-2 md:py-3 ">ORDER NOW   </button>
+                                            localStorage.getItem('UserToken') ?
+
+                                            <Link     to={{pathname: "/Address",   search: "?" + new URLSearchParams({CheckoutType:"Single",productId:item.id}) }} className="w-full md:text-base text-sm rounded font-semibold flex justify-center focus:outline-none text-white bg-primary py-2 md:py-3 ">ORDER NOW</Link>
                                             :
-                                            <Link     to={{pathname: "/Address",   search: "?" + new URLSearchParams({productId:item.id,orderqty:qty}).toString(),state:{checkout:"single"} }} className="w-full md:text-base text-sm rounded font-semibold flex justify-center focus:outline-none text-white bg-primary py-2 md:py-3 ">ORDER NOW</Link>
+                                            <button onClick={()=>context.setloginstatus(true)} className="w-full md:text-base text-sm rounded font-semibold flex justify-center focus:outline-none text-white bg-primary py-2 md:py-3">ORDER NOW</button>
+                                            
                                         }
                                         {/* <a className='bg-green-600 w-full flex items-center justify-center space-x-1 rounded py-3' href={`https://wa.me/+919745286899?text=${document.location.href}`} target="_blank"><h1><AiOutlineWhatsApp className='text-white text-2xl'/></h1><h1 className="text-white ">Whatsapp Now</h1></a> */}
                                     </div>

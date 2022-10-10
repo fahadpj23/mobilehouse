@@ -5,13 +5,15 @@ import ProductSlider from "../Home/productSlick";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { MobileHouseApi } from "helpers/axiosinstance";
+import Login from "components/Home/login";
 export const Usercontext=createContext()
 
 const ContextProvider=(props)=>{
     const [cart, setcart] = useState([] )
     const [cartadded, setcartadded] = useState(false)
     const[auth,setauth]=useState(false)
-    
+    const [loginstatus, setloginstatus] = useState(false)
+    const [registeruser, setregisteruser] = useState(false)
 
    
 
@@ -134,8 +136,11 @@ const ContextProvider=(props)=>{
         }
         
     }, [cartadded])
+
+    console.log(loginstatus)
     return(
         <>
+      
         <ToastContainer />
         <Usercontext.Provider value={{
             cart:cart,
@@ -144,7 +149,11 @@ const ContextProvider=(props)=>{
             cartremove:cartremove,
             auth:auth,
             notify:notify,
-            userCart:userCart
+            userCart:userCart,
+            setloginstatus:setloginstatus,
+            loginstatus:loginstatus,
+            registeruser:registeruser,
+            setregisteruser:setregisteruser
             }}>
             {props.children}
         </Usercontext.Provider>

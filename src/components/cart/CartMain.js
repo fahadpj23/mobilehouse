@@ -64,8 +64,8 @@ const Cartmain=(props)=>{
                                     
                                 </div>
                                 <div className='w-full text-sm md:text-lg  tracking-wide md:tracking-widest rounded font-semibold py-1 text-white bg-primary text-center'>
-                                <Link  to={{pathname: "/Address", state:{checkouttype:"cart"}}} className="">CHECKOUT</Link>
-
+                                <Link  to={{pathname: "/Address", search:"?"+new URLSearchParams({CheckoutType:"Cart"})}} className="">CHECKOUT</Link>
+                               
                                 </div>
                             </div>
                         </div>
