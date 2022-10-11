@@ -6,12 +6,15 @@ import {MobileHouseApi} from "helpers/axiosinstance"
 import AddressProduct from './addressProduct';
 import Login from 'components/Home/login';
 import { Link } from 'react-router-dom';
+import { Button } from '@mui/material';
 const AddressMain=(props)=>{
     const history = useHistory();
     const context=useContext(Usercontext)
 
     
+    
     const [LoginOpen, setLoginOpen] = useState(false)
+    const [Address, setAddress] = useState()
 
     let item=props.item 
     console.log(item)
@@ -30,39 +33,41 @@ const AddressMain=(props)=>{
     const LogOpen=(e)=>{
         e.preventDefault();
     }
-
+    
     const handleSubmit=(e)=>{
         e.preventDefault();
-      
+        setAddress(e.target)
    
-        const data=new FormData(e.target)
-        data.append("total",total)
-        data.append('product',JSON.stringify(item)  )
+         const data=new FormData(e.target )
+         var Address = {};
+         data.forEach(function(value, key){
+             Address[key] = value;
+         });
+       
+        history.push({ pathname :"/Payment",state:{product:props.item,AddressInfo:JSON.stringify(Address)}});
+        // history.push({ pathname :"/Payment",state:{product:props.item}});
+        // data.append("total",total)
+        // data.append('product',JSON.stringify(item)  )
         
         
-        MobileHouseApi.post(`customerOrders`,data,{headers:{UserToken:localStorage.getItem("UserToken")}})
+        // MobileHouseApi.post(`customerOrders`,data,{headers:{UserToken:localStorage.getItem("UserToken")}})
         
-        .then(res=>{
-                if(res.data.orderId)
-                {
-                 history.push({ pathname :"/OrderSuccess",state:{orderID:res.data.orderId}});
+        // .then(res=>{
+        //         if(res.data.orderId)
+        //         {
+        //          history.push({ pathname :"/OrderSuccess",state:{orderID:res.data.orderId}});
                   
-                }
+        //         }
            
-          })  
+        //   })  
         
     }
     return(
         <div>  
-        {
-                !localStorage.getItem('UserName')  ?
-
-                
-                    <Login/>
-                    :
-                
+        
+            
          
-        <form onSubmit={(e)=>{localStorage.getItem('UserName')  ?  handleSubmit(e) :  LogOpen(e) }} method="POST" className="lg:flex h-full lg:h-screen overflow-y-auto">
+        <form id="" onSubmit={(e)=>{  handleSubmit(e)}} method="POST" className="lg:flex h-full lg:h-screen overflow-y-auto">
           
             <div className="w-full lg:w-8/12 h-full lg:h-fixedNoNavlg5 flex flex-col justify-center items-center">
                 
@@ -116,7 +121,9 @@ const AddressMain=(props)=>{
                            total=total +  (item1.salesPrice ?? item1.sellingPrice) * (+item1.qty? item.qty :1)
                         })}   
                         <h1 className=" flex justify-between mt-8 text-lg font-bold"><span >Total Payable</span><span className="text-green-700 ">{total}</span></h1>
-                        <Link to={{pathname:"/Payment",state:{product:props.item}}}  className="w-full text-white py-2 focus:outline-none bg-primary">Place Order</Link>
+                        {/* <Link to={{pathname:"/Payment",state:{product:props.item}}}  className="w-full text-white py-2 focus:outline-none bg-primary">Place Order</Link> */}
+                        {/* <Button className="w-full text-white py-2 focus:outline-none bg-primary">Place Order</Button> */}
+                        <button type='submit'  className="w-full text-white py-2 focus:outline-none bg-primary">Place Order</button>
                     </div>
                  
                 </div>
@@ -124,7 +131,7 @@ const AddressMain=(props)=>{
             </div>
                 
         </form>
-        }</div>  
+        </div>  
     )
 }
 export default AddressMain

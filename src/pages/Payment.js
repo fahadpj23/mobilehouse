@@ -2,21 +2,75 @@
 import { IoIosCheckmarkCircle } from 'react-icons/io';
 import { BsCircle } from 'react-icons/bs';
 import { MobileHouseApi } from 'helpers/axiosinstance';
+import { useState } from 'react';
 import AddressProduct from 'components/address/addressProduct';
+import { useHistory } from 'react-router';
 const Payment=(props)=>{
-    let product=props.location.state.product && props.location.state.product
-    const cardPayment=()=>{
 
-        product.qty=1
-        const data=new FormData()
-    
-        data.append("items",JSON.stringify(product))
-       MobileHouseApi.post('/create-checkout-session',data)
-       .then((res)=>{
-        window.location=res.data.url
-       })
+    let history=useHistory()
+    const [paymentType,setpaymentType]=useState("CashOnDelivery")
+    let total=0
+    let product=props.location.state.product && props.location.state.product
+    let AddressInfo=props.location.state.AddressInfo && props.location.state.AddressInfo
+    console.log(AddressInfo)
+    product && product.map((item1,key)=>{
+        total=total +  (item1.salesPrice ?? item1.sellingPrice) * (+item1.qty? item1.qty :1)
+     })
+
+    const cardPayment=()=>{
+        let add=JSON.parse(AddressInfo)
+        const Formdata=new FormData()
+        Formdata.append("total",total)
+        Formdata.append('product',JSON.stringify(product)  )
+        Formdata.append('Address',JSON.stringify(JSON.parse(AddressInfo))  )
+        
+       console.log(add)
+        
+         
+        MobileHouseApi.post(`customerOrders`,Formdata,{headers:{UserToken:localStorage.getItem("UserToken")}})
+        
+        .then(res=>{
+            const data=new FormData()
+            
+            data.append("items",JSON.stringify(product))
+            data.append("orderId",res.data.orderId)
+           MobileHouseApi.post('/create-checkout-session',data)
+           .then((res)=>{
+            window.location=res.data.url
+           }) 
+           
+          })  
+        
+       
       }
-      console.log(product)
+
+      const OrderUpload=()=>{
+      
+      
+   
+        // const data=new FormData(AddressInfo.address)
+        const data=new FormData()
+        data.append("total",total)
+        data.append('product',JSON.stringify(product)  )
+        data.append('Address',JSON.stringify(JSON.parse(AddressInfo))  )
+        
+         
+        MobileHouseApi.post(`customerOrders`,data,{headers:{UserToken:localStorage.getItem("UserToken")}})
+        
+        .then(res=>{
+                if(res.data.orderId)
+                {
+
+                 history.push({ pathname :"/OrderSuccess",search : "?"+ new URLSearchParams({orderId:res.data.orderId}) });
+                  
+                }
+           
+          })  
+        }
+        
+    
+
+
     return(
         <div>
             <div className="flex h-screen w-screen  justify-center items-center">
@@ -65,22 +119,26 @@ const Payment=(props)=>{
                         <hr className='w-full  border-y-2 border-gray-500'></hr>
                             <div className="flex flex-col  w-full space-y-5 font-semibold">
                                 <div className='space-x-2'>
-                                    <input type="radio" id="cash" name="payment"/>
-                                    <label htmlFor="cash"/>Cash On Delivery<label/>
+                                    <input checked="checked" type="radio" id="cash" name="payment"/>
+                                    <label onClick={(e)=> setpaymentType("CashOnDelivery")}htmlFor="cash"/>Cash On Delivery<label/>
                                 </div>
                                 <hr className='w-full  border-y-2 border-gray-500'></hr>
                                 <div className='space-x-2'>
-                                    <input  onClick={(e)=>e.target.checked==true && cardPayment()} type="radio" id="card" name="payment"/>
+                                    <input  onClick={(e)=> setpaymentType("Card")} type="radio" id="card" name="payment"/>
                                     <label htmlFor="card"/>Debit/Credit Card<label/>
-                                   
+                                   {/* {paymentType=="Card" && 
+                                    <button onClick={()=>cardPayment()} className='bg-yellow-500 text-white px-2 py-1 tracking-wider font-semibold rounded'>CONTINUE</button>
+                                   } */}
                                 </div>
                                 <hr className='w-full  border-y-2 border-gray-500'></hr>
                             </div>
                     </div>
                     <div className='w-full flex justify-between text-sm '>
                         <button className='bg-black text-white px-2 py-1 w-1/12 tracking-wider font-semibold rounded'>BACK</button>
-                        <button className='bg-yellow-500 text-white px-2 py-1 tracking-wider font-semibold rounded'>CONTINUE</button>
+                       
+                        <button onClick={()=>paymentType=="Card" ?  cardPayment() : OrderUpload()} className='bg-yellow-500 text-white px-2 py-1 tracking-wider font-semibold rounded'>CONTINUE</button>
                     </div>
+                  
                 </div>
                 <div className="w-5/12">
                         {
