@@ -27,6 +27,7 @@ const Payment=(props)=>{
         Formdata.append("total",total)
         Formdata.append('product',JSON.stringify(product)  )
         Formdata.append('Address',JSON.stringify(JSON.parse(AddressInfo))  )
+        Formdata.append('PaymentType',paymentType)  
         
        console.log(add)
         
@@ -57,6 +58,7 @@ const Payment=(props)=>{
         data.append("total",total)
         data.append('product',JSON.stringify(product)  )
         data.append('Address',JSON.stringify(JSON.parse(AddressInfo))  )
+        data.append('PaymentType',paymentType)  
         
          
         MobileHouseApi.post(`customerOrders`,data,{headers:{UserToken:localStorage.getItem("UserToken")}})

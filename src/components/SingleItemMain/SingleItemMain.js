@@ -8,25 +8,15 @@ import React, { useState } from 'react';
 import ProductSlider from '../Home/productSlick'
 import { MobileHouseApi } from "helpers/axiosinstance";
 import Login from "components/Home/login";
-
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 const SingleItemMain=(props)=>{
  
-    const [qty, setqty] = useState(1)
-    const [qtystate, setqtystate] = useState("ok")
+   
     const [pincode, setpincode] = useState("")
     const [pincodeavailability, setpincodeavailability] = useState("")
     const [displayimage, setdisplayimage] = useState("")
 
-    const [ramdisplay, setramdisplay] = useState(props.singleitem)
-    const [storagedisplay, setstoragedisplay] = useState(props.singleitem)
-    let variantArray=[];
-    // let colorArray=[];
-    // let ramArray=[];
-    // let storageArray=[];
-    // let imageArray=[];
-    // props.categoryVariant && props.categoryVariant.map((item5,key1)=>{
-    //     let item5;
-    // })
+  
     let item=props.singleitem
     // product image store in images .image string split using ;
     let images=[];
@@ -39,16 +29,7 @@ const SingleItemMain=(props)=>{
      images && images.map((item,key)=>{
         item && productImage.push(item.replace(/^\s+|\s+$/gm,''))
     })
-    // props.variants && props.variants.map((item1,key1)=>{
-    //      if(item1.attributes.some((productattribute)=>productattribute.attributeName=="ram")==true)
-    //      {
-             
-    //         // item1.attributes.map((item2,key2)=>{
-    //         //    ramArray.push(item1)
-    //         // })
-    //      }
-    // }  
-    // )
+
 
 
     const context=useContext(Usercontext)
@@ -88,7 +69,11 @@ const SingleItemMain=(props)=>{
                             <div className="w-11/12 md:flex  mt-5 ">
                                 <div className="w-full md:w-5/12  flex-col space-y-4 ">
                                     <div className='flex justify-center items-center'>
+                                    <TransformWrapper>
+                                        <TransformComponent>
                                         <img src={displayimage ? `${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${displayimage}` :`${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${productImage[0]}`} alt="" className="object-contain  overflow-hidden h-44 md:h-96 "/>
+                                        </TransformComponent>
+                                    </TransformWrapper>
                                     </div>
                                     <div className='flex space-x-2 w-full justify-center'>
                                     {
