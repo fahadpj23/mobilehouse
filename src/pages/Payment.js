@@ -80,11 +80,11 @@ const Payment=(props)=>{
     return(
         <div>
             <div className="flex h-screen w-screen  justify-center items-center">
-                <div className='h-4/5 w-11/12 flex'>
-                <div className="w-7/12  flex flex-col justify-between items-center">
+                <div className='h-4/5 w-11/12 space-y-10 md:space-y-0 md:flex'>
+                <div className="w-full md:w-7/12  flex flex-col justify-between items-center">
                     <div className="flex w-full">
                           
-                            <div className='w-8/12'>
+                            <div className='w-full md:w-8/12'>
                                 <div className='flex items-center -space-x-1 px-6'>
                                     
                                         <IoIosCheckmarkCircle className='text-2xl text-black z-20'/>
@@ -120,8 +120,8 @@ const Payment=(props)=>{
                         
 
                     </div>
-                    <div className='h-2/5 flex space-y-5 flex-col items-center w-full '>
-                        <h1 className='text-3xl font-semibold text-left  w-full' >Payment</h1>
+                    <div className='h-full md:h-2/5 flex space-y-5 flex-col items-center w-full '>
+                        <h1 className='text-3xl font-semibold text-left  w-full mt-10 md:mt-0' >Payment</h1>
                         <hr className='w-full  border-y-2 border-gray-500'></hr>
                             <div className="flex flex-col  w-full space-y-5 font-semibold">
                                 <div className='space-x-2'>
@@ -129,24 +129,22 @@ const Payment=(props)=>{
                                     <label onClick={(e)=> setpaymentType("CashOnDelivery")}htmlFor="cash"/>Cash On Delivery<label/>
                                 </div>
                                 <hr className='w-full  border-y-2 border-gray-500'></hr>
-                                <div className='space-x-2'>
+                                {/* <div className='space-x-2'>
                                     <input  onClick={(e)=> setpaymentType("Card")} type="radio" id="card" name="payment"/>
                                     <label htmlFor="card"/>Debit/Credit Card<label/>
-                                   {/* {paymentType=="Card" && 
-                                    <button onClick={()=>cardPayment()} className='bg-yellow-500 text-white px-2 py-1 tracking-wider font-semibold rounded'>CONTINUE</button>
-                                   } */}
+                                  
                                 </div>
-                                <hr className='w-full  border-y-2 border-gray-500'></hr>
+                                <hr className='w-full  border-y-2 border-gray-500'></hr> */}
                             </div>
                     </div>
-                    <div className='w-full flex justify-between text-sm '>
-                        <button className='bg-black text-white px-2 py-1 w-1/12 tracking-wider font-semibold rounded'>BACK</button>
+                    <div className='w-full flex justify-between text-sm mt-5 md:mt-0 '>
+                        <button className='bg-black text-white px-2 py-1 w-4/12 md:w-3/12  xl:w-1/12 tracking-wider font-semibold rounded'>BACK</button>
                        
                         <button onClick={()=>paymentType=="Card" ?  cardPayment() : OrderUpload()} className='bg-yellow-500 text-white px-2 py-1 tracking-wider font-semibold rounded'>CONTINUE</button>
                     </div>
                   
                 </div>
-                <div className="w-5/12">
+                <div className="w-full md:w-5/12">
                         {
                             product && product.map((item,key)=>{
 
