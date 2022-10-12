@@ -157,12 +157,12 @@ const SingleItem=(props)=>{
    
     return(
         <div className="">
-            {pageLoad==true ?
+            {/* {pageLoad==true ? */}
                     <MainLayoutWebsite>
                         <div class="  rounded-md p-4  w-full mx-auto">
-                    <div class="animate-pulse flex space-x-4">
-                        <div className='w-5/12 flex flex-col space-y-5 justify-center items-center h-full'>
-                            <div class=" bg-gray-200 h-96 w-96"></div>
+                    <div class="animate-pulse space-y-7 md:space-y-0 md:flex space-x-4">
+                        <div className='w-full md:w-5/12 flex flex-col space-y-5 justify-center items-center h-full'>
+                            <div class=" bg-gray-200 h-56 md:h-96 w-56 md:w-96"></div>
                             <div className='flex space-x-5'>
                                 <div class=" bg-gray-200 h-20 w-20"></div>
                                 <div class=" bg-gray-200 h-20 w-20"></div>
@@ -170,13 +170,13 @@ const SingleItem=(props)=>{
                             </div>
                             <div className='flex space-x-5 justify-between'>
                                 
-                                <div class=" bg-gray-200 h-10 w-48"></div>
-                                <div class=" bg-gray-200 h-10 w-48"></div>
+                                <div class=" bg-gray-200 h-10 w-36 md:w-48"></div>
+                                <div class=" bg-gray-200 h-10 w-36 md:w-48"></div>
                             </div>
                         </div>
                     
                         <div class="flex-1 flex-col space-y-6 py-1 items-center justify-center h-full space-y-5">
-                            <div class="h-4 bg-gray-200 w-96 rounded"></div>
+                            <div class="h-4 bg-gray-200  w-52 md:w-96 rounded"></div>
                             <div className='flex space-x-5'>
                                 <div class=" bg-gray-200 h-6 w-24"></div>
                                 <div class=" bg-gray-200 h-6 w-24"></div>
@@ -222,7 +222,7 @@ const SingleItem=(props)=>{
                     </div>
                 </div>
                 </MainLayoutWebsite> 
-            :
+            {/* :
            <MainLayoutWebsite>
                 {singleitem &&<SingleItemMain
                 singleitem={singleitem}
@@ -231,7 +231,7 @@ const SingleItem=(props)=>{
                 singleitemset={singleitemset}
                 categoryVariant={categoryVariant}
                 /> }
-            </MainLayoutWebsite>}
+            </MainLayoutWebsite>} */}
         </div>
         
 
