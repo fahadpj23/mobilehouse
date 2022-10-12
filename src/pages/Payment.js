@@ -10,6 +10,7 @@ const Payment=(props)=>{
     let history=useHistory()
     const [paymentType,setpaymentType]=useState("CashOnDelivery")
     let total=0
+    let total1=0
     let product=props.location.state.product && props.location.state.product
     let AddressInfo=props.location.state.AddressInfo && props.location.state.AddressInfo
     console.log(AddressInfo)
@@ -17,6 +18,9 @@ const Payment=(props)=>{
         total=total +  (item1.salesPrice ?? item1.sellingPrice) * (+item1.qty? item1.qty :1)
      })
 
+
+
+  
     const cardPayment=()=>{
         let add=JSON.parse(AddressInfo)
         const Formdata=new FormData()
@@ -61,7 +65,7 @@ const Payment=(props)=>{
                 if(res.data.orderId)
                 {
 
-                 history.push({ pathname :"/OrderSuccess",search : "?"+ new URLSearchParams({orderId:res.data.orderId}) });
+                 history.push({ pathname :"/OrderSuccess",search : "?"+ new URLSearchParams({orderId    :res.data.orderId}) });
                   
                 }
            
@@ -143,10 +147,14 @@ const Payment=(props)=>{
                 <div className="w-5/12">
                         {
                             product && product.map((item,key)=>{
+
                                 return(
-                                <AddressProduct
-                                product={item}
-                                />
+                                    <div key={key}>
+                                           <AddressProduct
+                                            product={item}
+                                            />
+                                    </div>
+                             
                                 )
                             })
                         }

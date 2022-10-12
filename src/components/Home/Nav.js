@@ -140,7 +140,7 @@ const Nav=(props)=>{
                 <div className="w-full flex  items-center justify-between py-2 pl-1 md:pl-0  pr-2  md:px-0">
                     <div className="w-full md:w-7/12 ">
                         <div className="flex items-center space-x-3 md:space-x-0">
-                            <Link to={{pathname: "/" }}  className="w-8/12 md:w-6/12 ml-2">
+                            <Link to={{pathname: "/" }}  className="w-8/12 md:w-6/12 ml-2 focus:outline-none">
                                 <img src="MobilehouseLogo.png" alt="logo" width="250" height="250"  />
                                         
                             </Link>

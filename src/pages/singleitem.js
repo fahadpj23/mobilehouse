@@ -3,7 +3,7 @@ import {MobileHouseApi} from "helpers/axiosinstance";
 import SingleItemMain from '../components/SingleItemMain/SingleItemMain'
 import { useHistory } from 'react-router-dom';
 import MainLayoutWebsite from 'components/MainLayoutWebsite';
-import UploadSpinner from 'components/admindashboard/uploadstatus';
+
 const SingleItem=(props)=>{
    
 
@@ -75,7 +75,7 @@ const SingleItem=(props)=>{
     const singleitemset=(item1)=>{
       
         console.log(window.addEventListener)
-        // setpageLoad(true)
+     
             history.replace({pathname:'singleItem',search: "?" + new URLSearchParams({productid: item1.id}).toString() })
             MobileHouseApi.get(`/singleview`,{params: { productId: item1.id}})
             
@@ -85,32 +85,12 @@ const SingleItem=(props)=>{
                     const product=res.data.product;
                     
                      setsingleitem(product)
-                    // MobileHouseApi.get(`/related`,{params: { category:product.category,variantid:product.variantid}})
-                    // .then(res=>{
-                    //     setrelateditems(res.data.relatedProduct)
-                        
-                    // })  
-                    // MobileHouseApi.get(`/variantproduct`,{params: { variantid: product.variantid}})
-                    // .then(res=>{
-                    // setvariants(res.data.variants)
-                        
-                    // })  
-                    // MobileHouseApi.get(`/categoryVariant`,{params: { category:product.category}})
-                    // .then(res=>{
-                    //     console.log(res.data.categoryVariant)
-                    // setcategoryVariant(res.data.categoryVariant)
-                        
-                    // }) 
-                    // setTimeout(() => {
-                    //     setpageLoad(false)
-                    // }, 300);
+                   
                 }
                 else
                 {
                     console.log(res.data.error)
-                    // setTimeout(() => {
-                    //     setpageLoad(false)
-                    // }, 300);
+                    
                 }
             })   
             setvariantchoosed(true)   
@@ -175,7 +155,68 @@ const SingleItem=(props)=>{
     return(
         <div className="">
             {pageLoad==true ? 
-            <UploadSpinner/>
+                <div class="  rounded-md p-4  w-full mx-auto">
+            <div class="animate-pulse flex space-x-4">
+                <div className='w-5/12 flex flex-col space-y-5 justify-center items-center h-full'>
+                    <div class=" bg-gray-200 h-96 w-96"></div>
+                    <div className='flex space-x-5'>
+                         <div class=" bg-gray-200 h-20 w-20"></div>
+                         <div class=" bg-gray-200 h-20 w-20"></div>
+                         <div class=" bg-gray-200 h-20 w-20"></div>
+                    </div>
+                    <div className='flex space-x-5 justify-between'>
+                        
+                         <div class=" bg-gray-200 h-10 w-48"></div>
+                         <div class=" bg-gray-200 h-10 w-48"></div>
+                    </div>
+                </div>
+               
+                <div class="flex-1 flex-col space-y-6 py-1 items-center justify-center h-full space-y-5">
+                    <div class="h-4 bg-gray-200 w-96 rounded"></div>
+                    <div className='flex space-x-5'>
+                         <div class=" bg-gray-200 h-6 w-24"></div>
+                         <div class=" bg-gray-200 h-6 w-24"></div>
+                         <div class=" bg-gray-200 h-6 w-24"></div>
+                       
+                    </div>
+                    <div className='grid grid-cols-4 gap-5 justify-between w-8/12'>
+                        
+                        <div class=" bg-gray-200 h-20 w-28"></div>
+                        <div class=" bg-gray-200 h-20 w-28"></div>
+                        <div class=" bg-gray-200 h-20 w-28"></div>
+                        <div class=" bg-gray-200 h-20 w-28"></div>
+                        <div class=" bg-gray-200 h-20 w-28"></div>
+                     </div>
+                     <div className='grid grid-cols-1 gap-16'>
+                        <div className='flex space-x-4'>
+                            <div class=" bg-gray-200 h-4 w-32"></div>
+                            <div className='space-y-4'>
+                                <div class=" bg-gray-200 h-4 w-32"></div>
+                                <div class=" bg-gray-200 h-4 w-32"></div>
+                                <div class=" bg-gray-200 h-4 w-32"></div>
+                            </div>
+                        </div>
+                        <div className='flex space-x-4'>
+                            <div class=" bg-gray-200 h-4 w-32"></div>
+                            <div className='space-y-4'>
+                                <div class=" bg-gray-200 h-4 w-32"></div>
+                                <div class=" bg-gray-200 h-4 w-32"></div>
+                                <div class=" bg-gray-200 h-4 w-32"></div>
+                            </div>
+                        </div>
+                        <div className='flex space-x-4'>
+                            <div class=" bg-gray-200 h-4 w-32"></div>
+                            <div className='space-y-4'>
+                                <div class=" bg-gray-200 h-4 w-32"></div>
+                                <div class=" bg-gray-200 h-4 w-32"></div>
+                                <div class=" bg-gray-200 h-4 w-32"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
             :
            <MainLayoutWebsite>
                 {singleitem &&<SingleItemMain
@@ -187,6 +228,7 @@ const SingleItem=(props)=>{
                 /> }
             </MainLayoutWebsite>}
         </div>
+        
 
     )
 }

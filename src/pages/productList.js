@@ -133,7 +133,7 @@ const ProductList=(props)=>{
         <div>
              <MainLayoutWebsite>
             {
-                products &&
+                products ?
                 <ProductListMain
                 products={products}
                 SortSelect={SortSelect}
@@ -150,7 +150,30 @@ const ProductList=(props)=>{
                 handlePageClick={handlePageClick}
                 PageNo={PageNo}
                 />
-            }
+                :
+                <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5 p-6'>
+                    {[...Array(15)].map((item,key)=>{
+                        return(
+                            
+                        <div class="shadow rounded-md p-2 max-w-sm w-full mx-auto">
+                        <div class="animate-pulse space-y-4">
+                            <div className='w-full flex justify-center'>
+                                <div className='h-32 w-32 bg-gray-200'></div>
+                                
+                            </div>
+                            <div className="h-2 w-full bg-gray-200 rounded "></div>
+                            <div className="h-2 w-6/12 bg-gray-200 rounded "></div>
+                            <div class="grid grid-cols-3 gap-4 ">
+                                <div class="h-2 bg-gray-200 rounded col-span-2"></div>
+                                <div class="h-6 bg-gray-200 rounded col-span-1"></div>
+                            </div>
+                            </div>
+                        </div>
+                        )
+                    })}
+                </div>
+             
+                }
            </MainLayoutWebsite>
         </div>
     )
