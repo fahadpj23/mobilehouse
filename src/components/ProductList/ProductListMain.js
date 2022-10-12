@@ -23,8 +23,8 @@ const ProductListMain=(props)=>{
            
          <div className="p-2 md:p-5">
                 
-                    <div  className="flex justify-between w-full">
-                    <div className="w-8/12 flex space-x-2 ml-5  ">
+                    <div  className="flex flex-col-reverse md:flex justify-between w-full">
+                    <div className="w-8/12 flex space-x-2 mt-5 md:mt-0 ml-2 md:ml-5  ">
                     
                         <div className="relative">
 
@@ -78,7 +78,7 @@ const ProductListMain=(props)=>{
                        
                         
                     </div>
-                    <div>
+                    <div className="flex justify-end">
                     <select defaultValue={props.sort} onChange={(e)=>props.SortSelect(e.target.value)} className="border  border-gray-400 rounded-lg px-2 text-sm font-semibold py-1 focus:outline-none  ">
                         <option value="newestfirst">Newest First</option>
                         <option value="Price-Low-to-High">Price-Low to High</option>
