@@ -157,7 +157,7 @@ const SingleItem=(props)=>{
    
     return(
         <div className="">
-            {/* {pageLoad==true ? */}
+            {pageLoad==true ?
                     <MainLayoutWebsite>
                         <div class="  rounded-md p-4  w-full mx-auto">
                     <div class="animate-pulse space-y-7 md:space-y-0 md:flex space-x-4">
@@ -222,7 +222,7 @@ const SingleItem=(props)=>{
                     </div>
                 </div>
                 </MainLayoutWebsite> 
-            {/* :
+            :
            <MainLayoutWebsite>
                 {singleitem &&<SingleItemMain
                 singleitem={singleitem}
@@ -231,7 +231,7 @@ const SingleItem=(props)=>{
                 singleitemset={singleitemset}
                 categoryVariant={categoryVariant}
                 /> }
-            </MainLayoutWebsite>} */}
+            </MainLayoutWebsite>}
         </div>
         
 
