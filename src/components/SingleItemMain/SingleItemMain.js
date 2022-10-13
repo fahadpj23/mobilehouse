@@ -71,7 +71,7 @@ const SingleItemMain=(props)=>{
                                     <div className='flex justify-center items-center'>
                                     <TransformWrapper>
                                         <TransformComponent>
-                                        <img src={displayimage ? `${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${displayimage}` :`${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${productImage[0]}`} alt="" className="object-contain  overflow-hidden h-44 md:h-96 "/>
+                                        <img src={displayimage ? `${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${displayimage}` :`${process.env.REACT_APP_MOBILE_HOUSEIMAGE}/${productImage[0]}`} alt="" className="object-contain  overflow-hidden h-64 md:h-96 "/>
                                         </TransformComponent>
                                     </TransformWrapper>
                                     </div>

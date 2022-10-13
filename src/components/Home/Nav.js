@@ -172,7 +172,7 @@ const Nav=(props)=>{
                                         <div className='mt-2'>
                                         {searchitem && searchitem.category?.map((item,key)=>{
                                                 return(
-                                                    <Link className="  hover:text-blue-400 text-left py-2 focus:outline-none  flex items-center space-x-2 " to={{pathname: "/ProductList",search: "?" + new URLSearchParams({category: item.id,sort:"newestfirst"}).toString()}}>
+                                                    <Link className="  hover:text-blue-400 text-left py-2 focus:outline-none  flex items-center space-x-2 " to={{pathname: "/ProductList",search: "?" + new URLSearchParams({type:'category',PageNo:1,category: item.id,sort:"newestfirst"}).toString()}}>
                                                     
                                                         <h1 className='mt-1 text-gray-600 text-sm'><BsSearch/></h1>
                                                         <h1 className='text-sm tracking-wide'>{item.categoryName}</h1> 
@@ -186,7 +186,7 @@ const Nav=(props)=>{
                                         {searchitem && searchitem.Brand?.map((item,key)=>{
                                             return(
                                             
-                                                <Link className="  hover:text-blue-400 text-left py-2 focus:outline-none  flex items-center space-x-2 " to={{pathname: "/ProductList",search: "?" + new URLSearchParams({Brand:item.Brand,sort:"newestfirst"}).toString()}}>
+                                                <Link className="  hover:text-blue-400 text-left py-2 focus:outline-none  flex items-center space-x-2 " to={{pathname: "/ProductList",search: "?" + new URLSearchParams({type:'Brand',PageNo:1,Brand:item.Brand,sort:"newestfirst"}).toString()}}>
                                                     <h1 className='mt-1 text-gray-600 text-sm'><BsSearch/></h1>
                                                      <h1 className='text-sm tracking-wide'>{item.Brand}</h1> 
                                                   

@@ -24,6 +24,7 @@ const MobileSearchWindow=(props)=>{
      });
      },[])
    
+     console.log(props.searchitem)
     return(
         <div className='block sm:hidden fixed top-0 left-0 w-screen h-screen bg-white z-20 '>
             <div className=" flex  items-center bg-white  border-b border-gray-200">
@@ -32,7 +33,7 @@ const MobileSearchWindow=(props)=>{
             </div>
             <div className='h-full overflow-auto'>
             <div className='flex flex-col   px-2'>
-            {props.serachitem && props.serachitem.products?.map((item,key)=>{
+            {props.searchitem && props.searchitem.products?.map((item,key)=>{
                                     return(
                                         // <Link to={{pathname: "/singleItem",   search: "?" + new URLSearchParams({productid: item.id}).toString() }} className="h-full items-center justify-center flex flex-col space-y-3 p-4 ">
                                         // <img src={`http://127.0.0.1:9000/images/${item.image}`} alt="dd" className="object-cover h-40 overflow-hidden transform hover:-translate-y-1 hover:scale-90 hover:duration-700 "/>
@@ -57,9 +58,9 @@ const MobileSearchWindow=(props)=>{
                                 })}
             </div>
             <div className='flex flex-col   px-2'>
-            {props.serachitem && props.serachitem.category?.map((item,key)=>{
+            {props.searchitem && props.searchitem.category?.map((item,key)=>{
                                     return(
-                                        <Link className="  hover:text-blue-400 text-left py-2 focus:outline-none px-2 flex items-center space-x-2 " to={{pathname: "/ProductList",search: "?" + new URLSearchParams({category: item.id,sort:"newestfirst"}).toString()}}>
+                                        <Link className="  hover:text-blue-400 text-left py-2 focus:outline-none px-2 flex items-center space-x-2 " to={{pathname: "/ProductList",search: "?" + new URLSearchParams({type:'category',PageNo:1,category: item.id,sort:"newestfirst"}).toString()}}>
                                                     
                                                         <h1 className='mt-1 text-gray-600 text-sm'><BsSearch/></h1>
                                                         <h1 className='text-xs tracking-wide'>{item.categoryName}</h1> 
@@ -69,9 +70,9 @@ const MobileSearchWindow=(props)=>{
                                     )
                                 })}
        
-            {props.serachitem && props.serachitem.Brand?.map((item,key)=>{
+            {props.searchitem && props.searchitem.Brand?.map((item,key)=>{
                                     return(
-                                        <Link className="  hover:text-blue-400 text-left py-2 focus:outline-none  flex items-center space-x-2hover:text-blue-400  px-2  space-x-2 " to={{pathname: "/ProductList",search: "?" + new URLSearchParams({Brand:item.Brand,sort:"newestfirst"}).toString()}}>
+                                        <Link className="  hover:text-blue-400 text-left py-2 focus:outline-none  flex items-center space-x-2hover:text-blue-400  px-2  space-x-2 " to={{pathname: "/ProductList",search: "?" + new URLSearchParams({type:'Brand',PageNo:1,Brand:item.Brand,sort:"newestfirst"}).toString()}}>
                                                     <h1 className='mt-1 text-gray-600 text-sm'><BsSearch/></h1>
                                                      <h1 className='text-xs tracking-wide'>{item.Brand}</h1> 
                                                   

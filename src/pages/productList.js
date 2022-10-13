@@ -22,7 +22,7 @@ const ProductList=(props)=>{
     const BND=new URLSearchParams(window.location.search).get('BND') ? new URLSearchParams(window.location.search).get('BND') :""
     const PageNo=new URLSearchParams(window.location.search).get('PageNo') && new URLSearchParams(window.location.search).get('PageNo')
 
-    console.log(PageNo)
+    console.log(history.action)
    
     const handlePageClick=(e)=>{
      
@@ -87,9 +87,9 @@ const ProductList=(props)=>{
 
     }
    
-    if( history.action=="REPLACE"){
-         console.log("fd")
-      
+    if( history.action=="REPLACE" || history.action=="PUSH" ){
+        
+        window.scrollTo(0, 0)
         history.action="ok"
         MobileHouseApi.get(`/productList/${productListType}`,{params:{[productListType]:new URLSearchParams(window.location.search).get(productListType),sort:sort,BND:BrandChoosed.length!=0 ?   BrandChoosed.map(item => "'" + item + "'").join() : "NOBRAND",PageNo:PageNo,minprice:minprice,maxprice:maxprice}})
         .then(res=>{
@@ -97,8 +97,7 @@ const ProductList=(props)=>{
             setproductBrand(res.data.Brand)
             setTotalProduct(res.data.TotalProduct)
 
-            console.log("aseret")
-            // setproductsset(true)
+          
         }) 
     }
 
@@ -107,7 +106,7 @@ const ProductList=(props)=>{
         
         if(products=="" )
         {
-         
+            window.scrollTo(0, 0)
             BND && setBrandChoosed(BND.replace(/ /g,'').split(','))
           
             MobileHouseApi.get(`/productList/${productListType}`,{params:{[productListType]:new URLSearchParams(window.location.search).get(productListType),PageNo:PageNo,BND:BND ?  "'"+(BND.replace(/ /g,'').split(',')).join("','")+"'" : "NOBRAND",sort:sort,minprice:minprice,maxprice:maxprice}})

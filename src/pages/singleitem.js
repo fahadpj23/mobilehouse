@@ -30,8 +30,11 @@ const SingleItem=(props)=>{
 
         if(history.action=="POP" || history.action=="PUSH")
         {
-           
-            setsingleitem("")
+            window.scrollTo(0, 0)
+           setsingleitem("")
+           setvariants("")
+           setcategoryVariant("")
+           setrelateditems("")
             setpageLoad(true)
             history.action="dsds"
             MobileHouseApi.get(`/singleview`,{params: { productId: productId}})
@@ -76,7 +79,10 @@ const SingleItem=(props)=>{
     const singleitemset=(item1)=>{
       
         console.log(window.addEventListener)
-            setsingleitem("")
+        setsingleitem("")
+        setvariants("")
+        setcategoryVariant("")
+        setrelateditems("")
             history.replace({pathname:'singleItem',search: "?" + new URLSearchParams({productid: item1.id}).toString() })
             MobileHouseApi.get(`/singleview`,{params: { productId: item1.id}})
             
@@ -104,9 +110,10 @@ const SingleItem=(props)=>{
    
         if(singleitem=="" )
         {
-            
+            window.scrollTo(0, 0)
             setsingleitem("")
             setpageLoad(true)  
+
            
             MobileHouseApi.get(`/singleview`,{params: { productId: productId}})
             
