@@ -29,6 +29,10 @@ module.exports = {
         
         
        },
+       width: {
+        orderDetailsLine: 'calc(100vh - 10.80rem)',
+        orderDetailsLinewidth: 'calc(100vh - 15.80rem)',
+      },
        fontSize: {
         'cart': '.65rem',
        
