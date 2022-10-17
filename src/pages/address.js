@@ -13,6 +13,7 @@ const Address=(props)=>{
 
         if(CheckoutType=="Single")
         {
+            
             MobileHouseApi.get('/getSingleProductDetailsCheckout',{params:{productId:productId}})
             .then((res)=>{
                     
