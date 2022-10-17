@@ -45,23 +45,10 @@ const AddressMain=(props)=>{
          });
        
         history.push({ pathname :"/Payment",state:{product:props.item,AddressInfo:JSON.stringify(Address)}});
-        // history.push({ pathname :"/Payment",state:{product:props.item}});
-        // data.append("total",total)
-        // data.append('product',JSON.stringify(item)  )
-        
-        
-        // MobileHouseApi.post(`customerOrders`,data,{headers:{UserToken:localStorage.getItem("UserToken")}})
-        
-        // .then(res=>{
-        //         if(res.data.orderId)
-        //         {
-        //          history.push({ pathname :"/OrderSuccess",state:{orderID:res.data.orderId}});
-                  
-        //         }
-           
-        //   })  
+     
         
     }
+    console.log(item)
     return(
         <div>  
         
@@ -118,7 +105,7 @@ const AddressMain=(props)=>{
                     </div>
                     <div className="space-y-5"> 
                     {props.item && props.item.map((item1,key)=>{
-                           total=total +  (item1.salesPrice ?? item1.sellingPrice) * (+item1.qty? item.qty :1)
+                           total=total +  (+item1.salesPrice ? +item1.salesPrice : +item1.sellingPrice) * (+item1.qty ? +item1.qty : 1)
                         })}   
                         <h1 className=" flex justify-between mt-8 text-lg font-bold"><span >Total Payable</span><span className="text-green-700 ">{total}</span></h1>
                         {/* <Link to={{pathname:"/Payment",state:{product:props.item}}}  className="w-full text-white py-2 focus:outline-none bg-primary">Place Order</Link> */}

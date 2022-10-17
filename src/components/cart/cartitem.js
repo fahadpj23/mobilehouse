@@ -59,19 +59,7 @@ const Cartitem=(props)=>{
                             <h1 className="px-3 text-sm md:text-base">{item.salesPrice!=0 ? item.salesPrice : item.sellingPrice*qty}</h1> */}
                     </div>
                         
-                        {/* <div className="w-9/12 flex flex-col justify-evenly py-3">
-                            <h1 className="text-left text-sm md:text-base ">{item.name}</h1>
-                            <button onClick={()=>{context.cartremove(item)}} className="text-left text-red-500 focus:outline-none">remove</button>
-                        </div> */}
-                
-                
-                    {/* <h1 className="px-3">
-                        <div className="space-x-1 flex items-center justify-center" >
-                            <button onClick={()=>{qty-1 < 1 ? setqty(1) : qtyminus() }} className="bg-red-500 rounded focus:outline-none text-white w-7 text-xl ">-</button>
-                            <input value={qty} className="text-center focus:outline-none w-9 border border-gray-400 rounded"/>
-                            <button onClick={()=>{qty+1>item.maxqty ? alert( "only "+ item.maxqty+ "available") : qtyplus()}}className="bg-green-500 w-7 text-white focus:outline-none text-xl rounded">+</button>
-                        </div>
-                    </h1> */}
+                       
                 
             </div>
          </div>

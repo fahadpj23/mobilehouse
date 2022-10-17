@@ -1,9 +1,12 @@
-import {useContext} from 'react'
+import {useContext,useState} from 'react'
 import { Link } from 'react-router-dom';
 import { Usercontext } from '../context/userContext';
+import Login from 'components/Home/login';
+import UserRegister from 'components/Home/userRegister';
 import Cartitem from './cartitem';
 const Cartmain=(props)=>{
     const context=useContext(Usercontext)
+    const [zeroQtyProduct,setzeroQtyProduct]=useState("")
     let total=0;
     let saved=0;
     context.cart.map((item,key)=>{
@@ -11,9 +14,41 @@ const Cartmain=(props)=>{
         saved=saved+(+item.mrp- (+item.salesPrice!=0 ? item.salesPrice : item.sellingPrice))
         console.log(item.qty)
     })
-    console.log(context)
+
+    const cartCheckout=()=>{
+       
+           if( context.cart.some((item)=> +item.maxqty ==0 )==true)
+           {
+            context.cart && context.cart.map((item,key)=>{
+                if(item.maxqty<1)
+                {
+                    return item;
+                    // context.notify(`${item.name} don't have enough quantity`,"warning")
+                    // return false;
+                }
+            }) 
+           
+           }
+           else
+           {
+            console.log("dsssssss")
+           }
+          
+    }
+
+    console.log(cartCheckout)
      return(
          <div className="flex justify-center">
+                     {context.loginstatus===true&&
+                        <Login   
+                        />
+                    }
+                    {
+                        context.registeruser===true &&
+                        <UserRegister                       
+                        />
+
+                    }
              <div className="w-full px-0 md:px-3 md:flex h-full md:h-screen ">
                  <div className={`${props.profilecart ? "w-full px-4":"w-full md:w-10/12 px-4"}`}>
                      <div className="flex justify-between text-lg md:text-2xl font-semibold py-4">
@@ -64,7 +99,15 @@ const Cartmain=(props)=>{
                                     
                                 </div>
                                 <div className='w-full text-sm md:text-lg  tracking-wide md:tracking-widest rounded font-semibold py-1 text-white bg-primary text-center'>
-                                <Link  to={{pathname: "/Address", search:"?"+new URLSearchParams({CheckoutType:"Cart"})}} className="">CHECKOUT</Link>
+                                {
+                                    localStorage.getItem('UserName') ? 
+                                        <button className='focus:outline-none' onClick={()=>cartCheckout()}>CHECKOUT</button>
+                                        // <Link  to={{pathname: "/Address", search:"?"+new URLSearchParams({CheckoutType:"Cart"})}} className="">CHECKOUT</Link>
+
+                                        :
+
+                                        <button className='focus:outline-none' onClick={()=>context.setloginstatus(true)}>CHECKOUT</button>
+                                }
                                
                                 </div>
                             </div>
