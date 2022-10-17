@@ -1,8 +1,9 @@
 
 import React, { useState,useContext,useEffect ,useMemo} from 'react';
-import {FaRegUserCircle } from 'react-icons/fa';
+import {ImUserCheck } from 'react-icons/im';
+import {ImUserPlus } from 'react-icons/im';
 import {MobileHouseApi} from "helpers/axiosinstance";
-import {AiOutlineShoppingCart } from 'react-icons/ai';
+import {MdShoppingCart } from 'react-icons/md';
 import {BsSearch } from 'react-icons/bs';
 import {Link} from "react-router-dom";
 import Login from './login';
@@ -139,12 +140,12 @@ const Nav=(props)=>{
                 </div>
                 <div className="w-full flex  items-center justify-between py-2 pl-1 md:pl-0  pr-2  md:px-0">
                     <div className="w-full md:w-7/12 ">
-                        <div className="flex items-center space-x-3 md:space-x-0">
-                            <Link to={{pathname: "/" }}  className="w-8/12 md:w-6/12 ml-2 focus:outline-none">
+                        <div className="flex items-center space-x-3 md:space-x-0 w-full">
+                            <Link to={{pathname: "/" }}  className="w-8/12 md:w-full  ml-2 focus:outline-none">
                                 <img src="MobilehouseLogo.png" alt="logo" width="250" height="250"  />
                                         
                             </Link>
-                            <div className="relative sm:w-5/12 w-10/12 "  onMouseEnter={()=>console.log("dsd")}>
+                            <div className="hidden md:block relative w-10/12 " >
                                 <input id="productsearchInputTag" autoComplete="off" onChange={(e)=>(setsearchValue(e.target.value),debounceFn(e.target.value))} type="text" placeholder="search here" className=" hidden md:block px-2 w-full rounded h-8 text-sm  md:h-9 focus:outline-none border border-gray-300 "/>
                                 
                                 
@@ -204,34 +205,20 @@ const Nav=(props)=>{
                         </div>
                     </div>
                   
-                    <div className="w-2/12  space-x-5 flex justify-end md:justify-center items-center">
+                    <div className="w-4/12  md:w-2/12  flex justify-between space-x-5 md:justify-center items-center">
                              <button onClick={()=>MobilesearchProduct()} className=" block md:hidden focus:outline-none  "><BsSearch/></button>
 
-                            <div>
-                            
-                            {/* <Link className="     flex items-center py-1 hover:text-blue-500" to={{pathname: "/AboutUs"}}>About Us</Link> */}
-                            {
-                               username==="Login/Signup" ?
-
-                               <button onClick={()=> context.setloginstatus(true) } className="flex hover:text-red-500 items-center relative focus:outline-none "><FaRegUserCircle className="mr-1 text-xl md:text-2xl  text-gray-700 font-light"/><h1 className="lg:block hidden">{username}</h1></button>
-                               :
-                              <Link className="     flex items-center py-1 hover:text-blue-500" to={{pathname: "/Profile"}}><FaRegUserCircle className="mr-1 text-xl md:text-2xl text-gray-700 font-light"/><h1 className="lg:block hidden">{username}</h1></Link> 
-                            }
-                                {/* <button onClick={()=>{username==="Login/Signup" ? setloginstatus(true) : setlogout(!logout)}} className="flex hover:text-red-500 items-center relative focus:outline-none "><FaRegUserCircle className="mr-1 text-2xl  text-gray-700 font-light"/><h1 className="lg:block hidden">{username}</h1></button> */}
-                                {/* {
-                                logout===true &&
-                                    <div className="  absolute   z-20 shadow-lg  rounded-lg border border-gray-200  w-1/12 bg-white ">
-                                         <button onClick={()=>{clearuser()}} className=" focus:outline-none   text-blue-600 px-2 font-bold py-2 w-full text-center hover:text-red-500 ">Profile</button>
-
-                                        <button onClick={()=>{clearuser()}} className=" focus:outline-none r text-blue-600 px-2 font-bold py-2 w-full text-center hover:text-red-500 ">Log Out</button>
-                                    </div>
-
-                                } */}
-                            </div>
                            
-                            {/* <button onClick={()=>console.log("df")} className="flex items-center focus:outline-none "><AiOutlineShoppingCart className="mr-1 text-2xl text-gray-700  font-light"/><h1 className="lg:block hidden">Cart</h1></button> */}
-                            <Link to="/cart" className="flex items-center focus:outline-none"><AiOutlineShoppingCart className="mr-1 text-2xl text-gray-700  font-light"/><h1 className="md:block hidden">Cart</h1></Link>
-           
+                           
+                            {/* <button onClick={()=>console.log("df")} className="flex items-center focus:outline-none "><AiOutlineShoppingCart className="mr-1 text-2xl text-gray-700  font-light"/><h1 className="md:block hidden">Cart</h1></button> */}
+                            <Link to="/cart" className="flex items-center focus:outline-none"><MdShoppingCart className="mr-1 text-xl text-gray-700  font-light"/><h1 className="md:block hidden">Cart</h1></Link>
+                            {
+                              localStorage.getItem('UserName') ?
+
+                              <Link className="     flex items-center py-1 hover:text-blue-500" to={{pathname: "/Profile"}}><ImUserCheck className="mr-1 text-xl md:text-2xl text-gray-700 font-light"/><h1 className="md:block hidden">{username}</h1></Link> 
+                              :
+                              <button onClick={()=> context.setloginstatus(true) } className="flex hover:text-red-500 items-center relative focus:outline-none text-xl space-x-1 "><ImUserPlus className='text-sm'/><h1 className='text-sm hidden md:block'>Login</h1></button>
+                            }
                     </div>
                     
                 </div>

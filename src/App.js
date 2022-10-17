@@ -31,6 +31,7 @@ import ShippingPolicy from 'pages/ShipplingPolicy';
 import AboutUs from 'pages/AboutUs';
 import Profile from 'pages/profile';
 import Payment from 'pages/Payment';
+import CancelOrder from 'pages/CancelOrder';
 import OrderDetails from 'pages/OrderDetails';
 function App(){
     const[ authState, setAuthState ]=useState("")
@@ -131,6 +132,7 @@ function App(){
                                     <Route  path="/Profile" component={Profile}/>
                                     <Route  path="/Payment" component={Payment}/>
                                     <Route  path="/Myorders/OrderDetails" component={OrderDetails}/>
+                                    <Route  path="/Myorders/CancelOrder" component={CancelOrder}/>
                                   
 
                                     <Route    component={PageNotFound}/>
