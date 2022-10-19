@@ -19,8 +19,7 @@ const OrderProductDetails=(props)=>{
                 </div>
             </div>
             <div className='space-y-2 w-full md:w-4/12'>
-                <h1 className='font-semibold text-lg underline
-                '>Delivery Address & Phone Number</h1>
+                <h1 className='font-semibold text-lg underline'>Delivery Address & Phone Number</h1>
                 <h1 className='font-semibold mt-5' >{props.ProductDetails.customername}</h1>
                 <h1 className='text-gray-500 text-sm'>{props.ProductDetails.address}</h1>
                 <h1 className='text-gray-500  text-sm'>{props.ProductDetails.phone}</h1>

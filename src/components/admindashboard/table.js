@@ -146,7 +146,7 @@ const TableContent=(props)=>{
                 <tr className=" bg-gray-100   sticky -top-1" >
                     {
                     
-                    TableData  && TableData.TableHead.map((item,key)=>
+                    TableData  && TableData.TableHead?.map((item,key)=>
                         <th className="text-xs font-medium capitalize md:text-base px-3 py-3  " key={key}>{item}</th>
                     )
                     }
@@ -155,13 +155,13 @@ const TableContent=(props)=>{
                     
                 </tr>
                 {
-                     TableData  && TableData.Data.map((item,key)=>{
+                     TableData  && TableData.Data?.map((item,key)=>{
                         return(
                             <tr key={key} className="text-center text-xs md:text-sm border-b border-gray-300">
                                
                             <td className="py-2  truncate">{key+1}</td>
                             {
-                                TableData  && TableData.TableHead.map((item1,key)=>{
+                                TableData  && TableData.TableHead?.map((item1,key)=>{
                                   
                                     // check key!=0 bacuse table column need slno
                                     if(key!=0)

@@ -123,6 +123,8 @@ const ContextProvider=(props)=>{
                 setcartadded(false)
             }
         }
+
+        //initial load set cart.if user logged in then fetch from user cart table other wise fetch from local storage
         if(localStorage.getItem('UserToken'))
         {
             MobileHouseApi.get('getUserCart',{headers:{UserToken:localStorage.getItem("UserToken")}})

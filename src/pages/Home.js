@@ -53,6 +53,7 @@ function Home() {
   
         
     <MainLayoutWebsite>
+    {/* <div className="w-48 h-48 bg-red-500 transform hover:translate-x-20  duration-1000"></div> */}
       <div className= "w-full overflow-hidden ">
        
         {
@@ -110,9 +111,9 @@ function Home() {
                      
           </div>
         </div>
-      
-        {
-          Banner &&<Footer/>}
+       
+        { Banner &&<Footer/>}
+
        
         
       </div>

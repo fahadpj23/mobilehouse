@@ -25,7 +25,7 @@ const ProductList=(props)=>{
     console.log(history.action)
    
     const handlePageClick=(e)=>{
-     
+        setproducts("")
         history.replace({
             pathname: '/ProductList',
             search: `type=${productListType}&${productListType}=${new URLSearchParams(window.location.search).get(productListType)}&sort=${sort}&PageNo=${+(e.selected) +1} ${BND ? `&BND=${BrandChoosed.toString()}`:""} ${minprice ? `&minprice=${minprice}  &maxprice=${maxprice}` : ""}`
@@ -34,6 +34,7 @@ const ProductList=(props)=>{
     }
     // sort change then  change url and relaod. 3 type of product list(newest first,hightolow..) so check params value and set related to it when change url
     const SortSelect=(sortvalue)=>{
+        setproducts("")
         history.replace({
             pathname: '/ProductList',
             search: `type=${productListType}&${productListType}=${new URLSearchParams(window.location.search).get(productListType)}&sort=${sortvalue}&PageNo=${PageNo} &${BND ? `&BND=${BrandChoosed.toString()}`:""} ${minprice ? `&minprice=${minprice}  &maxprice=${maxprice}` : ""}`
@@ -56,7 +57,7 @@ const ProductList=(props)=>{
 
     //BrandFilter execute
     const BrandFilter=()=>{
-      
+        setproducts("")
         history.replace({
             pathname: '/ProductList',
             search: `type=${productListType}&${productListType}=${new URLSearchParams(window.location.search).get(productListType)}&sort=${sort}&PageNo=${PageNo} &${`&BND=${BrandChoosed.toString()}`} ${minprice ? `&minprice=${minprice}  &maxprice=${maxprice}` : ""}`
@@ -75,6 +76,7 @@ const ProductList=(props)=>{
     }
    //show result of price filter
    const priceResult=(min,max)=>{
+    setproducts("")
     setminpricevalue(min)
     setmaxpricevalue(max)
     history.replace({ 

@@ -1,19 +1,18 @@
-import SideNav from "../sideNav"
+
 
 import { useState ,useEffect,useContext} from "react"
-import FormLayout from '../form'
 import {MobileHouseApi} from "helpers/axiosinstance";
 import { Usercontext } from "../../context/userContext";
-import TableContent from "../table";
-import NavOperation from '../operation'
-import { AiFillSetting ,AiOutlineClose} from 'react-icons/ai';
+
 import BannerAdd from "./BannerAdd";
-import MainLayoutAdmin from "../MainLayoutAdmin";
+
 
 const BannerMain=(props)=>{
     const context=useContext(Usercontext )
- 
-    let BannerImageArray=[]
+    const [Banner,setBanner]=useState(false)
+    const [BannerImageArray,setBannerImageArray]=useState([])
+
+   
    
   console.log(props)
    
@@ -44,10 +43,24 @@ const BannerMain=(props)=>{
    
     }
  
-
+    useEffect(()=>{
+        if(Banner==false)
+        {
+          MobileHouseApi.get('/BannerFetch')
+          .then((res)=>{
+           
+           
+            setBannerImageArray(props.operation ? [] :res.data.banner)
+            setBanner(true )
+           
+          })
+          .catch((Error)=>{ console.log(Error)})
+        }
+    })
     return(
         <div >
-                  
+                                {
+                                  Banner && 
                                   <BannerAdd
                                      BannerImageArray={BannerImageArray}
                                     
@@ -55,8 +68,10 @@ const BannerMain=(props)=>{
                                       operation={props.operation}
                                       operationitem={props.operationitem}
                                       AddWindowClose={props.AddWindowClose}
+                                      Banner={Banner}
                 
                                   />
+                                }
                                
                                         
              
