@@ -17,8 +17,13 @@ const BannerMain=(props)=>{
   console.log(props)
    
    
+  // remove all banner from image banner array
 
-     
+    const BannerImageremove=()=>{
+      setBannerImageArray([])
+    }
+
+     //upload banner
     const BannerUpload=()=>{
      
         const formData = new FormData();
@@ -69,6 +74,7 @@ const BannerMain=(props)=>{
                                       operationitem={props.operationitem}
                                       AddWindowClose={props.AddWindowClose}
                                       Banner={Banner}
+                                      BannerImageremove={BannerImageremove}
                 
                                   />
                                 }

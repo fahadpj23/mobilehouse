@@ -74,7 +74,8 @@ const BannerAdd=(props)=>{
                                 </div>
                         }
                     </div>
-                    <div className="w-full flex justify-end">
+                    <div className="w-full flex justify-end space-x-3">
+                        <button onClick={()=>props.BannerImageremove()} className="w-6/12 md:w-2/12 border border-gray-400 hover:bg-gray-200 rounded p-1 md:p-2">Clear All</button> 
                         <button onClick={()=>props.BannerUpload()} className="w-6/12 md:w-2/12 bg-red-500 text-white rounded p-1 md:p-2">Save</button> 
                     </div> 
 

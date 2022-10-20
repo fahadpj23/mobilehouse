@@ -13,13 +13,24 @@ const MobileSearchWindow=(props)=>{
     let history=useHistory();
     const [searchitem,setsearchitem]=useState("")
     
-    useEffect(()=>{
+    // useEffect(()=>{
+    //     var inputdiv = document.getElementById("productsearchInputTagMobile");
+    //     inputdiv.addEventListener("keypress", function(event) {
+    //      if (event.key === "Enter") {
+    //        props.setsearchValue("")
+    //      history.push({pathname: "/productList",search: "?" + new URLSearchParams({type:'searchitem',searchitem:document.getElementById('productsearchInputTagMobile').value,sort:"newestfirst"}).toString()})
+        
+    //  }
+    //  });
+    //  },[])
+     useEffect(()=>{
         var inputdiv = document.getElementById("productsearchInputTagMobile");
         inputdiv.addEventListener("keypress", function(event) {
          if (event.key === "Enter") {
-           props.setsearchValue("")
-         history.push({pathname: "/productList",search: "?" + new URLSearchParams({type:'searchitem',searchitem:document.getElementById('productsearchInputTagMobile').value,sort:"newestfirst"}).toString()})
-        
+            props.setsearchValue("")
+            
+         history.replace({pathname: "/productList",search: "?" + new URLSearchParams({type:'searchitem',searchitem:document.getElementById('productsearchInputTagMobile')?.value,sort:"newestfirst",PageNo:1}).toString()})
+         props.setMobileSearchStatus(false)
      }
      });
      },[])
@@ -29,7 +40,7 @@ const MobileSearchWindow=(props)=>{
         <div className='block sm:hidden fixed top-0 left-0 w-screen h-screen bg-white z-20 '>
             <div className=" flex  items-center bg-white  border-b border-gray-200">
                 <FaArrowLeft onClick={(e)=>props.searchClose(e.target.value)} className=' text-sm text-gray-500 w-2/12 mt-1'/>
-                <input id="productsearchInputTagMobile" onChange={(e)=>{props.   searchProduct(e.target.value)}} className=" h-12 w-full focus:outline-none pr-2 " autoFocus placeholder='search..' type="search"/>
+                <input id="productsearchInputTagMobile" onChange={(e)=>{props.searchProduct(e.target.value)}} className=" h-12 w-full focus:outline-none pr-2 " autoFocus placeholder='search..' type="search"/>
             </div>
             <div className='h-full overflow-auto'>
             <div className='flex flex-col   px-2'>

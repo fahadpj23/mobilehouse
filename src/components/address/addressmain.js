@@ -72,7 +72,7 @@ const AddressMain=(props)=>{
                         <textarea id="address" name="address" required placeholder="address" className=" text-xs md:text-sm border w-full h-24 focus:outline-none focus:border-green-500 px-2 border-gray-400 rounded-sm">
 
                         </textarea>
-                        <h1 className="w-full text-center bg-green-500 rounded focus:outline-none text-white font-medium py-1 md:py-3">Deliver here</h1>
+                        {/* <h1 className="w-full text-center bg-green-500 rounded focus:outline-none text-white font-medium py-1 md:py-3">Deliver here</h1> */}
                     </div>
                 </div>
             </div>

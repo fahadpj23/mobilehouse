@@ -134,6 +134,7 @@ const Nav=(props)=>{
                     selectNavProduct={selectNavProduct}
                     searchProduct={searchProduct}
                     setsearchValue={setsearchValue}
+                    setMobileSearchStatus={setMobileSearchStatus}
                     />
             }
                 <div className=" w-full h-5  md:h-10 bg-gray-300 border-2 border-gray-100 ">
@@ -211,13 +212,13 @@ const Nav=(props)=>{
                            
                            
                             {/* <button onClick={()=>console.log("df")} className="flex items-center focus:outline-none "><AiOutlineShoppingCart className="mr-1 text-2xl text-gray-700  font-light"/><h1 className="md:block hidden">Cart</h1></button> */}
-                            <Link to="/cart" className="flex items-center focus:outline-none"><MdShoppingCart className="mr-1 text-xl text-gray-700  font-light"/><h1 className="md:block hidden">Cart</h1></Link>
+                            <Link to="/cart" className="flex items-center focus:outline-none"><MdShoppingCart className="mr-1 text-xl text-blue-500  font-light"/><h1 className="md:block hidden">Cart</h1></Link>
                             {
                               localStorage.getItem('UserName') ?
 
-                              <Link className="     flex items-center py-1 hover:text-blue-500" to={{pathname: "/Profile"}}><ImUserCheck className="mr-1 text-xl md:text-2xl text-gray-700 font-light"/><h1 className="md:block hidden">{username}</h1></Link> 
+                              <Link className="     flex items-center py-1 hover:text-blue-500" to={{pathname: "/Profile"}}><ImUserCheck className="mr-1 text-xl text-blue-500 font-light"/><h1 className="md:block hidden">{username}</h1></Link> 
                               :
-                              <button onClick={()=> context.setloginstatus(true) } className="flex hover:text-red-500 items-center relative focus:outline-none text-xl space-x-1 "><ImUserPlus className='text-sm'/><h1 className='text-sm hidden md:block'>Login</h1></button>
+                              <button onClick={()=> context.setloginstatus(true) } className="flex text-gray-500 items-center relative focus:outline-none text-xl space-x-1 "><ImUserPlus  className='text-sm '/><h1 className='text-sm hidden md:block'>Login</h1></button>
                             }
                     </div>
                     
