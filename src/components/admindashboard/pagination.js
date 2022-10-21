@@ -6,7 +6,7 @@ const PaginateTable =(props)=>{
                 <ReactPaginate 
                 // pageCount={isFinite(props.rowCount/props.pageSize) ? Math.ceil(props.rowCount/props.pageSize) : 0}
                 pageCount={props.pageSize}
-               
+                
                 perPage={props.pageSize}
                 containerClassName=" pl-0 list-none m-auto rounded sm:m-0 m-auto flex justify-center mb-2 overflow-auto"
                 pageClassName="page-item"
