@@ -21,6 +21,7 @@ const TableOperation=(props)=>{
                                   
                                     {/* variant option only show on product page */}
                                     {props.controller=="product" && <button  className="focus:outline-none" onClick={(e)=>(props.tableOperation("variant",item),props.setTableData(""),setoperationsview(false))}>Variant</button>}
+                                    {props.controller=="product" && <button  className="focus:outline-none" onClick={(e)=>(props.tableOperation("Copy",item),props.setTableData(""),setoperationsview(false))}>Copy</button>}
                                 </div>
                             }
          </button>
