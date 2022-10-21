@@ -1,6 +1,8 @@
 import { useState,useContext } from "react"
 import axios from 'axios'
 import { AiOutlineClose } from 'react-icons/ai';
+import { FaUser } from 'react-icons/fa';
+import { GoKey } from 'react-icons/go';
 import { Usercontext } from "../context/userContext";
 import { MobileHouseApi } from "helpers/axiosinstance";
 const Login=(props)=>{
@@ -67,8 +69,15 @@ const Login=(props)=>{
                     <h1 className="text-lg font-semibold text-center pb-3 mt-5">Welcome To MobileHouse</h1>
                     {/* <h1 className="text-2xl font-bold  pb-3 mt-6 tracking-normal">LOGIN</h1> */}
                     <div className="space-y-6 flex flex-col w-full  mt-8 ">
-                        <input  name="username"  autoFocus className=" text-sm sm:text-base pl-2 focus:outline-none   border  border-gray-400 py-1.5 md:py-2 " placeholder="username "/>
-                        <input type="password"   name="password" className="text-sm    sm:text-base  pl-2 focus:outline-none py-1.5 md:py-2 border   border-gray-400 " placeholder="password "/>
+                        <div className=" border  border-gray-400 flex items-center space-x-1 px-2">
+                            <h1><FaUser/></h1>
+                            <input  name="username"  autoFocus className=" text-sm sm:text-base pl-2 focus:outline-none   py-1.5 md:py-2 " placeholder="username "/>
+
+                        </div>
+                        <div className=" border  border-gray-400 flex items-center space-x-1 px-2">
+                            <h1><GoKey/></h1>
+                            <input type="password"   name="password" className="text-sm    sm:text-base  pl-2 focus:outline-none py-1.5 md:py-2  " placeholder="password "/>
+                        </div>
                         <h1 className="text-xs text-red-500">{loginst}</h1>
                         {/* <div className="flex items-center space-x-1">
                              <input type="checkbox" id="login" value="login" name="login"/> 
