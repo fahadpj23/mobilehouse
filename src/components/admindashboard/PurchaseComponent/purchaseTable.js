@@ -5,15 +5,15 @@ const PurchaseTable=(props)=>{
     return(
         <div  className="w-full border border-gray-400 h-56 md:h-full rounded overflow-auto">
             <table className="min-w-full">
-                <tr className="bg-gray-500 md:text-base text-xs text-white   tracking-wide ">
-                    <th className="py-1 font-semibold">SL No</th>
-                    <th className=" font-semibold">product</th>
-                    <th className=" font-semibold">Price</th>
-                    <th className=" font-semibold">QTY</th>
-                    <th className=" font-semibold">subTotal</th>
-                    <th className=" font-semibold">TaxAmount</th>
-                    <th className=" font-semibold">NetAmount</th>
-                    <th className=" font-semibold"></th>
+                <tr className="bg-gray-500 md:text-base  text-white   tracking-wide ">
+                    <th className="py-1 font-semibold text-xs">SL No</th>
+                    <th className=" font-semibold text-xs">product</th>
+                    <th className=" font-semibold text-xs">Price</th>
+                    <th className=" font-semibold text-xs">QTY</th>
+                    <th className=" font-semibold text-xs">subTotal</th>
+                    <th className=" font-semibold text-xs">TaxAmount</th>
+                    <th className=" font-semibold text-xs">NetAmount</th>
+                    <th className=" font-semibold text-xs"></th>
                 </tr>
                 {
                     props.purchasetable && props.purchasetable.map((item,key)=>{

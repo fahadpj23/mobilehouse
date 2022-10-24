@@ -9,6 +9,7 @@ import HsnMain from './Hsn/HsnMain';
 import HeadingMain from './Heading/HeadingMain';
 import BannerMain from './Banner/BannerMain';
 import AdsMain from './Ads/AdsMain';
+import PurchaseMain from './PurchaseComponent/purchaseMain';
 const NavOperation=(props)=>{
   
     return(
@@ -92,6 +93,17 @@ const NavOperation=(props)=>{
                             {
                                  props.controller=='Ads' &&
                                  <AdsMain
+                                     AddSucess={props.AddSucess}
+                                     AddWindowClose={props.AddWindowClose}
+                                     operation={props.operation}
+                                     operationitem={props.operationitem}
+                                 
+                                 />  
+                                
+                            }
+                             {
+                                 props.controller=='Purchase' &&
+                                 <PurchaseMain
                                      AddSucess={props.AddSucess}
                                      AddWindowClose={props.AddWindowClose}
                                      operation={props.operation}

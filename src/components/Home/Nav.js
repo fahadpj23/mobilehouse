@@ -218,7 +218,7 @@ const Nav=(props)=>{
 
                               <Link className="     flex items-center py-1 hover:text-blue-500" to={{pathname: "/Profile"}}><ImUserCheck className="mr-1 text-xl text-blue-500 font-light"/><h1 className="md:block hidden">{username}</h1></Link> 
                               :
-                              <button onClick={()=> context.setloginstatus(true) } className="flex text-gray-500 items-center relative focus:outline-none text-xl space-x-1 "><ImUserPlus  className='text-sm '/><h1 className='text-sm hidden md:block'>Login</h1></button>
+                              <button onClick={()=> context.setloginstatus(true) } className="flex text-gray-500 items-center relative focus:outline-none text-xl space-x-1 "><ImUserPlus  className='text-lg '/><h1 className='text-sm hidden md:block'>Login</h1></button>
                             }
                     </div>
                     

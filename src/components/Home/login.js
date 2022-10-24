@@ -69,14 +69,13 @@ const Login=(props)=>{
                     <h1 className="text-lg font-semibold text-center pb-3 mt-5">Welcome To MobileHouse</h1>
                     {/* <h1 className="text-2xl font-bold  pb-3 mt-6 tracking-normal">LOGIN</h1> */}
                     <div className="space-y-6 flex flex-col w-full  mt-8 ">
-                        <div className=" border  border-gray-400 flex items-center space-x-1 px-2">
+                        <div className=" border  border-gray-400 flex items-center space-x-1 px-2 ">
                             <h1><FaUser/></h1>
-                            <input  name="username"  autoFocus className=" text-sm sm:text-base pl-2 focus:outline-none   py-1.5 md:py-2 " placeholder="username "/>
-
+                            <input  name="username" placeholder="username" required autoFocus className="focus:placeholder-mb-10  text-sm sm:text-base pl-2 focus:outline-none   py-1.5 md:py-2 " />
                         </div>
                         <div className=" border  border-gray-400 flex items-center space-x-1 px-2">
-                            <h1><GoKey/></h1>
-                            <input type="password"   name="password" className="text-sm    sm:text-base  pl-2 focus:outline-none py-1.5 md:py-2  " placeholder="password "/>
+                            <h1 className="mt-1"><GoKey/></h1>
+                            <input type="password" required   name="password" className="text-sm    sm:text-base  pl-2 focus:outline-none py-1.5 md:py-2  " placeholder="password "/>
                         </div>
                         <h1 className="text-xs text-red-500">{loginst}</h1>
                         {/* <div className="flex items-center space-x-1">
