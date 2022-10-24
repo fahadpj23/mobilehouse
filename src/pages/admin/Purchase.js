@@ -1,4 +1,5 @@
-import PurchaseMain from 'components/admindashboard/PurchaseComponent/purchaseMain'
+import MainLayoutAdmin from 'components/admindashboard/MainLayoutAdmin';
+import TableContent from 'components/admindashboard/table';
 import {useContext} from 'react'
 import { AuthContext } from '../../helpers/authcontext';
 import { useHistory } from 'react-router-dom';
@@ -8,13 +9,15 @@ const Purchase=()=>{
     return(
         <div className="flex">
                 {Auth && Auth.authState=="authorized" ?
-                
-                <PurchaseMain
-                controller="purchase"
-                />
-                 :
+                 <MainLayoutAdmin>
+                 <TableContent
+                 controller="Purchase"
+                 />
+                 </MainLayoutAdmin>
+              
+            :
                 history.push("/AdminLogin")
-                 }
+            }
        
         </div>
   

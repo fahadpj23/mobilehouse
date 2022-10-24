@@ -1,12 +1,13 @@
 import ReactPaginate from 'react-paginate';
+
 const PaginateTable =(props)=>{
    console.log(props)
             return (
                 <div className="py-6">
                 <ReactPaginate 
-                // pageCount={isFinite(props.rowCount/props.pageSize) ? Math.ceil(props.rowCount/props.pageSize) : 0}
+               
                 pageCount={props.pageSize}
-                
+                forcePage={(+props.pageNo-1)}
                 perPage={props.pageSize}
                 containerClassName=" pl-0 list-none m-auto rounded sm:m-0 m-auto flex justify-center mb-2 overflow-auto"
                 pageClassName="page-item"
