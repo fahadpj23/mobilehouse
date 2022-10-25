@@ -79,16 +79,16 @@ const FormLayout=(props)=>{
     }
 
     useEffect(()=>{
-        if(props.operation!=="" && editok===false)
-        {
-            //if there is a array value like catgeory attribute and attribute values than store it  in a array for display
-            props.operationitem.values && props.operationitem.values.map((item,key)=>{
-                props.values.push(item)
-              })
-              seteditok(true)
-              console.log(props.values)
+        // if(props.operation!=="" && editok===false)
+        // {
+        //     //if there is a array value like catgeory attribute and attribute values than store it  in a array for display
+        //     props.operationitem.values && props.operationitem.values.map((item,key)=>{
+        //         props.values.push(item)
+        //       })
+        //       seteditok(true)
+        //       console.log(props.values)
             
-        }
+        // }
         if(variantset==false && props.variants)
         {
             props.variants.map((item,key)=>{
@@ -146,7 +146,7 @@ const FormLayout=(props)=>{
     
     return(
         <div className="w-full h-full flex items-center bg-opacity-95 z-20  justify-center pr-5 md:justify-center bg-gray-100 fixed top-0">
-        <div className=" space-y-4 w-10/12  md:w-4/12 h-4/5 ">
+        <div className=" space-y-4 w-10/12  md:w-6/12 lg:w-3/12 h-4/5 ">
             <div className="max-h-full bg-white p-4 overflow-auto ">
                 <div className="w-full">
                     <button onClick={()=>props.AddWindowClose(false)} className="flex focus:outline-none justify-end w-full text-right"><AiOutlineClose/></button>
@@ -159,7 +159,7 @@ const FormLayout=(props)=>{
             {
                 props.formdata && props.formdata.map((item,key)=>{
                     return(
-                        <div className="flex flex-col space-y-2 mt-7">
+                        <div key={key} className="flex flex-col space-y-2 mt-7">
                             
                               <label className="font-semibold text-sm md:text-base" for="fname">{item.name}:</label>
 
@@ -168,6 +168,7 @@ const FormLayout=(props)=>{
                                 case 'text':
                                             return <div >
                                                         <div className="flex space-x-1">
+                                                            {/* input value contain add button like attrribute value add button then there is a item.more value else no.default value set using operation item */}
                                                             <input type="text" required={item.required && true} className={`  w-full ${item.name=="Address" && "h-20"} px-2 py-1 focus:outline-none rounded-md border border-gray-400`} defaultValue={ item.more ? "" : props.operationitem && props.operationitem[item.name] } name={item.name} id={item.name} />                                    
                                                             {
                                                                 item.more && <button type="button"  onClick={()=>addvalue(item.name)} className="px-2 py-1 bg-red-500 focus:outline-none text-white rounded w-5/12 md:w-2/12 ">ADD +</button>

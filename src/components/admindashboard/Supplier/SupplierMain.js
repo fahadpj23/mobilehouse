@@ -10,16 +10,13 @@ import {MobileHouseApi} from "helpers/axiosinstance";
 import { Usercontext } from "components/context/userContext";
 import TableContent from "../table";
 import MainLayoutAdmin from "../MainLayoutAdmin";
-const SupplierMain=()=>{
+const SupplierMain=(props)=>{
 
 
     const context=useContext(Usercontext )
     const [addsupplier,setaddsupplier]=useState(false)
     const [supplier,setsupplier]=useState("")
-    const [operation,setoperation]=useState("")
-    const[operationitem,setoperationitem]=useState("")
-    const[operationid,setoperationid]=useState("")
-
+  
 
  
     const addformdata=[
@@ -32,18 +29,18 @@ const SupplierMain=()=>{
         
     ]
 
-    const attributevalues=[];
-
+  
+    console.log(props.operationitem)
     const handleSubmit=(e)=>{
         e.preventDefault();
         const data=new FormData(e.target)
         
-        if(operationitem)
+        if(props.operationitem)
         {
-            data.append("oldattributeName",operationitem.attributeName )
+            data.append("oldattributeName",props.operationitem.attributeName )
         }
-        data.append("operation",operation)
-        data.append("operationid",operationid)
+        data.append("operation",props.operation)
+        data.append("operationid",props.operationitem.id)
         
         MobileHouseApi.post('/SupplierAdd',data,{headers:{accessToken:localStorage.getItem("accessToken")}})
         .then((res)=>{
@@ -54,89 +51,32 @@ const SupplierMain=()=>{
          else
          {
             context.notify(res.data.success,"success")
-            setaddsupplier(false)
-            setoperationid("")
-            setoperation("")
-            setoperationitem("")
-            MobileHouseApi.get('getSupplier',{headers:{accessToken:localStorage.getItem("accessToken")}})
-            .then((res)=>{
-                setsupplier(res.data)
-            })
+            props.AddSucess()
          }
         })
        
       }
    
-      const closeWindow=()=>{
-        setaddsupplier(false)
-        setoperation("")
-        setoperationitem("")
-     }
-
-      const tableOperation=(operation,supplier)=>{
-            console.log(supplier)
-            setoperationid(supplier.id)
-        
-            setoperationitem(supplier)
-            setoperation(operation)
-            setaddsupplier(true)
-            
-      }
       
-    const AddNew=()=>{
-        setaddsupplier(true)
-    }
 
-      useEffect(()=>{
-        if(supplier=="")
-        {
-        MobileHouseApi.get('getSupplier',{headers:{accessToken:localStorage.getItem("accessToken")}})
-        .then((res)=>{
-            setsupplier(res.data)
-        })
-        }
-        
-
-      },[addsupplier,supplier])
-        console.log(supplier)
+     
            
- console.log(operation)
+ console.log("ds")
     return(
         <div className="flex w-full">
-             {
-                    addsupplier==true && 
+            
                        
                                         <FormLayout
                                             formdata={addformdata}
                                             handleSubmit={handleSubmit}
-                                            attributevalues={attributevalues}
-                                            operation={operation}
-                                            operationitem={operationitem}
-                                            Mainname={operationitem.attributeName}
-                                            Mainstatus={operationitem.status}
-                                            close={closeWindow}
-                                            head="Supplier"
+                                            operation={props.operation}
+                                            operationitem={props.operationitem}
+                                            AddWindowClose={props.AddWindowClose}
+                                           
                                         />
                                     
                                    
-                }
-                 <MainLayoutAdmin>
-                    <NavOperation
-                            AddNew={AddNew }
-                        />
-
-               
-                    {
-                        supplier &&
-                        <TableContent
-                            Data={supplier}
-                            tableOperation={tableOperation}
-
-                        />
-                    }
-           
-                </MainLayoutAdmin>
-          
+              
     </div>   
     )
 }

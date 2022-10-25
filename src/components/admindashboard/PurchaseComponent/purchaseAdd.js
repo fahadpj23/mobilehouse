@@ -3,14 +3,14 @@ import {MobileHouseApi} from "helpers/axiosinstance";
 import { useState,useContext,useEffect,useMemo } from "react";
 import { Usercontext } from "components/context/userContext";
 import { debounce } from 'lodash';
-
+import { AiOutlineClose } from 'react-icons/ai';
 
 const PurchaseAdd=(props)=>{
  
     const context=useContext(Usercontext )
     const[searchProduct,setsearchProduct]=useState("")
     const[purchaseTable,setpurchaseTable]=useState([])
-    const [purchasedetails, setpurchasedetails] = useState({paymentmethod:"cash",invoiceno:"",supplier:""})
+    const [purchasedetails, setpurchasedetails] = useState({paymentmethod:"cash",invoiceno:"",invoiceDate:"",supplier:""})
     const[suppliers,setsuppliers]=useState("")
     const[searchValue,setsearchValue]=useState("")
     const[productadded,setproductadded]=useState(false)
@@ -39,6 +39,7 @@ const PurchaseAdd=(props)=>{
     const upload=()=>{
         let formData = new FormData()
         formData.append('invoiceno',purchasedetails.invoiceno)
+        formData.append('invoiceDate',purchasedetails.invoiceDate)
         formData.append('supplier',purchasedetails.supplier)
         formData.append('paymentMethod',purchasedetails.paymentmethod)
         formData.append('products',JSON.stringify( purchaseTable))
@@ -53,11 +54,13 @@ const PurchaseAdd=(props)=>{
                if(res.data.success)
                {
                 context.notify(res.data.success,"success")
-                props.purchaseaddclose()
+                props.AddSucess()
                }
             })
         }
     }
+
+
 
     const qtychange=(product,qty)=>{
         purchaseTable && purchaseTable.map((item,key)=>{
@@ -71,37 +74,38 @@ const PurchaseAdd=(props)=>{
         })
    
     }
+
+     //product add in to purchase table
     const productAdd=(product)=>{
+
+        //set search value as null.for close product suggestion div
+        document.getElementById('serachinput').value=""
+        //default qty set as 1 to product
         product.productqty=1
-     
+        
+        //check product contain in purchase table using some function.
         if(purchaseTable && purchaseTable.some((pro)=>pro.id===product.id)===false)
         {
-            product.taxAmount= (product.purchasePrice * 1 ) * product.GST /100
-            product.netAmount= (product.purchasePrice * 1 ) +(product.purchasePrice * 1 ) * product.GST /100
-            purchaseTable.push(product)
+            product.taxAmount= (+product.purchasePrice  * +product.Tax /100)
+            product.netAmount= (product.purchasePrice  ) +(product.purchasePrice * product.Tax /100)
+            setpurchaseTable([...purchaseTable,product])
+            // purchaseTable.push(product)
         }
         else
         {
+        //if product already conatin then qty change
             purchaseTable && purchaseTable.map((item1,key1)=>{
                 if(product.id===item1.id)
                 {
-                    if( item1.productqty+1 > item1.qty)
-                    {
-                        product.taxAmount= (product.purchasePrice * item1.productqty + 1  ) * product.GST /100
-                        product.netAmount= (product.purchasePrice * item1.productqty + 1  ) +(product.purchasePrice * item1.productqty + 1 ) * product.GST /100
+                   
+                        product.taxAmount= ((product.purchasePrice * item1.productqty + 1  ) * product.GST /100).toFixed(2)
+                        product.netAmount= ((product.purchasePrice * item1.productqty + 1  ) +(product.purchasePrice * item1.productqty + 1 ) * product.GST /100).toFixed(2)
                         item1.productqty=item1.productqty + 1 
-                    }
-                    else
-                    {
-                        console.log("maxqty reached")
-                    }
-                  
+                                    
                 }
             })
         }
-        setproductadded(true)
-        
-    }
+     }
 
     const removeproduct=(index)=>{
         
@@ -116,7 +120,7 @@ const PurchaseAdd=(props)=>{
         {
             MobileHouseApi.get('/getSupplier')
             .then((res)=>{
-                setsuppliers(res.data.Data)
+                setsuppliers(res.data.supplier)
             })
         }
         if(productadded===true)
@@ -124,15 +128,21 @@ const PurchaseAdd=(props)=>{
             setproductadded(false)
         }
         
-    },[productadded,changeqty,remproduct])
+    },[productadded,changeqty,remproduct,purchaseTable])
     console.log(searchProduct)
     return(
         <div  className="w-full h-full flex items-center bg-opacity-95 justify-center bg-gray-100 fixed top-0">
-            <div className="w-11/12 h-fixedNoNav p-3 space-y-4 overflow-auto bg-white">
+            <div className="w-11/12 h-fixedNoNav p-3 space-y-4 overflow-auto bg-white relative">
+                <button onClick={()=>props.AddWindowClose(false)} className="absolute top-2  right-2"><AiOutlineClose/></button>
+
                 <div className=" space-x-2 grid grid-cols-2 md:grid-cols-5 gap-3 ">
                     <div className="text-xs space-y-1">
                         <h1>invoice no</h1>
                         <input onChange={(e)=>setpurchasedetails({...purchasedetails, ['invoiceno'] : e.target.value})} className=" border focus:outline-none border-gray-400 rounded px-2 w-full text-xs py-1" ></input>
+                    </div>
+                    <div className="text-xs space-y-1">
+                        <h1>invoice Date</h1>
+                        <input type="date" onChange={(e)=>setpurchasedetails({...purchasedetails, ['invoiceDate'] : e.target.value})} className=" border focus:outline-none border-gray-400 rounded px-2 w-full text-xs py-1" ></input>
                     </div>
                     
                     <div className="text-xs space-y-1">
@@ -151,7 +161,7 @@ const PurchaseAdd=(props)=>{
                                 {
                                     suppliers && suppliers.map((item,key)=>{
                                         return(
-                                            <option value= {item.id}>{item.supplierName}</option>
+                                            <option key={key} value= {item.id}>{item.supplierName}</option>
                                         )
                                     })
                                 }
@@ -180,7 +190,7 @@ const PurchaseAdd=(props)=>{
                                           searchProduct.products.map((item,key)=>{
                                               return(
                                                  
-                                                  <button onClick={()=>productAdd(item)} className="flex justify-between w-full md:text-base text-xs hover:bg-gray-200  px-1 border-b  py-1 focus:outline-none border-gray-300 ">
+                                                  <div key={key} onClick={()=>productAdd(item)} className="flex justify-between w-full md:text-base text-xs hover:bg-gray-200  px-1 border-b  py-1 focus:outline-none border-gray-300 ">
                                                       <h1 className="w-7/12 text-sm text-left">{item.name}</h1>
                                                       <h1 className="w-2/12 text-sm">Rs: {item.purchasePrice}</h1>
                                                       <div className="h-full">
@@ -188,7 +198,7 @@ const PurchaseAdd=(props)=>{
                                                       <button className="bg-green-500 block md:hidden text-white px-1 tracking-wider font-semibold text-2xl h-8 focus:outline-none ">+</button>
                                                       </div>
 
-                                                  </button>
+                                                  </div>
                                               )
                                           })  
                                           :
@@ -220,8 +230,8 @@ const PurchaseAdd=(props)=>{
                             {
                                 purchaseTable && purchaseTable.map((item,key)=>{
                                     subTotal= +subTotal +(+item.purchasePrice * +item.productqty)
-                                    TaxAmount= +TaxAmount + ((+item.purchasePrice* +item.productqty)*item.GST/100)
-                                    GrandTotal= +GrandTotal+ ((item.purchasePrice*item.productqty)+ ((+item.purchasePrice* +item.productqty)*item.GST/100))
+                                    TaxAmount= +TaxAmount + ((+item.purchasePrice* +item.productqty)*item.Tax/100)
+                                    GrandTotal= +GrandTotal+ ((item.purchasePrice*item.productqty)+ ((+item.purchasePrice* +item.productqty)*item.Tax/100))
                                 })
                             }
                                 <div className="text-sm  space-y-2" >

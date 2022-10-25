@@ -5,6 +5,7 @@ const PurchaseTable=(props)=>{
     return(
         <div  className="w-full border border-gray-400 h-56 md:h-full rounded overflow-auto">
             <table className="min-w-full">
+                <tbody>
                 <tr className="bg-gray-500 md:text-base  text-white   tracking-wide ">
                     <th className="py-1 font-semibold text-xs">SL No</th>
                     <th className=" font-semibold text-xs">product</th>
@@ -15,10 +16,12 @@ const PurchaseTable=(props)=>{
                     <th className=" font-semibold text-xs">NetAmount</th>
                     <th className=" font-semibold text-xs"></th>
                 </tr>
+                </tbody>
                 {
                     props.purchasetable && props.purchasetable.map((item,key)=>{
                         return(
-                        <tr className="text-center md:text-base text-xs ">
+                        <tbody>
+                        <tr key={key} className="text-center md:text-base text-xs ">
                             <td className="py-2 mt-1">{key+1}</td>
                             <td>{item.id}</td>
                             <td>{item.purchasePrice}</td>
@@ -33,6 +36,7 @@ const PurchaseTable=(props)=>{
                             <td>{item.netAmount}</td>
                             <td onClick={()=>props.removeproduct(key)}><MdDelete/></td>
                         </tr>
+                        </tbody>
                         )
                     })
                 }
