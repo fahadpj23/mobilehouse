@@ -72,6 +72,23 @@ const TableContent=(props)=>{
         }) 
     }
 
+    // purchase approval set function
+    const setPurchaseApproval=(purchase,approvalStatus)=>{
+
+        const formData=new FormData()
+        formData.append('purchaseId',purchase.id)
+        formData.append('approvalStatus',approvalStatus)
+        if(window.confirm(`${approvalStatus}`)==true)
+        {
+            MobileHouseApi.post('/UpdatePurchaseApprovalStatus',formData,{headers:{accessToken:localStorage.getItem('accessToken')}})
+            .then((res)=>{
+                console.log(res)
+            })
+            .catch((Err)=>console.log(Err))
+            
+        }
+    }
+
     const tableOperation=(operation,EditData)=>{
         if(operation=="delete" && props.controller=="product" )
         {
@@ -150,10 +167,13 @@ const TableContent=(props)=>{
                         <th className="text-xs font-medium capitalize md:text-base px-3 py-3  " key={key}>{item}</th>
                     )
                     }
+                    {/* {props.controller=="Purchase" && <th className="flex justify-center mt-3 text-sm md:text-base md:mt-4">Approval</th>} */}
+                    <th className="text-xs font-medium capitalize md:text-base px-3 py-3">ApprovalStatus</th>
                     <th className="flex justify-center mt-3 text-sm md:text-base md:mt-4"><AiFillSetting/></th>
 
                     
                 </tr>
+                </tbody>
                 {
                      TableData  && TableData.Data?.map((item,key)=>{
                         return(
@@ -194,7 +214,14 @@ const TableContent=(props)=>{
                                 })
                             }
                         
-                            
+                            { props.controller=="Purchase" && <td>
+                                <select onChange={(e)=>setPurchaseApproval(item,e.target.value)} defaultValue={item.ApprovalStatus} className="border border-gray-300 text-xs p-1 rounded">
+                                    <option value="1">Created</option>
+                                    <option value="2">Edited</option>
+                                    <option value="3">approved</option>
+                                    <option value="4">Reject</option>
+                                </select>
+                            </td>}
                             <td className="pt-1" >
                             <TableOperation
                                 controller={props.controller}
@@ -214,7 +241,7 @@ const TableContent=(props)=>{
                         )
                     })
                 }
-            </tbody>
+           
         </table> }
         
         </div>

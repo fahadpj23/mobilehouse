@@ -12,10 +12,7 @@ const PurchaseAdd=(props)=>{
     const[purchaseTable,setpurchaseTable]=useState([])
     const [purchasedetails, setpurchasedetails] = useState({paymentmethod:props.operationitem.paymentMethod??"cash",invoiceno:props.operationitem.invoiceNo??"",invoiceDate:props.operationitem.InvoiceDate??"",supplier:props.operationitem.supplier??""})
     const[suppliers,setsuppliers]=useState("")
-    const[searchValue,setsearchValue]=useState("")
     const[productadded,setproductadded]=useState(false)
-    const[changeqty,setchangeqty]=useState(false)
-    const[remproduct,setremproduct]=useState(false)
     const[otherexpense,setotherexpense]=useState(0)
     let GrandTotal=0;
     let subTotal=0;
@@ -46,10 +43,12 @@ const PurchaseAdd=(props)=>{
         formData.append('otherexpense',otherexpense)
         formData.append('TaxAmount',TaxAmount)
         formData.append('GrandTotal',GrandTotal)
+        formData.append('operation',props.operation)
+        formData.append('operationId',props.operationitem.id)
        
         if(purchaseTable.length!=0)
         {
-            MobileHouseApi.post('purchaseupload',formData)
+            MobileHouseApi.post('purchaseupload',formData,{headers:{accessToken:localStorage.getItem('accessToken')}})
             .then((res)=>{
                if(res.data.success)
                {
@@ -147,8 +146,8 @@ const PurchaseAdd=(props)=>{
             setproductadded(false)
         }
         
-    },[])
-    console.log(searchProduct)
+    },[purchasedetails])
+    console.log(purchasedetails)
     return(
         <div  className="w-full h-full flex items-center bg-opacity-95 justify-center bg-gray-200 fixed top-0">
             <div className="w-11/12 h-fixedNoNav p-3 space-y-4 overflow-auto bg-white relative">
@@ -175,7 +174,7 @@ const PurchaseAdd=(props)=>{
                    
                     <div className="text-xs space-y-1">
                     <h1>Supplier</h1>
-                        <select  onChange={(e)=>setpurchasedetails({...purchasedetails, ['supplier'] : e.target.value})} defaultValue={purchasedetails.supplier} className=" border focus:outline-none border-gray-400 rounded px-2 w-full text-xs py-1" name="vendor">
+                        <select  onChange={(e)=>setpurchasedetails({...purchasedetails, ['supplier'] : e.target.value})} value={purchasedetails.supplier} className=" border focus:outline-none border-gray-400 rounded px-2 w-full text-xs py-1" name="vendor">
                                 <option>-- select --</option>
                                 {
                                     suppliers && suppliers.map((item,key)=>{

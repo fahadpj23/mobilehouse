@@ -22,8 +22,8 @@ const PurchaseTable=(props)=>{
                 {
                     props.purchasetable && props.purchasetable.map((item,key)=>{
                         return(
-                        <tbody>
-                        <tr key={key} className="text-center md:text-base text-xs ">
+                        <tbody  key={key}>
+                        <tr className="text-center md:text-base text-xs ">
                             <td className="py-2 mt-1 text-xs">{key+1}</td>
                             <td className=" text-xs">{item.name}</td>
                             <td className=" text-xs">{item.price}</td>
