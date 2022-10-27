@@ -169,7 +169,7 @@ const TableContent=(props)=>{
                     )
                     }
                     {/* {props.controller=="Purchase" && <th className="flex justify-center mt-3 text-sm md:text-base md:mt-4">Approval</th>} */}
-                    <th className="text-xs font-medium capitalize md:text-base px-3 py-3">ApprovalStatus</th>
+                    {props.controller=="Purchase" && <th className="text-xs font-medium capitalize md:text-base px-3 py-3">ApprovalStatus</th>}
                     <th className="flex justify-center mt-3 text-sm md:text-base md:mt-4"><AiFillSetting/></th>
 
                     
