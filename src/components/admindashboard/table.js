@@ -74,10 +74,11 @@ const TableContent=(props)=>{
 
     // purchase approval set function
     const setPurchaseApproval=(purchase,approvalStatus)=>{
-
+        
         const formData=new FormData()
         formData.append('purchaseId',purchase.id)
         formData.append('approvalStatus',approvalStatus)
+        
         if(window.confirm(`${approvalStatus}`)==true)
         {
             MobileHouseApi.post('/UpdatePurchaseApprovalStatus',formData,{headers:{accessToken:localStorage.getItem('accessToken')}})
