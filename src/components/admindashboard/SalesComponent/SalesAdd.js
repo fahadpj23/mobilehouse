@@ -10,7 +10,7 @@ const SalesAdd=(props)=>{
     const context=useContext(Usercontext )
     const[searchProduct,setsearchProduct]=useState("")
     const[salesTable,setsalesTable]=useState([])
-    const [salesDetails, setsalesDetails] = useState({CustomerName:props.operationitem.CustomerName??"",CustomerPhone:props.operationitem.CustomerPhone??"",PaymentMethod:props.operationitem.PaymentMethod??""})
+    const [salesDetails, setsalesDetails] = useState({CustomerName:props.operationitem.CustomerName??"",CustomerPhone:props.operationitem.CustomerPhone??"",PaymentMethod:props.operationitem.PaymentMethod??"cash"})
    
 
     const[otherexpense,setotherexpense]=useState(0)
@@ -35,12 +35,12 @@ const SalesAdd=(props)=>{
 
     const upload=()=>{
         let formData = new FormData()
-        formData.append('invoiceno',salesDetails.invoiceno)
-        formData.append('invoiceDate',salesDetails.invoiceDate)
-        formData.append('supplier',salesDetails.supplier)
+       
+        formData.append('customerName',salesDetails.CustomerName)
+        formData.append('customerPhone',salesDetails.CustomerPhone)
         formData.append('paymentMethod',salesDetails.paymentmethod)
         formData.append('products',JSON.stringify( salesTable))
-        formData.append('otherexpense',otherexpense)
+       
         formData.append('TaxAmount',TaxAmount)
         formData.append('GrandTotal',GrandTotal)
         formData.append('operation',props.operation)
@@ -48,7 +48,7 @@ const SalesAdd=(props)=>{
        
         if(salesTable.length!=0)
         {
-            MobileHouseApi.post('purchaseupload',formData,{headers:{accessToken:localStorage.getItem('accessToken')}})
+            MobileHouseApi.post('salesUpload',formData,{headers:{accessToken:localStorage.getItem('accessToken')}})
             .then((res)=>{
                if(res.data.success)
                {
@@ -219,9 +219,10 @@ const SalesAdd=(props)=>{
                         <div className="w-full md:w-5/12 flex flex-col justify-between h-56 border border-gray-400 p-2 rounded">
                             {
                                 salesTable && salesTable.map((item,key)=>{
-                                    subTotal= +subTotal +(+item.price * +item.qty)
-                                    TaxAmount= +TaxAmount + ((+item.price* +item.qty)*item.Tax/100)
-                                    GrandTotal= +GrandTotal+ ((item.price*item.qty)+ ((+item.price* +item.qty)*item.Tax/100))
+                                  
+                                    subTotal= +subTotal + +item.subTotal
+                                    TaxAmount= +TaxAmount + +item.taxAmount
+                                    GrandTotal= +GrandTotal+ +item.netAmount
                                 })
                             }
                                 <div className="text-xs  space-y-2" >
