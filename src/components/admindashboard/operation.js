@@ -11,6 +11,7 @@ import BannerMain from './Banner/BannerMain';
 import AdsMain from './Ads/AdsMain';
 import PurchaseMain from './PurchaseComponent/purchaseMain';
 import SupplierMain from './Supplier/SupplierMain';
+import SalesMain from './SalesComponent/SalesMain';
 const NavOperation=(props)=>{
   
     return(
@@ -116,6 +117,17 @@ const NavOperation=(props)=>{
                             {
                                  props.controller=='Supplier' &&
                                  <SupplierMain
+                                     AddSucess={props.AddSucess}
+                                     AddWindowClose={props.AddWindowClose}
+                                     operation={props.operation}
+                                     operationitem={props.operationitem}
+                                 
+                                 />  
+                                
+                            }
+                             {
+                                 props.controller=='Sales' &&
+                                 <SalesMain
                                      AddSucess={props.AddSucess}
                                      AddWindowClose={props.AddWindowClose}
                                      operation={props.operation}

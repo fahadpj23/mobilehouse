@@ -5,7 +5,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { useState } from 'react';
 import { AiFillDashboard } from 'react-icons/ai';
 import { FaTruckMoving } from 'react-icons/fa';
-import { FaCartArrowDown } from 'react-icons/fa';
+import { FaCartArrowDown,FaShopify } from 'react-icons/fa';
 import { FaProductHunt } from 'react-icons/fa';
 import { CgListTree } from 'react-icons/cg';
 import { IoIosColorFilter } from 'react-icons/io';
@@ -48,6 +48,7 @@ const SideNav=()=>{
                             <button onClick={()=>history.push({pathname:'/admin/orders',search: "?" + new URLSearchParams({pageNo: 1}).toString() })}   className={` w-full text-left ${LinkAddress=="orders" && " text-blue-500 "  }focus:outline-none flex `}>orders<FaTruckMoving className='mt-1 ml-2'/></button>
                             <button onClick={()=>history.push({pathname:'/admin/Purchase',search: "?" + new URLSearchParams({pageNo: 1}).toString() })} className={` w-full text-left ${LinkAddress=="Purchase" && " text-blue-500 "  }focus:outline-none flex `}>Purchase<FaCartArrowDown className='mt-1 ml-2'/></button>
                             <button onClick={()=>history.push({pathname:'/admin/Product',search: "?" + new URLSearchParams({pageNo: 1}).toString() })}   className={` w-full text-left ${LinkAddress=="Product" && " text-blue-500 "  }focus:outline-none flex `}>Product<FaProductHunt className='mt-1 ml-2'/></button>
+                            <button onClick={()=>history.push({pathname:'/admin/Sales',search: "?" + new URLSearchParams({pageNo: 1}).toString() })}   className={` w-full text-left ${LinkAddress=="Sales" && " text-blue-500 "  }focus:outline-none flex `}>Sales<FaShopify className='mt-1 ml-2'/></button>
                             <button onClick={()=>history.push({pathname:'/admin/category',search: "?" + new URLSearchParams({pageNo: 1}).toString() })}   className={` w-full text-left ${LinkAddress=="category" && " text-blue-500 "  }focus:outline-none flex `}>category<CgListTree className='mt-1 ml-2'/></button>
                             <button onClick={()=>history.push({pathname:'/admin/Attribute',search: "?" + new URLSearchParams({pageNo: 1}).toString() })}  className={` w-full text-left ${LinkAddress=="Attribute" && " text-blue-500 "  }focus:outline-none flex `}>Attribute <IoIosColorFilter className='mt-1 ml-2'/></button>
                             <button onClick={()=>history.push({pathname:'/admin/Supplier',search: "?" + new URLSearchParams({pageNo: 1}).toString() })}  className={` w-full text-left ${LinkAddress=="Supplier" && " text-blue-500 "  }focus:outline-none flex `}>Supplier <IoIosPerson className='mt-1 ml-2 '/></button>
@@ -68,6 +69,7 @@ const SideNav=()=>{
                                 <button onClick={()=>history.push({pathname:'/admin/orders',search: "?" + new URLSearchParams({pageNo: 1}).toString() })}   className={` w-full ${LinkAddress=="orders" && " text-blue-500 "  } focus:outline-none flex justify-center`}><FaTruckMoving/></button>
                                 <button onClick={()=>history.push({pathname:'/admin/Purchase',search: "?" + new URLSearchParams({pageNo: 1}).toString() })}className={` w-full ${LinkAddress=="Purchase" && " text-blue-500 "  } focus:outline-none flex justify-center`}><FaCartArrowDown/></button>
                                 <button onClick={()=>history.push({pathname:'/admin/Product',search: "?" + new URLSearchParams({pageNo: 1}).toString() })}   className={` w-full ${LinkAddress=="Product" && " text-blue-500 "  } focus:outline-none flex justify-center`}><FaProductHunt/></button>
+                                <button onClick={()=>history.push({pathname:'/admin/Sales',search: "?" + new URLSearchParams({pageNo: 1}).toString() })}   className={` w-full ${LinkAddress=="Sales" && " text-blue-500 "  } focus:outline-none flex justify-center`}><FaShopify/></button>
                                 <button  onClick={()=>history.push({pathname:'/admin/category',search: "?" + new URLSearchParams({pageNo: 1}).toString() })} className={` w-full ${LinkAddress=="category" && " text-blue-500 "  } focus:outline-none flex justify-center`}><CgListTree/></button>
                                 <button  onClick={()=>history.push({pathname:'/admin/Attribute',search: "?" + new URLSearchParams({pageNo: 1}).toString() })} className={` w-full ${LinkAddress=="Attribute" && " text-blue-500 "  } focus:outline-none flex justify-center`}><IoIosColorFilter/> </button>
                                 <button  onClick={()=>history.push({pathname:'/admin/Supplier',search: "?" + new URLSearchParams({pageNo: 1}).toString() })} className={` w-full ${LinkAddress=="Supplier" && " text-blue-500 "  } focus:outline-none flex justify-center`}> <IoIosPerson className='mt-1 ml-2 text-white bg-red-200'/></button>

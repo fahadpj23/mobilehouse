@@ -2,8 +2,8 @@
 import { MdDelete } from 'react-icons/md';
 import { FaPlus } from 'react-icons/fa';
 import { FaMinus } from 'react-icons/fa';
-const PurchaseTable=(props)=>{
-    console.log(props.purchasetable)
+const ProductTable=(props)=>{
+   
     return(
         <div  className="w-full border border-gray-400 h-56 md:h-full rounded overflow-auto">
             <table className="min-w-full">
@@ -20,7 +20,7 @@ const PurchaseTable=(props)=>{
                 </tr>
                 </tbody>
                 {
-                    props.purchasetable && props.purchasetable.map((item,key)=>{
+                    props.products && props.products.map((item,key)=>{
                         return(
                         <tbody  key={key}>
                         <tr className="text-center md:text-base text-xs ">
@@ -30,12 +30,12 @@ const PurchaseTable=(props)=>{
                             
                             <td className="flex justify-center space-x-1 items-center h-10 text-xs">
                                 <button onClick={()=>{item.qty-1 > 0 && props.qtychange(item,item.qty-1)}} className="bg-gray-500 focus:outline-none text-white text-xl px-2 h-6 w-6 flex justify-center items-center font-semibold rounded"><FaMinus className='text-xl'/></button>
-                                <input onChange={(e)=>e.target.value==="" ? props.qtychange(item,e.target.value) :  (+e.target.value > 0  && +e.target.value <= +item.qty )&& props.qtychange(item,+e.target.value)  } value={item.qty} className="w-8 text-center focus:outline-none border border-gray-300 h-6 rounded"/>
+                                <input onChange={(e)=> props.qtychange(item,e.target.value)  } value={item.qty} className="w-8 text-center focus:outline-none border border-gray-300 h-6 rounded"/>
                                 <button onClick={()=>{ props.qtychange(item,item.qty+1)}} className="bg-green-500 focus:outline-none text-white  p-1 h-6 w-6 flex justify-center items-center  font-semibold rounded"><FaPlus className='text-xs '/></button>
                             </td>
-                            <td className=" text-xs">{(item.qty * item.price).toFixed(2)}</td>
-                            <td className=" text-xs">{(item.taxAmount).toFixed(2)}</td>
-                            <td className=" text-xs">{(item.netAmount).toFixed(2)}</td>
+                            <td className=" text-xs">{item.subTotal}</td>
+                            <td className=" text-xs">{item.taxAmount}</td>
+                            <td className=" text-xs">{item.netAmount}</td>
                             <td onClick={()=>props.removeproduct(item.productId)}><MdDelete/></td>
                         </tr>
                         </tbody>
@@ -47,4 +47,4 @@ const PurchaseTable=(props)=>{
         </div>
     )
 }
-export default PurchaseTable
+export default ProductTable

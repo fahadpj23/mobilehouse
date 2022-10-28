@@ -39,6 +39,10 @@ function Home() {
           .then(res=>{
             setBanner(res.data.banner)
           }) 
+          MobileHouseApi.get("/cookieset",{ withCredentials: true })
+          .then(res=>{
+            console.log("ds")
+          }) 
           MobileHouseApi.get("/getAds")
           .then(res=>{
             setAds(res.data.Ads)

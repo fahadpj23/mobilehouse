@@ -33,6 +33,7 @@ import Profile from 'pages/profile';
 import Payment from 'pages/Payment';
 import CancelOrder from 'pages/CancelOrder';
 import OrderDetails from 'pages/OrderDetails';
+import Sales from 'pages/admin/Sales';
 function App(){
     const[ authState, setAuthState ]=useState("")
     const[ UserauthState, setUserAuthState ]=useState("")
@@ -123,6 +124,7 @@ function App(){
                                     <Route  path="/admin/Hsncode" component={Hsncode}/>
                                     <Route  path="/admin/Brand" component={Brand}/>
                                     <Route  path="/admin/Heading" component={Heading}/>
+                                    <Route  path="/admin/Sales" component={Sales}/>
                                     <Route  path="/admin/Banner" component={Banner}/>
                                     <Route  path="/admin/Ads" component={Ads}/>
                                     <Route  path="/PrivacyPolicy" component={PrivacyPolicy}/>

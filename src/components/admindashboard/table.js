@@ -29,7 +29,7 @@ const TableContent=(props)=>{
     
   
     const SearchTable=(searchval)=>{
-        MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:searchval,PageNo:PageNo},headers:{accessToken:localStorage.getItem("accessToken")}})
+        MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:searchval,PageNo:PageNo},headers:{accessToken:localStorage.getItem("accessToken")}},{ withCredentials: true })
         .then((res)=>{
             setTableData(res.data)
             setTotalCount(res.data.Count)
@@ -165,7 +165,7 @@ const TableContent=(props)=>{
                     {
                     
                     TableData  && TableData.TableHead?.map((item,key)=>
-                        <th className="text-xs font-medium capitalize md:text-base px-3 py-3  " key={key}>{item}</th>
+                        <th className="text-xs font-medium capitalize md:text-sm px-3 py-3  " key={key}>{item}</th>
                     )
                     }
                     {/* {props.controller=="Purchase" && <th className="flex justify-center mt-3 text-sm md:text-base md:mt-4">Approval</th>} */}
