@@ -38,9 +38,10 @@ const SalesAdd=(props)=>{
        
         formData.append('customerName',salesDetails.CustomerName)
         formData.append('customerPhone',salesDetails.CustomerPhone)
-        formData.append('paymentMethod',salesDetails.paymentmethod)
+        formData.append('PaymentMethod',salesDetails.PaymentMethod)
         formData.append('products',JSON.stringify( salesTable))
        
+        formData.append('subTotal',subTotal)
         formData.append('TaxAmount',TaxAmount)
         formData.append('GrandTotal',GrandTotal)
         formData.append('operation',props.operation)
@@ -119,18 +120,14 @@ const SalesAdd=(props)=>{
      }
 
     const removeproduct=(index)=>{
-        console.log(index)
-        // setBillProducts((prevBillProducts:any)=>prevBillProducts.filter((product:any)=>product.id != id))
         setsalesTable((prevsalesTable)=>prevsalesTable.filter((product)=>product.productId!=index))
-        // salesTable.splice(index, 1)
-        // setremproduct(!remproduct)
-        console.log(salesTable)
+       
     }
 
     useEffect(()=>{
         if(props.operation)
         {
-            MobileHouseApi.get('/getPurchaseProduct',{params:{purchaseId:props.operationitem.id}, headers:{accessToken:localStorage.getItem('accessToken')}})
+            MobileHouseApi.get('/getSalesProduct',{params:{salesId:props.operationitem.id}, headers:{accessToken:localStorage.getItem('accessToken')}})
             .then((res)=>{
                setsalesTable(res.data.products)
             })
