@@ -1,14 +1,14 @@
 
 
 
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {useContext} from 'react'
 import { AuthContext } from 'helpers/authcontext';
 import MainLayoutAdmin from 'components/admindashboard/MainLayoutAdmin';
 import TableContent from 'components/admindashboard/table';
 import { MobileHouseApi } from 'helpers/axiosinstance';
 function Order(){
-    let history=useHistory();
+    let navigate=useNavigate();
     const Auth=useContext(AuthContext)
     const DeliveryStatus=(val,orderDetails)=>{
         console.log(orderDetails)
@@ -31,7 +31,7 @@ function Order(){
                  </MainLayoutAdmin>
               
             :
-                history.push("/AdminLogin")
+                navigate("/AdminLogin")
             }
         </div>
     )

@@ -59,7 +59,7 @@ fi
 
 # This is a rough translation of:
 #
-#   head_has_history() ? "HEAD" : EMPTY_TREE_SHA1_HEX
+#   head_has_navigate() ? "HEAD" : EMPTY_TREE_SHA1_HEX
 if git cat-file -e HEAD 2>/dev/null
 then
 	head=HEAD

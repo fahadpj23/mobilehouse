@@ -1,13 +1,13 @@
 import SideNav from "../../components/admindashboard/sideNav";
 import {useContext} from 'react'
 import { AuthContext } from '../../helpers/authcontext';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import BrandMain from "components/admindashboard/Brand/BrandMain";
 
 
 const Brand=()=>{
     const Auth=useContext(AuthContext)
-    let history=useHistory();
+    let navigate=useNavigate();
     return(
          <div className="flex">
              {Auth && Auth.authState=="authorized" ?
@@ -16,7 +16,7 @@ const Brand=()=>{
                 controller="brand"
                 />
             :
-                history.push("/AdminLogin")
+                navigate("/AdminLogin")
             }
             
          </div>

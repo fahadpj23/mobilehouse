@@ -1,23 +1,19 @@
-import AdminLoginMain from "../components/admin/Adminlogin"
-import { AuthContext } from "../helpers/authcontext"
-import { useHistory } from 'react-router-dom';
-import { useContext } from "react"
 
+import { AuthContext } from "../helpers/authcontext"
+import { useNavigate } from 'react-router-dom';
+import { useContext } from "react"
+import AdminLoginMain from "components/admin/Adminlogin";
 const AdminLogin=()=>{
 
     const Auth=useContext(AuthContext)
     console.log(Auth)
-    let history=useHistory();
+    let navigate=useNavigate();
     return(
         <div>
            
-            {
-
-                Auth && Auth.authState=="authorized" ? 
-                history.push("/admin/Dashboard")
-                :
+            
                 <AdminLoginMain/>
-            }
+         
             
         </div>
     )

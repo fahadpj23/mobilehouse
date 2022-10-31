@@ -4,12 +4,12 @@ import AllProduct from 'components/admindashboard/products/allProducts'
 import {useContext} from 'react'
 
 import { AuthContext } from '../../helpers/authcontext';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import TableContent from 'components/admindashboard/table';
 import MainLayoutAdmin from 'components/admindashboard/MainLayoutAdmin';
 const Product=()=>{
     const [products, setproducts] = useState("")
-    let history=useHistory();
+    let navigate=useNavigate();
     const Auth=useContext(AuthContext)
    
         return(
@@ -23,7 +23,7 @@ const Product=()=>{
                 </MainLayoutAdmin>
                
                 :
-                    history.push("/AdminLogin")
+                    navigate("/AdminLogin")
                 }
             
                 </div>

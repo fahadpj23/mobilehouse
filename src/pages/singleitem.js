@@ -1,115 +1,38 @@
 import React, { useState,useEffect } from 'react';
 import {MobileHouseApi} from "helpers/axiosinstance";
 import SingleItemMain from '../components/SingleItemMain/SingleItemMain'
-import { useHistory } from 'react-router-dom';
+import { useNavigate ,useSearchParams,useParams} from 'react-router-dom';
 import MainLayoutWebsite from 'components/MainLayoutWebsite';
 
 const SingleItem=(props)=>{
    
-
-    let history=useHistory();
+    let {productId}=useParams()
+    let navigate=useNavigate();
     const [singleitem, setsingleitem] = useState("")
+    
     const [relateditems, setrelateditems] = useState("")
     const [variants, setvariants] = useState("")
-    const [variantchoosed, setvariantchoosed] = useState(false)
     const [categoryVariant, setcategoryVariant] = useState("")
-    const [reload, setreload] = useState(false)
     const [pageLoad, setpageLoad] = useState(false)
+   
     
-    const search = props.location.search;
-    const productId = new URLSearchParams(search).get('productid')
-        // if (history.action === 'replace') {
-        //     console.log("fdfdf")
-        //    }
-    //    if (history.action === 'POP') {
-    //      setreload(true)
-    // setreload(history.action)
- 
        
-    console.log(history.action)
 
-        if(history.action=="POP" || history.action=="PUSH")
-        {
-            window.scrollTo(0, 0)
-           setsingleitem("")
-           setvariants("")
-           setcategoryVariant("")
-           setrelateditems("")
-            setpageLoad(true)
-            history.action="dsds"
-            MobileHouseApi.get(`/singleview`,{params: { productId: productId}})
-            
-            .then(res=>{
-                  if(res.data.product)
-                    {
-                    const product=res.data.product;
-                    console.log(product)
-                    setsingleitem(product)
-                    MobileHouseApi.get(`/related`,{params: {  category:product.category,variantid:product.variantid}})
-                    .then(res=>{
-                        setrelateditems(res.data.relatedProduct)
-                        
-                    })  
-                    MobileHouseApi.get(`/variantproduct`,{params: { variantid: product.variantid}})
-                    .then(res=>{
-                    setvariants(res.data.variants)
-                        
-                    })  
-                    MobileHouseApi.get(`/categoryVariant`,{params: { category:product.category}})
-                    .then(res=>{
-                        console.log(res.data.categoryVariant)
-                    setcategoryVariant(res.data.categoryVariant)
-                        
-                    })  
-                    setTimeout(() => {
-                        setpageLoad(false)
-                    }, 300);
-                }
-                else
-                {
-                    console.log(res.data.error)
-                    setTimeout(() => {
-                        setpageLoad(false)
-                    }, 300);
-                }
-            })   
-           
-        }
+
      
     const singleitemset=(item1)=>{
       
-        console.log(window.addEventListener)
-        setsingleitem("")
-        setvariants("")
-        setcategoryVariant("")
-        setrelateditems("")
-            history.replace({pathname:'singleItem',search: "?" + new URLSearchParams({productid: item1.id}).toString() })
-            MobileHouseApi.get(`/singleview`,{params: { productId: item1.id}})
-            
-            .then(res=>{
-                if(res.data.product)
-                {
-                    const product=res.data.product;
-                    
-                     setsingleitem(product)
-                   
-                }
-                else
-                {
-                    console.log(res.data.error)
-                    
-                }
-            })   
-            setvariantchoosed(true)   
+        
+            navigate({pathname:`/singleItem/${item1.id}`, },{replace:true})
+           
 
     }
     
    
 
     useEffect(() => {
-   
-        if(singleitem=="" )
-        {
+          
+      
             window.scrollTo(0, 0)
             setsingleitem("")
             setpageLoad(true)  
@@ -152,16 +75,15 @@ const SingleItem=(props)=>{
                       
                     }   
             })
-        }
+        
       
 
     
-        if(variantchoosed==true)
-        {
-            setvariantchoosed(false)
-        }   
-    }, [variantchoosed,reload])
+      
+    }, [productId])
    
+
+ 
     return(
         <div className="">
             {pageLoad==true ?

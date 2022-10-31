@@ -3,17 +3,17 @@ import { FaRegUserCircle } from 'react-icons/fa';
 import { useState } from 'react';
 import Myorder from './myorder';
 import PersonalInformation from './Personal_Information';
-import {  useHistory } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 import Profile_Address from './profile_Address';
 import Cartmain from 'components/cart/CartMain'
 const ProfileMain=()=>{
-    let history=useHistory();
+    let navigate=useNavigate();
     const [sidenavValue,setsidenavValue]=useState(1)
 
     const userLogout=()=>{
         localStorage.removeItem('UserName')
         localStorage.removeItem('UserToken')
-        history.push('/')
+        navigate('/')
         window.location.reload(false);
 
     }   

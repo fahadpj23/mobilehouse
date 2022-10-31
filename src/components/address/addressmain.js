@@ -1,14 +1,14 @@
 
 import React, { useContext, useState} from 'react';
 import { Usercontext } from '../context/userContext';
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {MobileHouseApi} from "helpers/axiosinstance"
 import AddressProduct from './addressProduct';
 import Login from 'components/Home/login';
 import { Link } from 'react-router-dom';
 import { Button } from '@mui/material';
 const AddressMain=(props)=>{
-    const history = useHistory();
+    const navigate = useNavigate();
     const context=useContext(Usercontext)
 
     
@@ -44,7 +44,7 @@ const AddressMain=(props)=>{
              Address[key] = value;
          });
        
-        history.push({ pathname :"/Payment",state:{product:props.item,AddressInfo:JSON.stringify(Address)}});
+        navigate({ pathname :"/Payment",state:{product:props.item,AddressInfo:JSON.stringify(Address)}});
      
         
     }

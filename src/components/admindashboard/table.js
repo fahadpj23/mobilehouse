@@ -6,7 +6,7 @@ import { MobileHouseApi } from "axiosinstance";
 import NavOperation from "./operation";
 import UploadSpinner from "./uploadstatus";
 import PaginateTable from "./pagination";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { Usercontext } from 'components/context/userContext';
 
 const TableContent=(props)=>{
@@ -15,7 +15,7 @@ const TableContent=(props)=>{
     const queryParams = new URLSearchParams(window.location.search)
     const PageNo = queryParams.get("pageNo")
     
-    const history=useHistory()
+    const navigate=useNavigate()
     const[TableData,setTableData]=useState("")
     const[operation,setoperation]=useState("")
     const[operationitem,setoperationitem ]=useState("")
@@ -39,7 +39,7 @@ const TableContent=(props)=>{
     const handlePageClick=(e)=>{
         console.log(e.selected  )
        console.log(window.location.href)
-        history.replace( { search: "?" + new URLSearchParams({pageNo: +(e.selected) +1}).toString() })
+        navigate.replace( { search: "?" + new URLSearchParams({pageNo: +(e.selected) +1}).toString() })
         MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:searchvalue,PageNo:+(e.selected) +1},headers:{accessToken:localStorage.getItem("accessToken")}})
         .then((res)=>{ 
             setTableData(res.data)

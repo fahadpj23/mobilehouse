@@ -1,9 +1,9 @@
 
 import MainLayoutWebsite from "components/MainLayoutWebsite";
 import ProfileMain from "components/profile/profileMain";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router-dom";
 const Profile=()=>{
-    const history=useHistory();
+    const navigate=useNavigate();
 
     return(
         <div>
@@ -14,7 +14,7 @@ const Profile=()=>{
                 </MainLayoutWebsite>
                :
                
-               history.push("/")
+               navigate("/")
               
             }
           

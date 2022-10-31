@@ -2,12 +2,12 @@ import axios from 'axios'
 import React, { useState,useContext } from 'react';
 import { Usercontext } from 'components/context/userContext';
 import {Route,BrowserRouter as Router} from  "react-router-dom";
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../helpers/authcontext';
 import {MobileHouseApi} from "helpers/axiosinstance"
 
 const AdminLoginMain=()=>{
-let history=useHistory();
+let navigate=useNavigate();
 const Auth=useContext(AuthContext)
 const context=useContext(Usercontext )
 
@@ -23,7 +23,7 @@ const handleSubmit=(e)=>{
                     console.log(res.data.accessToken)
                     localStorage.setItem("accessToken",res.data.accessToken)
                     Auth.setAuthState("authorized")
-                    history.push("/admin/Dashboard")
+                    navigate("/admin/Dashboard")
                   
                     
                 }
@@ -42,7 +42,7 @@ const handleSubmit=(e)=>{
              
     //             localStorage.setItem("accessToken",res.data.accessToken)
     //             Auth.setAuthState("authorized")
-    //             history.push("/Dashboard")
+    //             navigate("/Dashboard")
                 
     //         }
 

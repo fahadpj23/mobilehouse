@@ -3,11 +3,11 @@ import { Usercontext } from "../../context/userContext";
 import AddProductWindow from "./addProductWindow"
 import { AiOutlineClose} from 'react-icons/ai';
 import UploadSpinner from "../uploadstatus";
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import SideNav from "../sideNav"
 import {MobileHouseApi} from "helpers/axiosinstance"
 const AddProductMain=(props)=>{
-    let history=useHistory();
+    let navigate=useNavigate();
     let categoryattributevalues=[];
 
     console.log(props.operationitem.category)

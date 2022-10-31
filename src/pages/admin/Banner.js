@@ -1,7 +1,7 @@
 import SideNav from "../../components/admindashboard/sideNav";
 import {useContext,useEffect,useState} from 'react'
 import { AuthContext } from '../../helpers/authcontext';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import MainLayoutAdmin from "components/admindashboard/MainLayoutAdmin";
 import TableContent from "components/admindashboard/table";
 
@@ -9,7 +9,7 @@ const Banner=()=>{
    
      const Auth=useContext(AuthContext)
     // const [products,setproducts]=useState("")
-     let history=useHistory();
+     let navigate=useNavigate();
   
    
   
@@ -23,7 +23,7 @@ const Banner=()=>{
                 />
             </MainLayoutAdmin>
             :
-                history.push("/AdminLogin")
+                navigate("/AdminLogin")
             }
             
          </div>

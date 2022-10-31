@@ -4,13 +4,13 @@ import {Usercontext} from '../context/userContext'
 import {Component, useContext,useState} from 'react'
 import { GiConsoleController } from "react-icons/gi";
 import { FaPlus } from "react-icons/fa";
-import { useHistory } from "react-router-dom";
+import { useNavigate ,createSearchParams} from "react-router-dom";
 
 
 const SingleProduct=(props)=>{
     const context=useContext(Usercontext)
     const [cartadd, setcartadd] = useState(false)
-    const history=useHistory()
+    const navigate=useNavigate()
     let item=props.item ;
     // let imageArray=[];
     // let productImage=[];
@@ -24,7 +24,7 @@ const SingleProduct=(props)=>{
    
     const singleProductView=(item)=>{
        
-        history.push({ pathname: "/singleItem",   search: "?" + new URLSearchParams({productid: item.id}).toString() })
+        navigate({ pathname: `/singleItem/${item.id}`})
        
     }
    

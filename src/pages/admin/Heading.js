@@ -1,7 +1,7 @@
 
 import {useContext,useEffect,useState} from 'react'
 import { AuthContext } from '../../helpers/authcontext';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import MainLayoutAdmin from 'components/admindashboard/MainLayoutAdmin';
 import TableContent from 'components/admindashboard/table';
 
@@ -10,7 +10,7 @@ const Heading=()=>{
 
     const Auth=useContext(AuthContext)
   
-    let history=useHistory();
+    let navigate=useNavigate();
   
    
  
@@ -23,7 +23,7 @@ const Heading=()=>{
                   />
                   </MainLayoutAdmin>
             :
-                history.push("/AdminLogin")
+                navigate("/AdminLogin")
             }
             
          </div>

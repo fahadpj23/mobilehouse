@@ -4,10 +4,10 @@ import { BsCircle } from 'react-icons/bs';
 import { MobileHouseApi } from 'helpers/axiosinstance';
 import { useState } from 'react';
 import AddressProduct from 'components/address/addressProduct';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 const Payment=(props)=>{
 
-    let history=useHistory()
+    let navigate=useNavigate()
     const [paymentType,setpaymentType]=useState("CashOnDelivery")
     let total=0
     let total1=0
@@ -67,7 +67,7 @@ const Payment=(props)=>{
                 if(res.data.orderId)
                 {
 
-                 history.push({ pathname :"/OrderSuccess",search : "?"+ new URLSearchParams({orderId    :res.data.orderId}) });
+                 navigate({ pathname :"/OrderSuccess",search : "?"+ new URLSearchParams({orderId    :res.data.orderId}) });
                   
                 }
            

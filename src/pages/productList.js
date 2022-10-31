@@ -1,11 +1,11 @@
 
 import ProductListMain from '../components/ProductList/ProductListMain'
 import {MobileHouseApi} from "helpers/axiosinstance";
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useEffect,useState } from 'react'
 import MainLayoutWebsite from "components/MainLayoutWebsite";
 const ProductList=(props)=>{
-    let history=useHistory();
+    let navigate=useNavigate();
     const [products,setproducts]=useState("")
     //when we select a brand from filter brand it will storw in this state
     const [BrandChoosed,setBrandChoosed]=useState([])
@@ -22,11 +22,11 @@ const ProductList=(props)=>{
     const BND=new URLSearchParams(window.location.search).get('BND') ? new URLSearchParams(window.location.search).get('BND') :""
     const PageNo=new URLSearchParams(window.location.search).get('PageNo') && new URLSearchParams(window.location.search).get('PageNo')
 
-    console.log(history.action)
+    console.log(navigate.action)
    
     const handlePageClick=(e)=>{
         setproducts("")
-        history.replace({
+        navigate.replace({
             pathname: '/ProductList',
             search: `type=${productListType}&${productListType}=${new URLSearchParams(window.location.search).get(productListType)}&sort=${sort}&PageNo=${+(e.selected) +1} ${BND ? `&BND=${BrandChoosed.toString()}`:""} ${minprice ? `&minprice=${minprice}  &maxprice=${maxprice}` : ""}`
           })
@@ -35,7 +35,7 @@ const ProductList=(props)=>{
     // sort change then  change url and relaod. 3 type of product list(newest first,hightolow..) so check params value and set related to it when change url
     const SortSelect=(sortvalue)=>{
         setproducts("")
-        history.replace({
+        navigate.replace({
             pathname: '/ProductList',
             search: `type=${productListType}&${productListType}=${new URLSearchParams(window.location.search).get(productListType)}&sort=${sortvalue}&PageNo=${PageNo} &${BND ? `&BND=${BrandChoosed.toString()}`:""} ${minprice ? `&minprice=${minprice}  &maxprice=${maxprice}` : ""}`
           })
@@ -58,7 +58,7 @@ const ProductList=(props)=>{
     //BrandFilter execute
     const BrandFilter=()=>{
         setproducts("")
-        history.replace({
+        navigate.replace({
             pathname: '/ProductList',
             search: `type=${productListType}&${productListType}=${new URLSearchParams(window.location.search).get(productListType)}&sort=${sort}&PageNo=${PageNo} &${`&BND=${BrandChoosed.toString()}`} ${minprice ? `&minprice=${minprice}  &maxprice=${maxprice}` : ""}`
 
@@ -79,7 +79,7 @@ const ProductList=(props)=>{
     setproducts("")
     setminpricevalue(min)
     setmaxpricevalue(max)
-    history.replace({ 
+    navigate.replace({ 
         pathname: `/ProductList`,
         search: `type=${productListType}&${productListType}=${new URLSearchParams(window.location.search).get(productListType)}&sort=${sort}&PageNo=${PageNo} &${BND ? `&BND=${BrandChoosed.toString()}`:""} &minprice=${min}  &maxprice=${max}`
 
@@ -89,10 +89,10 @@ const ProductList=(props)=>{
 
     }
    
-    if( history.action=="REPLACE" || history.action=="PUSH" ){
+    if( navigate.action=="REPLACE" || navigate.action=="PUSH" ){
         
         window.scrollTo(0, 0)
-        history.action="ok"
+        navigate.action="ok"
         MobileHouseApi.get(`/productList/${productListType}`,{params:{[productListType]:new URLSearchParams(window.location.search).get(productListType),sort:sort,BND:BrandChoosed.length!=0 ?   BrandChoosed.map(item => "'" + item + "'").join() : "NOBRAND",PageNo:PageNo,minprice:minprice,maxprice:maxprice}})
         .then(res=>{
             setproducts(res.data.products)

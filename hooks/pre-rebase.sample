@@ -13,7 +13,7 @@
 #
 # This sample shows how to prevent topic branches that are already
 # merged to 'next' branch from getting rebased, because allowing it
-# would result in rebasing already published history.
+# would result in rebasing already published navigate.
 
 publish=next
 basebranch="$1"
@@ -102,7 +102,7 @@ The workflow assumed here is:
    it is deleted.  If you need to build on top of it to correct
    earlier mistakes, a new topic branch is created by forking at
    the tip of the "master".  This is not strictly necessary, but
-   it makes it easier to keep your history simple.
+   it makes it easier to keep your navigate simple.
 
  * Whenever you need to test or publish your changes to topic
    branches, merge them into "next" branch.

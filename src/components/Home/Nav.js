@@ -9,13 +9,13 @@ import {Link} from "react-router-dom";
 import Login from './login';
 import UserRegister from './userRegister';
 import { Usercontext } from 'components/context/userContext';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import MobileSearchWindow from './MobileSearchWindow';
 import { debounce } from 'lodash';
 const Nav=(props)=>{
 
     let context=useContext(Usercontext)
-    let history=useHistory();
+    let navigate=useNavigate();
     
     const [searchitem, setsearchitem] = useState("")
  
@@ -60,7 +60,7 @@ const Nav=(props)=>{
 
     const selectNavProduct=(product)=>{
         console.log(product)
-        history.push({pathname:'singleItem',search: "?" + new URLSearchParams({productid: product.id}).toString() })
+        navigate({pathname:'singleItem',search: "?" + new URLSearchParams({productid: product.id}).toString() })
         window.location.reload(false);
     }
 
@@ -89,7 +89,7 @@ const Nav=(props)=>{
     //     if (e.key == 'Enter') {
     //         console.log("dsds")
     //         let serachval=document.getElementById('productsearchInputTag').value
-    //         history.push({pathname: "/productList",search: "?" + new URLSearchParams({type:'searchitem',searchitem:serachval,sort:"newestfirst"}).toString()})
+    //         navigate({pathname: "/productList",search: "?" + new URLSearchParams({type:'searchitem',searchitem:serachval,sort:"newestfirst"}).toString()})
     //         // setsearchitem("")
     //         // setsearchValue("")
       
@@ -104,7 +104,7 @@ const Nav=(props)=>{
        inputdiv.addEventListener("keypress", function(event) {
         if (event.key === "Enter") {
            setsearchValue("")
-        history.replace({pathname: "/productList",search: "?" + new URLSearchParams({type:'searchitem',searchitem:document.getElementById('productsearchInputTag').value,sort:"newestfirst",PageNo:1}).toString()})
+        navigate.replace({pathname: "/productList",search: "?" + new URLSearchParams({type:'searchitem',searchitem:document.getElementById('productsearchInputTag').value,sort:"newestfirst",PageNo:1}).toString()})
        
     }
     });
@@ -143,7 +143,7 @@ const Nav=(props)=>{
                     <div className="w-full md:w-7/12 ">
                         <div className="flex items-center space-x-3 md:space-x-0 w-full">
                             <Link to={{pathname: "/" }}  className="w-8/12 md:w-full  ml-2 focus:outline-none">
-                                <img src="MobilehouseLogo.png" alt="logo" width="250" height="250"  />
+                                <img src="/MobilehouseLogo.png" alt="logo" width="250" height="250"  />
                                         
                             </Link>
                             <div className="hidden md:block relative w-10/12 " >

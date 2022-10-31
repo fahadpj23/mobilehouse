@@ -3,7 +3,7 @@ import Home from './pages/Home'
 import PageNotFound from 'pages/404Page';
 import Cart from './pages/cart';
 import Address from './pages/address';
-import {Route,BrowserRouter as Router,Switch} from  "react-router-dom";
+import {Route,BrowserRouter,Routes, Navigate} from  "react-router-dom";
 import SingleItem from './pages/singleitem'
 import Order from './pages/admin/Order'
 import AdminLogin from './pages/adminLogin';
@@ -97,54 +97,54 @@ function App(){
             <AuthContext.Provider value={{ authState, setAuthState ,UserauthState, setUserAuthState}}>
                      
                         <ContextProvider > 
-                          
+                            {console.log(authState)}
                             {
                                 (authState!=="" && UserauthState!=="") &&
-                                <Router>
+                                <BrowserRouter>
              
-                                    <Switch>
-                                    <Route  path="/" exact  component={Home}/>  
-                                    <Route path="/admin/Dashboard" component={Dashboard}/>
+                                    <Routes>
+                                    <Route  path="/" index  element={<Home/>}/>  
+                                    <Route path="/admin/Dashboard" element={<Dashboard/>}/>
                                     
-                                    <Route  path="/admin/orders" component={Order}/>
-                                    <Route  path="/admin/Product" component={Product}/>
+                                    <Route  path="/admin/orders" element={<Order/>}/>
+                                    <Route  path="/admin/Product" element={<Product/>}/>
                                 
-                                    <Route  path="/singleItem" component={SingleItem}/>
-                                    <Route  path="/TermsOfService" component={TermsOfService}/>
+                                    <Route exact  path="/singleItem/:productId" element={<SingleItem/>}/>
+                                    <Route  path="/TermsOfService" element={<TermsOfService/>}/>
                                     
-                                    <Route  path="/Address" component={Address}/>
-                                    <Route  path="/cart" component={Cart}/>
-                                    <Route  path="/adminLogin" component={AdminLogin}/>
-                                    <Route  path="/admin/Attribute" component={Attribute}/>
-                                    <Route  path="/admin/category" component={Category}/>
-                                    <Route  path="/ProductList" component={ProductList}/>
-                                    <Route  path="/OrderSuccess" component={OrderSuccess}/>
-                                    <Route  path="/admin/Purchase" component={Purchase}/>
-                                    <Route  path="/admin/Supplier" component={Supplier}/>
-                                    <Route  path="/admin/Hsncode" component={Hsncode}/>
-                                    <Route  path="/admin/Brand" component={Brand}/>
-                                    <Route  path="/admin/Heading" component={Heading}/>
-                                    <Route  path="/admin/Sales" component={Sales}/>
-                                    <Route  path="/admin/Banner" component={Banner}/>
-                                    <Route  path="/admin/Ads" component={Ads}/>
-                                    <Route  path="/PrivacyPolicy" component={PrivacyPolicy}/>
-                                    <Route  path="/RefundPolicy" component={RefundPolicy}/>
-                                    <Route  path="/ShippingPolicy" component={ShippingPolicy}/>
-                                    <Route  path="/AboutUs" component={AboutUs}/>
-                                    <Route  path="/Profile" component={Profile}/>
-                                    <Route  path="/Payment" component={Payment}/>
-                                    <Route  path="/Myorders/OrderDetails" component={OrderDetails}/>
-                                    <Route  path="/Myorders/CancelOrder" component={CancelOrder}/>
+                                    <Route  path="/Address" element={<Address/>}/>
+                                    <Route  path="/cart" element={<Cart/>}/>
+                                    <Route  path="/adminLogin" element={authState=="authorized" ? <Navigate to="/admin/Dashboard" replace/>  : <AdminLogin/>}/>
+                                    <Route  path="/admin/Attribute" element={<Attribute/>}/>
+                                    <Route  path="/admin/category" element={<Category/>}/>
+                                    <Route  path="/ProductList" element={<ProductList/>}/>
+                                    <Route  path="/OrderSuccess" element={<OrderSuccess/>}/>
+                                    <Route  path="/admin/Purchase" element={<Purchase/>}/>
+                                    <Route  path="/admin/Supplier" element={<Supplier/>}/>
+                                    <Route  path="/admin/Hsncode" element={<Hsncode/>}/>
+                                    <Route  path="/admin/Brand" element={<Brand/>}/>
+                                    <Route  path="/admin/Heading" element={<Heading/>}/>
+                                    <Route  path="/admin/Sales" element={<Sales/>}/>
+                                    <Route  path="/admin/Banner" element={<Banner/>}/>
+                                    <Route  path="/admin/Ads" element={<Ads/>}/>
+                                    <Route  path="/PrivacyPolicy" element={<PrivacyPolicy/>}/>
+                                    <Route  path="/RefundPolicy" element={<RefundPolicy/>}/>
+                                    <Route  path="/ShippingPolicy" element={<ShippingPolicy/>}/>
+                                    <Route  path="/AboutUs" element={<AboutUs/>}/>
+                                    <Route  path="/Profile" element={<Profile/>}/>
+                                    <Route  path="/Payment" element={<Payment/>}/>
+                                    <Route  path="/Myorders/OrderDetails" element={<OrderDetails/>}/>
+                                    <Route  path="/Myorders/CancelOrder" element={<CancelOrder/>}/>
                                   
 
-                                    <Route    component={PageNotFound}/>
+                                    <Route    element={<PageNotFound/>}/>
 
                                     
                                     
                                     
-                                    </Switch>
+                                    </Routes>
            
-           </Router>
+           </BrowserRouter>
                             }
                            
                            

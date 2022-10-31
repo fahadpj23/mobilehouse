@@ -4,13 +4,13 @@ import { useState,useEffect } from 'react';
 import { MobileHouseApi } from 'helpers/axiosinstance';
 import {BsSearch } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
    
   
 const MobileSearchWindow=(props)=>{
-    let history=useHistory();
+    let navigate=useNavigate();
     const [searchitem,setsearchitem]=useState("")
     
     // useEffect(()=>{
@@ -18,7 +18,7 @@ const MobileSearchWindow=(props)=>{
     //     inputdiv.addEventListener("keypress", function(event) {
     //      if (event.key === "Enter") {
     //        props.setsearchValue("")
-    //      history.push({pathname: "/productList",search: "?" + new URLSearchParams({type:'searchitem',searchitem:document.getElementById('productsearchInputTagMobile').value,sort:"newestfirst"}).toString()})
+    //      navigate({pathname: "/productList",search: "?" + new URLSearchParams({type:'searchitem',searchitem:document.getElementById('productsearchInputTagMobile').value,sort:"newestfirst"}).toString()})
         
     //  }
     //  });
@@ -29,7 +29,7 @@ const MobileSearchWindow=(props)=>{
          if (event.key === "Enter") {
             props.setsearchValue("")
             
-         history.replace({pathname: "/productList",search: "?" + new URLSearchParams({type:'searchitem',searchitem:document.getElementById('productsearchInputTagMobile')?.value,sort:"newestfirst",PageNo:1}).toString()})
+         navigate.replace({pathname: "/productList",search: "?" + new URLSearchParams({type:'searchitem',searchitem:document.getElementById('productsearchInputTagMobile')?.value,sort:"newestfirst",PageNo:1}).toString()})
          props.setMobileSearchStatus(false)
      }
      });

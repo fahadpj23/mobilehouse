@@ -1,12 +1,12 @@
 
 import {useContext,useEffect} from 'react'
 import { AuthContext } from 'helpers/authcontext';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import TableContent from 'components/admindashboard/table';
 import MainLayoutAdmin from "components/admindashboard/MainLayoutAdmin";
 const Category=()=>{
     const Auth=useContext(AuthContext)
-    let history=useHistory();
+    let navigate=useNavigate();
     const attributes=[];
    
 
@@ -21,7 +21,7 @@ const Category=()=>{
                  </MainLayoutAdmin>
               
             :
-                history.push("/AdminLogin")
+                navigate("/AdminLogin")
             }
             
          </div>
