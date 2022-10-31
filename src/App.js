@@ -106,8 +106,8 @@ function App(){
                                     <Route  path="/" index  element={<Home/>}/>  
                                     <Route path="/admin/Dashboard" element={<Dashboard/>}/>
                                     
-                                    <Route  path="/admin/orders" element={<Order/>}/>
-                                    <Route  path="/admin/Product" element={<Product/>}/>
+                                    <Route  path="/admin/orders" element={authState=="authorized" ? <Order/>  : <Navigate to="/adminLogin" replace/>   } />
+                                    <Route  path="/admin/Product" element={authState=="authorized" ? <Product/>  : <Navigate to="/adminLogin" replace/>   }/>
                                 
                                     <Route exact  path="/singleItem/:productId" element={<SingleItem/>}/>
                                     <Route  path="/TermsOfService" element={<TermsOfService/>}/>
@@ -115,18 +115,18 @@ function App(){
                                     <Route  path="/Address" element={<Address/>}/>
                                     <Route  path="/cart" element={<Cart/>}/>
                                     <Route  path="/adminLogin" element={authState=="authorized" ? <Navigate to="/admin/Dashboard" replace/>  : <AdminLogin/>}/>
-                                    <Route  path="/admin/Attribute" element={<Attribute/>}/>
-                                    <Route  path="/admin/category" element={<Category/>}/>
+                                    <Route  path="/admin/Attribute" element={authState=="authorized" ? <Attribute/>  : <Navigate to="/adminLogin" replace/>  }/>
+                                    <Route  path="/admin/category" element={authState=="authorized" ? <Category/>  : <Navigate to="/adminLogin" replace/>   } />
                                     <Route  path="/ProductList" element={<ProductList/>}/>
                                     <Route  path="/OrderSuccess" element={<OrderSuccess/>}/>
-                                    <Route  path="/admin/Purchase" element={<Purchase/>}/>
-                                    <Route  path="/admin/Supplier" element={<Supplier/>}/>
-                                    <Route  path="/admin/Hsncode" element={<Hsncode/>}/>
-                                    <Route  path="/admin/Brand" element={<Brand/>}/>
-                                    <Route  path="/admin/Heading" element={<Heading/>}/>
-                                    <Route  path="/admin/Sales" element={<Sales/>}/>
-                                    <Route  path="/admin/Banner" element={<Banner/>}/>
-                                    <Route  path="/admin/Ads" element={<Ads/>}/>
+                                    <Route  path="/admin/Purchase" element={authState=="authorized" ? <Purchase/>  : <Navigate to="/adminLogin" replace/>   }/>
+                                    <Route  path="/admin/Supplier" element={authState=="authorized" ? <Supplier/>  : <Navigate to="/adminLogin" replace/>   }/>
+                                    <Route  path="/admin/Hsncode" element={authState=="authorized" ? <Hsncode/>  : <Navigate to="/adminLogin" replace/>   }/>
+                                    <Route  path="/admin/Brand" element={authState=="authorized" ? <Brand/>  : <Navigate to="/adminLogin" replace/>   }/>
+                                    <Route  path="/admin/Heading" element={authState=="authorized" ? <Heading/>  : <Navigate to="/adminLogin" replace/>   }/>
+                                    <Route  path="/admin/Sales" element={authState=="authorized" ? <Sales/>  : <Navigate to="/adminLogin" replace/>   }/>
+                                    <Route  path="/admin/Banner" element={authState=="authorized" ? <Banner/>  : <Navigate to="/adminLogin" replace/>   }/>
+                                    <Route  path="/admin/Ads" element={authState=="authorized" ? <Ads/>  : <Navigate to="/adminLogin" replace/>   }e/>
                                     <Route  path="/PrivacyPolicy" element={<PrivacyPolicy/>}/>
                                     <Route  path="/RefundPolicy" element={<RefundPolicy/>}/>
                                     <Route  path="/ShippingPolicy" element={<ShippingPolicy/>}/>

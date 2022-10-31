@@ -1,15 +1,10 @@
 
 
-
-import { useNavigate } from 'react-router-dom';
-import {useContext} from 'react'
-import { AuthContext } from 'helpers/authcontext';
 import MainLayoutAdmin from 'components/admindashboard/MainLayoutAdmin';
 import TableContent from 'components/admindashboard/table';
 import { MobileHouseApi } from 'helpers/axiosinstance';
 function Order(){
-    let navigate=useNavigate();
-    const Auth=useContext(AuthContext)
+   
     const DeliveryStatus=(val,orderDetails)=>{
         console.log(orderDetails)
         const formdata=new FormData()
@@ -22,7 +17,7 @@ function Order(){
     }
     return(
         <div>
-          {Auth && Auth.authState=="authorized" ?
+         
                  <MainLayoutAdmin>
                  <TableContent
                  controller="CustomerOrder"
@@ -30,9 +25,7 @@ function Order(){
                  />
                  </MainLayoutAdmin>
               
-            :
-                navigate("/AdminLogin")
-            }
+           
         </div>
     )
     }
