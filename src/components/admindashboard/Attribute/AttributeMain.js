@@ -19,7 +19,7 @@ const AttributeMain=(props)=>{
         {name:"status",type:"select",value:[{value:1,name:"active"},{value:0,name:"disable"}],required:"true"},
         {name:"values",type:"text",more:"yes"}
     ]
-    const attributevalues=[];
+    const attributevalues=props.operationitem.values ??[];
 
     const handleSubmit=(e)=>{
         e.preventDefault();
@@ -52,7 +52,7 @@ const AttributeMain=(props)=>{
                                         <FormLayout
                                             formdata={addformdata}
                                             handleSubmit={handleSubmit}
-                                            values={attributevalues}
+                                            values={props.operationitem.values}
                                             operation={props.operation}
                                             operationitem={props.operationitem}
                                             AddSucess={props.AddSucess}

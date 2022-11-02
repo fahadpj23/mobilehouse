@@ -15,7 +15,9 @@ const FormLayout=(props)=>{
     // const [searchValue,setsearchValue]=useState("")
     // const [products,setproducts]=useState("")
     const imageref=useRef()
-  
+    props.operationitem?.values.map((item,key)=>{
+        console.log(item)
+    })
 
     // input id get as parameter in addvalue function and set value to tagIdvalue
     const addvalue=(tagId)=>{
@@ -175,10 +177,10 @@ const FormLayout=(props)=>{
                                                             }
                                                         </div>
                                                         {
-                                                            item.more && props.values.length!=0 &&
+                                                            item.more && props.operationitem.values.length!=0 &&
                                                                 <div className="space-y-1 mt-1 border border-gray-400 rounded p-2 max-h-48 overflow-auto">
                                                                     {
-                                                                        props.values && props.values.map((item,key)=>{
+                                                                        props.values && props.operationitem.values.map((item,key)=>{
                                                                             return(
                                                                                 <div className="w-full flex justify-between px-2 bg-gray-200 py-1 ">
                                                                                     {console.log(item)}

@@ -104,7 +104,7 @@ function App(){
              
                                     <Routes>
                                     <Route  path="/" index  element={<Home/>}/>  
-                                    <Route path="/admin/Dashboard" element={<Dashboard/>}/>
+                                    <Route path="/admin/Dashboard" element={authState=="authorized" ? <Dashboard/>  : <Navigate to="/adminLogin" replace/>}/>
                                     
                                     <Route  path="/admin/orders" element={authState=="authorized" ? <Order/>  : <Navigate to="/adminLogin" replace/>   } />
                                     <Route  path="/admin/Product" element={authState=="authorized" ? <Product/>  : <Navigate to="/adminLogin" replace/>   }/>
@@ -137,7 +137,7 @@ function App(){
                                     <Route  path="/Myorders/CancelOrder" element={<CancelOrder/>}/>
                                   
 
-                                    <Route    element={<PageNotFound/>}/>
+                                    <Route  path='/*'  element={<PageNotFound/>}/>
 
                                     
                                     
