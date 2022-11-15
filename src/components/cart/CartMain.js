@@ -1,12 +1,12 @@
 import {useContext,useState} from 'react'
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { Usercontext } from '../context/userContext';
 import Login from 'components/Home/login';
 import UserRegister from 'components/Home/userRegister';
 import Cartitem from './cartitem';
 const Cartmain=(props)=>{
     const context=useContext(Usercontext)
-    const [zeroQtyProduct,setzeroQtyProduct]=useState("")
+   
     let total=0;
     let saved=0;
     context.cart.map((item,key)=>{
@@ -15,23 +15,28 @@ const Cartmain=(props)=>{
         console.log(item.qty)
     })
 
-    const cartCheckout=()=>{
-       
+    const  cartCheckout=()=>{
+            let count=0;
            if( context.cart.some((item)=> +item.maxqty ==0 )==true)
            {
-            context.cart && context.cart.map((item,key)=>{
-                if(item.maxqty<1)
+            context.cart && context.cart.map((item2,key2)=>{
+                if(+item2.maxqty<1)
                 {
-                    return item;
-                    // context.notify(`${item.name} don't have enough quantity`,"warning")
-                    // return false;
+                    console.log("sd")
+                    if(count==0)
+                    {
+                    context.notify(`${item2.name} don't have enough quantity`,"warning")
+                    count=count+1;
+                    }
+                    return ;
+                    
                 }
             }) 
            
            }
            else
            {
-            console.log("dsssssss")
+                Navigate()
            }
           
     }

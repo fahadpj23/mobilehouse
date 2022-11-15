@@ -39,7 +39,7 @@ const TableContent=(props)=>{
     const handlePageClick=(e)=>{
         console.log(e.selected  )
        console.log(window.location.href)
-        navigate.replace( { search: "?" + new URLSearchParams({pageNo: +(e.selected) +1}).toString() })
+        // navigate( { search: "?" + new URLSearchParams({pageNo: +(e.selected) +1}).toString() },{replace:true})
         MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:searchvalue,PageNo:+(e.selected) +1},headers:{accessToken:localStorage.getItem("accessToken")}})
         .then((res)=>{ 
             setTableData(res.data)

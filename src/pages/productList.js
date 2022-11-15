@@ -26,19 +26,19 @@ const ProductList=(props)=>{
    
     const handlePageClick=(e)=>{
         setproducts("")
-        navigate.replace({
+        navigate({
             pathname: '/ProductList',
             search: `type=${productListType}&${productListType}=${new URLSearchParams(window.location.search).get(productListType)}&sort=${sort}&PageNo=${+(e.selected) +1} ${BND ? `&BND=${BrandChoosed.toString()}`:""} ${minprice ? `&minprice=${minprice}  &maxprice=${maxprice}` : ""}`
-          })
+          },{replace:true})
         //    window.location.reload(false);
     }
     // sort change then  change url and relaod. 3 type of product list(newest first,hightolow..) so check params value and set related to it when change url
     const SortSelect=(sortvalue)=>{
         setproducts("")
-        navigate.replace({
+        navigate({
             pathname: '/ProductList',
             search: `type=${productListType}&${productListType}=${new URLSearchParams(window.location.search).get(productListType)}&sort=${sortvalue}&PageNo=${PageNo} &${BND ? `&BND=${BrandChoosed.toString()}`:""} ${minprice ? `&minprice=${minprice}  &maxprice=${maxprice}` : ""}`
-          })
+          },{replace:true})
         //   window.location.reload(false);
     }
 
@@ -58,11 +58,11 @@ const ProductList=(props)=>{
     //BrandFilter execute
     const BrandFilter=()=>{
         setproducts("")
-        navigate.replace({
+        navigate({
             pathname: '/ProductList',
             search: `type=${productListType}&${productListType}=${new URLSearchParams(window.location.search).get(productListType)}&sort=${sort}&PageNo=${PageNo} &${`&BND=${BrandChoosed.toString()}`} ${minprice ? `&minprice=${minprice}  &maxprice=${maxprice}` : ""}`
 
-        })
+        },{replace:true})
         // window.location.reload(false);
     }
 
@@ -79,35 +79,21 @@ const ProductList=(props)=>{
     setproducts("")
     setminpricevalue(min)
     setmaxpricevalue(max)
-    navigate.replace({ 
+    navigate({ 
         pathname: `/ProductList`,
         search: `type=${productListType}&${productListType}=${new URLSearchParams(window.location.search).get(productListType)}&sort=${sort}&PageNo=${PageNo} &${BND ? `&BND=${BrandChoosed.toString()}`:""} &minprice=${min}  &maxprice=${max}`
 
         // search: `type=${productListType}&${productListType}=${new URLSearchParams(window.location.search).get(productListType)}&sort=${sort}${BrandChoosed.length!=0 ? `&BND=${BrandChoosed.toString()}`:""}&PageNo=1 &minprice=${min}  &maxprice=${max}`
-      })
+      },{replace:true})
     //   window.location.reload(false);
 
     }
-   
-    if( navigate.action=="REPLACE" || navigate.action=="PUSH" ){
-        
-        window.scrollTo(0, 0)
-        navigate.action="ok"
-        MobileHouseApi.get(`/productList/${productListType}`,{params:{[productListType]:new URLSearchParams(window.location.search).get(productListType),sort:sort,BND:BrandChoosed.length!=0 ?   BrandChoosed.map(item => "'" + item + "'").join() : "NOBRAND",PageNo:PageNo,minprice:minprice,maxprice:maxprice}})
-        .then(res=>{
-            setproducts(res.data.products)
-            setproductBrand(res.data.Brand)
-            setTotalProduct(res.data.TotalProduct)
-
-          
-        }) 
-    }
+  
 
  
     useEffect(()=>{
         
-        if(products=="" )
-        {
+        
             window.scrollTo(0, 0)
             BND && setBrandChoosed(BND.replace(/ /g,'').split(','))
           
@@ -118,16 +104,12 @@ const ProductList=(props)=>{
                 setTotalProduct(res.data.TotalProduct)
             }) 
       
-        }
-        // if(productsset==true)
-        // {
-        //     setproductsset(false)
-        //     console.log("dsdsd")
-        // }
+        
+      
 
-    },[productsset])
+    },[sort,minprice,maxprice,BND,PageNo])
 
-
+   
     return(
       
         

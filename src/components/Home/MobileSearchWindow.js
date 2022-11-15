@@ -29,7 +29,7 @@ const MobileSearchWindow=(props)=>{
          if (event.key === "Enter") {
             props.setsearchValue("")
             
-         navigate.replace({pathname: "/productList",search: "?" + new URLSearchParams({type:'searchitem',searchitem:document.getElementById('productsearchInputTagMobile')?.value,sort:"newestfirst",PageNo:1}).toString()})
+         navigate({pathname: "/productList",search: "?" + new URLSearchParams({type:'searchitem',searchitem:document.getElementById('productsearchInputTagMobile')?.value,sort:"newestfirst",PageNo:1}).toString()},{replace:true})
          props.setMobileSearchStatus(false)
      }
      });
