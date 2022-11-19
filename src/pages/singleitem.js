@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from 'react';
 import {MobileHouseApi} from "helpers/axiosinstance";
 import SingleItemMain from '../components/SingleItemMain/SingleItemMain'
-import { useNavigate ,useSearchParams,useParams} from 'react-router-dom';
+import { useNavigate ,useParams} from 'react-router-dom';
 import MainLayoutWebsite from 'components/MainLayoutWebsite';
 
 const SingleItem=(props)=>{
