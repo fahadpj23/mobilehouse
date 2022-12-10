@@ -11,9 +11,7 @@ const ProductList=(props)=>{
     const [BrandChoosed,setBrandChoosed]=useState([])
     const [productBrand,setproductBrand]=useState("")
     const [TotalProduct,setTotalProduct]=useState("")
-    const [minpricevalue,setminpricevalue]=useState("")
-    const [maxpricevalue,setmaxpricevalue]=useState("")
-    const [productsset,setproductsset]=useState(false)
+ 
     
     const productListType = new URLSearchParams(window.location.search).get('type') && new URLSearchParams(window.location.search).get('type')
     const sort = new URLSearchParams(window.location.search).get('sort') && new URLSearchParams(window.location.search).get('sort')
@@ -50,9 +48,7 @@ const ProductList=(props)=>{
             setBrandChoosed(BrandChoosed=>[...BrandChoosed,BrandSele.replace(/\s/g, "")])
             
         }
-        
-        
-        //   window.location.reload(false);
+
     }
 
     //BrandFilter execute
@@ -63,7 +59,7 @@ const ProductList=(props)=>{
             search: `type=${productListType}&${productListType}=${new URLSearchParams(window.location.search).get(productListType)}&sort=${sort}&PageNo=${PageNo} &${`&BND=${BrandChoosed.toString()}`} ${minprice ? `&minprice=${minprice}  &maxprice=${maxprice}` : ""}`
 
         },{replace:true})
-        // window.location.reload(false);
+      
     }
 
     //BrandChoose Remove
@@ -76,16 +72,14 @@ const ProductList=(props)=>{
     }
    //show result of price filter
    const priceResult=(min,max)=>{
-    setproducts("")
-    setminpricevalue(min)
-    setmaxpricevalue(max)
+   
+
     navigate({ 
         pathname: `/ProductList`,
         search: `type=${productListType}&${productListType}=${new URLSearchParams(window.location.search).get(productListType)}&sort=${sort}&PageNo=${PageNo} &${BND ? `&BND=${BrandChoosed.toString()}`:""} &minprice=${min}  &maxprice=${max}`
 
-        // search: `type=${productListType}&${productListType}=${new URLSearchParams(window.location.search).get(productListType)}&sort=${sort}${BrandChoosed.length!=0 ? `&BND=${BrandChoosed.toString()}`:""}&PageNo=1 &minprice=${min}  &maxprice=${max}`
-      },{replace:true})
-    //   window.location.reload(false);
+    },{replace:true})
+    
 
     }
   

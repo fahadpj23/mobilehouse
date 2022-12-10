@@ -1,7 +1,7 @@
 import { AiOutlineClose } from 'react-icons/ai';
 import {MobileHouseApi} from "helpers/axiosinstance";
 import { useState,useContext } from 'react';
-import { Usercontext } from '../context/userContext';
+import { Usercontext } from '../../context/userContext';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const UserRegister=(props)=>{

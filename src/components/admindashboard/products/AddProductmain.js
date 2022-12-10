@@ -1,5 +1,5 @@
 import { useState ,useEffect,useContext} from "react"
-import { Usercontext } from "../../context/userContext";
+import { Usercontext } from "../../../context/userContext";
 import AddProductWindow from "./addProductWindow"
 import { AiOutlineClose} from 'react-icons/ai';
 import UploadSpinner from "../uploadstatus";

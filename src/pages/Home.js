@@ -33,8 +33,9 @@ function Home() {
       .catch((Err) => console.log(Err));
   
     MobileHouseApi.get("/getAds").then((res) => {
-      setAds(res.data.Ads).catch((Err) => console.log(Err));
-    });
+      setAds(res.data.Ads)
+    })
+    .catch((Err) => console.log(Err));
   }, []);
 
   console.log(Ads);

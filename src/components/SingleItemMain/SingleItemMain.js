@@ -2,7 +2,7 @@
 
 import {Link} from "react-router-dom";
 import axios from 'axios'
-import { Usercontext } from '../context/userContext';
+import { Usercontext } from '../../context/userContext';
 import {useContext} from 'react'
 import React, { useState } from 'react';
 import ProductSlider from '../Home/productSlick'

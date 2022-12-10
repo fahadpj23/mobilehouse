@@ -9,7 +9,7 @@ import Order from './pages/admin/Order'
 import AdminLogin from './pages/adminLogin';
 import Category from './pages/admin/category';    
 import Dashboard from './pages/admin/Dashboard';
-import ContextProvider from './components/context/userContext';
+import ContextProvider from './context/userContext';
 import {useEffect,useState} from 'react'
 import  {MobileHouseApi} from "./helpers/axiosinstance"
 import { AuthContext } from "./helpers/authcontext";
@@ -34,6 +34,7 @@ import Payment from 'pages/Payment';
 import CancelOrder from 'pages/CancelOrder';
 import OrderDetails from 'pages/OrderDetails';
 import Sales from 'pages/admin/Sales';
+import AppRouter from 'Routes/appRouter';
 function App(){
     const[ authState, setAuthState ]=useState("")
     const[ UserauthState, setUserAuthState ]=useState("")
@@ -100,51 +101,9 @@ function App(){
                             {console.log(authState)}
                             {
                                 (authState!=="" && UserauthState!=="") &&
-                                <BrowserRouter>
-             
-                                    <Routes>
-                                    <Route  path="/" index  element={<Home/>}/>  
-                                    <Route path="/admin/Dashboard" element={authState=="authorized" ? <Dashboard/>  : <Navigate to="/adminLogin" replace/>}/>
-                                    
-                                    <Route  path="/admin/orders" element={authState=="authorized" ? <Order/>  : <Navigate to="/adminLogin" replace/>   } />
-                                    <Route  path="/admin/Product" element={authState=="authorized" ? <Product/>  : <Navigate to="/adminLogin" replace/>   }/>
-                                
-                                    <Route exact  path="/singleItem/:productId" element={<SingleItem/>}/>
-                                    <Route  path="/TermsOfService" element={<TermsOfService/>}/>
-                                    
-                                    <Route  path="/Address" element={<Address/>}/>
-                                    <Route  path="/cart" element={<Cart/>}/>
-                                    <Route  path="/adminLogin" element={authState=="authorized" ? <Navigate to="/admin/Dashboard" replace/>  : <AdminLogin/>}/>
-                                    <Route  path="/admin/Attribute" element={authState=="authorized" ? <Attribute/>  : <Navigate to="/adminLogin" replace/>  }/>
-                                    <Route  path="/admin/category" element={authState=="authorized" ? <Category/>  : <Navigate to="/adminLogin" replace/>   } />
-                                    <Route  path="/ProductList" element={<ProductList/>}/>
-                                    <Route  path="/OrderSuccess" element={<OrderSuccess/>}/>
-                                    <Route  path="/admin/Purchase" element={authState=="authorized" ? <Purchase/>  : <Navigate to="/adminLogin" replace/>   }/>
-                                    <Route  path="/admin/Supplier" element={authState=="authorized" ? <Supplier/>  : <Navigate to="/adminLogin" replace/>   }/>
-                                    <Route  path="/admin/Hsncode" element={authState=="authorized" ? <Hsncode/>  : <Navigate to="/adminLogin" replace/>   }/>
-                                    <Route  path="/admin/Brand" element={authState=="authorized" ? <Brand/>  : <Navigate to="/adminLogin" replace/>   }/>
-                                    <Route  path="/admin/Heading" element={authState=="authorized" ? <Heading/>  : <Navigate to="/adminLogin" replace/>   }/>
-                                    <Route  path="/admin/Sales" element={authState=="authorized" ? <Sales/>  : <Navigate to="/adminLogin" replace/>   }/>
-                                    <Route  path="/admin/Banner" element={authState=="authorized" ? <Banner/>  : <Navigate to="/adminLogin" replace/>   }/>
-                                    <Route  path="/admin/Ads" element={authState=="authorized" ? <Ads/>  : <Navigate to="/adminLogin" replace/>   }e/>
-                                    <Route  path="/PrivacyPolicy" element={<PrivacyPolicy/>}/>
-                                    <Route  path="/RefundPolicy" element={<RefundPolicy/>}/>
-                                    <Route  path="/ShippingPolicy" element={<ShippingPolicy/>}/>
-                                    <Route  path="/AboutUs" element={<AboutUs/>}/>
-                                    <Route  path="/Profile" element={<Profile/>}/>
-                                    <Route  path="/Payment" element={<Payment/>}/>
-                                    <Route  path="/Myorders/OrderDetails" element={<OrderDetails/>}/>
-                                    <Route  path="/Myorders/CancelOrder" element={<CancelOrder/>}/>
-                                  
-
-                                    <Route  path='/*'  element={<PageNotFound/>}/>
-
-                                    
-                                    
-                                    
-                                    </Routes>
-           
-           </BrowserRouter>
+                                        <AppRouter
+                                        authState={authState}
+                                        />
                             }
                            
                            

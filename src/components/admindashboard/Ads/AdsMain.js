@@ -3,7 +3,7 @@
 import { useState ,useEffect,useContext} from "react"
 
 import {MobileHouseApi} from "helpers/axiosinstance";
-import { Usercontext } from "components/context/userContext";
+import { Usercontext } from "context/userContext";
 
 // import AdsAdd from "./AdsAdd";
 

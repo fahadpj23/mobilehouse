@@ -1,7 +1,7 @@
 
 import {MobileHouseApi} from "helpers/axiosinstance";
 import { useState,useContext,useEffect,useMemo } from "react";
-import { Usercontext } from "components/context/userContext";
+import { Usercontext } from "context/userContext";
 import { debounce } from 'lodash';
 import { AiOutlineClose } from 'react-icons/ai';
 import ProductTable from "../ProductTable";

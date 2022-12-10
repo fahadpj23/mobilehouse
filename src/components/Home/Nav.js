@@ -8,7 +8,7 @@ import {BsSearch } from 'react-icons/bs';
 import {Link} from "react-router-dom";
 import Login from './login';
 import UserRegister from './userRegister';
-import { Usercontext } from 'components/context/userContext';
+import { Usercontext } from 'context/userContext';
 import { useNavigate } from 'react-router-dom';
 import MobileSearchWindow from './MobileSearchWindow';
 import { debounce } from 'lodash';

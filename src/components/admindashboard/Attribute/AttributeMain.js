@@ -3,7 +3,7 @@
 import { useState,useContext,useEffect } from "react";
 import FormLayout from '../form'
 import {MobileHouseApi} from "helpers/axiosinstance";
-import { Usercontext } from "components/context/userContext";
+import { Usercontext } from "context/userContext";
 
 const AttributeMain=(props)=>{
 

@@ -1,6 +1,6 @@
 
 import React, { useContext, useState} from 'react';
-import { Usercontext } from '../context/userContext';
+import { Usercontext } from '../../context/userContext';
 import { useNavigate } from "react-router-dom";
 import AddressProduct from './addressProduct';
 

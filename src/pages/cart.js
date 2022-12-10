@@ -1,6 +1,6 @@
 import Cartmain from "../components/cart/CartMain"
 
-import { Usercontext } from 'components/context/userContext';
+import { Usercontext } from 'context/userContext';
 
 const Cart=()=>{
     

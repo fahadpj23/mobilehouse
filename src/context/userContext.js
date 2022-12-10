@@ -1,7 +1,7 @@
 import PreviousMap from "postcss/lib/previous-map";
 import { createContext } from "react";
 import { useState,useEffect } from "react";
-import ProductSlider from "../Home/productSlick";
+import ProductSlider from "../components/Home/productSlick";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { MobileHouseApi } from "helpers/axiosinstance";
@@ -73,13 +73,24 @@ const ContextProvider=(props)=>{
     }
 
     const cartremove=(product)=>{
-        if(cart.length!=1)
+        if(localStorage.getItem('UserName'))
         {
-        cart.splice(product.id, 1)
+            MobileHouseApi.delete('/cartRemove',{params:{productId:product.id}})
+            .then((res)=>{
+                    console.log(res.data)
+            })      
+            .catch((err)=>console.log(err))
         }
         else
         {
-            cart.pop()
+            if(cart.length!=1)
+            {
+            cart.splice(product.id, 1)
+            }
+            else
+            {
+                cart.pop()
+            }
         }
       setcartadded(true) 
     }

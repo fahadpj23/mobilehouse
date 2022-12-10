@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 import {AiOutlineShoppingCart } from 'react-icons/ai';
-import {Usercontext} from '../context/userContext'
+import {Usercontext} from '../../context/userContext'
 import {Component, useContext,useState} from 'react'
 import { GiConsoleController } from "react-icons/gi";
 import { FaPlus } from "react-icons/fa";

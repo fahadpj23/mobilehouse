@@ -1,6 +1,6 @@
 import {useContext,useState} from 'react'
 import { Link, Navigate } from 'react-router-dom';
-import { Usercontext } from '../context/userContext';
+import { Usercontext } from '../../context/userContext';
 import Login from 'components/Home/login';
 import UserRegister from 'components/Home/userRegister';
 import Cartitem from './cartitem';
