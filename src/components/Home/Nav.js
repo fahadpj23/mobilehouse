@@ -60,7 +60,7 @@ const Nav=(props)=>{
 
     const selectNavProduct=(product)=>{
         console.log(product)
-        navigate({pathname:'singleItem',search: "?" + new URLSearchParams({productid: product.id}).toString() })
+        navigate({pathname:`singleItem/${product.id}`, })
         window.location.reload(false);
     }
 
