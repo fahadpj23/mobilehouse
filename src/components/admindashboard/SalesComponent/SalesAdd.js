@@ -49,7 +49,7 @@ const SalesAdd=(props)=>{
        
         if(salesTable.length!=0)
         {
-            MobileHouseApi.post('salesUpload',formData,{headers:{accessToken:localStorage.getItem('accessToken')}})
+            MobileHouseApi.post('salesUpload',formData,{withCredentials:true})
             .then((res)=>{
                if(res.data.success)
                {

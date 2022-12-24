@@ -48,7 +48,7 @@ const PurchaseAdd=(props)=>{
        
         if(purchaseTable.length!=0)
         {
-            MobileHouseApi.post('purchaseupload',formData,{headers:{accessToken:localStorage.getItem('accessToken')}})
+            MobileHouseApi.post('purchaseupload',formData,{withCredentials:true})
             .then((res)=>{
                if(res.data.success)
                {

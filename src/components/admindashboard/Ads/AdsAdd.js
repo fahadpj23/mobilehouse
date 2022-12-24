@@ -44,7 +44,7 @@ const AdsAdd=(props)=>{
         if(Brand=="")
         {
            
-            MobileHouseApi.get('/getAdsBrand',{headers:{accessToken:localStorage.getItem("accessToken")}})
+            MobileHouseApi.get('/getAdsBrand',{withCredentials:true})
             .then((res)=>{
                 setBrand(res.data.Brand)
                 console.log(res.data.Brand)

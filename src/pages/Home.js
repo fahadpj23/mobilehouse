@@ -4,7 +4,7 @@ import { MobileHouseApi } from "helpers/axiosinstance";
 import React, { useState, useEffect, useContext } from "react";
 import ProductSlider from "../components/Home/productSlick";
 import HomeAds from "components/Home/HomeAds";
-import MainLayoutWebsite from "components/MainLayoutWebsite";
+import MainLayoutWebsite from "Layout/MainLayoutWebsite";
 import Footer from "components/Home/Footer";
 
 function Home() {
@@ -43,7 +43,7 @@ function Home() {
     <div className="">
       <MainLayoutWebsite>
         <div className="w-full overflow-hidden ">
-          {Banner && <SimpleSlider Banner={Banner} />}\
+          {Banner && <SimpleSlider Banner={Banner} />}
           {<CatSlider category={category} />}
           <div className="w-full flex justify-center ">
             <div className="w-full  ">

@@ -1,6 +1,6 @@
 
 import Nav from "components/Home/Nav"
-import MainLayoutWebsite from "components/MainLayoutWebsite";
+import MainLayoutWebsite from "Layout/MainLayoutWebsite";
 const PrivacyPolicy=()=>{
     return(
             <div >

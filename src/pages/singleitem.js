@@ -2,7 +2,7 @@ import React, { useState,useEffect } from 'react';
 import {MobileHouseApi} from "helpers/axiosinstance";
 import SingleItemMain from '../components/SingleItemMain/SingleItemMain'
 import { useNavigate ,useParams} from 'react-router-dom';
-import MainLayoutWebsite from 'components/MainLayoutWebsite';
+import MainLayoutWebsite from 'Layout/MainLayoutWebsite';
 
 const SingleItem=(props)=>{
    
@@ -21,10 +21,8 @@ const SingleItem=(props)=>{
 
      
     const singleitemset=(item1)=>{
-      
-        
-            navigate({pathname:`/singleItem/${item1.id}`, },{replace:true})
-           
+   
+            navigate({pathname:`/singleItem/${item1.id}`, },{replace:true})     
 
     }
     
@@ -83,7 +81,7 @@ const SingleItem=(props)=>{
     }, [productId])
    
 
- 
+    
     return(
         <div className="">
             {pageLoad==true ?

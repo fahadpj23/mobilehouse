@@ -24,7 +24,7 @@ const ContextProvider=(props)=>{
                 const formData=new FormData()
                 formData.append('productId',item.id)
                 formData.append('qty',qty)
-                MobileHouseApi.post('/CartAdd',formData,{headers:{UserToken:localStorage.getItem("UserToken")}})
+                MobileHouseApi.post('/CartAdd',formData,{withCredentials:true})
                 .then((res)=>{
               
                     if(res.data.success)
@@ -56,7 +56,7 @@ const ContextProvider=(props)=>{
                        const formData=new FormData()
                        formData.append('qty',qty)
                        formData.append('productId',product.id)
-                        MobileHouseApi.post('/CartQtyUpdate',formData,{headers:{UserToken:localStorage.getItem("UserToken")}})
+                        MobileHouseApi.post('/CartQtyUpdate',formData,{withCredentials:true})
                         .then((res)=>{
                       
                             if(res.data.success)
@@ -108,7 +108,7 @@ const ContextProvider=(props)=>{
         const data=new FormData()
         data.append("productId",item.id)
         data.append("qty",1)
-        MobileHouseApi.post('/CartAdd',data,{headers:{UserToken:localStorage.getItem("UserToken")}})
+        MobileHouseApi.post('/CartAdd',data,{withCredentials:true})
         .then((res)=>{
             console.log(res.data)
         })
@@ -136,9 +136,9 @@ const ContextProvider=(props)=>{
         }
 
         //initial load set cart.if user logged in then fetch from user cart table other wise fetch from local storage
-        if(localStorage.getItem('UserToken'))
+        if(localStorage.getItem('UserName'))
         {
-            MobileHouseApi.get('getUserCart',{headers:{UserToken:localStorage.getItem("UserToken")}})
+            MobileHouseApi.get('getUserCart',{withCredentials:true})
             .then((res)=>{
                setcart(res.data.cart)
             })

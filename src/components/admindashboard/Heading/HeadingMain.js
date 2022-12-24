@@ -30,7 +30,7 @@ const HeadingMain=(props)=>{
         data.append("operationid",props.operationitem.id)
  
         data.append("products",JSON.stringify(headproduct))
-        MobileHouseApi.post('/headingAdd',data,{headers:{accessToken:localStorage.getItem("accessToken")}})
+        MobileHouseApi.post('/headingAdd',data,{withCredentials:true})
         .then((res)=>{
           if(res.data.success)
           {

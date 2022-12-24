@@ -1,5 +1,5 @@
 import React from 'react';
-import Nav from './Home/Nav';
+import Nav from '../components/Home/Nav';
 import { SiWhatsapp } from 'react-icons/si';
 
 const MainLayoutWebsite=({children})=>{

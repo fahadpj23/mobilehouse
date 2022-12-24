@@ -54,7 +54,7 @@ const AddProductMain=(props)=>{
         data.append("productImage",JSON.stringify(props.productImage))
         data.append("productImageblob",JSON.stringify(props.productImageblob))
         console.log(data)
-        MobileHouseApi.post('/productAdd',data,{headers:{accessToken:localStorage.getItem("accessToken")}})
+        MobileHouseApi.post('/productAdd',data,{withCredentials:true})
         .then((res)=>{
          if(res.data.error)
          {

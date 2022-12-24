@@ -3,7 +3,7 @@ import ProductListMain from '../components/ProductList/ProductListMain'
 import {MobileHouseApi} from "helpers/axiosinstance";
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect,useState } from 'react'
-import MainLayoutWebsite from "components/MainLayoutWebsite";
+import MainLayoutWebsite from "Layout/MainLayoutWebsite";
 const ProductList=(props)=>{
     let navigate=useNavigate();
     const [products,setproducts]=useState("")

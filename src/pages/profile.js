@@ -1,5 +1,5 @@
 
-import MainLayoutWebsite from "components/MainLayoutWebsite";
+import MainLayoutWebsite from "Layout/MainLayoutWebsite";
 import ProfileMain from "components/profile/profileMain";
 import { useNavigate } from "react-router-dom";
 const Profile=()=>{

@@ -81,7 +81,7 @@ const TableContent=(props)=>{
         
         if(window.confirm(`${approvalStatus}`)==true)
         {
-            MobileHouseApi.post('/UpdatePurchaseApprovalStatus',formData,{headers:{accessToken:localStorage.getItem('accessToken')}})
+            MobileHouseApi.post('/UpdatePurchaseApprovalStatus',formData,{withCredentials:true})
             .then((res)=>{
                 console.log(res)
             })
@@ -125,7 +125,7 @@ const TableContent=(props)=>{
         if(TableData=="")
         {
            
-            MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:"",PageNo:PageNo},headers:{accessToken:localStorage.getItem("accessToken")}})
+            MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:"",PageNo:PageNo},withCredentials:true})
             .then((res)=>{ 
                 setTableData(res.data)
                 setTotalCount(res.data.Count)

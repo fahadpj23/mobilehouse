@@ -36,7 +36,7 @@ const AllProduct=(props)=>{
     //             if(res.data.success)
     //             {
     //                 context.notify(res.data.success,"success")
-    //                 MobileHouseApi.get('/getProduct',{headers:{accessToken:localStorage.getItem("accessToken")}})
+    //                 MobileHouseApi.get('/getProduct',{withCredentials:true})
     //                 .then((res)=>{
     //                     setproduct(res.data)
     //                 })

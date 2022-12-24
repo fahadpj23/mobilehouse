@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import MainLayoutWebsite from "components/MainLayoutWebsite";
+import MainLayoutWebsite from "Layout/MainLayoutWebsite";
 const OrderSuccess=(props)=>{
     // const orderId=new URLSearchParams(window.location.search).get('orderId') && new URLSearchParams(window.location.search('orderId'))
     const orderId = new URLSearchParams(window.location.search).get('orderId') && new URLSearchParams(window.location.search).get('orderId')

@@ -9,7 +9,7 @@ const Myorder=()=>{
     useEffect(()=>{
         if(MyOrder=="")
         {
-        MobileHouseApi.get('/MyOrderDetails',{headers:{UserToken:localStorage.getItem("UserToken")}})
+        MobileHouseApi.get('/MyOrderDetails',{withCredentials:true})
         .then((res)=>{
             setMyOrder(res.data.MyOrder)
         })

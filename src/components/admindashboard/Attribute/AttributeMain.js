@@ -29,7 +29,7 @@ const AttributeMain=(props)=>{
         data.append("operationid",props.operationitem.id )
      
         
-        MobileHouseApi.post('/attributeAdd',data,{headers:{accessToken:localStorage.getItem("accessToken")}})
+        MobileHouseApi.post('/attributeAdd',data,{withCredentials:true})
         .then((res)=>{
          if(res.data.error)
          {

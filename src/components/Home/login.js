@@ -34,7 +34,7 @@ const Login=(props)=>{
     const handleSubmit=(e)=>{
         e.preventDefault();
         const data= new FormData(e.target)
-        MobileHouseApi.post(`/login`,data)
+        MobileHouseApi.post(`/login`,data,{ withCredentials: true })
         .then(res=>{
                
             if(res.data.UserToken)
@@ -44,6 +44,7 @@ const Login=(props)=>{
                 localStorage.setItem("UserName",res.data.username)
                 props.loginsuccess && props.loginsuccess(res.data.username)
              window.location.reload(false);
+            console.log(res.data)
             }
             else
             {

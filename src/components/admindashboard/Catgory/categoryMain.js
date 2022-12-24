@@ -31,7 +31,7 @@ const CategoryMain=(props)=>{
        
         data.append("operation",props.operation)
         data.append("operationid",props.operationitem.id )
-        MobileHouseApi.post('/categoryAdd',data,{headers:{accessToken:localStorage.getItem("accessToken")}})
+        MobileHouseApi.post('/categoryAdd',data,{withCredentials:true})
         
         .then((res)=>{
          if(res.data.error)
@@ -54,7 +54,7 @@ const CategoryMain=(props)=>{
     useEffect(()=>{
       if(attribute=="")
       {
-      MobileHouseApi.get('/getAvailableAttribute',{headers:{accessToken:localStorage.getItem("accessToken")}}).then((res)=>{
+      MobileHouseApi.get('/getAvailableAttribute',{withCredentials:true}).then((res)=>{
         if(res.data.attribute)
         {
           
