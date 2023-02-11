@@ -60,7 +60,7 @@ const Nav=(props)=>{
 
     const selectNavProduct=(product)=>{
         console.log(product)
-        navigate({pathname:`singleItem/${product.id}`, })
+        navigate({pathname:`/singleItem/${product.id}`, })
         window.location.reload(false);
     }
 
@@ -114,8 +114,7 @@ const Nav=(props)=>{
     return(
         <div className="shadow-sm ">
             {context.loginstatus===true&&
-                <Login
-                   
+                <Login      
                     
                 />
             }
@@ -124,7 +123,6 @@ const Nav=(props)=>{
                 <UserRegister
                    
                 />
-
             }
             {
                 MobileSearchStatus==true && 
