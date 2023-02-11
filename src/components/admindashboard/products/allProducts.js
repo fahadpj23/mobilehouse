@@ -36,7 +36,7 @@ const AllProduct=(props)=>{
     //             if(res.data.success)
     //             {
     //                 context.notify(res.data.success,"success")
-    //                 MobileHouseApi.get('/getProduct',{withCredentials:true})
+    //                 MobileHouseApi.get('/getProduct')
     //                 .then((res)=>{
     //                     setproduct(res.data)
     //                 })
@@ -65,7 +65,7 @@ const AllProduct=(props)=>{
     useEffect(()=>{
         if(props.operationitem)
         {
-            MobileHouseApi.get('/productdetails',{params:{productId:props.operationitem.id},withCredentials:true})
+            MobileHouseApi.get('/productdetails',{params:{productId:props.operationitem.id}})
             .then((res)=>{
                 setoperationitem(res.data)       
             })

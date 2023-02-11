@@ -47,8 +47,7 @@ function App(){
        
         if(localStorage.getItem("accessToken"))
         {
-            console.log("fdf")
-            MobileHouseApi.get('authentication',{withCredentials:true})
+            MobileHouseApi.get('authentication')
             .then((res)=>{
                
                if(res.data.success)

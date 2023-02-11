@@ -10,7 +10,7 @@ function Order(){
         const formdata=new FormData()
         formdata.append('orderid',orderDetails.orderid)
         formdata.append('status',val)
-        MobileHouseApi.post('/DeliveryStatusUpdate',formdata,{withCredentials:true})
+        MobileHouseApi.post('/DeliveryStatusUpdate',formdata)
         .then((res)=>{
             console.log(res.data)
         })

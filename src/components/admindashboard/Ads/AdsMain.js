@@ -42,7 +42,7 @@ const AdsMain=(props)=>{
                         formData.append("status",status)
                         formData.append("operation",props.operation)
                         formData.append("operationid",props.operationitem.id)
-                        MobileHouseApi.post('/AddAds',formData,{withCredentials:true})
+                        MobileHouseApi.post('/AddAds',formData)
                         .then((res)=>{
                         if(res.data.success)
                         {

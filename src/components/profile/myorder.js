@@ -9,7 +9,7 @@ const Myorder=()=>{
     useEffect(()=>{
         if(MyOrder=="")
         {
-        MobileHouseApi.get('/MyOrderDetails',{withCredentials:true})
+        MobileHouseApi.get('/MyOrderDetails')
         .then((res)=>{
             setMyOrder(res.data.MyOrder)
         })

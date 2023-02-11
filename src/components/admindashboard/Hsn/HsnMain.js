@@ -42,7 +42,7 @@ const HsnMain=(props )=>{
         
        
         
-        MobileHouseApi.post('/HSNcodePost',data,{withCredentials:true})
+        MobileHouseApi.post('/HSNcodePost',data)
         .then((res)=>{
          if(res.data.error)
          {

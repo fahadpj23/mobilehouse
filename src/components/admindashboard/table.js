@@ -29,7 +29,7 @@ const TableContent=(props)=>{
     
   
     const SearchTable=(searchval)=>{
-        MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:searchval,PageNo:PageNo},withCredentials: true })
+        MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:searchval,PageNo:PageNo} })
         .then((res)=>{
             setTableData(res.data)
             setTotalCount(res.data.Count)
@@ -40,7 +40,7 @@ const TableContent=(props)=>{
         console.log(e.selected  )
        console.log(window.location.href)
         // navigate( { search: "?" + new URLSearchParams({pageNo: +(e.selected) +1}).toString() },{replace:true})
-        MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:searchvalue,PageNo:+(e.selected) +1},withCredentials:true})
+        MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:searchvalue,PageNo:+(e.selected) +1}})
         .then((res)=>{ 
             setTableData(res.data)
             setTotalCount(res.data.Count)
@@ -51,7 +51,7 @@ const TableContent=(props)=>{
         setAddNewstatus(false)
         setoperation("")
         setoperationitem("")
-        MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:searchvalue,PageNo:PageNo},withCredentials:true})
+        MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:searchvalue,PageNo:PageNo}})
         .then((res)=>{ 
             setTableData(res.data)
             setTotalCount(res.data.Count)
@@ -64,7 +64,7 @@ const TableContent=(props)=>{
         setAddNewstatus(false)
         setoperation("")
         setoperationitem("")
-        MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:searchvalue,PageNo:PageNo},withCredentials:true})
+        MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:searchvalue,PageNo:PageNo}})
         .then((res)=>{ 
             setTableData(res.data)
             setTotalCount(res.data.Count)
@@ -81,7 +81,7 @@ const TableContent=(props)=>{
         
         if(window.confirm(`${approvalStatus}`)==true)
         {
-            MobileHouseApi.post('/UpdatePurchaseApprovalStatus',formData,{withCredentials:true})
+            MobileHouseApi.post('/UpdatePurchaseApprovalStatus',formData)
             .then((res)=>{
                 console.log(res)
             })
@@ -95,12 +95,12 @@ const TableContent=(props)=>{
         {
             if(window.confirm("Delete the product")==true)
             {
-            MobileHouseApi.delete('/productDelete',{params:{productId:EditData.id},withCredentials:true})
+            MobileHouseApi.delete('/productDelete',{params:{productId:EditData.id}})
             .then((res)=>{
                 if(res.data.success)
                 {
                      context.notify(res.data.success,"success")
-                    MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:"",PageNo:PageNo},withCredentials:true})
+                    MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:"",PageNo:PageNo}})
                     .then((res)=>{
                         setTableData(res.data)
                         setTotalCount(res.data.Count)
@@ -125,7 +125,7 @@ const TableContent=(props)=>{
         if(TableData=="")
         {
            
-            MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:"",PageNo:PageNo},withCredentials:true})
+            MobileHouseApi.get(`/${props.controller}/getData`,{params:{search:"",PageNo:PageNo}})
             .then((res)=>{ 
                 setTableData(res.data)
                 setTotalCount(res.data.Count)

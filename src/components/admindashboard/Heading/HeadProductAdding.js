@@ -13,7 +13,7 @@ const HeadProductAdding=(props)=>{
     const searchProduct=(searchItem)=>{
         setsearchValue(searchItem)
       
-       MobileHouseApi.get('headProduct',{params:{searchitem:searchItem},withCredentials:true})
+       MobileHouseApi.get('headProduct',{params:{searchitem:searchItem}})
        .then((res)=>{
            setproducts(res.data.products)
        })

@@ -21,7 +21,7 @@ const PurchaseAdd=(props)=>{
     //product search
     const ProductSearch=()=>{
         let searchval=document.getElementById('serachinput').value
-        MobileHouseApi.get('/purchaseProductSearch',{params:{searchval},withCredentials:true})
+        MobileHouseApi.get('/purchaseProductSearch',{params:{searchval}})
         .then((res)=>{
           
             setsearchProduct(res.data)
@@ -48,7 +48,7 @@ const PurchaseAdd=(props)=>{
        
         if(purchaseTable.length!=0)
         {
-            MobileHouseApi.post('purchaseupload',formData,{withCredentials:true})
+            MobileHouseApi.post('purchaseupload',formData)
             .then((res)=>{
                if(res.data.success)
                {
@@ -129,7 +129,7 @@ const PurchaseAdd=(props)=>{
     useEffect(()=>{
         if(props.operation)
         {
-            MobileHouseApi.get('/getPurchaseProduct',{params:{purchaseId:props.operationitem.id},withCredentials:true})
+            MobileHouseApi.get('/getPurchaseProduct',{params:{purchaseId:props.operationitem.id}})
             .then((res)=>{
                setpurchaseTable(res.data.products)
             })
@@ -137,7 +137,7 @@ const PurchaseAdd=(props)=>{
         }
         if(suppliers==="")
         {
-            MobileHouseApi.get('/getSupplier',{withCredentials:true})
+            MobileHouseApi.get('/getSupplier')
             .then((res)=>{
                 setsuppliers(res.data.supplier)
             })

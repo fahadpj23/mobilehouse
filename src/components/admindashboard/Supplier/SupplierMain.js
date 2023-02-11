@@ -37,7 +37,7 @@ const SupplierMain=(props)=>{
         data.append("operation",props.operation)
         data.append("operationid",props.operationitem.id)
         
-        MobileHouseApi.post('/SupplierAdd',data,{withCredentials:true})
+        MobileHouseApi.post('/SupplierAdd',data)
         .then((res)=>{
          if(res.data.error)
          {
