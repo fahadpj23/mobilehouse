@@ -65,7 +65,7 @@ const AllProduct=(props)=>{
     useEffect(()=>{
         if(props.operationitem)
         {
-            MobileHouseApi.get('/productdetails',{params:{productId:props.operationitem.id},headers:{accessToken:localStorage.getItem("accessToken")}})
+            MobileHouseApi.get('/productdetails',{params:{productId:props.operationitem.id},withCredentials:true})
             .then((res)=>{
                 setoperationitem(res.data)
                 
@@ -73,7 +73,6 @@ const AllProduct=(props)=>{
             })
         }
     },[])
-    console.log(operationitem)
  
     
     return(

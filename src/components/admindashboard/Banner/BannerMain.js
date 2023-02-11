@@ -34,7 +34,7 @@ const BannerMain=(props)=>{
         formData.append("operation",props.operation)
         formData.append("operationid",props.operationitem.id)
         formData.append("position",props.operationitem.position)
-        MobileHouseApi.post('/AddBanner',formData)
+        MobileHouseApi.post('/AddBanner',formData,{withCredentials:true})
         .then((res)=>{
           if(res.data.success)
           {
@@ -51,7 +51,7 @@ const BannerMain=(props)=>{
     useEffect(()=>{
         if(Banner==false)
         {
-          MobileHouseApi.get('/BannerFetch')
+          MobileHouseApi.get('/BannerFetch',{withCredentials:true})
           .then((res)=>{
            
            

@@ -7,7 +7,7 @@ import {MobileHouseApi} from "helpers/axiosinstance";
 const AddProductWindow=(props)=>{
     const imageref=useRef("")
     const product=props.operationitem
-    
+    console.log(product)
  
     const [imageset,setimageset]=useState(false)
     const [imageIndex,setimageIndex]=useState("")
@@ -41,7 +41,7 @@ const AddProductWindow=(props)=>{
 
    useEffect(()=>{
     //to get HSN
-    MobileHouseApi.get('getHSN')
+    MobileHouseApi.get('getHSN',{withCredentials:true})
     .then((res)=>{
         setHSN(res.data)
     })

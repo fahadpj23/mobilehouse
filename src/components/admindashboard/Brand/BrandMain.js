@@ -45,7 +45,7 @@ const BrandMain=()=>{
         }
        
         
-        MobileHouseApi.post('/HSNcodePost',data)
+        MobileHouseApi.post('/HSNcodePost',data,{withCredentials:true})
         .then((res)=>{
          if(res.data.error)
          {
@@ -58,7 +58,7 @@ const BrandMain=()=>{
             setoperationid("")
             setoperation("")
             setoperationitem("")
-            MobileHouseApi.get('getHSN')
+            MobileHouseApi.get('getHSN',{withCredentials:true})
             .then((res)=>{
                 setHSN(res.data)
             })
@@ -92,7 +92,7 @@ const BrandMain=()=>{
       useEffect(()=>{
         if(HSN==="")
         {
-        MobileHouseApi.get('getHSN')
+        MobileHouseApi.get('getHSN',{withCredentials:true})
         .then((res)=>{
             setHSN(res.data)
         })

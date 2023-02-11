@@ -26,7 +26,7 @@ const AddProductMain=(props)=>{
     const categoryselect=(catid)=>{
                     
                     setcategoryid(catid)
-                     MobileHouseApi.get("/getcategoryAttribute",{params:{"categoryid":catid},headers:{accessToken:localStorage.getItem("accessToken")}})
+                     MobileHouseApi.get("/getcategoryAttribute",{params:{"categoryid":catid},withCredentials:true})
                      .then((res)=>{
                       
 
@@ -75,7 +75,7 @@ const AddProductMain=(props)=>{
       useEffect(()=>{
         if(catgeorytotal==="")
         {
-            MobileHouseApi.get(`/getcategory`,{params:{search:""},headers:{accessToken:localStorage.getItem("accessToken")}})
+            MobileHouseApi.get(`/getcategory`,{params:{search:""},withCredentials:true})
             .then((res)=>{
                 console.log(res.data)
                 setcatgeorytotal(res.data)
@@ -99,7 +99,7 @@ const AddProductMain=(props)=>{
             //     imageposset=imageposset+1
             // })
           
-            MobileHouseApi.get(`/productImageDetails`,{params:{productid:props.operationid},headers:{accessToken:localStorage.getItem("accessToken")}})
+            MobileHouseApi.get(`/productImageDetails`,{params:{productid:props.operationid},withCredentials:true})
             .then((res)=>{
                 res.data.images && res.data.images.map((item,key)=>{
                     if(item.image)

@@ -21,7 +21,7 @@ const SalesAdd=(props)=>{
     //product search
     const ProductSearch=()=>{
         let searchval=document.getElementById('serachinput').value
-        MobileHouseApi.get('/salesProductSearch',{params:{searchval}})
+        MobileHouseApi.get('/salesProductSearch',{params:{searchval},withCredentials:true})
         .then((res)=>{
           
             setsearchProduct(res.data)
@@ -127,7 +127,7 @@ const SalesAdd=(props)=>{
     useEffect(()=>{
         if(props.operation)
         {
-            MobileHouseApi.get('/getSalesProduct',{params:{salesId:props.operationitem.id}, headers:{accessToken:localStorage.getItem('accessToken')}})
+            MobileHouseApi.get('/getSalesProduct',{params:{salesId:props.operationitem.id},withCredentials:true})
             .then((res)=>{
                setsalesTable(res.data.products)
             })
