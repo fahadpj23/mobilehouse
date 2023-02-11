@@ -19,13 +19,12 @@ const FormLayout=(props)=>{
 
     // input id get as parameter in addvalue function and set value to tagIdvalue
     const addvalue=(tagId)=>{
-        console.log(tagId)
         // input type id set as formstructure item name.so every inpt tag id get by that name
         let tagIdvalue=document.getElementById(tagId).value
         console.log(tagIdvalue)
         if(tagIdvalue)
         {
-            if(props.values.includes(tagIdvalue)==false)
+            if(props.values?.includes(tagIdvalue)==false)
             {
                 props.values.push(tagIdvalue)
                 document.getElementById(tagId).value=""
@@ -42,7 +41,6 @@ const FormLayout=(props)=>{
         }
    
     }
-   
     const setvariant=(tagId,index)=>{
 
         
@@ -53,7 +51,6 @@ const FormLayout=(props)=>{
             
             if(props.variantvalues.includes(tagIdvalue)==false)
             {
-                console.log("dfd")
                 props.variantvalues.push(tagIdvalue)
                 setvariantoperation(!variantoperation)
             }
@@ -79,16 +76,6 @@ const FormLayout=(props)=>{
     }
 
     useEffect(()=>{
-        // if(props.operation!=="" && editok===false)
-        // {
-        //     //if there is a array value like catgeory attribute and attribute values than store it  in a array for display
-        //     props.operationitem.values && props.operationitem.values.map((item,key)=>{
-        //         props.values.push(item)
-        //       })
-        //       seteditok(true)
-        //       console.log(props.values)
-            
-        // }
         if(variantset==false && props.variants)
         {
             props.variants.map((item,key)=>{
@@ -117,7 +104,6 @@ const FormLayout=(props)=>{
         }
         if(deleteVariants!="")
         {
-           console.log(props.variantvalues.length)
             if(props.variantvalues.length==1)
             {
                 console.log("fdf")
@@ -175,13 +161,12 @@ const FormLayout=(props)=>{
                                                             }
                                                         </div>
                                                         {
-                                                            item.more && props.values.length!=0 &&
+                                                            item.more && props.values?.length!==0 &&
                                                                 <div className="space-y-1 mt-1 border border-gray-400 rounded p-2 max-h-48 overflow-auto">
                                                                     {
-                                                                        props.values && props.values.map((item,key)=>{
+                                                                        props.values && props.values?.map((item,key)=>{
                                                                             return(
                                                                                 <div className="w-full flex justify-between px-2 bg-gray-200 py-1 ">
-                                                                                    {console.log(item)}
                                                                                     <h1 className=" px-1  truncate w-10/12  ">{item}</h1 >
                                                                                     <button type="button" onClick={()=>{setdeletevalue(key+1)}} className={`${props.operation=="view" && " hidden"}`}  ><AiOutlineClose/></button>
                  

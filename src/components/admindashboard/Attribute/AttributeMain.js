@@ -52,7 +52,7 @@ const AttributeMain=(props)=>{
                                         <FormLayout
                                             formdata={addformdata}
                                             handleSubmit={handleSubmit}
-                                            values={props.operationitem.values}
+                                            values={props.operationitem.values??[]}
                                             operation={props.operation}
                                             operationitem={props.operationitem}
                                             AddSucess={props.AddSucess}

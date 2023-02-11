@@ -67,9 +67,7 @@ const AllProduct=(props)=>{
         {
             MobileHouseApi.get('/productdetails',{params:{productId:props.operationitem.id},withCredentials:true})
             .then((res)=>{
-                setoperationitem(res.data)
-                
-                
+                setoperationitem(res.data)       
             })
         }
     },[])
@@ -90,12 +88,6 @@ const AllProduct=(props)=>{
                       
                      />
                 </div>
-
-               
-            
-            
-    
-      
     )
 }
 export default AllProduct
