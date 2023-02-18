@@ -6,7 +6,7 @@ import { MobileHouseApi}  from 'helpers/axiosinstance'
 import TableContent from "../table";
 import { Usercontext } from "../../../context/userContext";
 import NavOperation from '../operation'
-import MainLayoutAdmin from '../MainLayoutAdmin'
+import MainLayoutAdmin from '../../../Layout/MainLayoutAdmin'
 import UploadSpinner from "../uploadstatus";
 const AllProduct=(props)=>{
     const context=useContext(Usercontext )

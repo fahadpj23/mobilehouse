@@ -31,6 +31,7 @@ import Payment from '../pages/Payment';
 import CancelOrder from '../pages/CancelOrder';
 import OrderDetails from '../pages/OrderDetails';
 import Sales from '../pages/admin/Sales';
+import MainLayoutAdmin from 'Layout/MainLayoutAdmin';
 function AppRouter(props){
     const {authState}=props
    
@@ -45,7 +46,7 @@ function AppRouter(props){
                                     <Route path={ROUTES.Dashboard} element={authState=="authorized" ? <Dashboard/>  : <Navigate to="/adminLogin" replace/>}/>
                                     
                                     <Route  path={ROUTES.Order} element={authState=="authorized" ? <Order/>  : <Navigate to="/adminLogin" replace/>   } />
-                                    <Route  path={ROUTES.Product} element={authState=="authorized" ? <Product/>  : <Navigate to="/adminLogin" replace/>   }/>
+                                    <Route  path={ROUTES.Product} element={authState=="authorized" ?<MainLayoutAdmin><Product/></MainLayoutAdmin>   : <Navigate to="/adminLogin" replace/>   }/>
                                 
                                     <Route exact  path={ROUTES.SingleItem} element={<SingleItem/>}/>
                                     <Route  path={ROUTES.TermsOfService} element={<TermsOfService/>}/>

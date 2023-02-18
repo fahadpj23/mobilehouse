@@ -1,4 +1,4 @@
-import MainLayoutAdmin from 'components/admindashboard/MainLayoutAdmin';
+import MainLayoutAdmin from 'Layout/MainLayoutAdmin';
 import TableContent from 'components/admindashboard/table';
 
 const Purchase=()=>{

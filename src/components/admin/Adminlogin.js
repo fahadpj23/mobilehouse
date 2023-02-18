@@ -18,13 +18,10 @@ const handleSubmit=(e)=>{
    
     MobileHouseApi.post('adminlogin',data,{ withCredentials: true })
     .then((res)=>{
-                if(res.data.accessToken)
+                if(res.status===200)
                 {
-                    console.log(res.data.accessToken)
-                    localStorage.setItem("accessToken",res.data.accessToken)
                     Auth.setAuthState("authorized")
                     navigate("/admin/Dashboard")
-                  
                     
                 }
                 else

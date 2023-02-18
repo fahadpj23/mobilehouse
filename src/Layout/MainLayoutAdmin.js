@@ -1,5 +1,5 @@
 import React from 'react';
-import SideNav from './sideNav';
+import SideNav from '../components/admindashboard/sideNav';
 const MainLayoutAdmin=({children})=>{
     return(
         <div className="w-screen h-screen flex relative ">

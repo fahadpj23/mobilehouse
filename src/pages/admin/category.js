@@ -1,6 +1,6 @@
 
 import TableContent from 'components/admindashboard/table';
-import MainLayoutAdmin from "components/admindashboard/MainLayoutAdmin";
+import MainLayoutAdmin from "Layout/MainLayoutAdmin";
 const Category=()=>{
    
    
